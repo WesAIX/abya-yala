@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "theses.schema.json",
+  "title": "Опорные тезисы",
+  "type": "object",
+  "required": ["meta", "theses"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "license"],
+      "properties": {
+        "title": {"type": "string"},
+        "schema": {"type": "string"},
+        "license": {"type": "string"},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "theses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["n", "title", "summary", "chapters", "start", "end", "markers", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "n": {"type": "integer", "minimum": 1},
+          "title": {"type": "string"},
+          "summary": {"type": "string"},
+          "chapters": {"type": "array", "minItems": 1, "items": {"type": "integer", "minimum": 0}},
+          "start": {"$ref": "genealogy.schema.json#/$defs/date"},
+          "end": {
+            "description": "null — продолжается сегодня.",
+            "oneOf": [{"type": "null"}, {"$ref": "genealogy.schema.json#/$defs/date"}]
+          },
+          "markers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["year", "label", "dating"],
+              "additionalProperties": false,
+              "properties": {
+                "year": {"type": "integer"},
+                "label": {"type": "string"},
+                "dating": {"$ref": "genealogy.schema.json#/$defs/dating"}
+              }
+            }
+          },
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    }
+  }
+}

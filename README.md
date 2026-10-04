@@ -91,6 +91,7 @@ uv run tools/validate.py             # схемы, ссылки, покрыти�
 uv run tools/bibliography.py         # пересобрать sources/BIBLIOGRAPHY.md
 uv run ruff check . && uv run ruff format --check .
 uv run python -m http.server         # локальный просмотр: http://localhost:8000/
+uv run --group basemap tools/basemap.py   # пересобрать подложку карт из Natural Earth
 ```
 
 Визуализации загружают данные через `fetch`, поэтому открывать их двойным

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Не дать закоммитить репозиторий с ошибками проверок.
+# Включается: git config core.hooksPath .githooks (в сессиях Claude Code — хук SessionStart).
+set -uo pipefail
+root=$(git rev-parse --show-toplevel) || exit 0
+. "$root/tools/hooks/lib.sh"
+uv=$(find_uv) || { echo 'pre-commit: uv не найден, проверки пропущены (их запустит CI)' >&2; exit 0; }
+if ! out=$(run_checks "$root" "$uv" full); then
+  printf '%s\n\nКоммит остановлен: почини ошибки выше или запусти с --no-verify.\n' "$out" >&2
+  exit 1
+fi

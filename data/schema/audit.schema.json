@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "audit.schema.json",
+  "title": "Журнал сверки утверждений главы с текстами источников",
+  "description": "Файл sources/audits/<глава>.json. Ведёт агент source-audit; одна запись — одно утверждение со сноской (идентификатор из tools/claims.py).",
+  "type": "object",
+  "required": ["chapter", "claims"],
+  "additionalProperties": false,
+  "properties": {
+    "chapter": {"type": "string", "pattern": "^[0-9]{2}-[a-z0-9-]+$"},
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "ref", "text", "verdict", "access", "checked_on"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "description": "«ключ#n» из tools/claims.py.", "pattern": "^[a-z][a-z0-9_-]*#[0-9]+$"},
+          "ref": {"type": "string"},
+          "text": {"type": "string", "description": "Предложение главы на момент сверки — по нему видно, что текст с тех пор изменился."},
+          "verdict": {
+            "description": "подтверждено — источник говорит то же; расходится — говорит другое; не подтверждено — проверить не удалось (см. access); неверная атрибуция — утверждение верно, но не из этого источника.",
+            "enum": ["подтверждено", "расходится", "не подтверждено", "неверная атрибуция"]
+          },
+          "access": {
+            "description": "Что было доступно при сверке: полный текст, фрагмент (аннотация, превью, выдержка), только описание издания, ничего.",
+            "enum": ["полный текст", "фрагмент", "только описание", "нет доступа"]
+          },
+          "loc": {"type": "string", "description": "Страница, раздел, таблица — где в источнике это сказано."},
+          "evidence": {"type": "string", "description": "Где смотрели: адрес, архив, издание."},
+          "note": {"type": "string", "description": "Что именно расходится или почему не удалось проверить."},
+          "checked_on": {"type": "string", "format": "date"}
+        }
+      }
+    }
+  }
+}

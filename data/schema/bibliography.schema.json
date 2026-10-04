@@ -49,7 +49,12 @@
           "checked": {
             "description": "true — выходные данные сверены с самим изданием или его каталожной записью.",
             "type": "boolean"
-          }
+          },
+          "checked_via": {
+            "description": "Чем сверено описание: Crossref, OpenAlex, Open Library, каталог библиотеки, само издание.",
+            "type": "string"
+          },
+          "checked_on": {"type": "string", "format": "date"}
         }
       }
     }

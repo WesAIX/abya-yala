@@ -24,6 +24,7 @@ from markdown_it import MarkdownIt
 from mdit_py_plugins.anchors import anchors_plugin
 from mdit_py_plugins.footnote import footnote_plugin
 
+from claims import audit_status
 from glossary_terms import slug, terms
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -93,17 +94,25 @@ def footnote_keys(text: str) -> list[str]:
     return [m.group(1) for m in FOOTDEF_RE.finditer(text)]
 
 
-def source_note(keys: list[str], bib: dict) -> str:
-    """Честная отметка о сверке источников — по флагам checked в библиографии."""
+def source_note(path: Path, keys: list[str], bib: dict) -> str:
+    """Честная отметка о сверке: утверждения — по журналу сверки, издания — по библиографии."""
     if not keys:
         return "Ссылок на источники в главе пока нет."
-    done = sum(bib.get(k, {}).get("checked", False) for k in keys)
-    if done == len(keys):
-        return f"Все {len(keys)} ссылок сверены с источниками."
-    return (
-        f"Сверено с источниками: {done} из {len(keys)} ссылок. Остальные указывают на "
-        "издания из библиографии, но утверждения ещё не проверены по их текстам."
-    )
+    st = audit_status(path)
+    v = list(st["verdicts"].values())
+    ok = v.count("подтверждено")
+    bad = v.count("расходится") + v.count("неверная атрибуция")
+    unk = v.count("не подтверждено")
+    left = len(st["missing"]) + len(st["stale"])
+    parts = [f"По текстам источников подтверждено {ok} из {st['total']} утверждений со сносками"]
+    if bad:
+        parts.append(f"расходятся с источником — {bad}")
+    if unk:
+        parts.append(f"проверить не удалось (нет доступа к тексту) — {unk}")
+    if left:
+        parts.append(f"ещё не сверялись — {left}")
+    books = sum(bib.get(k, {}).get("checked", False) for k in keys)
+    return "; ".join(parts) + f". Описания изданий сверены с каталогами: {books} из {len(keys)}."
 
 
 # ── Преобразование Markdown → HTML
@@ -220,7 +229,7 @@ def build_chapter(c, chapters_all, bib) -> str:
         "принято": "Глава принята",
         "готово": "Глава готова",
     }[c["status"]]
-    status = f'<p class="status"><b>{label}.</b> {source_note(keys, bib)}</p>'
+    status = f'<p class="status"><b>{label}.</b> {source_note(c["path"], keys, bib)}</p>'
 
     pub = [x for x in chapters_all if x["published"]]
     i = pub.index(c)

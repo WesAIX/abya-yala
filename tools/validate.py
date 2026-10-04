@@ -13,6 +13,7 @@ from pathlib import Path
 from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
 
+from claims import AUDITS, audit_status
 from glossary_terms import TERM_LINK, terms
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -234,8 +235,29 @@ def check_images() -> list[str]:
     return errors
 
 
+def check_audits() -> tuple[list[str], list[str]]:
+    """Журналы сверки: схема, существование главы; устаревшие записи — предупреждения."""
+    errors, warnings = [], []
+    for log in sorted(AUDITS.glob("*.json")) if AUDITS.exists() else []:
+        rel = log.relative_to(ROOT)
+        doc = load(log)
+        errors += check_schema(doc, SCHEMA / "audit.schema.json", str(rel))
+        chapter = ROOT / "chapters" / f"{log.stem}.md"
+        if doc.get("chapter") != log.stem or not chapter.exists():
+            errors.append(f"{rel}: нет главы {log.stem}.md или поле chapter не совпадает с файлом")
+            continue
+        st = audit_status(chapter)
+        for cid in st["stale"]:
+            warnings.append(
+                f"{rel}: {cid} — текст главы изменился после сверки, вердикт не засчитан"
+            )
+        for cid in st["orphan"]:
+            warnings.append(f"{rel}: {cid} — такого утверждения в главе больше нет")
+    return errors, warnings
+
+
 def check_statuses(bib) -> list[str]:
-    """Статус главы из списка; у «готово» все ссылки сверены (checked: true)."""
+    """Статус главы из списка; «готово» — все описания изданий и все утверждения сверены."""
     checked = {e["key"] for e in bib["entries"] if e.get("checked")}
     errors = []
     for path in CHAPTERS.values():
@@ -253,8 +275,13 @@ def check_statuses(bib) -> list[str]:
             unchecked = sorted(set(FOOTDEF.findall(text)) - checked)
             if unchecked:
                 errors.append(
-                    f"{rel}: статус «готово», но не сверены источники: {', '.join(unchecked)}"
+                    f"{rel}: статус «готово», но не сверены описания: {', '.join(unchecked)}"
                 )
+            st = audit_status(path)
+            weak = [c for c, v in st["verdicts"].items() if v != "подтверждено"]
+            weak += st["missing"] + st["stale"]
+            if weak:
+                errors.append(f"{rel}: «готово», но не подтверждены по тексту: {', '.join(weak)}")
     return errors
 
 
@@ -289,7 +316,11 @@ def main() -> int:
     errors += check_texts(bib_keys)
     errors += check_images()
     errors += check_statuses(load(BIB))
+    audit_errors, warnings = check_audits()
+    errors += audit_errors
 
+    for w in warnings:
+        print(f"ВНИМАНИЕ  {w}")
     for e in errors:
         print(f"ОШИБКА  {e}")
     if errors:
@@ -304,6 +335,14 @@ def main() -> int:
         for kind, done, total in coverage(records):
             print(f"    {kind:<8} {done:>4} / {total:<4}")
             missing += total - done
+    print("Сверка глав по текстам источников")
+    for path in sorted(CHAPTERS.values()):
+        st = audit_status(path)
+        if not st["total"]:
+            continue
+        ok = sum(v == "подтверждено" for v in st["verdicts"].values())
+        bad = sum(v in ("расходится", "неверная атрибуция") for v in st["verdicts"].values())
+        print(f"  {path.stem:<28} подтверждено {ok:>3} / {st['total']:<3} расходится {bad}")
     if args.strict and missing:
         print(f"ОШИБКА  --strict: без источника {missing} записей")
         return 1

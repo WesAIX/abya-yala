@@ -86,7 +86,7 @@ footer{padding:18px 20px 36px;color:var(--muted);font-size:14.5px;max-width:780p
 <header>
   <a class="back" href="../../">← Абья-Яла</a>
   <h1>Родословная народов Америки</h1>
-  <p class="lede">От первых людей, пришедших из Сибири, до народов, живущих сегодня. Граф устроен как родословная дистрибутивов Linux: горизонтальная линия — жизнь культуры или народа, вертикальные — разделения, слияния и влияние.</p>
+  <p class="lede">От первых людей, пришедших из Сибири, до народов, живущих сегодня. Это родословное древо, развёрнутое во времени: каждая горизонтальная линия — жизнь культуры, языковой общности или народа от появления до исчезновения или до наших дней, а вертикальные линии показывают, кто от кого произошёл, кто с кем слился и кто на кого повлиял.</p>
   <p class="note">Это схема, а не точная генеалогия. Археологическая культура не равна народу, языковые общности реконструированы лингвистами, а многие связи остаются гипотезами — они показаны пунктиром. Даты до 1500 года приблизительны. Шкала времени нелинейная: древние тысячелетия сжаты, последние пять веков растянуты; знак «−» на шкале означает годы до н. э. Нажмите на любую линию, чтобы выделить её предков и потомков.</p>
 </header>
 <div class="legend" aria-label="Условные обозначения">
@@ -110,13 +110,13 @@ footer{padding:18px 20px 36px;color:var(--muted);font-size:14.5px;max-width:780p
 </div>
 <div id="wrap"><svg id="chart" role="img" aria-label="Граф происхождения культур и народов Америки"></svg></div>
 <div id="tip" role="dialog" aria-live="polite"></div>
-<footer>Выборка — около 130 культур, языковых общностей и народов из многих сотен. В основе — обобщённые данные археологии, лингвистики и этноистории; спорные места отмечены в подсказках. Даты начала у многих народов означают время, с которого они уверенно прослеживаются, а не момент их возникновения; такие даты помечены «условно». Источники проставляются по ходу работы над главами — где их ещё нет, подсказка так и говорит.<br>Данные: <a href="https://github.com/WesAIX/abya-yala/blob/main/data/genealogy.json">data/genealogy.json</a> (CC BY 4.0) · <a href="https://github.com/WesAIX/abya-yala/blob/main/sources/BIBLIOGRAPHY.md">библиография</a></footer>
+<footer>Выборка — около 130 культур, языковых общностей и народов из многих сотен. В основе — обобщённые данные археологии, лингвистики и этноистории; спорные места отмечены в подсказках. Даты начала у многих народов означают время, с которого они уверенно прослеживаются, а не момент их возникновения; такие даты помечены «условно». Источники проставляются по ходу работы над главами — где их ещё нет, подсказка так и говорит.<br>Данные: <a href="https://github.com/WesAIX/abya-yala/blob/main/data/genealogy.json">data/genealogy.json</a> (CC BY 4.0) · <a href="../../bibliography.html">библиография</a></footer>
 
 <script type="module">
 const NOW = new Date().getFullYear();
 const TYPE = {c:'Археологическая культура', l:'Языковая общность (реконструкция)', p:'Народ', g:'Государство или союз'};
 const T_CODE = {culture:'c', language:'l', people:'p', polity:'g'};
-const BIB_URL = 'https://github.com/WesAIX/abya-yala/blob/main/sources/BIBLIOGRAPHY.md';
+const BIB_URL = '../../bibliography.html';
 
 // ── Данные: data/genealogy.json и реестр источников
 async function loadJSON(url){ const r = await fetch(url); if (!r.ok) throw new Error(`${url}: HTTP ${r.status}`); return r.json(); }
@@ -287,7 +287,7 @@ function refLabel(s){
   const r = REFS[s.ref];
   if (!r) return s.ref;
   const label = `${r.authors[0].split(',')[0]} ${r.year}${s.loc ? ', ' + s.loc : ''}`;
-  return `<a href="${BIB_URL}#${s.ref}" target="_blank" rel="noopener">${label}</a>`;
+  return `<a href="${BIB_URL}#${s.ref}">${label}</a>`;
 }
 function srcHTML(d){
   let h = d.src.length ? `<div class="src"><b>Источники:</b> ${d.src.map(refLabel).join('; ')}</div>` : '<div class="src">Источник ещё не указан.</div>';

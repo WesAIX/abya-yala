@@ -22,6 +22,9 @@ TEXTS = [*sorted((ROOT / "chapters").glob("*.md")), ROOT / "glossary.md", ROOT /
 FOOTNOTE = re.compile(r"\[\^([a-z][a-z0-9_-]*)\]")
 IMAGE = re.compile(r"""(?:!\[[^\]]*\]\(([^)\s]+)|(?:src|srcset)=["']([^"'\s]+))""")
 STATUS = re.compile(r"\*\*Статус:\*\*\s*([а-яё]+)")
+STATUSES = ("план", "черновик", "принято", "готово")  # «принято» и «готово» публикуются на сайте
+FOOTDEF = re.compile(r"^\[\^([a-z][a-z0-9_-]*)\]:", re.M)
+EXACT_BEFORE = 1500  # раньше этого года точная дата — только из надписи или дендрохронологии
 
 
 def load(path: Path):
@@ -85,6 +88,10 @@ def check_genealogy(g) -> list[str]:
         for p in n["parents"]:
             if p["id"] not in ids:
                 errors.append(f"{where}: неизвестный родитель {p['id']!r}")
+        errors += exact_early(n["start"], n["sources"], f"{where} (начало)")
+        errors += exact_early(n["end"], n["sources"], f"{where} (конец)")
+        for ev in n["events"]:
+            errors += exact_early(ev, ev["sources"], f"{where} (событие)")
         end = n["end"]
         if end is None and n["fate"] != "extant":
             errors.append(f"{where}: end = null, но fate = {n['fate']!r}")
@@ -125,6 +132,8 @@ def check_theses(t) -> list[str]:
     for th in t["theses"]:
         where = f"theses: тезис {th['n']}"
         errors += check_chapters(th["chapters"], where)
+        for d in (th["start"], th["end"], *th["markers"]):
+            errors += exact_early(d, th["sources"], where)
         if th["end"] is not None and th["end"]["year"] < th["start"]["year"]:
             errors.append(f"{where}: конец раньше начала")
     return errors
@@ -219,6 +228,37 @@ def check_images() -> list[str]:
     return errors
 
 
+def check_statuses(bib) -> list[str]:
+    """Статус главы из списка; у «готово» все ссылки сверены (checked: true)."""
+    checked = {e["key"] for e in bib["entries"] if e.get("checked")}
+    errors = []
+    for path in CHAPTERS.values():
+        text = path.read_text(encoding="utf-8")
+        rel = path.relative_to(ROOT)
+        m = STATUS.search(text)
+        if not m:
+            errors.append(f"{rel}: нет строки «**Статус:** …»")
+            continue
+        if m.group(1) not in STATUSES:
+            errors.append(
+                f"{rel}: неизвестный статус {m.group(1)!r}; допустимы: {', '.join(STATUSES)}"
+            )
+        if m.group(1) == "готово":
+            unchecked = sorted(set(FOOTDEF.findall(text)) - checked)
+            if unchecked:
+                errors.append(
+                    f"{rel}: статус «готово», но не сверены источники: {', '.join(unchecked)}"
+                )
+    return errors
+
+
+def exact_early(date, sources, where: str) -> list[str]:
+    """Точная дата до 1500 г. — только со ссылкой на источник (надпись, дендрохронология)."""
+    if date and date["dating"] == "documented" and date["year"] < EXACT_BEFORE and not sources:
+        return [f"{where}: точная дата {date['year']} до {EXACT_BEFORE} г. без источника"]
+    return []
+
+
 def coverage(records) -> list[tuple[str, int, int]]:
     rows: dict[str, list[int]] = {}
     for label, rec in records:
@@ -242,6 +282,7 @@ def main() -> int:
         errors += check_dataset(name, doc, bib_keys)
     errors += check_texts(bib_keys)
     errors += check_images()
+    errors += check_statuses(load(BIB))
 
     for e in errors:
         print(f"ОШИБКА  {e}")

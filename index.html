@@ -14,6 +14,10 @@
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55}
 main{max-width:1120px;margin:0 auto;padding:36px 16px 56px}
+.top{border-bottom:1px solid var(--rule)}
+.top nav{max-width:1120px;margin:0 auto;padding:12px 16px;display:flex;flex-wrap:wrap;gap:6px 22px;align-items:baseline;font-size:15.5px}
+.top .home{font-family:var(--serif);font-weight:700;font-size:20px;text-decoration:none;margin-right:auto}
+.top a:not(.home){color:var(--muted)}
 a{color:inherit;text-decoration-color:var(--rule);text-underline-offset:3px}
 a:hover{text-decoration-color:var(--ink)}
 :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
@@ -81,6 +85,8 @@ svg.track,svg.axis{display:block;width:100%;overflow:visible}
 ol.toc{padding-left:0;list-style:none;margin:14px 0 0;columns:2 300px;column-gap:32px}
 ol.toc li{break-inside:avoid;margin:0 0 7px}
 ol.toc .n{display:inline-block;min-width:1.9em;color:var(--muted);font-variant-numeric:tabular-nums}
+ol.toc .st{font-size:13.5px;color:var(--muted)}
+ol.toc .unpub{color:var(--muted)}
 
 #tip{position:fixed;z-index:20;display:none;max-width:340px;background:var(--panel);color:var(--ink);border:1px solid var(--rule);border-left:4px solid var(--tc,var(--ink));border-radius:6px;padding:10px 12px;box-shadow:0 8px 28px rgba(15,25,20,.2);font-size:14.5px;line-height:1.45;pointer-events:none}
 #tip b{font-family:var(--serif);font-size:17px}
@@ -95,6 +101,7 @@ footer{margin-top:56px;padding-top:14px;border-top:1px solid var(--rule);font-si
 </style>
 </head>
 <body>
+<header class="top"><nav><a class="home" href="./" aria-current="page">Абья-Яла</a><a href="#chapters">Главы</a><a href="glossary.html">Глоссарий</a><a href="bibliography.html">Библиография</a></nav></header>
 <main>
   <div class="intro">
     <p class="kicker">Конспект по истории коренных народов обеих Америк</p>
@@ -147,31 +154,16 @@ footer{margin-top:56px;padding-top:14px;border-top:1px solid var(--rule);font-si
     </ul>
   </section>
 
-  <section aria-labelledby="h-ch">
+  <section id="chapters" aria-labelledby="h-ch">
     <h2 id="h-ch">Главы</h2>
-    <p class="muted">Главы читаются на GitHub и пишутся по одной. Готов черновик главы 0, у остальных пока планы с тезисами.</p>
-    <ol class="toc">
-      <li><span class="n">0</span><a href="https://github.com/WesAIX/abya-yala/blob/main/chapters/00-metodika.md">Как это знают</a> <span class="muted small">— черновик</span></li>
-      <li><span class="n">1</span><a href="https://github.com/WesAIX/abya-yala/blob/main/chapters/01-zaselenie.md">Заселение</a></li>
-      <li><span class="n">2</span><a href="https://github.com/WesAIX/abya-yala/blob/main/chapters/02-zemledelie.md">Очаги земледелия</a></li>
-      <li><span class="n">3</span><a href="https://github.com/WesAIX/abya-yala/blob/main/chapters/03-slozhnye-obshchestva.md">Сложные общества и посредники</a></li>
-      <li><span class="n">4</span><a href="https://github.com/WesAIX/abya-yala/blob/main/chapters/04-perehodnaya-zona.md">Переходная зона</a></li>
-      <li><span class="n">5</span><a href="https://github.com/WesAIX/abya-yala/blob/main/chapters/05-epidemii.md">Эпидемии</a></li>
-      <li><span class="n">6</span><a href="https://github.com/WesAIX/abya-yala/blob/main/chapters/06-udar-po-centru.md">Удар по центру</a></li>
-      <li><span class="n">7</span><a href="https://github.com/WesAIX/abya-yala/blob/main/chapters/07-loshad-i-ruzhyo.md">Лошадь и ружьё</a></li>
-      <li><span class="n">8</span><a href="https://github.com/WesAIX/abya-yala/blob/main/chapters/08-epoha-balansa.md">Эпоха баланса (1650–1815)</a></li>
-      <li><span class="n">9</span><a href="https://github.com/WesAIX/abya-yala/blob/main/chapters/09-pereselenie.md">Переселение и договоры (1815–1860)</a></li>
-      <li><span class="n">10</span><a href="https://github.com/WesAIX/abya-yala/blob/main/chapters/10-sinhronnyj-final.md">Синхронный финал (1875–1885)</a></li>
-      <li><span class="n">11</span><a href="https://github.com/WesAIX/abya-yala/blob/main/chapters/11-assimilyaciya.md">Ассимиляция</a></li>
-      <li><span class="n">12</span><a href="https://github.com/WesAIX/abya-yala/blob/main/chapters/12-vozvrashchenie.md">Возвращение через право</a></li>
-      <li><span class="n">13</span><a href="https://github.com/WesAIX/abya-yala/blob/main/chapters/13-skvoznye-mehanizmy.md">Сквозные механизмы</a></li>
-    </ol>
+    <p class="muted">Главы пишутся по одной и появляются здесь, когда приняты. Планы и черновики остальных глав можно посмотреть <a href="https://github.com/WesAIX/abya-yala/blob/main/chapters/README.md">на GitHub</a>.</p>
+    <ol class="toc" id="toc"></ol>
   </section>
 
   <section aria-labelledby="h-ref">
     <h2 id="h-ref">Справочное</h2>
-    <p><a href="https://github.com/WesAIX/abya-yala/blob/main/glossary.md">Глоссарий</a> — народ, племя, нация, конфедерация, вождество и другие термины.<br>
-    <a href="https://github.com/WesAIX/abya-yala/blob/main/sources/BIBLIOGRAPHY.md">Библиография</a> — источники текстов и данных.<br>
+    <p><a href="glossary.html">Глоссарий</a> — народ, племя, нация, конфедерация, вождество и другие термины.<br>
+    <a href="bibliography.html">Библиография</a> — источники текстов и данных.<br>
     <a href="https://github.com/WesAIX/abya-yala/tree/main/data">Данные</a> — JSON со ссылками на источники; всё, что нарисовано на этой странице, взято оттуда.</p>
   </section>
 
@@ -180,10 +172,14 @@ footer{margin-top:56px;padding-top:14px;border-top:1px solid var(--rule);font-si
 <div id="tip" role="status" aria-live="polite"></div>
 
 <script type="module">
-const GH = 'https://github.com/WesAIX/abya-yala/blob/main/chapters/';
-const CHAPTER_FILES = {0:'00-metodika',1:'01-zaselenie',2:'02-zemledelie',3:'03-slozhnye-obshchestva',4:'04-perehodnaya-zona',5:'05-epidemii',6:'06-udar-po-centru',7:'07-loshad-i-ruzhyo',8:'08-epoha-balansa',9:'09-pereselenie',10:'10-sinhronnyj-final',11:'11-assimilyaciya',12:'12-vozvrashchenie',13:'13-skvoznye-mehanizmy'};
 const NOW = new Date().getFullYear();
-const chLinks = nums => nums.map(n => `<a href="${GH}${CHAPTER_FILES[n]}.md">${n}</a>`).join(' · ');
+// Оглавление и ссылки на главы — из chapters.json, который пишет tools/build_site.py:
+// принятые главы ведут на страницы сайта, остальные — на план или черновик на GitHub.
+const CHAPTERS = await fetch('chapters.json').then(r => r.ok ? r.json() : []).catch(() => []);
+const CH = Object.fromEntries(CHAPTERS.map(c => [c.n, c]));
+const chLinks = nums => nums.map(n => CH[n]
+  ? `<a href="${CH[n].url}" title="${CH[n].title}${CH[n].published ? '' : ' — ' + CH[n].status + ', на GitHub'}">${n}</a>`
+  : `${n}`).join(' · ');
 
 async function loadJSON(url){ const r = await fetch(url); if (!r.ok) throw new Error(`${url}: HTTP ${r.status}`); return r.json(); }
 function fail(el, err){
@@ -379,6 +375,15 @@ async function drawThumb(){
   });
 }
 
+function drawToc(){
+  const ol = document.getElementById('toc');
+  if (!CHAPTERS.length){ fail(ol, new Error('chapters.json')); return; }
+  ol.innerHTML = CHAPTERS.map(c => c.published
+    ? `<li><span class="n">${c.n}</span><a href="${c.url}">${c.title}</a></li>`
+    : `<li><span class="n">${c.n}</span><span class="unpub">${c.title}</span> <span class="st">— <a href="${c.url}">${c.status}</a></span></li>`).join('');
+}
+
+drawToc();
 drawMap().catch(err => fail(document.querySelector('.hero figure'), err));
 drawTheses().catch(err => fail(document.getElementById('theses-wrap'), err));
 drawThumb().catch(err => { d3.select('#thumb').remove(); console.error(err); });

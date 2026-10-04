@@ -55,8 +55,10 @@
 - У каждой цифры — поле `sources` (`{ref, loc, note}`), `ref` — ключ из
   `sources/bibliography.json`. Не ставить ссылку, если утверждение не
   проверено по этому источнику: пустой `sources` честнее.
-- У каждой даты — `dating`: `documented` / `approx` / `conventional`. Всё
-  до 1500 г. — не точнее `approx`.
+- У каждой даты — `dating`: `documented` / `approx` / `conventional`. До
+  1500 г. — по умолчанию `approx`. Исключение (решение владельца): дата из
+  датированной надписи (майя) или дендрохронологии может быть `documented`,
+  но только со ссылкой на источник в `sources` — валидатор это проверяет.
 - Где оценки расходятся — диапазон и автор каждой оценки, а не среднее.
 - Для нового набора сначала пишется JSON Schema в `data/schema/`, затем
   запись в `DATASETS` в `tools/validate.py` (без неё валидатор считает набор
@@ -128,7 +130,7 @@ uv run tools/validate.py          # схемы, ссылки, сноски, по
 uv run tools/bibliography.py      # пересобрать sources/BIBLIOGRAPHY.md (не править его руками)
 uv run tools/figures.py           # перерисовать рисунки глав chapters/img/*.svg
 uv run ruff check . && uv run ruff format --check .
-uv run python -m http.server      # просмотр на http://localhost:8000/
+uv run tools/build_site.py && uv run python -m http.server -d _site   # просмотр сайта на http://localhost:8000/
 uv run --group basemap tools/basemap.py   # пересобрать подложку карт (нужна сеть)
 ```
 
@@ -137,7 +139,23 @@ uv run --group basemap tools/basemap.py   # пересобрать подлож�
 
 ## Публикация
 
-GitHub Pages через Actions: `index.html`, `visuals/`, `data/` и
-`sources/bibliography.json` копируются в `_site` и публикуются. Главы
-читаются на GitHub, а не на сайте. Ссылки из глав на визуализации ведут на
-`https://wesaix.github.io/abya-yala/…`.
+GitHub Pages через Actions. Сайт собирает `tools/build_site.py` в `_site/`
+(не коммитится): копирует `index.html`, `visuals/`, `data/`,
+`sources/bibliography.json`, рисунки глав и превращает Markdown в страницы
+сайта в его оформлении (`tools/page.html`, `visuals/shared/article.css`).
+Markdown в репозитории — единственный источник текста; HTML руками не
+пишется и не правится.
+
+Жизненный цикл главы — строка `> **Статус:** …` в её начале:
+
+| Статус | Что значит | Где видна |
+|---|---|---|
+| план | тезис, вопросы, источники | GitHub |
+| черновик | проза и иллюстрации есть, владелец ещё не принял | GitHub |
+| принято | владелец прочитал и принял; источники могут быть ещё не сверены — сайт честно пишет, сколько сверено | **сайт** |
+| готово | все ссылки сверены (`checked: true`), валидатор это требует | **сайт** |
+
+Перевод главы в «принято» делает только владелец или по его явному слову
+(«принимаю главу N»). Глоссарий и библиография публикуются всегда. Ссылки
+между `.md` сборщик сам превращает в ссылки на страницы сайта, а для
+неопубликованных глав — на GitHub.

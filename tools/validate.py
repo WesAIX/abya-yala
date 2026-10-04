@@ -20,6 +20,8 @@ BIB = ROOT / "sources" / "bibliography.json"
 CHAPTERS = {int(p.name[:2]): p for p in (ROOT / "chapters").glob("[0-9][0-9]-*.md")}
 TEXTS = [*sorted((ROOT / "chapters").glob("*.md")), ROOT / "glossary.md", ROOT / "README.md"]
 FOOTNOTE = re.compile(r"\[\^([a-z][a-z0-9_-]*)\]")
+IMAGE = re.compile(r"""(?:!\[[^\]]*\]\(([^)\s]+)|(?:src|srcset)=["']([^"'\s]+))""")
+STATUS = re.compile(r"\*\*Статус:\*\*\s*([а-яё]+)")
 
 
 def load(path: Path):
@@ -199,6 +201,24 @@ def check_texts(bib_keys: set[str]) -> list[str]:
     return errors
 
 
+def check_images() -> list[str]:
+    """Картинки в главах существуют; глава вне статуса «план» обязана иметь иллюстрацию."""
+    errors = []
+    for num, path in sorted(CHAPTERS.items()):
+        text = path.read_text(encoding="utf-8")
+        rel = path.relative_to(ROOT)
+        refs = [m.group(1) or m.group(2) for m in IMAGE.finditer(text)]
+        for ref in refs:
+            if ref.startswith(("http://", "https://")):
+                continue
+            if not (path.parent / ref).exists():
+                errors.append(f"{rel}: нет файла иллюстрации {ref!r}")
+        status = STATUS.search(text)
+        if status and status.group(1) != "план" and not refs:
+            errors.append(f"{rel}: глава {num} без иллюстраций — они обязательны (CLAUDE.md)")
+    return errors
+
+
 def coverage(records) -> list[tuple[str, int, int]]:
     rows: dict[str, list[int]] = {}
     for label, rec in records:
@@ -221,6 +241,7 @@ def main() -> int:
     for name, doc in docs.items():
         errors += check_dataset(name, doc, bib_keys)
     errors += check_texts(bib_keys)
+    errors += check_images()
 
     for e in errors:
         print(f"ОШИБКА  {e}")

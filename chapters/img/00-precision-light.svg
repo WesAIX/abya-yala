@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" width="760" height="440" role="img" aria-labelledby="t d" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">
+<title id='t'>Типичная точность датировки по каналам (оценка)</title><desc id='d'>Колониальные документы и надписи майя дают даты до дня, дендрохронология — до года, радиоуглерод — от десятилетий до веков, генетика — тысячелетия, глоттохронология ненадёжна, устная традиция даёт порядок событий, а не абсолютные даты.</desc>
+<rect width="760" height="440" fill="#EDF0EA"/>
+<defs>
+<pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#EDF0EA"/><line x1="0" y1="0" x2="0" y2="6" stroke="#1B2420" stroke-width="2.2" stroke-opacity=".55"/></pattern>
+</defs>
+<line x1="214.0" y1="42.0" x2="214.0" y2="406.0" stroke="#C7CFC4" stroke-width="1" stroke-opacity="1.0"/>
+<text x="214.0" y="34.0" fill="#5B6862" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">день</text>
+<line x1="303.0" y1="42.0" x2="303.0" y2="406.0" stroke="#C7CFC4" stroke-width="1" stroke-opacity="1.0"/>
+<text x="303.0" y="34.0" fill="#5B6862" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">год</text>
+<line x1="392.0" y1="42.0" x2="392.0" y2="406.0" stroke="#C7CFC4" stroke-width="1" stroke-opacity="1.0"/>
+<text x="392.0" y="34.0" fill="#5B6862" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">десятилетие</text>
+<line x1="481.0" y1="42.0" x2="481.0" y2="406.0" stroke="#C7CFC4" stroke-width="1" stroke-opacity="1.0"/>
+<text x="481.0" y="34.0" fill="#5B6862" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">век</text>
+<line x1="570.0" y1="42.0" x2="570.0" y2="406.0" stroke="#C7CFC4" stroke-width="1" stroke-opacity="1.0"/>
+<text x="570.0" y="34.0" fill="#5B6862" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">тысячелетие</text>
+<line x1="684.0" y1="42.0" x2="684.0" y2="406.0" stroke="#C7CFC4" stroke-width="1" stroke-opacity="1.0" stroke-dasharray="2 3"/>
+<text x="684.0" y="34.0" fill="#5B6862" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">только порядок</text>
+<text x="206.0" y="18.0" fill="#5B6862" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-style="italic">точнее</text>
+<text x="570.0" y="18.0" fill="#5B6862" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-style="italic">грубее</text>
+<text x="182.0" y="68.0" fill="#1B2420" font-size="13.5" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Колониальные документы</text>
+<rect x="214.0" y="60.0" width="89.0" height="8.0" rx="4" fill="#1B2420" fill-opacity="0.8"/>
+<text x="214.0" y="86.0" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">после 1492 г.</text>
+<text x="182.0" y="118.0" fill="#1B2420" font-size="13.5" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Надписи майя</text>
+<rect x="214.0" y="110.0" width="31.2" height="8.0" rx="4" fill="#1B2420" fill-opacity="0.8"/>
+<text x="214.0" y="136.0" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">в основном I тыс. н. э.; перевод в наш календарь — по корреляции</text>
+<text x="182.0" y="168.0" fill="#1B2420" font-size="13.5" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Дендрохронология</text>
+<rect x="294.1" y="160.0" width="31.1" height="8.0" rx="4" fill="#1B2420" fill-opacity="0.8"/>
+<text x="294.1" y="186.0" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">где сохранилась древесина: юго-запад США и др.</text>
+<text x="182.0" y="218.0" fill="#1B2420" font-size="13.5" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Радиоуглерод</text>
+<rect x="392.0" y="210.0" width="115.7" height="8.0" rx="4" fill="#1B2420" fill-opacity="0.8"/>
+<text x="507.7" y="236.0" fill="#5B6862" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">зависит от участка кривой — рис. 0.1</text>
+<text x="182.0" y="268.0" fill="#1B2420" font-size="13.5" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Генетика</text>
+<rect x="534.4" y="260.0" width="97.9" height="8.0" rx="4" fill="#1B2420" fill-opacity="0.8"/>
+<text x="632.3" y="286.0" fill="#5B6862" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">время расхождения популяций — модельная оценка</text>
+<text x="182.0" y="318.0" fill="#1B2420" font-size="13.5" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Глоттохронология</text>
+<rect x="543.3" y="310.0" width="106.8" height="8.0" rx="4" fill="url(#hatch)" fill-opacity="1"/>
+<rect x="543.3" y="310.0" width="106.8" height="8" rx="4" fill="none" stroke="#1B2420" stroke-opacity=".55"/>
+<text x="650.1" y="336.0" fill="#5B6862" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">метод не считается надёжным</text>
+<text x="182.0" y="368.0" fill="#1B2420" font-size="13.5" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Устная традиция</text>
+<circle cx="684" cy="364" r="6" fill="#1B2420" fill-opacity=".8"/>
+<text x="672.0" y="386.0" fill="#5B6862" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">порядок событий, а не абсолютная дата</text>
+<text x="752.0" y="430.0" fill="#5B6862" font-size="12" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-style="italic">Оценка конспекта: порядок величин, а не измерения</text>
+</svg>

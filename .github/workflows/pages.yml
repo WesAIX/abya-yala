@@ -24,6 +24,8 @@ jobs:
         run: uv run tools/validate.py
       - name: Библиография актуальна
         run: uv run tools/bibliography.py --check
+      - name: Рисунки глав актуальны
+        run: uv run tools/figures.py --check
 
   deploy:
     needs: check

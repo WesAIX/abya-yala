@@ -89,6 +89,7 @@ index.html       главная страница сайта
 uv sync                              # зависимости инструментов
 uv run tools/validate.py             # схемы, ссылки, покрытие источниками
 uv run tools/bibliography.py         # пересобрать sources/BIBLIOGRAPHY.md
+uv run tools/figures.py              # перерисовать рисунки глав (chapters/img/)
 uv run ruff check . && uv run ruff format --check .
 uv run python -m http.server         # локальный просмотр: http://localhost:8000/
 uv run --group basemap tools/basemap.py   # пересобрать подложку карт из Natural Earth

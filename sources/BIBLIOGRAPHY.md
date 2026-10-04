@@ -8,10 +8,14 @@
 
 ## Первичные источники
 
+- <a id="guamanpoma1615"></a>`guamanpoma1615` — Guaman Poma de Ayala, Felipe (ок. 1615). *El primer nueva corónica y buen gobierno*.
+  Лицензия: Общественное достояние (рукопись XVII в.); условия использования факсимиле проверить. Рукопись андского автора с рисунками; хранится в Королевской библиотеке Дании, есть цифровое факсимиле. Год — приблизительный. Главы: 0, 6. **Не сверено.**
 - <a id="hornaday1889"></a>`hornaday1889` — Hornaday, William T. (1889). *The Extermination of the American Bison*. Annual Report of the Board of Regents of the Smithsonian Institution for 1887, part 2 (Report of the U. S. National Museum). Washington: Government Printing Office.
   Лицензия: Общественное достояние. Первичный источник по истреблению бизонов, включая оценки численности конца 1880-х. Его собственные оценки ранней численности — тоже предмет критики. Главы: 10. **Не сверено.**
 - <a id="royce1899"></a>`royce1899` — Royce, Charles C. (1899). *Indian Land Cessions in the United States*. Eighteenth Annual Report of the Bureau of American Ethnology, part 2. Washington: Government Printing Office.
   Лицензия: Общественное достояние (издание правительства США). Реестр уступок земель с картами по штатам. Для визуализации 5 сначала искать готовые оцифрованные полигоны и проверить их лицензию. Главы: 9, 11. **Не сверено.**
+- <a id="sahagun1577"></a>`sahagun1577` — Sahagún, Bernardino de; науа-соавторы (ок. 1577). *Historia general de las cosas de Nueva España («Флорентийский кодекс»)*.
+  Лицензия: Общественное достояние (рукопись XVI в.); условия использования факсимиле проверить. Текст на науатле и испанском, составленный францисканцем вместе с информантами и писцами-науа. Год завершения — приблизительный. Главы: 0, 5, 6. **Не сверено.**
 - <a id="trc2015"></a>`trc2015` — Truth and Reconciliation Commission of Canada (2015). *Honouring the Truth, Reconciling for the Future: Summary of the Final Report of the Truth and Reconciliation Commission of Canada*.
   Официальный доклад; первичный источник по системе школ-интернатов Канады (включает свидетельства). Главы: 11, 12. **Не сверено.**
 
@@ -35,6 +39,8 @@
   Главы: 3, 4. **Не сверено.**
 - <a id="daltroy2002"></a>`daltroy2002` — D'Altroy, Terence N. (2002). *The Incas*. Malden: Blackwell.
   Есть 2-е издание (2014). Главы: 3, 6. **Не сверено.**
+- <a id="hnai-v05"></a>`hnai-v05` — Damas, David (ред.) (1984). *Arctic*. Handbook of North American Indians, 5. Washington: Smithsonian Institution.
+  Главы: 0, 1. **Не сверено.**
 - <a id="daschuk2013"></a>`daschuk2013` — Daschuk, James (2013). *Clearing the Plains: Disease, Politics of Starvation, and the Loss of Aboriginal Life*. Regina: University of Regina Press.
   Главы: 5, 10. **Не сверено.**
 - <a id="delay2008"></a>`delay2008` — DeLay, Brian (2008). *War of a Thousand Deserts: Indian Raids and the U.S.-Mexican War*. New Haven: Yale University Press.
@@ -49,6 +55,8 @@
   Верхняя граница оценок; методика оспаривается. Главы: 5. **Не сверено.**
 - <a id="earle1987"></a>`earle1987` — Earle, Timothy K. (1987). *Chiefdoms in Archaeological and Ethnohistorical Perspective*. Annual Review of Anthropology, 16, 279–308.
   Главы: 0, 3. **Не сверено.**
+- <a id="echohawk2000"></a>`echohawk2000` — Echo-Hawk, Roger C. (2000). *Ancient History in the New World: Integrating Oral Traditions and the Archaeological Record in Deep Time*. American Antiquity, 65(2), 267–290.
+  Главы: 0. **Не сверено.**
 - <a id="flegontov2019"></a>`flegontov2019` — Flegontov, Pavel; et al. (2019). *Palaeo-Eskimo genetic ancestry and the peopling of Chukotka and North America*. Nature, 570, 236–240.
   Главы: 1. **Не сверено.**
 - <a id="fried1975"></a>`fried1975` — Fried, Morton H. (1975). *The Notion of Tribe*. Menlo Park: Cummings.
@@ -59,6 +67,8 @@
   Главы: 0, 1. **Не сверено.**
 - <a id="hassig1988"></a>`hassig1988` — Hassig, Ross (1988). *Aztec Warfare: Imperial Expansion and Political Control*. Norman: University of Oklahoma Press.
   Главы: 3, 6. **Не сверено.**
+- <a id="hogg2020"></a>`hogg2020` — Hogg, Alan G.; et al. (2020). *SHCal20 Southern Hemisphere Calibration, 0–55,000 Years cal BP*. Radiocarbon, 62(4), 759–778.
+  Калибровочная кривая для Южного полушария — нужна для дат из Южной Америки. Главы: 0. **Не сверено.**
 - <a id="hosler1994"></a>`hosler1994` — Hosler, Dorothy (1994). *The Sounds and Colors of Power: The Sacred Metallurgical Technology of Ancient West Mexico*. Cambridge, MA: MIT Press.
   Главы: 3. **Не сверено.**
 - <a id="hamalainen2003"></a>`hamalainen2003` — Hämäläinen, Pekka (2003). *The Rise and Fall of Plains Indian Horse Cultures*. Journal of American History, 90(3), 833–862.
@@ -75,6 +85,8 @@
   Критика модели «девственной почвы» как единственного объяснения. Главы: 5. **Не сверено.**
 - <a id="kelton2007"></a>`kelton2007` — Kelton, Paul (2007). *Epidemics and Enslavement: Biological Catastrophe in the Native Southeast, 1492–1715*. Lincoln: University of Nebraska Press.
   Главы: 5. **Не сверено.**
+- <a id="kennett2013"></a>`kennett2013` — Kennett, Douglas J.; et al. (2013). *Correlating the Ancient Maya and Modern European Calendars with High-Precision AMS 14C Dating*. Scientific Reports, 3, 1597.
+  Главы: 0, 3. **Не сверено.**
 - <a id="kirchhoff1943"></a>`kirchhoff1943` — Kirchhoff, Paul (1943). *Mesoamérica: sus límites geográficos, composición étnica y caracteres culturales*. Acta Americana, 1, 92–107.
   Главы: 4. **Не сверено.**
 - <a id="koch2019"></a>`koch2019` — Koch, Alexander; Brierley, Chris; Maslin, Mark M.; Lewis, Simon L. (2019). *Earth system impacts of the European arrival and Great Dying in the Americas after 1492*. Quaternary Science Reviews, 207, 13–36.
@@ -89,6 +101,8 @@
   Главы: 6. **Не сверено.**
 - <a id="morenomayar2018"></a>`morenomayar2018` — Moreno-Mayar, J. Víctor; et al. (2018). *Terminal Pleistocene Alaskan genome reveals first founding population of Native Americans*. Nature, 553, 203–207.
   Главы: 1. **Не сверено.**
+- <a id="nash1999"></a>`nash1999` — Nash, Stephen E. (1999). *Time, Trees, and Prehistory: Tree-Ring Dating and the Development of North American Archaeology, 1914–1950*. Salt Lake City: University of Utah Press.
+  Главы: 0, 3, 4. **Не сверено.**
 - <a id="cohen2012"></a>`cohen2012` — Newton, Nell Jessup (ред.) (2012). *Cohen's Handbook of Federal Indian Law*. New Providence: LexisNexis.
   Справочник по федеральному праву США в отношении индейцев; цитировать конкретное издание. Главы: 9, 11, 12. **Не сверено.**
 - <a id="otis1973"></a>`otis1973` — Otis, D. S. (1973). *The Dawes Act and the Allotment of Indian Lands*. Norman: University of Oklahoma Press.
@@ -101,7 +115,11 @@
   Главы: 4, 6. **Не сверено.**
 - <a id="prucha1984"></a>`prucha1984` — Prucha, Francis Paul (1984). *The Great Father: The United States Government and the American Indians*. Lincoln: University of Nebraska Press.
   Два тома. Главы: 9, 11, 12. **Не сверено.**
+- <a id="raghavan2014"></a>`raghavan2014` — Raghavan, Maanasa; et al. (2014). *The genetic prehistory of the New World Arctic*. Science, 345(6200), 1255832.
+  Палеоэскимосы и предки инуитов (туле) — разные популяции. Главы: 0, 1. **Не сверено.**
 - <a id="rasmussen2015"></a>`rasmussen2015` — Rasmussen, Morten; et al. (2015). *The ancestry and affiliations of Kennewick Man*. Nature, 523, 455–458.
+  Главы: 0. **Не сверено.**
+- <a id="reimer2020"></a>`reimer2020` — Reimer, Paula J.; et al. (2020). *The IntCal20 Northern Hemisphere Radiocarbon Age Calibration Curve (0–55 cal kBP)*. Radiocarbon, 62(4), 725–757.
   Главы: 0. **Не сверено.**
 - <a id="restall2003"></a>`restall2003` — Restall, Matthew (2003). *Seven Myths of the Spanish Conquest*. Oxford: Oxford University Press.
   Главы: 6. **Не сверено.**
@@ -123,6 +141,8 @@
   Нижняя граница оценок для Северной Америки. Главы: 5, 12. **Не сверено.**
 - <a id="vajda2010"></a>`vajda2010` — Vajda, Edward J. (2010). *A Siberian Link with Na-Dene Languages*. Anthropological Papers of the University of Alaska, new series, 5, 33–99.
   Дене-енисейская гипотеза; читать вместе с откликами в том же выпуске. Главы: 1. **Не сверено.**
+- <a id="vansina1985"></a>`vansina1985` — Vansina, Jan (1985). *Oral Tradition as History*. Madison: University of Wisconsin Press.
+  Главы: 0. **Не сверено.**
 - <a id="vagene2018"></a>`vagene2018` — Vågene, Åshild J.; et al. (2018). *Salmonella enterica genomes from victims of a major sixteenth-century epidemic in Mexico*. Nature Ecology & Evolution, 2, 520–528.
   Кандидат в возбудители кокольицтли 1545 г.; вывод не окончательный. Главы: 5. **Не сверено.**
 - <a id="waters2007"></a>`waters2007` — Waters, Michael R.; Stafford, Thomas W., Jr. (2007). *Redefining the Age of Clovis: Implications for the Peopling of the Americas*. Science, 315(5815), 1122–1126.

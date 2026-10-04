@@ -335,18 +335,22 @@
       "publisher": "Malden: Blackwell",
       "note": "Есть 2-е издание (2014).",
       "topics": [3, 6],
-      "checked": false
+      "checked": true,
+      "checked_via": "каталог: запись MARC Библиотеки Конгресса (LCCN 2001025267) в Internet Archive (incas0000dalt) и Open Library (OL7608990M)",
+      "checked_on": "2026-10-04"
     },
     {
       "key": "martin2008",
       "kind": "academic",
       "authors": ["Martin, Simon", "Grube, Nikolai"],
       "year": 2008,
-      "title": "Chronicle of the Maya Kings and Queens",
+      "title": "Chronicle of the Maya Kings and Queens: Deciphering the Dynasties of the Ancient Maya",
       "publisher": "London: Thames & Hudson",
       "note": "2-е издание; первое — 2000.",
       "topics": [3],
-      "checked": false
+      "checked": true,
+      "checked_via": "каталог HathiTrust, запись 008314085 (2nd ed., London: Thames & Hudson, 2008)",
+      "checked_on": "2026-10-04"
     },
     {
       "key": "pauketat2009",
@@ -419,7 +423,10 @@
       "volume": "553",
       "pages": "203–207",
       "topics": [1],
-      "checked": false
+      "checked": true,
+      "checked_via": "OpenAlex",
+      "checked_on": "2026-10-04",
+      "doi": "10.1038/nature25173"
     },
     {
       "key": "flegontov2019",
@@ -442,8 +449,11 @@
       "container": "American Antiquity",
       "volume": "73(3)",
       "pages": "527–538",
-      "topics": [1],
-      "checked": false
+      "topics": [0, 1],
+      "doi": "10.1017/S0002731600046850",
+      "checked": true,
+      "checked_via": "Crossref (DOI)",
+      "checked_on": "2026-10-05"
     },
     {
       "key": "campbell1997",
@@ -453,7 +463,9 @@
       "title": "American Indian Languages: The Historical Linguistics of Native America",
       "publisher": "New York: Oxford University Press",
       "topics": [0, 1],
-      "checked": false
+      "checked": true,
+      "checked_via": "Open Library",
+      "checked_on": "2026-10-04"
     },
     {
       "key": "piperno2009",
@@ -625,10 +637,12 @@
       "authors": ["Newton, Nell Jessup (ред.)"],
       "year": 2012,
       "title": "Cohen's Handbook of Federal Indian Law",
-      "publisher": "New Providence: LexisNexis",
+      "publisher": "San Francisco: LexisNexis",
       "note": "Справочник по федеральному праву США в отношении индейцев; цитировать конкретное издание.",
       "topics": [9, 11, 12],
-      "checked": false
+      "checked": true,
+      "checked_via": "каталог: запись MARC Библиотеки Конгресса (LCCN 2012010383) в Open Library (OL25247547M); ISBN 9780769855165",
+      "checked_on": "2026-10-04"
     },
     {
       "key": "knorozov1963",
@@ -638,7 +652,9 @@
       "title": "Письменность индейцев майя",
       "publisher": "М.; Л.: Издательство АН СССР",
       "topics": [3],
-      "checked": false
+      "checked": true,
+      "checked_via": "Open Library",
+      "checked_on": "2026-10-04"
     },
     {
       "key": "berezkin1991",
@@ -671,7 +687,10 @@
       "volume": "523",
       "pages": "455–458",
       "topics": [0],
-      "checked": false
+      "checked": true,
+      "checked_via": "OpenAlex",
+      "checked_on": "2026-10-04",
+      "doi": "10.1038/nature14625"
     },
     {
       "key": "vajda2010",
@@ -684,7 +703,9 @@
       "pages": "33–99",
       "note": "Дене-енисейская гипотеза; читать вместе с откликами в том же выпуске.",
       "topics": [1],
-      "checked": false
+      "checked": true,
+      "checked_via": "OpenAlex",
+      "checked_on": "2026-10-04"
     },
     {
       "key": "hosler1994",
@@ -728,7 +749,10 @@
       "volume": "62(4)",
       "pages": "725–757",
       "topics": [0],
-      "checked": false
+      "checked": true,
+      "checked_via": "OpenAlex",
+      "checked_on": "2026-10-04",
+      "doi": "10.1017/rdc.2020.41"
     },
     {
       "key": "hogg2020",
@@ -741,7 +765,10 @@
       "pages": "759–778",
       "note": "Калибровочная кривая для Южного полушария — нужна для дат из Южной Америки.",
       "topics": [0],
-      "checked": false
+      "checked": true,
+      "checked_via": "OpenAlex",
+      "checked_on": "2026-10-04",
+      "doi": "10.1017/rdc.2020.59"
     },
     {
       "key": "nash1999",
@@ -751,7 +778,9 @@
       "title": "Time, Trees, and Prehistory: Tree-Ring Dating and the Development of North American Archaeology, 1914–1950",
       "publisher": "Salt Lake City: University of Utah Press",
       "topics": [0, 3, 4],
-      "checked": false
+      "checked": true,
+      "checked_via": "Open Library",
+      "checked_on": "2026-10-04"
     },
     {
       "key": "kennett2013",
@@ -763,7 +792,10 @@
       "volume": "3",
       "pages": "1597",
       "topics": [0, 3],
-      "checked": false
+      "checked": true,
+      "checked_via": "OpenAlex",
+      "checked_on": "2026-10-04",
+      "doi": "10.1038/srep01597"
     },
     {
       "key": "vansina1985",
@@ -773,7 +805,9 @@
       "title": "Oral Tradition as History",
       "publisher": "Madison: University of Wisconsin Press",
       "topics": [0],
-      "checked": false
+      "checked": true,
+      "checked_via": "Open Library",
+      "checked_on": "2026-10-04"
     },
     {
       "key": "echohawk2000",
@@ -785,7 +819,10 @@
       "volume": "65(2)",
       "pages": "267–290",
       "topics": [0],
-      "checked": false
+      "checked": true,
+      "checked_via": "OpenAlex",
+      "checked_on": "2026-10-04",
+      "doi": "10.2307/2694059"
     },
     {
       "key": "hnai-v05",
@@ -797,7 +834,9 @@
       "volume": "5",
       "publisher": "Washington: Smithsonian Institution",
       "topics": [0, 1],
-      "checked": false
+      "checked": true,
+      "checked_via": "Open Library",
+      "checked_on": "2026-10-04"
     },
     {
       "key": "guamanpoma1615",
@@ -806,9 +845,11 @@
       "year": "ок. 1615",
       "title": "El primer nueva corónica y buen gobierno",
       "note": "Рукопись андского автора с рисунками; хранится в Королевской библиотеке Дании, есть цифровое факсимиле. Год — приблизительный.",
-      "license": "Общественное достояние (рукопись XVII в.); условия использования факсимиле проверить",
+      "license": "Общественное достояние: Королевская библиотека Дании помечает факсимиле знаком Public Domain Mark 1.0 (poma.kb.dk, страница проекта) — копировать и использовать можно без разрешения, с указанием автора",
       "topics": [0, 6],
-      "checked": false
+      "checked": true,
+      "checked_via": "место хранения: Det Kgl. Bibliotek, GKS 2232 4º — описание и цифровое факсимиле poma.kb.dk",
+      "checked_on": "2026-10-04"
     },
     {
       "key": "sahagun1577",
@@ -819,7 +860,9 @@
       "note": "Текст на науатле и испанском, составленный францисканцем вместе с информантами и писцами-науа. Год завершения — приблизительный.",
       "license": "Общественное достояние (рукопись XVI в.); условия использования факсимиле проверить",
       "topics": [0, 5, 6],
-      "checked": false
+      "checked": true,
+      "checked_via": "место хранения: Biblioteca Medicea Laurenziana, Ms. Mediceo Palatino 218–220 — Digital Florentine Codex (Getty Research Institute)",
+      "checked_on": "2026-10-04"
     },
     {
       "key": "raghavan2014",
@@ -832,7 +875,130 @@
       "pages": "1255832",
       "note": "Палеоэскимосы и предки инуитов (туле) — разные популяции.",
       "topics": [0, 1],
-      "checked": false
+      "checked": true,
+      "checked_via": "OpenAlex",
+      "checked_on": "2026-10-04",
+      "doi": "10.1126/science.1255832"
+    },
+    {
+      "key": "chechev2012",
+      "kind": "dataset",
+      "authors": ["Chechev, V. P.", "Bé, M.-M."],
+      "year": 2012,
+      "title": "C-14: Table de Radionucléides",
+      "container": "Decay Data Evaluation Project (DDEP)",
+      "publisher": "LNE–LNHB/CEA",
+      "url": "http://www.lnhb.fr/nuclides/C-14_tables.pdf",
+      "note": "Оценённые ядерные данные для ¹⁴C: период полураспада 5700 ± 30 лет. Даты работы над таблицей — 1998–2012.",
+      "topics": [0],
+      "checked": true,
+      "checked_via": "сам документ: PDF таблицы LNHB (www.lnhb.fr/nuclides/C-14_tables.pdf) — авторы, заглавие, даты листа 1998–2012",
+      "checked_on": "2026-10-05"
+    },
+    {
+      "key": "bayliss2009",
+      "kind": "academic",
+      "authors": ["Bayliss, Alex"],
+      "year": 2009,
+      "title": "Rolling Out Revolution: Using Radiocarbon Dating in Archaeology",
+      "container": "Radiocarbon",
+      "volume": "51(1)",
+      "pages": "123–147",
+      "doi": "10.1017/S0033822200033750",
+      "topics": [0],
+      "checked": true,
+      "checked_via": "Crossref (DOI)",
+      "checked_on": "2026-10-05"
+    },
+    {
+      "key": "adelaar2012",
+      "kind": "academic",
+      "authors": ["Adelaar, Willem F. H."],
+      "year": 2012,
+      "title": "Languages of the Middle Andes in areal-typological perspective: Emphasis on Quechuan and Aymaran",
+      "container": "Campbell, Lyle; Grondona, Verónica (ред.). The Indigenous Languages of South America: A Comprehensive Guide",
+      "pages": "575–624",
+      "publisher": "Berlin; Boston: De Gruyter Mouton",
+      "doi": "10.1515/9783110258035.575",
+      "note": "Открытый доступ (OAPEN). Прародина кечуа — Центральное Перу; версия о распространении кечуа инками отвергнута.",
+      "topics": [0, 3, 6],
+      "checked": true,
+      "checked_via": "Crossref (DOI) и титульная справка копии в репозитории Лейденского университета (hdl 1887/70116)",
+      "checked_on": "2026-10-05"
+    },
+    {
+      "key": "starostin2012",
+      "kind": "academic",
+      "authors": ["Starostin, George"],
+      "year": 2012,
+      "title": "Dene-Yeniseian: a critical assessment",
+      "container": "Journal of Language Relationship",
+      "volume": "8",
+      "pages": "117–138",
+      "doi": "10.31826/jlr-2012-080109",
+      "note": "Критический разбор дене-енисейской гипотезы Вайды.",
+      "topics": [0, 1],
+      "checked": true,
+      "checked_via": "Crossref (DOI)",
+      "checked_on": "2026-10-05"
+    },
+    {
+      "key": "usace2017",
+      "kind": "primary",
+      "authors": ["U.S. Army Corps of Engineers, Northwestern Division"],
+      "year": 2017,
+      "title": "U.S. Army Corps of Engineers conducts final transfer of Kennewick Man remains",
+      "container": "Northwestern Division News Releases",
+      "url": "https://www.nwd.usace.army.mil/Media/News-Releases/Article/1088463/us-army-corps-of-engineers-conducts-final-transfer-of-kennewick-man-remains/",
+      "note": "Пресс-релиз № 17-015 от 20.02.2017. Сайт не отдаёт страницу автоматическим клиентам; текст прочитан по копии в Wayback Machine.",
+      "topics": [0, 12],
+      "checked": true,
+      "checked_via": "сам документ: пресс-релиз № 17-015 от 20.02.2017, копия в Wayback Machine (снимок 01.03.2017)",
+      "checked_on": "2026-10-05"
+    },
+    {
+      "key": "burke2017",
+      "kind": "primary",
+      "authors": ["Burke Museum"],
+      "year": 2017,
+      "title": "The Ancient One, Kennewick Man",
+      "publisher": "Seattle: Burke Museum of Natural History and Culture",
+      "url": "https://www.burkemuseum.org/news/ancient-one-kennewick-man",
+      "note": "Заявление музея о возвращении останков (20.02.2017) и справка об истории спора.",
+      "topics": [0, 12],
+      "checked": true,
+      "checked_via": "сам документ: страница burkemuseum.org/news/ancient-one-kennewick-man (заявление от 20.02.2017)",
+      "checked_on": "2026-10-05"
+    },
+    {
+      "key": "mason2000",
+      "kind": "academic",
+      "authors": ["Mason, Ronald J."],
+      "year": 2000,
+      "title": "Archaeology and Native North American Oral Traditions",
+      "container": "American Antiquity",
+      "volume": "65(2)",
+      "pages": "239–266",
+      "doi": "10.2307/2694058",
+      "note": "Возражения против сведения устных традиций с археологией; в одном номере с Echo-Hawk 2000.",
+      "topics": [0],
+      "checked": true,
+      "checked_via": "Crossref (DOI)",
+      "checked_on": "2026-10-05"
+    },
+    {
+      "key": "kettunen2025",
+      "kind": "academic",
+      "authors": ["Kettunen, Harri", "Helmke, Christophe"],
+      "year": 2025,
+      "title": "Introduction to Maya Hieroglyphs. Twentieth Revised Edition",
+      "publisher": "Wayeb",
+      "url": "https://www.wayeb.org/wp-content/uploads/2025/11/Kettunen_Helmke_2025_WH_English_20th_ed.pdf",
+      "note": "Учебное пособие семинаров European Maya Conference; очерк истории дешифровки — во введении (с. 10–12).",
+      "topics": [0, 3],
+      "checked": true,
+      "checked_via": "сам документ: титульный лист PDF на сайте Wayeb",
+      "checked_on": "2026-10-05"
     },
     {
       "key": "naturalearth",

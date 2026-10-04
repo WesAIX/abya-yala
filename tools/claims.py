@@ -103,16 +103,28 @@ def audit_status(path: Path) -> dict:
     log = AUDITS / f"{path.stem}.json"
     entries = json.loads(log.read_text(encoding="utf-8"))["claims"] if log.exists() else []
     by_id = {e["id"]: e for e in entries}
+    # номер «ключ#n» сдвигается, если ту же сноску поставили выше по тексту, —
+    # поэтому вердикт ищется и по самой фразе с тем же ключом
+    by_text = {(e["ref"], e["text"]): e for e in entries}
     status = {"total": len(current), "verdicts": {}, "stale": [], "orphan": [], "missing": []}
+    used = set()
     for cid, c in current.items():
         e = by_id.get(cid)
+        if not e or e["text"] != c["text"]:
+            e = by_text.get((c["ref"], c["text"])) or e
         if not e:
             status["missing"].append(cid)
         elif e["text"] != c["text"]:
             status["stale"].append(cid)
         else:
             status["verdicts"][cid] = e["verdict"]
-    status["orphan"] = [cid for cid in by_id if cid not in current]
+            used.add(e["id"])
+    current_texts = {(c["ref"], c["text"]) for c in current.values()}
+    status["orphan"] = [
+        e["id"]
+        for e in entries
+        if e["id"] not in used and (e["ref"], e["text"]) not in current_texts
+    ]
     return status
 
 

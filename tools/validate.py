@@ -341,8 +341,10 @@ def main() -> int:
         if not st["total"]:
             continue
         ok = sum(v == "подтверждено" for v in st["verdicts"].values())
-        bad = sum(v in ("расходится", "неверная атрибуция") for v in st["verdicts"].values())
-        print(f"  {path.stem:<28} подтверждено {ok:>3} / {st['total']:<3} расходится {bad}")
+        bad = sum(
+            v in ("расходится", "неверная атрибуция") for v in st["verdicts"].values()
+        )  # и то и другое — к правке
+        print(f"  {path.stem:<28} подтверждено {ok:>3} / {st['total']:<3} к правке {bad}")
     if args.strict and missing:
         print(f"ОШИБКА  --strict: без источника {missing} записей")
         return 1

@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "genealogy.schema.json",
+  "title": "Родословная культур и народов",
+  "type": "object",
+  "required": ["meta", "lanes", "nodes", "links", "milestones"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "license"],
+      "properties": {
+        "title": {"type": "string"},
+        "schema": {"type": "string"},
+        "license": {"type": "string"},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "lanes": {
+      "description": "Регионы — горизонтальные полосы графа, сверху вниз.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name"],
+        "additionalProperties": false,
+        "properties": {"id": {"$ref": "#/$defs/id"}, "name": {"type": "string"}}
+      }
+    },
+    "nodes": {"type": "array", "items": {"$ref": "#/$defs/node"}},
+    "links": {
+      "description": "Связи помимо родительских: слияния и культурное влияние.",
+      "type": "array",
+      "items": {"$ref": "#/$defs/link"}
+    },
+    "milestones": {
+      "description": "Общие вехи — вертикальные линии через весь граф.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["year", "label", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "year": {"type": "integer"},
+          "label": {"type": "string"},
+          "sources": {"$ref": "#/$defs/sources"},
+          "todo": {"$ref": "#/$defs/todo"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]*$"},
+    "dating": {
+      "description": "documented — дата известна по документам; approx — приблизительная (все даты до 1500 г.); conventional — условная дата для графика, например «с тех пор народ уверенно прослеживается».",
+      "enum": ["documented", "approx", "conventional"]
+    },
+    "certainty": {
+      "description": "established — принятая в литературе связь; probable — вероятная или спорная; hypothesis — гипотеза.",
+      "enum": ["established", "probable", "hypothesis"]
+    },
+    "date": {
+      "type": "object",
+      "required": ["year", "dating"],
+      "additionalProperties": false,
+      "properties": {
+        "year": {"type": "integer", "description": "Год; отрицательный — до н. э."},
+        "dating": {"$ref": "#/$defs/dating"}
+      }
+    },
+    "sources": {
+      "description": "Ссылки на sources/bibliography.json.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["ref"],
+        "additionalProperties": false,
+        "properties": {
+          "ref": {"type": "string", "description": "Ключ записи в библиографии."},
+          "loc": {"type": "string", "description": "Страница, таблица, карта: «p. 32», «pl. 12»."},
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "todo": {
+      "description": "Что нужно проверить. Показывается читателю в подсказке.",
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "node": {
+      "type": "object",
+      "required": ["id", "lane", "type", "name", "start", "end", "fate", "parents", "description", "events", "sources"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "lane": {"$ref": "#/$defs/id"},
+        "type": {
+          "description": "culture — археологическая культура; language — языковая общность (реконструкция); people — народ; polity — государство или союз.",
+          "enum": ["culture", "language", "people", "polity"]
+        },
+        "name": {"type": "string"},
+        "start": {"$ref": "#/$defs/date"},
+        "end": {
+          "description": "null — существует сегодня.",
+          "oneOf": [{"type": "null"}, {"$ref": "#/$defs/date"}]
+        },
+        "fate": {
+          "description": "extant — существует; ended — перешло в потомков или слилось; destroyed — уничтожено или распалось.",
+          "enum": ["extant", "ended", "destroyed"]
+        },
+        "parents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "certainty"],
+            "additionalProperties": false,
+            "properties": {"id": {"$ref": "#/$defs/id"}, "certainty": {"$ref": "#/$defs/certainty"}}
+          }
+        },
+        "description": {"type": "string"},
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["year", "label", "dating", "sources"],
+            "additionalProperties": false,
+            "properties": {
+              "year": {"type": "integer"},
+              "label": {"type": "string"},
+              "dating": {"$ref": "#/$defs/dating"},
+              "sources": {"$ref": "#/$defs/sources"}
+            }
+          }
+        },
+        "sources": {"$ref": "#/$defs/sources"},
+        "todo": {"$ref": "#/$defs/todo"}
+      }
+    },
+    "link": {
+      "type": "object",
+      "required": ["from", "to", "year", "kind", "certainty", "description", "sources"],
+      "additionalProperties": false,
+      "properties": {
+        "from": {"$ref": "#/$defs/id"},
+        "to": {"$ref": "#/$defs/id"},
+        "year": {"type": "integer"},
+        "kind": {"enum": ["merge", "influence"]},
+        "certainty": {"$ref": "#/$defs/certainty"},
+        "description": {"type": "string"},
+        "sources": {"$ref": "#/$defs/sources"},
+        "todo": {"$ref": "#/$defs/todo"}
+      }
+    }
+  }
+}

@@ -1,0 +1,3598 @@
+{
+  "meta": {
+    "title": "Родословная культур и народов Америки",
+    "schema": "schema/genealogy.schema.json",
+    "license": "CC BY 4.0",
+    "notes": [
+      "Перенесено из americas-peoples-graph.html без изменения содержания. Источники ещё не проставлены: поле sources заполняется по мере работы над главами.",
+      "Поля dating и certainty выставлены автоматически при переносе: dating — по правилу «до 1500 г. — approx, круглые даты после 1500 г. — conventional, остальные — documented», certainty — по пометке «?» в исходных данных. Требуют проверки.",
+      "end: null означает, что народ или общность существует сегодня."
+    ]
+  },
+  "lanes": [
+    {
+      "id": "root",
+      "name": "Общий корень"
+    },
+    {
+      "id": "n",
+      "name": "Арктика, Субарктика и Тихоокеанское побережье"
+    },
+    {
+      "id": "ne",
+      "name": "Северо-восток и Великие озёра"
+    },
+    {
+      "id": "se",
+      "name": "Юго-восток"
+    },
+    {
+      "id": "pl",
+      "name": "Великие равнины"
+    },
+    {
+      "id": "sw",
+      "name": "Юго-запад, Большой Бассейн и север Мексики"
+    },
+    {
+      "id": "ma",
+      "name": "Мезоамерика"
+    },
+    {
+      "id": "sa",
+      "name": "Южная Америка и Карибы"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "paleo",
+      "lane": "root",
+      "type": "culture",
+      "name": "Палеоиндейцы",
+      "start": {
+        "year": -16000,
+        "dating": "conventional"
+      },
+      "end": {
+        "year": -8000,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [],
+      "description": "Первые люди Америки, пришедшие из Сибири через Берингию. Надёжно — не позднее ~14,5 тыс. лет назад (Монте-Верде, Чили); следы в Уайт-Сэндс (~21–23 тыс. лет) остаются спорными. Начальная дата на графике условна.",
+      "events": [],
+      "sources": [],
+      "todo": [
+        "Утверждения о Монте-Верде и Уайт-Сэндс сверить с dillehay2008, bennett2021, pigati2023."
+      ]
+    },
+    {
+      "id": "clovis",
+      "lane": "root",
+      "type": "culture",
+      "name": "Кловис",
+      "start": {
+        "year": -11100,
+        "dating": "approx"
+      },
+      "end": {
+        "year": -10800,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "paleo",
+          "certainty": "established"
+        }
+      ],
+      "description": "Охотники на мегафауну с характерными желобчатыми наконечниками. Долго считались «первыми американцами», пока не нашли более ранние стоянки.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "nwc",
+      "lane": "n",
+      "type": "culture",
+      "name": "Ранние культуры Северо-Западного побережья",
+      "start": {
+        "year": -8000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 500,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "paleo",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Рыболовные общества тихоокеанского побережья: оседлость и социальное расслоение без земледелия — редкий в мире случай.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "haida",
+      "lane": "n",
+      "type": "people",
+      "name": "Хайда",
+      "start": {
+        "year": 500,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "nwc",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Начальная дата условна. Острова Хайда-Гуаи; язык-изолят. Тотемные столбы, потлачи, дальние морские походы на каноэ.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "tlingit",
+      "lane": "n",
+      "type": "people",
+      "name": "Тлинкиты",
+      "start": {
+        "year": 500,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "nwc",
+          "certainty": "probable"
+        },
+        {
+          "id": "nadene",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Начальная дата условна. Торговцы и воины побережья Аляски; в 1802 г. уничтожили русскую крепость в Ситке, в 1804 г. русские вернули это место.",
+      "events": [
+        {
+          "year": 1802,
+          "label": "Разгром русской крепости в Ситке",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "nadene",
+      "lane": "n",
+      "type": "language",
+      "name": "На-дене (праязык)",
+      "start": {
+        "year": -3000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1000,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [],
+      "description": "Возможно, отдельная, более поздняя волна из Сибири. Гипотеза дене-енисейской семьи связывает эти языки с кетским на Енисее — её обсуждают, но общепринятой она не стала.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "dene",
+      "lane": "n",
+      "type": "people",
+      "name": "Северные атапаски (дене)",
+      "start": {
+        "year": 1000,
+        "dating": "approx"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "nadene",
+          "certainty": "established"
+        }
+      ],
+      "description": "Множество народов внутренней Аляски и северо-запада Канады. Отсюда же ушли на юг предки навахо и апачей.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "pesk",
+      "lane": "n",
+      "type": "culture",
+      "name": "Палеоэскимосы (пре-дорсет → дорсет)",
+      "start": {
+        "year": -2500,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1300,
+        "dating": "approx"
+      },
+      "fate": "destroyed",
+      "parents": [],
+      "description": "Отдельная миграция из Сибири около 4,5 тыс. лет назад. К ~1300–1500 гг. исчезли, вытесненные предками инуитов; в инуитских преданиях — «тунит».",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "bering",
+      "lane": "n",
+      "type": "culture",
+      "name": "Древние культуры Берингова пролива",
+      "start": {
+        "year": 0,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1000,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [],
+      "description": "Древнеберингоморская культура, Бирнирк и др. — предки современных эскимосских народов по обе стороны пролива.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "yupik",
+      "lane": "n",
+      "type": "people",
+      "name": "Юпики (Аляска и Чукотка)",
+      "start": {
+        "year": 1000,
+        "dating": "approx"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "bering",
+          "certainty": "established"
+        }
+      ],
+      "description": "Один из немногих коренных народов Америки, чья территория заходит в Россию: азиатские эскимосы Чукотки — юпики.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "thule",
+      "lane": "n",
+      "type": "culture",
+      "name": "Туле",
+      "start": {
+        "year": 1000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1600,
+        "dating": "conventional"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "bering",
+          "certainty": "established"
+        }
+      ],
+      "description": "За два-три века расселились от Аляски до Гренландии, вытеснив дорсетцев.",
+      "events": [],
+      "sources": [],
+      "todo": [
+        "Начало 1000 г. и «за два-три века» расходятся с более поздними датировками быстрого расселения на восток в XIII в. (friesen2008). Проверить."
+      ]
+    },
+    {
+      "id": "inuit",
+      "lane": "n",
+      "type": "people",
+      "name": "Инуиты",
+      "start": {
+        "year": 1600,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "thule",
+          "certainty": "established"
+        }
+      ],
+      "description": "Канадская Арктика и Гренландия. «Атанарджуат: Быстрый бегун» — инуитский фильм на инуктитуте.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "cree",
+      "lane": "n",
+      "type": "people",
+      "name": "Кри",
+      "start": {
+        "year": 1500,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "alg",
+          "certainty": "established"
+        }
+      ],
+      "description": "Крупнейший народ «первых наций» Канады, главные партнёры Компании Гудзонова залива в меховой торговле.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "archE",
+      "lane": "ne",
+      "type": "culture",
+      "name": "Архаика Восточных лесов",
+      "start": {
+        "year": -8000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": -1000,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "paleo",
+          "certainty": "established"
+        }
+      ],
+      "description": "Охотники-собиратели лесной зоны; к концу периода — первые одомашненные местные растения (тыква, подсолнечник, марь).",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "adena",
+      "lane": "ne",
+      "type": "culture",
+      "name": "Адена",
+      "start": {
+        "year": -800,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 100,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "archE",
+          "certainty": "established"
+        }
+      ],
+      "description": "Долина Огайо: курганы-погребения, ранняя керамика.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "hopewell",
+      "lane": "ne",
+      "type": "culture",
+      "name": "Хоупвелл",
+      "start": {
+        "year": -100,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 500,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "adena",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Не народ, а сеть обмена и погребального ритуала: обсидиан со Скалистых гор, раковины с Мексиканского залива, медь с Великих озёр.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "lateW",
+      "lane": "ne",
+      "type": "culture",
+      "name": "Поздний вудленд",
+      "start": {
+        "year": 500,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1000,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "hopewell",
+          "certainty": "established"
+        }
+      ],
+      "description": "Распад хоупвеллской сети, распространение лука со стрелами и кукурузы.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "iroqL",
+      "lane": "ne",
+      "type": "language",
+      "name": "Ирокезоязычные (праязык)",
+      "start": {
+        "year": -2000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1000,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "archE",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Отделение чероки от северных ирокезов лингвисты относят к глубокой древности — несколько тысяч лет назад.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "owasco",
+      "lane": "ne",
+      "type": "culture",
+      "name": "Оваско",
+      "start": {
+        "year": 1000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1300,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "lateW",
+          "certainty": "established"
+        },
+        {
+          "id": "iroqL",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Земледельческие деревни на территории штата Нью-Йорк; вероятные предки ирокезов (гипотеза местного происхождения).",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "haud",
+      "lane": "ne",
+      "type": "polity",
+      "name": "Ирокезская лига (Хауденосауни)",
+      "start": {
+        "year": 1450,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "owasco",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Мохоки, онейда, онондага, кайюга, сенека; с 1722 г. — и тускарора («Шесть наций»). Дата основания спорна — от XII до XVI в., на графике компромиссная. Совет лиги в Онондаге существует и сегодня.",
+      "events": [
+        {
+          "year": 1649,
+          "label": "Разгром гуронов",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1701,
+          "label": "Великий мир в Монреале",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1777,
+          "label": "Раскол в Войне за независимость",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "tusc",
+      "lane": "ne",
+      "type": "people",
+      "name": "Тускарора",
+      "start": {
+        "year": 1500,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "iroqL",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Ирокезоязычный народ Северной Каролины; после войны с колонистами 1711–1715 гг. ушли на север и вошли в лигу.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "six",
+      "lane": "ne",
+      "type": "people",
+      "name": "Шесть наций Гранд-Ривер (Канада)",
+      "start": {
+        "year": 1784,
+        "dating": "documented"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "haud",
+          "certainty": "established"
+        }
+      ],
+      "description": "Союзники британцев после революции переселились в Онтарио по Халдимандской прокламации 1784 г. Самая населённая резервация Канады.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "wendat",
+      "lane": "ne",
+      "type": "polity",
+      "name": "Конфедерация гуронов (вендатов)",
+      "start": {
+        "year": 1400,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1650,
+        "dating": "conventional"
+      },
+      "fate": "destroyed",
+      "parents": [
+        {
+          "id": "owasco",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Союз нескольких ирокезоязычных народов у залива Джорджиан-Бей, главные торговые партнёры французов. Ослаблены эпидемиями, разгромлены Ирокезской лигой в 1649 г.",
+      "events": [
+        {
+          "year": 1634,
+          "label": "Иезуиты среди гуронов («Чёрная сутана»)",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "wendake",
+      "lane": "ne",
+      "type": "people",
+      "name": "Гуроны-вендаты (Вендаке, Квебек)",
+      "start": {
+        "year": 1650,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "wendat",
+          "certainty": "established"
+        }
+      ],
+      "description": "Беглецы, укрывшиеся у французов под Квебеком.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "wyandot",
+      "lane": "ne",
+      "type": "people",
+      "name": "Виандоты",
+      "start": {
+        "year": 1650,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "wendat",
+          "certainty": "established"
+        }
+      ],
+      "description": "Уцелевшие гуроны и родственные им петуны; Детройт, Огайо, затем Канзас и Оклахома. Именно их Купер называет «гуронами» в «Зверобое».",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "alg",
+      "lane": "ne",
+      "type": "language",
+      "name": "Алгонкиноязычные (праязык)",
+      "start": {
+        "year": -1000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1500,
+        "dating": "conventional"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "archE",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Праалгонкинский язык — около 2,5–3 тыс. лет назад, прародина спорна. Одна из крупнейших семей Северной Америки: от кри и оджибве до ленапе, шайеннов и черноногих.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "lenape",
+      "lane": "ne",
+      "type": "people",
+      "name": "Ленапе (делавары)",
+      "start": {
+        "year": 1500,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "alg",
+          "certainty": "established"
+        }
+      ],
+      "description": "Долина реки Делавэр. «Пешая покупка» 1737 г., вытеснение на Саскуэханну, в Огайо, затем в Канзас и Оклахому; часть — в Онтарио. У Купера — «делавары».",
+      "events": [
+        {
+          "year": 1737,
+          "label": "«Пешая покупка»",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "mahican",
+      "lane": "ne",
+      "type": "people",
+      "name": "Махикане",
+      "start": {
+        "year": 1500,
+        "dating": "conventional"
+      },
+      "end": {
+        "year": 1830,
+        "dating": "conventional"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "alg",
+          "certainty": "established"
+        }
+      ],
+      "description": "Долина Гудзона, народ Чингачгука у Купера. К XVIII в. сильно поредели, многие осели в миссиях (Стокбридж, моравская Шекомеко).",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "stockm",
+      "lane": "ne",
+      "type": "people",
+      "name": "Стокбридж-мунси (Висконсин)",
+      "start": {
+        "year": 1830,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "mahican",
+          "certainty": "established"
+        }
+      ],
+      "description": "Потомки махикан, к которым примкнули мунси — северная ветвь ленапе. «Последние из могикан» вовсе не последние.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "pequot",
+      "lane": "ne",
+      "type": "people",
+      "name": "Пекоты",
+      "start": {
+        "year": 1500,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "alg",
+          "certainty": "established"
+        }
+      ],
+      "description": "Юго-восток Новой Англии. Пекотская война 1636–1638 гг. почти уничтожила народ; сегодня — машантакет-пекоты.",
+      "events": [
+        {
+          "year": 1637,
+          "label": "Бойня у Мистика",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "mohegan",
+      "lane": "ne",
+      "type": "people",
+      "name": "Мохеганы",
+      "start": {
+        "year": 1635,
+        "dating": "documented"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "pequot",
+          "certainty": "established"
+        }
+      ],
+      "description": "Отделились от пекотов во главе с Ункасом и встали на сторону англичан. Купер смешал их с махиканами — отсюда путаница с «могиканами».",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "wamp",
+      "lane": "ne",
+      "type": "people",
+      "name": "Вампаноаги",
+      "start": {
+        "year": 1500,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "alg",
+          "certainty": "established"
+        }
+      ],
+      "description": "Индейцы «первого Дня благодарения» в Плимуте; через полвека — Война короля Филипа, одна из самых кровопролитных в колониальной истории.",
+      "events": [
+        {
+          "year": 1621,
+          "label": "Союз с Плимутом",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1675,
+          "label": "Война короля Филипа",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "powh",
+      "lane": "ne",
+      "type": "polity",
+      "name": "Вождество Поухатана",
+      "start": {
+        "year": 1570,
+        "dating": "conventional"
+      },
+      "end": {
+        "year": 1646,
+        "dating": "documented"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "alg",
+          "certainty": "established"
+        }
+      ],
+      "description": "Союз около 30 алгонкинских общин Виргинии под властью верховного вождя. Покахонтас — его дочь.",
+      "events": [
+        {
+          "year": 1607,
+          "label": "Джеймстаун",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "pamunkey",
+      "lane": "ne",
+      "type": "people",
+      "name": "Памунки",
+      "start": {
+        "year": 1646,
+        "dating": "documented"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "powh",
+          "certainty": "established"
+        }
+      ],
+      "description": "Ядро бывшего вождества; федеральное признание получили только в 2015 г.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "shawnee",
+      "lane": "ne",
+      "type": "people",
+      "name": "Шауни",
+      "start": {
+        "year": 1600,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "alg",
+          "certainty": "established"
+        }
+      ],
+      "description": "Подвижный народ долины Огайо, много раз переселявшийся; народ Текумсе.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "tecum",
+      "lane": "ne",
+      "type": "polity",
+      "name": "Конфедерация Текумсе",
+      "start": {
+        "year": 1805,
+        "dating": "documented"
+      },
+      "end": {
+        "year": 1813,
+        "dating": "documented"
+      },
+      "fate": "destroyed",
+      "parents": [
+        {
+          "id": "shawnee",
+          "certainty": "established"
+        }
+      ],
+      "description": "Последняя крупная попытка общеиндейского союза против экспансии США. Текумсе погиб в 1813 г., сражаясь на стороне британцев.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "ojibwe",
+      "lane": "ne",
+      "type": "people",
+      "name": "Оджибве (анишинабе)",
+      "start": {
+        "year": 1500,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "alg",
+          "certainty": "established"
+        }
+      ],
+      "description": "Великие озёра. Раньше соседей получили французские ружья и вытеснили дакота на запад.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "miss",
+      "lane": "se",
+      "type": "culture",
+      "name": "Миссисипская культура",
+      "start": {
+        "year": 800,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1600,
+        "dating": "conventional"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "lateW",
+          "certainty": "established"
+        }
+      ],
+      "description": "Земледельческие вождества с платформенными курганами. Распалась до прихода европейцев или под ударом первых эпидемий.",
+      "events": [
+        {
+          "year": 1540,
+          "label": "Экспедиция де Сото",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "cahokia",
+      "lane": "se",
+      "type": "polity",
+      "name": "Кахокия",
+      "start": {
+        "year": 1050,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1350,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "miss",
+          "certainty": "established"
+        }
+      ],
+      "description": "Крупнейший доколумбов центр к северу от Мексики; пик ~1050–1200, население по оценкам 10–20 тыс. Монкс-Маунд — крупнейшее земляное сооружение Северной Америки.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "natchez",
+      "lane": "se",
+      "type": "people",
+      "name": "Натчезы",
+      "start": {
+        "year": 1500,
+        "dating": "conventional"
+      },
+      "end": {
+        "year": 1731,
+        "dating": "documented"
+      },
+      "fate": "destroyed",
+      "parents": [
+        {
+          "id": "miss",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Последнее вождество миссисипского типа со «священным Солнцем» во главе. После восстания 1729 г. разгромлены французами; уцелевшие ушли к чикасо, крикам и чероки.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "musc",
+      "lane": "se",
+      "type": "polity",
+      "name": "Маскоги (крики)",
+      "start": {
+        "year": 1650,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "miss",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Конфедерация, сложившаяся из потомков миссисипских вождеств и беглецов от эпидемий. Выселены в Оклахому; в 2020 г. Верховный суд США признал их резервацию юридически не упразднённой.",
+      "events": [
+        {
+          "year": 1814,
+          "label": "Хорсшу-Бенд",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1836,
+          "label": "Выселение",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 2020,
+          "label": "Дело Макгерта",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "semin",
+      "lane": "se",
+      "type": "people",
+      "name": "Семинолы",
+      "start": {
+        "year": 1750,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "musc",
+          "certainty": "established"
+        }
+      ],
+      "description": "Отделились от криков во Флориде, принимали беглых рабов. Три войны с США; часть так и не была выселена.",
+      "events": [
+        {
+          "year": 1835,
+          "label": "Вторая семинольская война",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "cher",
+      "lane": "se",
+      "type": "people",
+      "name": "Чероки",
+      "start": {
+        "year": 1600,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "iroqL",
+          "certainty": "probable"
+        },
+        {
+          "id": "miss",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Язык ирокезский, культура — наследие южноаппалачских миссисипских вождеств. Своя письменность, конституция, газета — и всё равно выселение.",
+      "events": [
+        {
+          "year": 1821,
+          "label": "Слоговое письмо Секвойи",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1832,
+          "label": "«Вустер против Джорджии»",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1838,
+          "label": "«Тропа слёз»",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "ebc",
+      "lane": "se",
+      "type": "people",
+      "name": "Восточная группа чероки",
+      "start": {
+        "year": 1838,
+        "dating": "documented"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "cher",
+          "certainty": "established"
+        }
+      ],
+      "description": "Те, кто сумел остаться в горах Северной Каролины.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "choc",
+      "lane": "se",
+      "type": "people",
+      "name": "Чокто",
+      "start": {
+        "year": 1650,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "miss",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Первыми из «пяти цивилизованных племён» выселены за Миссисипи.",
+      "events": [
+        {
+          "year": 1831,
+          "label": "Выселение",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "chick",
+      "lane": "se",
+      "type": "people",
+      "name": "Чикасо",
+      "start": {
+        "year": 1650,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "miss",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Воинственные союзники англичан; приютили уцелевших натчезов.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "timu",
+      "lane": "se",
+      "type": "people",
+      "name": "Тимукуа",
+      "start": {
+        "year": 1500,
+        "dating": "conventional"
+      },
+      "end": {
+        "year": 1767,
+        "dating": "documented"
+      },
+      "fate": "destroyed",
+      "parents": [],
+      "description": "Северная Флорида. Первыми столкнулись с испанцами и французами, вымерли от эпидемий и набегов; последние ушли с испанцами на Кубу после 1763 г.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "folsom",
+      "lane": "pl",
+      "type": "culture",
+      "name": "Фолсом",
+      "start": {
+        "year": -10800,
+        "dating": "approx"
+      },
+      "end": {
+        "year": -8000,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "clovis",
+          "certainty": "established"
+        }
+      ],
+      "description": "Охотники на вымерший вид бизона — наследники Кловиса на равнинах.",
+      "events": [],
+      "sources": [],
+      "todo": [
+        "Конец −8000 выглядит слишком поздним: по памяти комплекс Фолсом укладывается примерно в −10 800…−10 200. Проверить по датировкам."
+      ]
+    },
+    {
+      "id": "plv",
+      "lane": "pl",
+      "type": "culture",
+      "name": "Традиция деревень Равнин",
+      "start": {
+        "year": 900,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1500,
+        "dating": "conventional"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "lateW",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Оседлые земледельцы в долинах рек: кукуруза, укреплённые деревни из земляных домов.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "pawnee",
+      "lane": "pl",
+      "type": "people",
+      "name": "Пауни",
+      "start": {
+        "year": 1500,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "plv",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Кэддоязычные земледельцы и охотники Небраски; позже — разведчики армии США против сиу.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "arik",
+      "lane": "pl",
+      "type": "people",
+      "name": "Арикара",
+      "start": {
+        "year": 1550,
+        "dating": "conventional"
+      },
+      "end": {
+        "year": 1862,
+        "dating": "documented"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "pawnee",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Отделились от пауни и ушли вверх по Миссури.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "siouan",
+      "lane": "pl",
+      "type": "language",
+      "name": "Сиуязычные (праязык)",
+      "start": {
+        "year": -1000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1500,
+        "dating": "conventional"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "archE",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Прародина спорна — скорее долина Огайо или среднего Миссисипи.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "mandan",
+      "lane": "pl",
+      "type": "people",
+      "name": "Манданы",
+      "start": {
+        "year": 1300,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1862,
+        "dating": "documented"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "plv",
+          "certainty": "established"
+        },
+        {
+          "id": "siouan",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Торговый узел верхней Миссури. Эпидемия оспы 1837 г. уничтожила подавляющее большинство народа.",
+      "events": [
+        {
+          "year": 1804,
+          "label": "Зимовка Льюиса и Кларка",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1837,
+          "label": "Оспа",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "hid",
+      "lane": "pl",
+      "type": "people",
+      "name": "Хидатса",
+      "start": {
+        "year": 1400,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1862,
+        "dating": "documented"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "siouan",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Соседи и союзники манданов.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "crow",
+      "lane": "pl",
+      "type": "people",
+      "name": "Кроу (апсалоке)",
+      "start": {
+        "year": 1600,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "hid",
+          "certainty": "probable"
+        }
+      ],
+      "description": "По собственным преданиям, отделились от хидатса и стали кочевниками. Враги лакота, союзники армии США.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "mha",
+      "lane": "pl",
+      "type": "people",
+      "name": "Три присоединившихся племени",
+      "start": {
+        "year": 1862,
+        "dating": "documented"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "mandan",
+          "certainty": "established"
+        },
+        {
+          "id": "hid",
+          "certainty": "established"
+        }
+      ],
+      "description": "Манданы, хидатса и арикара, объединившиеся после эпидемий; Северная Дакота.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "osage",
+      "lane": "pl",
+      "type": "people",
+      "name": "Осейджи",
+      "start": {
+        "year": 1650,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "siouan",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Переселились из долины Огайо на запад. В 1920-х на их нефтяных землях — серия убийств ради нефтяных прав («Убийцы цветочной луны»).",
+      "events": [
+        {
+          "year": 1921,
+          "label": "«Царство террора»",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "oceti",
+      "lane": "pl",
+      "type": "polity",
+      "name": "Очети Шаковин (сиу)",
+      "start": {
+        "year": 1600,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "siouan",
+          "certainty": "established"
+        }
+      ],
+      "description": "«Семь очагов совета» — союз дакота, накота и лакота.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "dakota",
+      "lane": "pl",
+      "type": "people",
+      "name": "Дакота",
+      "start": {
+        "year": 1650,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "oceti",
+          "certainty": "established"
+        }
+      ],
+      "description": "Восточная ветвь, Миннесота. Война 1862 г. закончилась крупнейшей массовой казнью в истории США.",
+      "events": [
+        {
+          "year": 1862,
+          "label": "Война в Миннесоте",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "nakota",
+      "lane": "pl",
+      "type": "people",
+      "name": "Накота (янктоны и янктонаи)",
+      "start": {
+        "year": 1650,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "oceti",
+          "certainty": "established"
+        }
+      ],
+      "description": "Средняя ветвь между дакота и лакота.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "lakota",
+      "lane": "pl",
+      "type": "people",
+      "name": "Лакота",
+      "start": {
+        "year": 1700,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "oceti",
+          "certainty": "established"
+        }
+      ],
+      "description": "Западная ветвь: оглала, хункпапа и др. Вытеснены оджибве из Миннесоты, получили лошадей и стали гегемоном северных равнин. Компенсацию за Чёрные Холмы отказываются брать до сих пор.",
+      "events": [
+        {
+          "year": 1776,
+          "label": "Чёрные Холмы",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1868,
+          "label": "Договор в Форт-Ларами",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1876,
+          "label": "Литтл-Бигхорн",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1890,
+          "label": "Вундед-Ни",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1973,
+          "label": "Оккупация Вундед-Ни",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1980,
+          "label": "Решение Верховного суда",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "chey",
+      "lane": "pl",
+      "type": "people",
+      "name": "Шайенны",
+      "start": {
+        "year": 1650,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "alg",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Алгонкинский народ из Миннесоты, ставший конными кочевниками. Союзники лакота при Литтл-Бигхорне.",
+      "events": [
+        {
+          "year": 1864,
+          "label": "Сэнд-Крик",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "blackf",
+      "lane": "pl",
+      "type": "people",
+      "name": "Черноногие (ниитситапи)",
+      "start": {
+        "year": 1600,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "alg",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Северные равнины Монтаны и Альберты; одна из сильнейших конных держав севера в XVIII–XIX вв.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "kiowa",
+      "lane": "pl",
+      "type": "people",
+      "name": "Кайова",
+      "start": {
+        "year": 1650,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "kt",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Язык родствен языкам пуэбло Рио-Гранде. С верховьев Миссури ушли на юг и стали союзниками команчей.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "com",
+      "lane": "pl",
+      "type": "people",
+      "name": "Команчи",
+      "start": {
+        "year": 1700,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "sho",
+          "certainty": "established"
+        }
+      ],
+      "description": "Отделились от шошонов, получили лошадей и за полвека вытеснили апачей с южных равнин.",
+      "events": [
+        {
+          "year": 1786,
+          "label": "Мир с испанцами",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1840,
+          "label": "Бойня в Здании совета",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1875,
+          "label": "Капитуляция Куаны Паркера",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "comr",
+      "lane": "pl",
+      "type": "polity",
+      "name": "Команчерия",
+      "start": {
+        "year": 1750,
+        "dating": "conventional"
+      },
+      "end": {
+        "year": 1875,
+        "dating": "documented"
+      },
+      "fate": "destroyed",
+      "parents": [
+        {
+          "id": "com",
+          "certainty": "established"
+        }
+      ],
+      "description": "Держава без государства: контроль над торговлей лошадьми и пленными, дань с испанского Нью-Мексико, набеги вглубь Мексики. Сломлена в Войне на Ред-Ривер.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "metis",
+      "lane": "pl",
+      "type": "people",
+      "name": "Метисы",
+      "start": {
+        "year": 1780,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "cree",
+          "certainty": "established"
+        }
+      ],
+      "description": "Новый народ, возникший из браков французских и шотландских торговцев мехом с женщинами кри и оджибве; признан конституцией Канады.",
+      "events": [
+        {
+          "year": 1816,
+          "label": "Севен-Окс",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1870,
+          "label": "Сопротивление на Красной реке",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1885,
+          "label": "Казнь Луи Риэля",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "swa",
+      "lane": "sw",
+      "type": "culture",
+      "name": "Архаика Юго-Запада",
+      "start": {
+        "year": -8000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": -1200,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "paleo",
+          "certainty": "established"
+        }
+      ],
+      "description": "Охотники-собиратели пустынь; около 2100 г. до н. э. сюда приходит кукуруза из Мексики.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "bm",
+      "lane": "sw",
+      "type": "culture",
+      "name": "Корзинщики",
+      "start": {
+        "year": -1200,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 750,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "swa",
+          "certainty": "established"
+        }
+      ],
+      "description": "Ранние земледельцы плато Колорадо, предки пуэбло.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "anc",
+      "lane": "sw",
+      "type": "culture",
+      "name": "Предки пуэбло (анасази)",
+      "start": {
+        "year": 750,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1300,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "bm",
+          "certainty": "established"
+        }
+      ],
+      "description": "Многоэтажные поселения и скальные дворцы Меса-Верде. Засуха 1276–1299 гг. и конфликты заставили покинуть плато Колорадо.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "chaco",
+      "lane": "sw",
+      "type": "polity",
+      "name": "Чако-Каньон",
+      "start": {
+        "year": 850,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1150,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "anc",
+          "certainty": "established"
+        }
+      ],
+      "description": "Ритуальный и торговый центр с «великими домами» и дорогами. В сосудах — следы какао, в постройках — скелеты ара: связь с Мезоамерикой через цепочки посредников.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "hopi",
+      "lane": "sw",
+      "type": "people",
+      "name": "Хопи",
+      "start": {
+        "year": 1300,
+        "dating": "approx"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "anc",
+          "certainty": "established"
+        },
+        {
+          "id": "ua",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Говорят на юто-ацтекском языке. Деревня Ораиби считается одним из старейших постоянно населённых мест США.",
+      "events": [],
+      "sources": [],
+      "todo": [
+        "Начало 1300 г. не согласуется с описанием Ораиби как одного из старейших поселений (основано раньше 1300 г.). Проверить."
+      ]
+    },
+    {
+      "id": "zuni",
+      "lane": "sw",
+      "type": "people",
+      "name": "Зуни",
+      "start": {
+        "year": 1300,
+        "dating": "approx"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "anc",
+          "certainty": "established"
+        },
+        {
+          "id": "mog",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Язык-изолят. Первыми на юго-западе встретили испанцев (1539–1540).",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "rgp",
+      "lane": "sw",
+      "type": "people",
+      "name": "Пуэбло Рио-Гранде",
+      "start": {
+        "year": 1300,
+        "dating": "approx"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "anc",
+          "certainty": "established"
+        },
+        {
+          "id": "kt",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Таос, Акома, Санто-Доминго и др. Восстание 1680 г. на 12 лет изгнало испанцев из Нью-Мексико, а брошенные испанцами лошади разошлись по Великим равнинам.",
+      "events": [
+        {
+          "year": 1680,
+          "label": "Восстание пуэбло",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "kt",
+      "lane": "sw",
+      "type": "language",
+      "name": "Кайова-таноанская общность (праязык)",
+      "start": {
+        "year": -1500,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1300,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "swa",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Связывает пуэбло Рио-Гранде с кочевниками-кайова.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "mog",
+      "lane": "sw",
+      "type": "culture",
+      "name": "Моголлон",
+      "start": {
+        "year": 200,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1450,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "swa",
+          "certainty": "established"
+        }
+      ],
+      "description": "Горы Нью-Мексико и Аризоны; знаменитая керамика мимбрес.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "paq",
+      "lane": "sw",
+      "type": "polity",
+      "name": "Пакиме (Касас-Грандес)",
+      "start": {
+        "year": 1200,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1450,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "mog",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Торговый центр на севере Мексики, где разводили ара.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "hoh",
+      "lane": "sw",
+      "type": "culture",
+      "name": "Хохокам",
+      "start": {
+        "year": 300,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1450,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "swa",
+          "certainty": "established"
+        }
+      ],
+      "description": "Пустыня Сонора: сотни километров оросительных каналов.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "oodham",
+      "lane": "sw",
+      "type": "people",
+      "name": "О’одхам (пима, тохоно)",
+      "start": {
+        "year": 1450,
+        "dating": "approx"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "hoh",
+          "certainty": "probable"
+        },
+        {
+          "id": "ua",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Вероятные потомки хохокам. Земли тохоно-оодхам разрезает граница США и Мексики.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "ua",
+      "lane": "sw",
+      "type": "language",
+      "name": "Юто-ацтекская общность (праязык)",
+      "start": {
+        "year": -3000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 500,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "swa",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Одна семья от Юты до Центральной Мексики: шошоны, команчи и хопи — языковые родственники ацтеков. Прародина спорна (юго-запад США или северо-запад Мексики).",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "numic",
+      "lane": "sw",
+      "type": "language",
+      "name": "Нумийские народы",
+      "start": {
+        "year": 1000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1500,
+        "dating": "conventional"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "ua",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Гипотеза: около 1000 г. носители нумийских языков быстро расселились по Большому Бассейну.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "sho",
+      "lane": "sw",
+      "type": "people",
+      "name": "Шошоны",
+      "start": {
+        "year": 1500,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "numic",
+          "certainty": "established"
+        }
+      ],
+      "description": "Большой Бассейн и Вайоминг. Сакагавея, проводница Льюиса и Кларка, — шошонка.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "ute",
+      "lane": "sw",
+      "type": "people",
+      "name": "Юты",
+      "start": {
+        "year": 1500,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "numic",
+          "certainty": "established"
+        }
+      ],
+      "description": "Одними из первых получили лошадей от испанцев и передали их дальше на север.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "sath",
+      "lane": "sw",
+      "type": "people",
+      "name": "Южные атапаски",
+      "start": {
+        "year": 1300,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1600,
+        "dating": "conventional"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "dene",
+          "certainty": "established"
+        }
+      ],
+      "description": "Миграция с северо-запада Канады на 2–3 тысячи километров к югу; пути и даты спорны.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "navajo",
+      "lane": "sw",
+      "type": "people",
+      "name": "Навахо (дине)",
+      "start": {
+        "year": 1600,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "sath",
+          "certainty": "established"
+        }
+      ],
+      "description": "Переняли у пуэбло земледелие и ткачество, у испанцев — овец. Сегодня — одна из крупнейших индейских наций США с самой большой резервацией.",
+      "events": [
+        {
+          "year": 1864,
+          "label": "«Долгий поход»",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "apache",
+      "lane": "sw",
+      "type": "people",
+      "name": "Апачи",
+      "start": {
+        "year": 1600,
+        "dating": "conventional"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "sath",
+          "certainty": "established"
+        }
+      ],
+      "description": "Несколько групп: чирикауа, мескалеро, хикарилья, липаны и др. Вытеснены команчами с южных равнин; последними сопротивлялись армии США.",
+      "events": [
+        {
+          "year": 1886,
+          "label": "Капитуляция Джеронимо",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "mar",
+      "lane": "ma",
+      "type": "culture",
+      "name": "Архаика Мезоамерики",
+      "start": {
+        "year": -8000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": -1800,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "paleo",
+          "certainty": "established"
+        }
+      ],
+      "description": "Около 9 тыс. лет назад в долине реки Бальсас из дикого теосинте одомашнили кукурузу — основу будущих цивилизаций обеих Америк.",
+      "events": [
+        {
+          "year": -7000,
+          "label": "Одомашнивание кукурузы",
+          "dating": "approx",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "olmec",
+      "lane": "ma",
+      "type": "culture",
+      "name": "Ольмеки",
+      "start": {
+        "year": -1500,
+        "dating": "approx"
+      },
+      "end": {
+        "year": -400,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "mar",
+          "certainty": "established"
+        }
+      ],
+      "description": "Побережье Мексиканского залива: колоссальные каменные головы, ранние календарь и письмо. «Культура-мать» или одна из нескольких равных — спорят.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "premaya",
+      "lane": "ma",
+      "type": "culture",
+      "name": "Майя доклассического периода",
+      "start": {
+        "year": -1000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 250,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "mar",
+          "certainty": "established"
+        }
+      ],
+      "description": "Эль-Мирадор с гигантскими пирамидами — ещё до «классики».",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "cmaya",
+      "lane": "ma",
+      "type": "culture",
+      "name": "Классические майя",
+      "start": {
+        "year": 250,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 900,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "premaya",
+          "certainty": "established"
+        }
+      ],
+      "description": "Сеть городов-государств без единой столицы; иероглифическое письмо, расшифрованное во многом благодаря Юрию Кнорозову.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "tikal",
+      "lane": "ma",
+      "type": "polity",
+      "name": "Тикаль (Мутуль)",
+      "start": {
+        "year": 250,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 869,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "cmaya",
+          "certainty": "established"
+        }
+      ],
+      "description": "Одна из двух сверхдержав классики; последний датированный монумент — 869 г.",
+      "events": [
+        {
+          "year": 378,
+          "label": "Приход Сиях-Кака из Теотиуакана",
+          "dating": "approx",
+          "sources": []
+        },
+        {
+          "year": 695,
+          "label": "Победа над Калакмулем",
+          "dating": "approx",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "kaan",
+      "lane": "ma",
+      "type": "polity",
+      "name": "Калакмуль (царство Кануль)",
+      "start": {
+        "year": 635,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 900,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "cmaya",
+          "certainty": "established"
+        }
+      ],
+      "description": "Главный соперник Тикаля, построивший сеть вассальных городов.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "pmaya",
+      "lane": "ma",
+      "type": "culture",
+      "name": "Постклассические майя",
+      "start": {
+        "year": 900,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1697,
+        "dating": "documented"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "cmaya",
+          "certainty": "established"
+        }
+      ],
+      "description": "После «коллапса» южных городов центр смещается на Юкатан: Чичен-Ица, затем Майяпан.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "itza",
+      "lane": "ma",
+      "type": "polity",
+      "name": "Ица (Нохпетен)",
+      "start": {
+        "year": 1450,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1697,
+        "dating": "documented"
+      },
+      "fate": "destroyed",
+      "parents": [
+        {
+          "id": "pmaya",
+          "certainty": "established"
+        }
+      ],
+      "description": "Последнее независимое царство майя на озере Петен-Ица — пало лишь в 1697 г., через 176 лет после Теночтитлана.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "mmaya",
+      "lane": "ma",
+      "type": "people",
+      "name": "Майя сегодня",
+      "start": {
+        "year": 1697,
+        "dating": "documented"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "pmaya",
+          "certainty": "established"
+        }
+      ],
+      "description": "Миллионы человек и около 30 языков майя в Мексике, Гватемале, Белизе и Гондурасе.",
+      "events": [
+        {
+          "year": 1847,
+          "label": "Кастовая война на Юкатане",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1994,
+          "label": "Восстание сапатистов",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "zap",
+      "lane": "ma",
+      "type": "people",
+      "name": "Сапотеки",
+      "start": {
+        "year": -500,
+        "dating": "approx"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "mar",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Оахака; одна из древнейших систем письма Мезоамерики. Народ существует и сегодня.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "malb",
+      "lane": "ma",
+      "type": "polity",
+      "name": "Монте-Альбан",
+      "start": {
+        "year": -500,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 850,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "zap",
+          "certainty": "established"
+        }
+      ],
+      "description": "Столица сапотеков на срезанной вершине горы.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "mix",
+      "lane": "ma",
+      "type": "people",
+      "name": "Миштеки",
+      "start": {
+        "year": 700,
+        "dating": "approx"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "mar",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Мастера кодексов и золотых украшений; небольшие царства Оахаки.",
+      "events": [
+        {
+          "year": 1063,
+          "label": "Рождение правителя Восемь Оленей",
+          "dating": "approx",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "teo",
+      "lane": "ma",
+      "type": "polity",
+      "name": "Теотиуакан",
+      "start": {
+        "year": -100,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 550,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "mar",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Город примерно на 100 тыс. жителей с пирамидами Солнца и Луны. Кто его построил, неизвестно — вероятно, многоэтничное население.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "wmex",
+      "lane": "ma",
+      "type": "culture",
+      "name": "Культуры Западной Мексики",
+      "start": {
+        "year": -300,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1300,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "mar",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Шахтовые гробницы; около 600–800 гг. здесь появляется металлургия, технологически близкая андской.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "pur",
+      "lane": "ma",
+      "type": "people",
+      "name": "Пурепеча (тараски)",
+      "start": {
+        "year": 1300,
+        "dating": "approx"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "wmex",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Язык-изолят. Их государство так и не покорили ацтеки; испанцы — в 1530 г.",
+      "events": [
+        {
+          "year": 1479,
+          "label": "Разгром армии ацтеков",
+          "dating": "approx",
+          "sources": []
+        },
+        {
+          "year": 1530,
+          "label": "Покорение испанцами",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "nahua",
+      "lane": "ma",
+      "type": "people",
+      "name": "Науа",
+      "start": {
+        "year": 500,
+        "dating": "approx"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "ua",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Народы языка науатль, пришедшие в Центральную Мексику с севера. Сегодня — крупнейший коренной народ Мексики.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "toltec",
+      "lane": "ma",
+      "type": "polity",
+      "name": "Тольтеки (Тула)",
+      "start": {
+        "year": 900,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1150,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "nahua",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Полулегендарный образец для ацтекских правителей, возводивших к ним свою легитимность.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "mexica",
+      "lane": "ma",
+      "type": "people",
+      "name": "Мешика (ацтеки)",
+      "start": {
+        "year": 1250,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1521,
+        "dating": "documented"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "nahua",
+          "certainty": "established"
+        }
+      ],
+      "description": "Пришли в долину Мехико последними, бедными наёмниками; основали Теночтитлан на острове озера Тескоко.",
+      "events": [
+        {
+          "year": 1325,
+          "label": "Основание Теночтитлана",
+          "dating": "approx",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "triple",
+      "lane": "ma",
+      "type": "polity",
+      "name": "Тройственный союз (Ацтекская империя)",
+      "start": {
+        "year": 1428,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1521,
+        "dating": "documented"
+      },
+      "fate": "destroyed",
+      "parents": [
+        {
+          "id": "mexica",
+          "certainty": "established"
+        }
+      ],
+      "description": "Теночтитлан, Тескоко и Тлакопан. Не территориальное государство, а система данников; многие покорённые охотно перешли на сторону испанцев.",
+      "events": [
+        {
+          "year": 1519,
+          "label": "Прибытие Кортеса",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1521,
+          "label": "Падение Теночтитлана",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "tlax",
+      "lane": "ma",
+      "type": "polity",
+      "name": "Тлашкала",
+      "start": {
+        "year": 1350,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1550,
+        "dating": "conventional"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "nahua",
+          "certainty": "established"
+        }
+      ],
+      "description": "Независимый анклав в окружении ацтеков. Союз с Кортесом решил исход войны; за это Тлашкала получила привилегии при испанцах.",
+      "events": [
+        {
+          "year": 1519,
+          "label": "Союз с Кортесом",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "saa",
+      "lane": "sa",
+      "type": "culture",
+      "name": "Ранние культуры Южной Америки",
+      "start": {
+        "year": -12500,
+        "dating": "approx"
+      },
+      "end": {
+        "year": -3000,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "paleo",
+          "certainty": "established"
+        }
+      ],
+      "description": "Монте-Верде в Чили (~14,5 тыс. лет назад) — одна из стоянок, опровергнувших модель «Кловис первыми».",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "ecu",
+      "lane": "sa",
+      "type": "culture",
+      "name": "Культуры побережья Эквадора (Вальдивия → Мантеньо)",
+      "start": {
+        "year": -3800,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1530,
+        "dating": "conventional"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "saa",
+          "certainty": "established"
+        }
+      ],
+      "description": "Одна из древнейших керамик Америк; морские торговцы на бальсовых плотах, раковины спондилуса.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "caral",
+      "lane": "sa",
+      "type": "culture",
+      "name": "Караль (Норте-Чико)",
+      "start": {
+        "year": -3000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": -1800,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "saa",
+          "certainty": "established"
+        }
+      ],
+      "description": "Древнейшая цивилизация Америк: монументальные постройки около 2600 г. до н. э. — ровесники египетских пирамид.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "chavin",
+      "lane": "sa",
+      "type": "culture",
+      "name": "Чавин",
+      "start": {
+        "year": -900,
+        "dating": "approx"
+      },
+      "end": {
+        "year": -200,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "caral",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Религиозный центр, чей стиль распространился по всему северу Анд.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "moche",
+      "lane": "sa",
+      "type": "culture",
+      "name": "Моче",
+      "start": {
+        "year": 100,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 800,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "chavin",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Северное побережье Перу: керамика-«портреты», гробница Владыки Сипана.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "chimu",
+      "lane": "sa",
+      "type": "polity",
+      "name": "Чиму (Чимор)",
+      "start": {
+        "year": 900,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1470,
+        "dating": "approx"
+      },
+      "fate": "destroyed",
+      "parents": [
+        {
+          "id": "moche",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Прибрежное царство со столицей Чан-Чан — крупнейшим глинобитным городом мира. Покорено инками около 1470 г.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "paracas",
+      "lane": "sa",
+      "type": "culture",
+      "name": "Паракас",
+      "start": {
+        "year": -800,
+        "dating": "approx"
+      },
+      "end": {
+        "year": -100,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "saa",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Южное побережье Перу: знаменитые ткани и трепанации черепа.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "nazca",
+      "lane": "sa",
+      "type": "culture",
+      "name": "Наска",
+      "start": {
+        "year": -100,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 800,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "paracas",
+          "certainty": "established"
+        }
+      ],
+      "description": "Гигантские геоглифы в пустыне.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "wari",
+      "lane": "sa",
+      "type": "polity",
+      "name": "Уари",
+      "start": {
+        "year": 600,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1000,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "nazca",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Часто считается первым имперским государством Анд и образцом для инков.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "cusco",
+      "lane": "sa",
+      "type": "polity",
+      "name": "Царство Куско (ранние инки)",
+      "start": {
+        "year": 1200,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1438,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "wari",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Небольшое горное государство до начала экспансии.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "tawa",
+      "lane": "sa",
+      "type": "polity",
+      "name": "Тауантинсуйу (Империя инков)",
+      "start": {
+        "year": 1438,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1572,
+        "dating": "documented"
+      },
+      "fate": "destroyed",
+      "parents": [
+        {
+          "id": "cusco",
+          "certainty": "established"
+        }
+      ],
+      "description": "Крупнейшее государство доколумбовой Америки: дороги на десятки тысяч километров, учёт на узелковых кипу. Пало в разгар гражданской войны Атауальпы и Уаскара.",
+      "events": [
+        {
+          "year": 1532,
+          "label": "Кахамарка, пленение Атауальпы",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1572,
+          "label": "Падение Вилькабамбы",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": [],
+      "todo": [
+        "1438 — традиционная хронология (по Роу); радиоуглеродные даты сдвигают начало экспансии раньше. Проверить и решить, какую дату показывать."
+      ]
+    },
+    {
+      "id": "quech",
+      "lane": "sa",
+      "type": "people",
+      "name": "Кечуа",
+      "start": {
+        "year": 1572,
+        "dating": "documented"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "tawa",
+          "certainty": "established"
+        }
+      ],
+      "description": "Язык кечуа старше империи — инки сделали его государственным. Сегодня у него миллионы носителей.",
+      "events": [
+        {
+          "year": 1780,
+          "label": "Восстание Тупака Амару II",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "tiwa",
+      "lane": "sa",
+      "type": "polity",
+      "name": "Тиуанако",
+      "start": {
+        "year": 500,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1000,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "saa",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Ритуальная столица у озера Титикака.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "aym",
+      "lane": "sa",
+      "type": "people",
+      "name": "Аймара",
+      "start": {
+        "year": 1100,
+        "dating": "approx"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "tiwa",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Альтиплано Боливии и Перу. Связь с Тиуанако вероятна, но спорна.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "mapu",
+      "lane": "sa",
+      "type": "people",
+      "name": "Мапуче",
+      "start": {
+        "year": 600,
+        "dating": "approx"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "saa",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Начальная дата — по археологическим комплексам Питрен и Эль-Вергель. Остановили инков, затем почти три века держали границу против испанцев.",
+      "events": [
+        {
+          "year": 1553,
+          "label": "Гибель Вальдивии при Тукапеле",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1598,
+          "label": "Куралаба",
+          "dating": "documented",
+          "sources": []
+        },
+        {
+          "year": 1641,
+          "label": "Договор в Килине",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "arauc",
+      "lane": "sa",
+      "type": "polity",
+      "name": "Свободная Араукания (граница Био-Био)",
+      "start": {
+        "year": 1598,
+        "dating": "documented"
+      },
+      "end": {
+        "year": 1883,
+        "dating": "documented"
+      },
+      "fate": "destroyed",
+      "parents": [
+        {
+          "id": "mapu",
+          "certainty": "established"
+        }
+      ],
+      "description": "Испания признавала автономию мапуче договорами-«парламентами». Окончательно покорена Чили в 1861–1883 гг.; в Аргентине — «Завоевание пустыни» 1878–1885 гг.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "arawL",
+      "lane": "sa",
+      "type": "language",
+      "name": "Аравакская общность (праязык)",
+      "start": {
+        "year": -2000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 600,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "saa",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Одна из самых широко распространённых языковых семей Южной Америки — от Амазонии до Карибов.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "taino",
+      "lane": "sa",
+      "type": "people",
+      "name": "Таино",
+      "start": {
+        "year": 600,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1550,
+        "dating": "conventional"
+      },
+      "fate": "destroyed",
+      "parents": [
+        {
+          "id": "arawL",
+          "certainty": "established"
+        }
+      ],
+      "description": "Первый народ, встретивший Колумба. Как отдельный народ исчез за полвека, но живут его гены и слова: «гамак», «ураган», «каноэ».",
+      "events": [],
+      "sources": [],
+      "todo": [
+        "Статус «уничтожено» — оценка, причём спорная (движение возрождения таино, генетическая преемственность). Пересмотреть формулировку и fate."
+      ]
+    },
+    {
+      "id": "wayuu",
+      "lane": "sa",
+      "type": "people",
+      "name": "Ваюу",
+      "start": {
+        "year": 1000,
+        "dating": "approx"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "arawL",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Полуостров Гуахира между Колумбией и Венесуэлой; испанцам так и не покорились. Фильм «Pájaros de verano».",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "tupiL",
+      "lane": "sa",
+      "type": "language",
+      "name": "Тупи-гуарани (праязык)",
+      "start": {
+        "year": -3000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 500,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "saa",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Прародина — юго-запад Амазонии; расселение вдоль рек на тысячи километров.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "tupin",
+      "lane": "sa",
+      "type": "people",
+      "name": "Тупинамба",
+      "start": {
+        "year": 1000,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1700,
+        "dating": "conventional"
+      },
+      "fate": "destroyed",
+      "parents": [
+        {
+          "id": "tupiL",
+          "certainty": "established"
+        }
+      ],
+      "description": "Атлантическое побережье Бразилии; уничтожены и ассимилированы колонизацией. Их язык стал основой «общего языка» колониальной Бразилии.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "guar",
+      "lane": "sa",
+      "type": "people",
+      "name": "Гуарани",
+      "start": {
+        "year": 1000,
+        "dating": "approx"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "tupiL",
+          "certainty": "established"
+        }
+      ],
+      "description": "Гуарани — официальный язык Парагвая наряду с испанским, им пользуется большинство населения.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "reduc",
+      "lane": "sa",
+      "type": "polity",
+      "name": "Иезуитские редукции",
+      "start": {
+        "year": 1609,
+        "dating": "documented"
+      },
+      "end": {
+        "year": 1767,
+        "dating": "documented"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "guar",
+          "certainty": "established"
+        }
+      ],
+      "description": "Миссии-поселения, защищавшие гуарани от работорговцев; закрыты после изгнания иезуитов.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "maraj",
+      "lane": "sa",
+      "type": "culture",
+      "name": "Марахоара",
+      "start": {
+        "year": 400,
+        "dating": "approx"
+      },
+      "end": {
+        "year": 1400,
+        "dating": "approx"
+      },
+      "fate": "ended",
+      "parents": [
+        {
+          "id": "saa",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Остров Маражо в устье Амазонки: курганы и сложная керамика — довод против мифа о «пустой Амазонии».",
+      "events": [],
+      "sources": []
+    },
+    {
+      "id": "muisca",
+      "lane": "sa",
+      "type": "people",
+      "name": "Муиска",
+      "start": {
+        "year": 600,
+        "dating": "approx"
+      },
+      "end": null,
+      "fate": "extant",
+      "parents": [
+        {
+          "id": "saa",
+          "certainty": "probable"
+        }
+      ],
+      "description": "Высокогорья Колумбии. Ритуал правителя, покрытого золотом, на озере Гуатавита породил легенду об Эльдорадо.",
+      "events": [
+        {
+          "year": 1537,
+          "label": "Завоевание Кесадой",
+          "dating": "documented",
+          "sources": []
+        }
+      ],
+      "sources": []
+    }
+  ],
+  "links": [
+    {
+      "from": "tusc",
+      "to": "haud",
+      "year": 1722,
+      "kind": "merge",
+      "certainty": "established",
+      "description": "тускарора входят в лигу",
+      "sources": []
+    },
+    {
+      "from": "lenape",
+      "to": "stockm",
+      "year": 1830,
+      "kind": "merge",
+      "certainty": "established",
+      "description": "мунси присоединяются к стокбриджцам",
+      "sources": []
+    },
+    {
+      "from": "arik",
+      "to": "mha",
+      "year": 1862,
+      "kind": "merge",
+      "certainty": "established",
+      "description": "арикара присоединяются к манданам и хидатса",
+      "sources": []
+    },
+    {
+      "from": "ojibwe",
+      "to": "metis",
+      "year": 1780,
+      "kind": "merge",
+      "certainty": "established",
+      "description": "оджибве — второй материнский народ метисов",
+      "sources": []
+    },
+    {
+      "from": "natchez",
+      "to": "chick",
+      "year": 1731,
+      "kind": "merge",
+      "certainty": "established",
+      "description": "уцелевшие натчезы уходят к чикасо",
+      "sources": []
+    },
+    {
+      "from": "natchez",
+      "to": "cher",
+      "year": 1731,
+      "kind": "merge",
+      "certainty": "established",
+      "description": "уцелевшие натчезы уходят к чероки",
+      "sources": []
+    },
+    {
+      "from": "chimu",
+      "to": "tawa",
+      "year": 1470,
+      "kind": "merge",
+      "certainty": "established",
+      "description": "инки поглощают Чимор",
+      "sources": []
+    },
+    {
+      "from": "mar",
+      "to": "swa",
+      "year": -2100,
+      "kind": "influence",
+      "certainty": "established",
+      "description": "кукуруза приходит на юго-запад",
+      "sources": []
+    },
+    {
+      "from": "olmec",
+      "to": "premaya",
+      "year": -900,
+      "kind": "influence",
+      "certainty": "established",
+      "description": "ольмекское влияние",
+      "sources": []
+    },
+    {
+      "from": "olmec",
+      "to": "zap",
+      "year": -500,
+      "kind": "influence",
+      "certainty": "established",
+      "description": "ольмекское влияние",
+      "sources": []
+    },
+    {
+      "from": "teo",
+      "to": "tikal",
+      "year": 378,
+      "kind": "influence",
+      "certainty": "established",
+      "description": "Теотиуакан вмешивается в династию Тикаля",
+      "sources": []
+    },
+    {
+      "from": "ecu",
+      "to": "wmex",
+      "year": 650,
+      "kind": "influence",
+      "certainty": "hypothesis",
+      "description": "металлургия приходит морем из Эквадора (гипотеза)",
+      "sources": []
+    },
+    {
+      "from": "toltec",
+      "to": "pmaya",
+      "year": 950,
+      "kind": "influence",
+      "certainty": "established",
+      "description": "тольтекские мотивы в Чичен-Ице",
+      "sources": []
+    },
+    {
+      "from": "toltec",
+      "to": "chaco",
+      "year": 1000,
+      "kind": "influence",
+      "certainty": "probable",
+      "description": "торговые цепочки: ара, какао (условно — Мезоамерика в целом)",
+      "sources": [],
+      "todo": [
+        "Источник влияния условен: имеется в виду Мезоамерика в целом, а не именно тольтеки. Решить, как это показать."
+      ]
+    }
+  ],
+  "milestones": [
+    {
+      "year": 1492,
+      "label": "Колумб",
+      "sources": []
+    },
+    {
+      "year": 1521,
+      "label": "Падение Теночтитлана",
+      "sources": []
+    },
+    {
+      "year": 1532,
+      "label": "Писарро у инков",
+      "sources": []
+    },
+    {
+      "year": 1763,
+      "label": "Франция уходит из Америки",
+      "sources": [],
+      "todo": [
+        "Точнее — «из материковой Северной Америки»: Сен-Пьер и Микелон, Антилы и Гвиана остались французскими."
+      ]
+    },
+    {
+      "year": 1830,
+      "label": "Закон о переселении",
+      "sources": []
+    },
+    {
+      "year": 1890,
+      "label": "Вундед-Ни",
+      "sources": []
+    }
+  ]
+}

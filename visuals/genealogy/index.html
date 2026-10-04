@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Родословная народов Америки</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../shared/tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.5}
+header{padding:28px 20px 6px;max-width:780px}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(32px,5.4vw,50px);line-height:1.02;margin:0 0 14px;letter-spacing:-.012em}
+.lede{margin:0 0 10px;max-width:66ch}
+.note{color:var(--muted);font-size:15.5px;margin:0 0 10px;max-width:68ch}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;padding:4px 20px 14px;font-size:14.5px;color:var(--muted);max-width:1100px}
+.legend span{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.legend svg{flex:none}
+.controls{position:sticky;top:0;z-index:6;background:var(--bg);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:9px 20px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.controls input{font:inherit;font-size:16px;color:var(--ink);background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:6px 10px;width:min(320px,100%)}
+.controls input:focus-visible,.controls button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.controls button{font:inherit;font-size:15px;color:var(--ink);background:transparent;border:1px solid var(--rule);border-radius:6px;padding:6px 12px;cursor:pointer}
+.controls button[hidden]{display:none}
+.controls .hint{color:var(--muted);font-size:14.5px}
+#wrap{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+svg#chart{display:block}
+.band{fill:var(--band)}
+.grid{stroke:var(--rule);stroke-width:1}
+.tick{font-family:var(--sans);font-size:11.5px;fill:var(--muted)}
+.mile{stroke:var(--mile);stroke-width:1;stroke-dasharray:2 4;opacity:.7}
+.mile-l{font-family:var(--sans);font-size:12px;font-weight:500;fill:var(--mile)}
+.lane-rule{stroke:var(--ink);stroke-width:1;opacity:.35}
+.lane-title{font-family:var(--serif);font-weight:700;font-size:18px;fill:var(--ink);paint-order:stroke;stroke:var(--bg);stroke-width:5px;stroke-linejoin:round}
+.lbl{font-family:var(--sans);font-size:13px;fill:var(--ink);paint-order:stroke;stroke:var(--bg);stroke-width:3.5px;stroke-linejoin:round;pointer-events:none}
+.lbl.c,.lbl.l{font-style:italic;fill:var(--muted)}
+.lbl.g{font-weight:700}
+.edge path{fill:none;stroke-width:1.4}
+.edge .gap{stroke-dasharray:1 3;stroke-width:1;opacity:.6}
+.edge.prob .v{stroke-dasharray:4 3}
+.edge.merge .v{stroke-dasharray:1.5 3;stroke-linecap:round;stroke-width:1.8}
+.edge.infl path{stroke:var(--muted);stroke-width:1;stroke-dasharray:6 3 1.5 3}
+.node{cursor:pointer;outline:none}
+.node .hit{fill:transparent}
+.node:focus-visible .hit{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:3 2}
+.node:hover .lbl{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+svg.has-sel .node:not(.on),svg.has-sel .edge:not(.on){opacity:.13}
+svg.has-sel .node.sel .lbl{font-weight:700;text-decoration:underline}
+.node,.edge{transition:opacity .18s}
+@media (prefers-reduced-motion: reduce){.node,.edge{transition:none}}
+#tip{position:fixed;z-index:20;display:none;max-width:380px;background:var(--panel);color:var(--ink);border:1px solid var(--rule);border-left:4px solid var(--tc,var(--ink));border-radius:6px;padding:12px 14px 12px;box-shadow:0 8px 28px rgba(15,25,20,.2);font-size:15px;line-height:1.45}
+#tip h3{font-family:var(--serif);font-size:21px;line-height:1.15;margin:0 26px 4px 0}
+#tip .kind{color:var(--muted);font-size:13.5px;margin-bottom:2px}
+#tip .dates{font-weight:500;margin-bottom:6px}
+#tip p{margin:0 0 8px}
+#tip .rel{margin:0 0 5px;font-size:14.5px}
+#tip .rel b{font-weight:500;color:var(--muted)}
+#tip .go{color:inherit;text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:2px;cursor:pointer;background:none;border:0;padding:0;font:inherit}
+#tip .go:hover{text-decoration-color:var(--ink)}
+#tip ul{margin:4px 0 0;padding-left:18px;font-size:14.5px}
+#tip .x{position:absolute;top:6px;right:8px;background:none;border:0;color:var(--muted);font-size:22px;line-height:1;cursor:pointer;padding:4px 6px}
+#tip.pinned{pointer-events:auto}
+#tip:not(.pinned){pointer-events:none}
+#tip:not(.pinned) .x{display:none}
+@media (max-width:640px){
+  #tip{left:8px!important;right:8px;top:auto!important;bottom:calc(8px + env(safe-area-inset-bottom,0px));max-width:none;max-height:56vh;overflow:auto}
+  header{padding-top:20px}
+  .controls .hint{display:none}
+}
+#tip .src{margin:6px 0 0;font-size:13.5px;color:var(--muted)}
+#tip .src a{color:inherit}
+.load-err{padding:8px 20px 24px;max-width:68ch}
+.back{display:inline-block;margin:0 0 14px;color:var(--muted);font-size:15px}
+footer a{color:inherit}
+footer{padding:18px 20px 36px;color:var(--muted);font-size:14.5px;max-width:780px}
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="../../">← Абья-Яла</a>
+  <h1>Родословная народов Америки</h1>
+  <p class="lede">От первых людей, пришедших из Сибири, до народов, живущих сегодня. Граф устроен как родословная дистрибутивов Linux: горизонтальная линия — жизнь культуры или народа, вертикальные — разделения, слияния и влияние.</p>
+  <p class="note">Это схема, а не точная генеалогия. Археологическая культура не равна народу, языковые общности реконструированы лингвистами, а многие связи остаются гипотезами — они показаны пунктиром. Даты до 1500 года приблизительны. Шкала времени нелинейная: древние тысячелетия сжаты, последние пять веков растянуты; знак «−» на шкале означает годы до н. э. Нажмите на любую линию, чтобы выделить её предков и потомков.</p>
+</header>
+<div class="legend" aria-label="Условные обозначения">
+  <span><svg width="34" height="10"><rect x="1" y="2" width="32" height="6" rx="3" fill="var(--muted)" fill-opacity=".38"/></svg>археологическая культура</span>
+  <span><svg width="34" height="10"><rect x="1.5" y="2" width="31" height="6" rx="3" fill="var(--bg)" stroke="var(--muted)" stroke-width="1.4"/></svg>языковая общность</span>
+  <span><svg width="34" height="10"><rect x="1" y="2" width="32" height="6" rx="3" fill="var(--muted)"/></svg>народ</span>
+  <span><svg width="34" height="12"><rect x="1" y="1.5" width="32" height="9" rx="2" fill="var(--muted)" stroke="var(--ink)" stroke-width="1.2"/></svg>государство или союз</span>
+  <span><svg width="22" height="12"><polygon points="4,1 14,6 4,11" fill="var(--muted)"/></svg>существует сегодня</span>
+  <span><svg width="16" height="12"><path d="M3 2 L12 10 M12 2 L3 10" stroke="var(--muted)" stroke-width="1.8"/></svg>уничтожено или распалось</span>
+  <span><svg width="14" height="14"><rect x="3.5" y="3.5" width="7" height="7" transform="rotate(45 7 7)" fill="var(--bg)" stroke="var(--muted)" stroke-width="1.4"/></svg>событие</span>
+  <span><svg width="34" height="10"><path d="M1 5 H33" stroke="var(--muted)" stroke-width="1.4"/></svg>прямая преемственность</span>
+  <span><svg width="34" height="10"><path d="M1 5 H33" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="4 3"/></svg>вероятная, спорная</span>
+  <span><svg width="34" height="10"><path d="M1 5 H33" stroke="var(--muted)" stroke-width="1.8" stroke-dasharray="1.5 3" stroke-linecap="round"/></svg>слияние, вхождение</span>
+  <span><svg width="34" height="10"><path d="M1 5 H33" stroke="var(--muted)" stroke-width="1" stroke-dasharray="6 3 1.5 3"/></svg>культурное влияние</span>
+</div>
+<div class="controls">
+  <input id="q" type="search" list="names" placeholder="Найти народ или культуру" aria-label="Поиск по графу" autocomplete="off">
+  <datalist id="names"></datalist>
+  <button id="reset" type="button" hidden>Снять выделение</button>
+  <span class="hint">Нажмите на линию, чтобы выделить предков и потомков. Знак «−» на шкале — годы до н. э.</span>
+</div>
+<div id="wrap"><svg id="chart" role="img" aria-label="Граф происхождения культур и народов Америки"></svg></div>
+<div id="tip" role="dialog" aria-live="polite"></div>
+<footer>Выборка — около 130 культур, языковых общностей и народов из многих сотен. В основе — обобщённые данные археологии, лингвистики и этноистории; спорные места отмечены в подсказках. Даты начала у многих народов означают время, с которого они уверенно прослеживаются, а не момент их возникновения; такие даты помечены «условно». Источники проставляются по ходу работы над главами — где их ещё нет, подсказка так и говорит.<br>Данные: <a href="https://github.com/WesAIX/abya-yala/blob/main/data/genealogy.json">data/genealogy.json</a> (CC BY 4.0) · <a href="https://github.com/WesAIX/abya-yala/blob/main/sources/BIBLIOGRAPHY.md">библиография</a></footer>
+
+<script type="module">
+const NOW = new Date().getFullYear();
+const TYPE = {c:'Археологическая культура', l:'Языковая общность (реконструкция)', p:'Народ', g:'Государство или союз'};
+const T_CODE = {culture:'c', language:'l', people:'p', polity:'g'};
+const BIB_URL = 'https://github.com/WesAIX/abya-yala/blob/main/sources/BIBLIOGRAPHY.md';
+
+// ── Данные: data/genealogy.json и реестр источников
+async function loadJSON(url){ const r = await fetch(url); if (!r.ok) throw new Error(`${url}: HTTP ${r.status}`); return r.json(); }
+let G, BIB;
+try {
+  [G, BIB] = await Promise.all([loadJSON('../../data/genealogy.json'), loadJSON('../../sources/bibliography.json')]);
+} catch (err) {
+  document.getElementById('wrap').innerHTML = `<p class="load-err">Не удалось загрузить данные (${err.message}). Если страница открыта как файл, браузер не даёт ей читать соседние файлы: запустите в корне репозитория <code>uv run python -m http.server</code> и откройте <code>http://localhost:8000/visuals/genealogy/</code>.</p>`;
+  throw err;
+}
+const REFS = Object.fromEntries(BIB.entries.map(e => [e.key, e]));
+const LANES = G.lanes;
+// Внутреннее представление — компактные поля исходной версии графа; p: суффикс «?» — связь вероятная или спорная.
+const D = G.nodes.map(n => ({
+  id: n.id, l: n.lane, t: T_CODE[n.type], n: n.name, d: n.description,
+  s: n.start.year, sq: n.start.dating,
+  e: n.end ? n.end.year : NOW, eq: n.end ? n.end.dating : null,
+  end: n.fate === 'destroyed' ? 'x' : undefined,
+  p: n.parents.map(p => p.id + (p.certainty === 'established' ? '' : '?')),
+  ev: n.events.map(ev => [ev.year, ev.label]),
+  src: n.sources, todo: n.todo || []
+}));
+const E = G.links.map(k => ({f: k.from, t: k.to, y: k.year, k: k.kind === 'merge' ? 'm' : 'i', d: k.description}));
+const MILES = G.milestones.map(m => [m.year, m.label]);
+
+const TICKS = [-15000,-10000,-6000,-3000,-2000,-1000,0,500,1000,1250,1500,1600,1700,1800,1900,2000];
+
+// ── Модель
+const byId = Object.fromEntries(D.map(d => [d.id, d]));
+const up = {}, down = {}, inflIn = {}, inflOut = {};
+D.forEach(d => { up[d.id] = []; down[d.id] = []; inflIn[d.id] = []; inflOut[d.id] = []; });
+D.forEach(d => {
+  d.par = (d.p || []).map(s => ({id: s.replace('?',''), prob: s.endsWith('?')}));
+  d.par.forEach(p => {
+    if (!byId[p.id]) { console.warn('нет узла', p.id); return; }
+    up[d.id].push({id:p.id, k:p.prob?'prob':'desc'});
+    down[p.id].push({id:d.id, k:p.prob?'prob':'desc'});
+  });
+});
+E.forEach(e => {
+  if (e.k === 'm') { up[e.t].push({id:e.f, k:'merge', y:e.y}); down[e.f].push({id:e.t, k:'merge', y:e.y}); }
+  else { inflOut[e.f].push(e); inflIn[e.t].push(e); }
+});
+
+// ── Нелинейная шкала времени
+const SEG = [[-16000,-3000,230],[-3000,0,270],[0,1000,290],[1000,1500,310],[1500,1800,450],[1800,NOW,330]];
+const PADL = 14, PADR = 60, ROW = 22, LH = 48, TOPH = 92;
+const W = PADL + SEG.reduce((a,s) => a + s[2], 0) + PADR;
+function X(y){ let x = PADL; for (const [a,b,w] of SEG){ if (y <= b) return x + (Math.max(y,a) - a) / (b - a) * w; x += w; } return x; }
+
+// ── Раскладка
+let cy = TOPH; const laneTop = [];
+LANES.forEach(L => {
+  laneTop.push({L, y: cy});
+  cy += LH;
+  D.filter(d => d.l === L.id).forEach(d => { d.y = cy + 15; cy += ROW; });
+  cy += 12;
+});
+const H = cy + 8;
+
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+svg.setAttribute('width', W); svg.setAttribute('height', H); svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+function el(tag, attrs, parent){ const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); (parent || svg).appendChild(e); return e; }
+const col = l => `var(--c-${l})`;
+
+// маркеры-стрелки по цвету региона
+const defs = el('defs', {});
+[...LANES.map(l => l.id), 'muted'].forEach(id => {
+  const m = el('marker', {id:'arr-'+id, viewBox:'0 0 8 8', refX:'7', refY:'4', markerWidth:'7', markerHeight:'7', orient:'auto-start-reverse'}, defs);
+  el('path', {d:'M0,0 L8,4 L0,8 z', style:`fill:${id==='muted' ? 'var(--muted)' : col(id)}`}, m);
+});
+
+// фон: полосы сегментов шкалы и сетка
+const gBg = el('g', {});
+{ let x = PADL; SEG.forEach((s,i) => { if (i % 2 === 0) el('rect', {class:'band', x, y:TOPH-14, width:s[2], height:H-TOPH+14}, gBg); x += s[2]; }); }
+TICKS.forEach(t => el('line', {class:'grid', x1:X(t), x2:X(t), y1:TOPH-10, y2:H}, gBg));
+const fmtTick = t => t <= -3000 ? `−${-t/1000} тыс.` : (t < 0 ? `−${-t}` : `${t}`);
+TICKS.forEach(t => el('text', {class:'tick', x:X(t), y:TOPH-18, 'text-anchor':'middle'}, gBg).textContent = fmtTick(t));
+MILES.forEach(([y,label], i) => {
+  el('line', {class:'mile', x1:X(y), x2:X(y), y1:12 + (i%3)*14, y2:H}, gBg);
+  el('text', {class:'mile-l', x:X(y)+4, y:20 + (i%3)*14}, gBg).textContent = `${y} — ${label}`;
+});
+
+// заголовки регионов
+const laneTitles = [];
+laneTop.forEach(({L, y}) => {
+  el('line', {class:'lane-rule', x1:0, x2:W, y1:y+6, y2:y+6}, gBg);
+  const t = el('text', {class:'lane-title', x:14, y:y+28}, gBg); t.textContent = L.name; laneTitles.push(t);
+  TICKS.forEach(tk => el('text', {class:'tick', x:X(tk), y:y+43, 'text-anchor':'middle', opacity:.75}, gBg).textContent = fmtTick(tk));
+});
+
+// ── Рёбра
+const gEdges = el('g', {});
+const edgeEls = [];
+function addEdge(from, to, yr, kind, desc){
+  const g = el('g', {class:'edge ' + kind}, gEdges);
+  g.dataset.f = from.id; g.dataset.t = to.id;
+  const color = kind === 'infl' ? 'var(--muted)' : col(kind === 'merge' ? from.l : to.l);
+  const t = Math.max(yr, from.s);
+  const xs = X(Math.min(t, from.e)), xt = X(t);
+  if (kind !== 'infl' && xt - xs > 2) el('path', {class:'gap', d:`M${xs},${from.y} H${xt}`, style:`stroke:${color}`}, g);
+  const arrow = (kind === 'merge' || kind === 'infl') ? `url(#arr-${kind==='infl' ? 'muted' : from.l})` : null;
+  const dy = to.y > from.y ? -4 : 4;
+  const p = el('path', {class:'v', d:`M${xt},${from.y} V${to.y + (arrow ? dy : 0)}`, style:`stroke:${color}`}, g);
+  if (arrow) p.setAttribute('marker-end', arrow);
+  if (kind !== 'infl') el('circle', {cx: xt - Math.max(0, xt - xs) , cy: from.y, r: 2.2, style:`fill:${color}`}, g);
+  if (desc) { const tt = el('title', {}, g); tt.textContent = desc; }
+  edgeEls.push(g);
+}
+D.forEach(d => d.par.forEach(p => { if (byId[p.id]) addEdge(byId[p.id], d, d.s, p.prob ? 'prob' : 'desc'); }));
+E.forEach(e => addEdge(byId[e.f], byId[e.t], e.y, e.k === 'm' ? 'merge' : 'infl', `${e.y < 0 ? '−'+(-e.y) : e.y}: ${e.d}`));
+
+// ── Узлы
+const gNodes = el('g', {});
+const nodeEls = {};
+D.forEach(d => {
+  const g = el('g', {class:'node', tabindex:'0', role:'button', 'aria-label': d.n}, gNodes);
+  g.dataset.id = d.id;
+  const c = col(d.l), x1 = X(d.s), x2 = Math.max(X(d.e), x1 + 3);
+  const nearEnd = x1 > W - 270;
+  const labelW = d.n.length * 6.6 + 8;
+  const hx = nearEnd ? x1 - labelW : x1 - 4;
+  el('rect', {class:'hit', x:hx, y:d.y-17, width: Math.max(x2 - hx + 12, labelW + 8), height: ROW, rx:3}, g);
+  if (d.t === 'c') el('rect', {x:x1, y:d.y-3, width:x2-x1, height:6, rx:3, style:`fill:${c}`, 'fill-opacity':.38}, g);
+  else if (d.t === 'l') el('rect', {x:x1, y:d.y-3, width:x2-x1, height:6, rx:3, style:`fill:var(--bg);stroke:${c}`, 'stroke-width':1.4}, g);
+  else if (d.t === 'p') el('rect', {x:x1, y:d.y-3, width:x2-x1, height:6, rx:3, style:`fill:${c}`}, g);
+  else el('rect', {x:x1, y:d.y-4.5, width:x2-x1, height:9, rx:2, style:`fill:${c};stroke:var(--ink)`, 'stroke-width':1.1}, g);
+  if (d.e >= NOW) el('polygon', {points:`${x2},${d.y-5.5} ${x2+9},${d.y} ${x2},${d.y+5.5}`, style:`fill:${c}`}, g);
+  else if (d.end === 'x') el('path', {d:`M${x2+3},${d.y-4} l8,8 M${x2+11},${d.y-4} l-8,8`, style:`stroke:${c}`, 'stroke-width':1.8, fill:'none'}, g);
+  (d.ev || []).forEach(([yr, label]) => {
+    const ex = X(yr);
+    const r = el('rect', {x:ex-3.5, y:d.y-3.5, width:7, height:7, transform:`rotate(45 ${ex} ${d.y})`, style:`fill:var(--bg);stroke:${c}`, 'stroke-width':1.4}, g);
+    const tt = el('title', {}, r); tt.textContent = `${yr < 0 ? -yr + ' до н. э.' : yr}: ${label}`;
+  });
+  const lbl = el('text', {class:'lbl ' + d.t, x: nearEnd ? x1 - 6 : x1 + 1, y: nearEnd ? d.y + 4 : d.y - 7, 'text-anchor': nearEnd ? 'end' : 'start'}, g);
+  lbl.textContent = d.n;
+  nodeEls[d.id] = g;
+});
+
+// ── Подсказка и выделение
+const tip = document.getElementById('tip');
+const resetBtn = document.getElementById('reset');
+let pinned = null;
+// q — поле dating; null — конца нет, народ существует сегодня
+const fy = (y, q) => q == null ? 'наши дни' : `${q === 'documented' ? '' : '≈ '}${y < 0 ? `${(-y).toLocaleString('ru-RU')} г. до н. э.` : `${y} г.`}${q === 'conventional' ? ' (условно)' : ''}`;
+const link = id => `<button class="go" data-go="${id}">${byId[id].n}</button>`;
+
+function tipHTML(d){
+  const L = LANES.find(l => l.id === d.l).name;
+  let h = `<button class="x" aria-label="Закрыть">×</button>`;
+  h += `<div class="kind">${TYPE[d.t]}, ${L}</div><h3>${d.n}</h3>`;
+  h += `<div class="dates">${fy(d.s, d.sq)} — ${fy(d.e, d.eq)}${d.end === 'x' ? ' (уничтожено или распалось)' : ''}</div>`;
+  h += `<p>${d.d}</p>`;
+  const ups = up[d.id].filter(u => u.k !== 'merge'), ins = up[d.id].filter(u => u.k === 'merge');
+  const dws = down[d.id].filter(u => u.k !== 'merge'), outs = down[d.id].filter(u => u.k === 'merge');
+  if (ups.length) h += `<div class="rel"><b>Происходит от:</b> ${ups.map(u => link(u.id) + (u.k === 'prob' ? ' (вероятно)' : '')).join(', ')}</div>`;
+  if (ins.length) h += `<div class="rel"><b>Вобрал:</b> ${ins.map(u => `${link(u.id)} (${u.y})`).join(', ')}</div>`;
+  if (dws.length) h += `<div class="rel"><b>Дальше:</b> ${dws.map(u => link(u.id) + (u.k === 'prob' ? ' (вероятно)' : '')).join(', ')}</div>`;
+  if (outs.length) h += `<div class="rel"><b>Влился в:</b> ${outs.map(u => `${link(u.id)} (${u.y})`).join(', ')}</div>`;
+  if (inflIn[d.id].length) h += `<div class="rel"><b>Влияние:</b> ${inflIn[d.id].map(e => `${link(e.f)} — ${e.d}`).join('; ')}</div>`;
+  if (inflOut[d.id].length) h += `<div class="rel"><b>Повлиял на:</b> ${inflOut[d.id].map(e => `${link(e.t)} — ${e.d}`).join('; ')}</div>`;
+  if (d.ev && d.ev.length) h += `<ul>${d.ev.map(([y,l]) => `<li>${y < 0 ? (-y) + ' до н. э.' : y} — ${l}</li>`).join('')}</ul>`;
+  h += srcHTML(d);
+  return h;
+}
+function refLabel(s){
+  const r = REFS[s.ref];
+  if (!r) return s.ref;
+  const label = `${r.authors[0].split(',')[0]} ${r.year}${s.loc ? ', ' + s.loc : ''}`;
+  return `<a href="${BIB_URL}#${s.ref}" target="_blank" rel="noopener">${label}</a>`;
+}
+function srcHTML(d){
+  let h = d.src.length ? `<div class="src"><b>Источники:</b> ${d.src.map(refLabel).join('; ')}</div>` : '<div class="src">Источник ещё не указан.</div>';
+  if (d.todo.length) h += `<div class="src"><b>На проверке:</b> ${d.todo.join(' ')}</div>`;
+  return h;
+}
+function showTip(d, px, py, pin){
+  tip.innerHTML = tipHTML(d);
+  tip.style.setProperty('--tc', col(d.l));
+  tip.classList.toggle('pinned', !!pin);
+  tip.style.display = 'block';
+  placeTip(px, py);
+}
+function placeTip(px, py){
+  const r = tip.getBoundingClientRect();
+  let x = px + 16, y = py + 16;
+  if (x + r.width > innerWidth - 8) x = Math.max(8, px - r.width - 16);
+  if (y + r.height > innerHeight - 8) y = Math.max(8, innerHeight - r.height - 8);
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+}
+function hideTip(){ tip.style.display = 'none'; tip.classList.remove('pinned'); }
+
+function lineage(id){
+  const set = new Set([id]);
+  const walk = (start, adj) => { const st = [start]; while (st.length){ const cur = st.pop(); adj[cur].forEach(n => { if (!set.has(n.id)) { set.add(n.id); st.push(n.id); } }); } };
+  walk(id, up); walk(id, down);
+  return set;
+}
+function select(id, px, py, scroll){
+  const d = byId[id]; if (!d) return;
+  pinned = id;
+  const set = lineage(id);
+  svg.classList.add('has-sel');
+  Object.entries(nodeEls).forEach(([k, g]) => { g.classList.toggle('on', set.has(k)); g.classList.toggle('sel', k === id); });
+  edgeEls.forEach(g => g.classList.toggle('on', set.has(g.dataset.f) && set.has(g.dataset.t)));
+  resetBtn.hidden = false;
+  if (scroll){
+    const wrap = document.getElementById('wrap');
+    wrap.scrollLeft = Math.max(0, X(d.s) - 120);
+    const top = svg.getBoundingClientRect().top + scrollY + d.y - innerHeight * 0.35;
+    window.scrollTo({top, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+        px = px ?? Math.min(innerWidth - 40, Math.max(20, X(d.s) - wrap.scrollLeft)); py = py ?? innerHeight * 0.35;
+  }
+  showTip(d, px ?? 40, py ?? 120, true);
+}
+function clearSel(){
+  pinned = null;
+  svg.classList.remove('has-sel');
+  Object.values(nodeEls).forEach(g => g.classList.remove('on','sel'));
+  edgeEls.forEach(g => g.classList.remove('on'));
+  resetBtn.hidden = true;
+  hideTip();
+}
+
+const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+Object.entries(nodeEls).forEach(([id, g]) => {
+  g.addEventListener('click', ev => { ev.stopPropagation(); select(id, ev.clientX, ev.clientY, false); });
+  g.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); const r = g.getBoundingClientRect(); select(id, r.left + 20, r.bottom, false); } });
+  if (finePointer){
+    g.addEventListener('mouseenter', ev => { if (!pinned) showTip(byId[id], ev.clientX, ev.clientY, false); });
+    g.addEventListener('mousemove', ev => { if (!pinned) placeTip(ev.clientX, ev.clientY); });
+    g.addEventListener('mouseleave', () => { if (!pinned) hideTip(); });
+  }
+});
+svg.addEventListener('click', () => { if (pinned) clearSel(); });
+tip.addEventListener('click', ev => {
+  const go = ev.target.closest('[data-go]');
+  if (go) { select(go.dataset.go, null, null, true); return; }
+  if (ev.target.closest('.x')) clearSel();
+});
+resetBtn.addEventListener('click', clearSel);
+document.addEventListener('keydown', ev => { if (ev.key === 'Escape') clearSel(); });
+window.addEventListener('scroll', () => { if (pinned && innerWidth > 640) hideTip(); }, {passive:true});
+
+// поиск
+const q = document.getElementById('q'), dl = document.getElementById('names');
+[...D].sort((a,b) => a.n.localeCompare(b.n, 'ru')).forEach(d => { const o = document.createElement('option'); o.value = d.n; dl.appendChild(o); });
+function findNode(v){ v = v.trim().toLowerCase(); if (!v) return null; return D.find(d => d.n.toLowerCase() === v) || D.find(d => d.n.toLowerCase().includes(v)); }
+q.addEventListener('change', () => { const d = findNode(q.value); if (d) select(d.id, null, null, true); });
+q.addEventListener('keydown', ev => { if (ev.key === 'Enter') { const d = findNode(q.value); if (d) select(d.id, null, null, true); } });
+
+// названия регионов «прилипают» к левому краю при горизонтальной прокрутке
+const wrap = document.getElementById('wrap');
+let raf = 0;
+wrap.addEventListener('scroll', () => {
+  if (raf) return;
+  raf = requestAnimationFrame(() => { raf = 0; laneTitles.forEach(t => t.setAttribute('x', wrap.scrollLeft + 14)); if (pinned && innerWidth > 640) hideTip(); });
+}, {passive:true});
+</script>
+</body>
+</html>

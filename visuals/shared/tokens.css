@@ -1,0 +1,22 @@
+/* Общие токены оформления для всех визуализаций.
+   Цвета регионов (--c-*) соответствуют полю lane в data/genealogy.json
+   и используются во всех визуализациях одинаково. */
+:root{
+  --bg:#EDF0EA; --ink:#1B2420; --muted:#5B6862; --rule:#C7CFC4; --band:#E3E8E0; --panel:#F8FAF6; --mile:#8C2F39;
+  --c-root:#4B5A55; --c-n:#3A76A3; --c-ne:#4C4FA3; --c-se:#5A7A20; --c-pl:#A36A0E; --c-sw:#13808A; --c-ma:#2B7746; --c-sa:#9E3270;
+  --serif:"Alegreya",Georgia,"Times New Roman",serif;
+  --sans:"Alegreya Sans","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141A18; --ink:#E2E8E3; --muted:#97A59E; --rule:#2E3934; --band:#19211E; --panel:#1F2825; --mile:#E58690;
+    --c-root:#9AABA4; --c-n:#7DB4DE; --c-ne:#9A9EEC; --c-se:#A8C760; --c-pl:#E3AF52; --c-sw:#4FC6CF; --c-ma:#6EC28E; --c-sa:#E27DB5;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141A18; --ink:#E2E8E3; --muted:#97A59E; --rule:#2E3934; --band:#19211E; --panel:#1F2825; --mile:#E58690;
+  --c-root:#9AABA4; --c-n:#7DB4DE; --c-ne:#9A9EEC; --c-se:#A8C760; --c-pl:#E3AF52; --c-sw:#4FC6CF; --c-ma:#6EC28E; --c-sa:#E27DB5;
+  color-scheme:dark;
+}

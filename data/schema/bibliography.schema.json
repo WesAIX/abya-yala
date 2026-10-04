@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bibliography.schema.json",
+  "title": "Реестр источников",
+  "type": "object",
+  "required": ["entries"],
+  "additionalProperties": false,
+  "properties": {
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key", "kind", "authors", "year", "title", "checked"],
+        "additionalProperties": false,
+        "properties": {
+          "key": {
+            "description": "Стабильный ключ для ссылок: фамилия первого автора + год (+ буква), латиницей.",
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]*$"
+          },
+          "kind": {
+            "description": "primary — первичный источник (документ, отчёт, свидетельство эпохи); academic — исследование; popular — популярное изложение, только как дополнение; dataset — набор данных.",
+            "enum": ["primary", "academic", "popular", "dataset"]
+          },
+          "authors": {
+            "description": "«Фамилия, Имя». Для редакторов — с пометкой «(ред.)».",
+            "type": "array",
+            "items": {"type": "string"},
+            "minItems": 1
+          },
+          "year": {
+            "description": "Год издания; строка допустима для диапазонов («1978–2008»).",
+            "type": ["integer", "string"]
+          },
+          "title": {"type": "string"},
+          "container": {"type": "string", "description": "Журнал, серия или сборник."},
+          "volume": {"type": "string"},
+          "pages": {"type": "string"},
+          "publisher": {"type": "string", "description": "Место: издательство."},
+          "doi": {"type": "string"},
+          "url": {"type": "string"},
+          "license": {"type": "string", "description": "Для наборов данных и общественного достояния."},
+          "topics": {
+            "description": "Номера глав, к которым относится источник.",
+            "type": "array",
+            "items": {"type": "integer", "minimum": 0}
+          },
+          "note": {"type": "string"},
+          "checked": {
+            "description": "true — выходные данные сверены с самим изданием или его каталожной записью.",
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

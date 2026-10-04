@@ -45,3 +45,13 @@ a.bib{font-size:.92em}
 .pager .next{text-align:right;margin-left:auto}
 .pager small{display:block;color:var(--muted);font-size:13.5px}
 footer{max-width:720px;margin:0 auto;padding:0 16px 40px;font-size:14.5px;color:var(--muted)}
+
+/* Термины из глоссария: при наведении, фокусе или касании — краткое определение (article.js) */
+a.term{text-decoration-style:dotted;text-decoration-color:var(--muted);text-decoration-thickness:1.5px}
+a.term:hover{text-decoration-color:var(--ink)}
+.term-pop{position:fixed;z-index:30;max-width:340px;background:var(--panel);color:var(--ink);border:1px solid var(--rule);border-radius:8px;box-shadow:0 8px 28px rgba(15,25,20,.18);padding:10px 13px 11px;font-size:15px;line-height:1.45}
+.term-pop b{display:block;font-family:var(--serif);font-size:17px;margin-bottom:3px}
+.term-pop p{margin:0 0 6px;max-width:none}
+.term-pop a{font-size:14px;color:var(--muted)}
+.term-pop[hidden]{display:none}
+@media print{.term-pop{display:none}}

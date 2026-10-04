@@ -1,6 +1,7 @@
 """Сборка сайта в _site/: статические файлы + главы, глоссарий и библиография в HTML.
 
     uv run tools/build_site.py                 # собрать _site/
+    uv run tools/build_site.py --drafts        # то же с черновиками — только для предпросмотра
     uv run python -m http.server -d _site   # посмотреть на http://localhost:8000/
 
 Markdown в репозитории — единственный источник текста; HTML генерируется
@@ -17,9 +18,13 @@ import shutil
 import sys
 from pathlib import Path
 from string import Template
+from urllib.parse import unquote
 
 from markdown_it import MarkdownIt
+from mdit_py_plugins.anchors import anchors_plugin
 from mdit_py_plugins.footnote import footnote_plugin
+
+from glossary_terms import slug, terms
 
 ROOT = Path(__file__).resolve().parent.parent
 CHAPTERS_DIR = ROOT / "chapters"
@@ -35,11 +40,15 @@ ALERT_RE = re.compile(
     r"<blockquote>\n<p>\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\n(.*?)</blockquote>", re.S
 )
 HREF_RE = re.compile(r'href="([^"#]*)(#[^"]*)?"')
+TERM_A_RE = re.compile(r'<a href="([^"#]*glossary\.md)#([^"]+)">')
+TERMS = terms()
 
 
 def markdown() -> MarkdownIt:
     md = MarkdownIt("commonmark", {"html": True}).enable(["table", "strikethrough"])
     md.use(footnote_plugin)
+    # якоря заголовков — как у GitHub, чтобы ссылки вида glossary.md#термин работали везде
+    md.use(anchors_plugin, min_level=2, max_level=3, slug_func=slug)
 
     def footnote_ref(self, tokens, idx, options, env):
         meta = tokens[idx].meta
@@ -57,7 +66,7 @@ MD = markdown()
 # ── Главы
 
 
-def chapters() -> list[dict]:
+def chapters(drafts: bool = False) -> list[dict]:
     out = []
     for path in sorted(CHAPTERS_DIR.glob("[0-9][0-9]-*.md")):
         text = path.read_text(encoding="utf-8")
@@ -73,7 +82,7 @@ def chapters() -> list[dict]:
             }
         )
     for c in out:
-        c["published"] = c["status"] in PUBLISHED
+        c["published"] = c["status"] in PUBLISHED or (drafts and c["status"] == "черновик")
         c["url"] = (
             f"chapters/{c['slug']}.html" if c["published"] else f"{GH_BLOB}chapters/{c['slug']}.md"
         )
@@ -117,6 +126,16 @@ def render(text: str, link_map, depth: int) -> str:
         return f'<aside class="callout {kind}">\n<p>{m.group(2)}</aside>'
 
     out = ALERT_RE.sub(alert, out)
+
+    def term(m):
+        # ссылка на статью глоссария → термин с подсказкой; адрес поправит HREF_RE ниже
+        t = TERMS.get(unquote(m.group(2)))
+        if not t:
+            return m.group(0)
+        attrs = f'data-title="{html.escape(t["title"])}" data-def="{html.escape(t["definition"])}"'
+        return f'<a class="term" {attrs} href="{m.group(1)}#{m.group(2)}">'
+
+    out = TERM_A_RE.sub(term, out)
 
     def href(m):
         target, frag = m.group(1), m.group(2) or ""
@@ -196,7 +215,11 @@ def build_chapter(c, chapters_all, bib) -> str:
     by_file = {f"chapters/{x['slug']}.md": x for x in chapters_all}
     body = render(text, make_link_map(c["path"], by_file, 1), 1)
 
-    label = {"принято": "Глава принята", "готово": "Глава готова"}[c["status"]]
+    label = {
+        "черновик": "Черновик — предпросмотр, на сайте не опубликован",
+        "принято": "Глава принята",
+        "готово": "Глава готова",
+    }[c["status"]]
     status = f'<p class="status"><b>{label}.</b> {source_note(keys, bib)}</p>'
 
     pub = [x for x in chapters_all if x["published"]]
@@ -239,7 +262,7 @@ def build_reference(src: Path, current: str, chapters_all, license_note: str) ->
     )
 
 
-def build(out: Path) -> list[dict]:
+def build(out: Path, drafts: bool = False) -> list[dict]:
     if out.exists():
         shutil.rmtree(out)
     out.mkdir(parents=True)
@@ -255,7 +278,7 @@ def build(out: Path) -> list[dict]:
             "entries"
         ]
     }
-    all_ch = chapters()
+    all_ch = chapters(drafts)
     (out / "chapters").mkdir()
     if (CHAPTERS_DIR / "img").exists():
         shutil.copytree(CHAPTERS_DIR / "img", out / "chapters" / "img")
@@ -288,8 +311,13 @@ def main() -> int:
     ap.add_argument(
         "--out", type=Path, default=ROOT / "_site", help="куда собирать (по умолчанию _site/)"
     )
+    ap.add_argument(
+        "--drafts",
+        action="store_true",
+        help="включить черновики — только для локального предпросмотра, не для публикации",
+    )
     args = ap.parse_args()
-    all_ch = build(args.out)
+    all_ch = build(args.out, args.drafts)
     pub = [c for c in all_ch if c["published"]]
     print(
         f"{args.out}: глав на сайте {len(pub)} из {len(all_ch)}; глоссарий и библиография — всегда"

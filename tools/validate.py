@@ -13,6 +13,8 @@ from pathlib import Path
 from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
 
+from glossary_terms import TERM_LINK, terms
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 SCHEMA = DATA / "schema"
@@ -197,16 +199,20 @@ def check_cycles(nodes) -> list[str]:
 
 
 def check_texts(bib_keys: set[str]) -> list[str]:
-    """Сноски [^ключ] в главах и глоссарии должны указывать на запись библиографии."""
+    """Сноски ведут в библиографию, ссылки на термины — на существующие статьи глоссария."""
     errors = []
+    glossary = terms()
     for path in TEXTS:
         if not path.exists():
             continue
+        rel = path.relative_to(ROOT)
         for lineno, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
             for key in FOOTNOTE.findall(line):
                 if key not in bib_keys:
-                    rel = path.relative_to(ROOT)
                     errors.append(f"{rel}:{lineno}: сноска на неизвестный источник {key!r}")
+            for anchor in TERM_LINK.findall(line):
+                if anchor not in glossary:
+                    errors.append(f"{rel}:{lineno}: в глоссарии нет термина с якорем {anchor!r}")
     return errors
 
 

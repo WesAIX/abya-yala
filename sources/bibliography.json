@@ -2693,6 +2693,36 @@
       "checked_on": "2026-10-05"
     },
     {
+      "key": "darski2024",
+      "kind": "primary",
+      "authors": ["Darski, Lech"],
+      "year": 2024,
+      "title": "Miedź rodzima - Półwysep Keweenaw, stan Michigan, USA (фотография образца самородной меди)",
+      "container": "Wikimedia Commons",
+      "url": "https://commons.wikimedia.org/wiki/File:Mied%C5%BA_rodzima_-_P%C3%B3%C5%82wysep_Keweenaw,_stan_Michigan,_USA.jpg",
+      "license": "CC BY 4.0 (Creative Commons Attribution 4.0); автор на странице файла — Lech Darski, источник — Own work",
+      "topics": [3],
+      "note": "Описание на странице файла: «Miedź rodzima - Półwysep Keweenaw, stan Michigan, USA.» (самородная медь, полуостров Кивино, Мичиган); дата съёмки — 2024-09-28; категории «Native copper from Michigan», «Minerals of the Keweenaw Peninsula». На снимке — образец, вставка с масштабной линейкой 41 мм. Файл в главе: chapters/img/03-copper-keweenaw.jpg (уменьшен до 960 px).",
+      "checked": true,
+      "checked_via": "Wikimedia Commons, страница файла (extmetadata через API)",
+      "checked_on": "2026-10-05"
+    },
+    {
+      "key": "frank2021",
+      "kind": "primary",
+      "authors": ["Frank, Jacob W. (U.S. National Park Service)"],
+      "year": 2021,
+      "title": "Obsidian Cliff and Obsidian Creek (фотография)",
+      "container": "Wikimedia Commons (из Flickr-ленты YellowstoneNPS)",
+      "url": "https://commons.wikimedia.org/wiki/File:Obsidian_Cliff_and_Obsidian_Creek_(51164209076).jpg",
+      "license": "Общественное достояние (Public domain; шаблон PD-USGov-NPS — работа сотрудника Службы национальных парков США); автор на странице файла — YellowstoneNPS, описание — «NPS / Jacob W. Frank»",
+      "topics": [3],
+      "note": "Обсидиановый утёс и ручей Обсидиан-Крик в Йеллоустонском национальном парке; снято 28 апреля 2021 г. Источник: https://www.flickr.com/photos/yellowstonenps/51164209076. Файл в главе: chapters/img/03-obsidian-cliff.jpg (уменьшен до 960 px).",
+      "checked": true,
+      "checked_via": "Wikimedia Commons, страница файла (extmetadata через API)",
+      "checked_on": "2026-10-05"
+    },
+    {
       "key": "stevenson2004",
       "kind": "academic",
       "authors": ["Stevenson, Christopher M.", "Abdelrehim, Ihab", "Novak, Steven W."],

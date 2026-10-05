@@ -1668,6 +1668,27 @@
       "loc": "разд. 7: «the low number of individuals for which high-resolution genetic data are available is a critical limitation»; разд. 6: геномные данные aDNA по доколумбовой Южной Америке публикуются лишь последние годы, по периоду инков — два исследования",
       "evidence": "Europe PMC, полный текст PMC7913103 (fullTextXML); doi:10.3390/genes12020215",
       "checked_on": "2026-10-05"
+    },
+    {
+      "id": "darski2024#1",
+      "ref": "darski2024",
+      "text": "Слева — самородная медь с полуострова Кивино на Верхнем озере, справа — Обсидиановый утёс (Obsidian Cliff) в Йеллоустоне. Фото: слева — Lech Darski, Wikimedia Commons, CC BY 4.0, снимок уменьшен.",
+      "verdict": "подтверждено",
+      "access": "полный текст",
+      "loc": "страница файла, extmetadata: ImageDescription «Miedź rodzima - Półwysep Keweenaw, stan Michigan, USA.»; Artist «Lech Darski»; Credit «Own work»; LicenseShortName «CC BY 4.0»",
+      "evidence": "Wikimedia Commons API (prop=imageinfo, iiprop=extmetadata) для File:Miedź_rodzima_-_Półwysep_Keweenaw,_stan_Michigan,_USA.jpg; изображение просмотрено",
+      "note": "«Обсидиановый утёс» в той же фразе подтверждается названием второго файла (frank2021). Что на снимке образец, а не археологический предмет, — видно по изображению (масштаб 41 мм).",
+      "checked_on": "2026-10-05"
+    },
+    {
+      "id": "frank2021#1",
+      "ref": "frank2021",
+      "text": "Справа — Служба национальных парков США, Wikimedia Commons, общественное достояние.",
+      "verdict": "подтверждено",
+      "access": "полный текст",
+      "loc": "страница файла, extmetadata: Artist «YellowstoneNPS»; ImageDescription «NPS / Jacob W. Frank»; LicenseShortName «Public domain»; дата съёмки 28.04.2021",
+      "evidence": "Wikimedia Commons API (prop=imageinfo, iiprop=extmetadata) для File:Obsidian_Cliff_and_Obsidian_Creek_(51164209076).jpg; изображение просмотрено",
+      "checked_on": "2026-10-05"
     }
   ]
 }

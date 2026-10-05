@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agriculture.schema.json",
+  "title": "Очаги земледелия: центры одомашнивания, даты, пути кукурузы",
+  "type": "object",
+  "required": ["meta", "centers", "places", "events", "routes"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "license"],
+      "properties": {
+        "title": {"type": "string"},
+        "schema": {"type": "string"},
+        "license": {"type": "string"},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "centers": {
+      "description": "Независимые очаги одомашнивания растений в Америке. Пятна (blobs) — схема для размытой заливки, а не граница.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "crops", "label", "blobs", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "#/$defs/region"},
+          "name": {"type": "string"},
+          "crops": {
+            "description": "Что одомашнено в этом очаге — только то, что названо в источниках главы.",
+            "type": "array",
+            "items": {"type": "string"},
+            "minItems": 1
+          },
+          "label": {
+            "type": "object",
+            "required": ["lon", "lat", "anchor"],
+            "additionalProperties": false,
+            "properties": {
+              "lon": {"$ref": "zones.schema.json#/$defs/lon"},
+              "lat": {"$ref": "zones.schema.json#/$defs/lat"},
+              "anchor": {"enum": ["start", "middle", "end"]}
+            }
+          },
+          "blobs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["lon", "lat", "radius_km"],
+              "additionalProperties": false,
+              "properties": {
+                "lon": {"$ref": "zones.schema.json#/$defs/lon"},
+                "lat": {"$ref": "zones.schema.json#/$defs/lat"},
+                "radius_km": {"type": "number", "exclusiveMinimum": 0, "maximum": 3000}
+              }
+            }
+          },
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    },
+    "places": {
+      "description": "Точки на пути кукурузы. Это положение подписи района, а не координаты стоянки; precision_km — насколько условна точка.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "lon", "lat", "precision_km", "event"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "name": {"type": "string"},
+          "lon": {"$ref": "zones.schema.json#/$defs/lon"},
+          "lat": {"$ref": "zones.schema.json#/$defs/lat"},
+          "precision_km": {"type": "number", "exclusiveMinimum": 0},
+          "event": {"description": "id события из events, дата которого подписывается у точки.", "$ref": "genealogy.schema.json#/$defs/id"},
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "events": {
+      "description": "Даты одомашнивания, появления и хозяйственного значения культур по регионам.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "region", "crop", "kind", "origin", "label", "time", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "region": {"$ref": "#/$defs/region"},
+          "crop": {"type": "string"},
+          "kind": {
+            "description": "domestication — одомашнивание (оценка времени или первые одомашненные формы); cultivation — возделывание без доказанного одомашнивания; first — первое появление культуры в регионе; staple — культура становится основой рациона; important — культура становится важной, но не основой питания (по выводам авторов); complex — сложившийся набор культур; milestone — другая веха (более урожайные сорта и т. п.).",
+            "enum": ["domestication", "cultivation", "first", "staple", "important", "complex", "milestone"]
+          },
+          "origin": {
+            "description": "local — растение или животное этого региона; introduced — пришло из другого очага.",
+            "enum": ["local", "introduced"]
+          },
+          "label": {"type": "string"},
+          "time": {"$ref": "#/$defs/years"},
+          "evidence": {
+            "description": "На чём держится дата: archaeology — находки и их датировки; genetics — генетический расчёт; isotopes — изотопный анализ костей.",
+            "enum": ["archaeology", "genetics", "isotopes"]
+          },
+          "contested": {"type": "boolean", "description": "Датировка или её толкование спорны."},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    },
+    "routes": {
+      "description": "Пути распространения кукурузы: последовательность точек из places. Линия между точками — схема, а не прослеженная дорога.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "steps", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "label": {"type": "string"},
+          "steps": {"type": "array", "items": {"$ref": "genealogy.schema.json#/$defs/id"}, "minItems": 2},
+          "open_end": {"type": "boolean", "description": "Путь продолжается за последнюю точку, но куда — источник не говорит («и дальше»)."},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "region": {
+      "description": "meso — Мезоамерика; east — восток Северной Америки; andes — Анды; lowlands — тропические низменности Южной Америки; sw — юго-запад США; south — Южная Америка в целом (для кукурузы).",
+      "enum": ["meso", "east", "andes", "lowlands", "sw", "south"]
+    },
+    "years": {
+      "description": "Календарные годы; отрицательные — до н. э. from — начало (раньше), to — конец; to = null при point = true — точечная оценка «около». central — центральная оценка внутри диапазона, если источник её даёт.",
+      "type": "object",
+      "required": ["from", "to", "dating"],
+      "additionalProperties": false,
+      "properties": {
+        "from": {"type": "integer"},
+        "to": {"oneOf": [{"type": "null"}, {"type": "integer"}]},
+        "central": {"type": "integer"},
+        "point": {"type": "boolean"},
+        "dating": {"$ref": "genealogy.schema.json#/$defs/dating"}
+      }
+    }
+  }
+}

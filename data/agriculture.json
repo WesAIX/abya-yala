@@ -1,0 +1,1060 @@
+{
+  "meta": {
+    "title": "Очаги земледелия в Америке: центры одомашнивания, даты, пути кукурузы",
+    "schema": "schema/agriculture.schema.json",
+    "license": "CC BY 4.0",
+    "notes": [
+      "Годы календарные, отрицательные — до н. э. Даты источников в «лет назад» (cal BP) пересчитаны как 1950 − BP и округлены так же, как в источнике; все они приблизительны (approx).",
+      "Пятна очагов и точки на пути кукурузы — схема для карты, а не границы и не координаты стоянок.",
+      "Некалиброванные радиоуглеродные даты (например, Dillehay et al. 2007 для Анд) в набор не включены: по правилам конспекта на графиках только калиброванные даты."
+    ]
+  },
+  "centers": [
+    {
+      "id": "meso",
+      "name": "Мезоамерика",
+      "crops": [
+        "кукуруза",
+        "тыква (Cucurbita pepo ssp. pepo, C. argyrosperma)",
+        "фасоль обыкновенная"
+      ],
+      "label": {
+        "lon": -104,
+        "lat": 15,
+        "anchor": "end"
+      },
+      "blobs": [
+        {
+          "lon": -99.5,
+          "lat": 18.3,
+          "radius_km": 380
+        },
+        {
+          "lon": -96.5,
+          "lat": 17.2,
+          "radius_km": 320
+        }
+      ],
+      "sources": [
+        {
+          "ref": "pickersgill2007",
+          "loc": "разд. «Regions of plant domestication in the Americas»"
+        },
+        {
+          "ref": "matsuoka2002",
+          "loc": "аннотация"
+        },
+        {
+          "ref": "piperno2009",
+          "loc": "аннотация"
+        },
+        {
+          "ref": "smith2006",
+          "loc": "разд. «Squash»"
+        },
+        {
+          "ref": "bitocchi2012",
+          "loc": "аннотация"
+        }
+      ]
+    },
+    {
+      "id": "east",
+      "name": "Восток Северной Америки",
+      "crops": [
+        "тыква (Cucurbita pepo ssp. ovifera)",
+        "подсолнечник",
+        "Iva annua (англ. marsh elder)",
+        "марь (Chenopodium berlandieri)"
+      ],
+      "label": {
+        "lon": -80,
+        "lat": 33.5,
+        "anchor": "start"
+      },
+      "blobs": [
+        {
+          "lon": -88.5,
+          "lat": 38.3,
+          "radius_km": 420
+        },
+        {
+          "lon": -86.5,
+          "lat": 36.5,
+          "radius_km": 330
+        }
+      ],
+      "sources": [
+        {
+          "ref": "pickersgill2007",
+          "loc": "разд. «Regions of plant domestication in the Americas»"
+        },
+        {
+          "ref": "smith2006",
+          "loc": "аннотация"
+        },
+        {
+          "ref": "smith2009",
+          "loc": "аннотация"
+        },
+        {
+          "ref": "mueller2025",
+          "loc": "разд. 1–2 и рис. 2",
+          "note": "пятна — около «основной области» комплекса на карте Мюллер; схема"
+        }
+      ]
+    },
+    {
+      "id": "andes",
+      "name": "Анды",
+      "crops": [
+        "картофель",
+        "киноа",
+        "фасоль обыкновенная",
+        "лама",
+        "альпака"
+      ],
+      "label": {
+        "lon": -76,
+        "lat": -17,
+        "anchor": "end"
+      },
+      "blobs": [
+        {
+          "lon": -76.0,
+          "lat": -10.8,
+          "radius_km": 300
+        },
+        {
+          "lon": -73.5,
+          "lat": -13.3,
+          "radius_km": 290
+        },
+        {
+          "lon": -70.8,
+          "lat": -15.6,
+          "radius_km": 260
+        }
+      ],
+      "sources": [
+        {
+          "ref": "pickersgill2007",
+          "loc": "разд. «Regions of plant domestication in the Americas»"
+        },
+        {
+          "ref": "spooner2005",
+          "loc": "аннотация"
+        },
+        {
+          "ref": "rumold2016",
+          "loc": "аннотация"
+        },
+        {
+          "ref": "fan2020",
+          "loc": "введение"
+        },
+        {
+          "ref": "bitocchi2012",
+          "loc": "аннотация"
+        },
+        {
+          "ref": "smith2009",
+          "loc": "разд. «Domesticated C. berlanderi at the Riverton Site»",
+          "note": "о киноа"
+        }
+      ]
+    },
+    {
+      "id": "lowlands",
+      "name": "Тропические низменности Южной Америки",
+      "crops": [
+        "маниок",
+        "тыква (Cucurbita maxima)",
+        "персиковая пальма",
+        "острый перец"
+      ],
+      "label": {
+        "lon": -62,
+        "lat": 0.5,
+        "anchor": "start"
+      },
+      "blobs": [
+        {
+          "lon": -63.5,
+          "lat": -13.5,
+          "radius_km": 370
+        },
+        {
+          "lon": -62.5,
+          "lat": -9.8,
+          "radius_km": 310
+        }
+      ],
+      "sources": [
+        {
+          "ref": "pickersgill2007",
+          "loc": "разд. «Regions of plant domestication in the Americas»"
+        },
+        {
+          "ref": "olsen1999",
+          "loc": "аннотация"
+        },
+        {
+          "ref": "lombardo2020",
+          "loc": "аннотация и введение",
+          "note": "дикие предки маниока, тыквы, персиковой пальмы, перца растут на юго-западе Амазонии"
+        },
+        {
+          "ref": "watling2018",
+          "loc": "аннотация"
+        },
+        {
+          "ref": "clement2015",
+          "loc": "аннотация"
+        }
+      ],
+      "todo": [
+        "Пятна показывают только юго-запад Амазонии, откуда в главе есть находки; очаг «тропических низменностей» у Пикерсгилл шире."
+      ]
+    }
+  ],
+  "places": [
+    {
+      "id": "balsas",
+      "name": "Долина Бальсас",
+      "lon": -99.5,
+      "lat": 18.3,
+      "precision_km": 150,
+      "event": "meso_maize_balsas",
+      "note": "Стоянка Шиуатокстла в штате Герреро, у долины Игуала (Ranere et al. 2009); точка условная."
+    },
+    {
+      "id": "central_am",
+      "name": "Центральная Америка",
+      "lon": -80.5,
+      "lat": 8.5,
+      "precision_km": 500,
+      "event": "south_maize_ca"
+    },
+    {
+      "id": "sw_amazon",
+      "name": "Юго-запад Амазонии",
+      "lon": -65.0,
+      "lat": -13.5,
+      "precision_km": 500,
+      "event": "south_maize_first"
+    },
+    {
+      "id": "sw_us",
+      "name": "Юго-Запад США",
+      "lon": -111.0,
+      "lat": 32.5,
+      "precision_km": 400,
+      "event": "sw_maize_first",
+      "note": "Ранние стоянки — в Аризоне и на западе Нью-Мексико (Merrill et al. 2009); точка условная. Дата — нижняя граница по находкам, а не время прихода."
+    },
+    {
+      "id": "ozarks",
+      "name": "Озарк",
+      "lon": -93.0,
+      "lat": 36.3,
+      "precision_km": 300,
+      "event": "east_maize_ozark",
+      "note": "Дата — возраст изученных образцов (Ramos-Madrigal et al. 2025), а не время прихода кукурузы."
+    },
+    {
+      "id": "northeast",
+      "name": "Северо-восток",
+      "lon": -76.0,
+      "lat": 43.0,
+      "precision_km": 500,
+      "event": "east_maize_ne",
+      "note": "Как кукуруза попала на северо-восток, неизвестно (Mueller 2025) — к этой точке стрелки нет."
+    },
+    {
+      "id": "cahokia",
+      "name": "Кахокия",
+      "lon": -90.06,
+      "lat": 38.66,
+      "precision_km": 30,
+      "event": "east_maize_cahokia",
+      "note": "Не точка пути: здесь показано, когда кукуруза резко вошла в рацион (Emerson et al. 2020), а не откуда она пришла."
+    }
+  ],
+  "events": [
+    {
+      "id": "meso_maize_gen",
+      "region": "meso",
+      "crop": "кукуруза",
+      "kind": "domestication",
+      "origin": "local",
+      "label": "расхождение кукурузы и теосинте по генетическому расчёту: ≈9200 лет назад (95%: 13 100–5700)",
+      "time": {
+        "from": -11143,
+        "to": -3739,
+        "dating": "approx",
+        "central": -7238
+      },
+      "evidence": "genetics",
+      "sources": [
+        {
+          "ref": "matsuoka2002",
+          "loc": "разд. «Date of the Domestication Event»",
+          "note": "9188 BP, 95% 5689–13 093 BP; верхняя граница времени одомашнивания"
+        }
+      ]
+    },
+    {
+      "id": "meso_maize_balsas",
+      "region": "meso",
+      "crop": "кукуруза",
+      "kind": "first",
+      "origin": "local",
+      "label": "зёрна кукурузы на тёрочных камнях долины Бальсас — не позже ≈8700 лет назад",
+      "time": {
+        "from": -6750,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "piperno2009",
+          "loc": "аннотация"
+        }
+      ]
+    },
+    {
+      "id": "meso_cobs",
+      "region": "meso",
+      "crop": "кукуруза",
+      "kind": "milestone",
+      "origin": "local",
+      "label": "древнейшие початки (Гила-Накиц): мелкие, два ряда зёрен, ≈6250 лет назад",
+      "time": {
+        "from": -4300,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "kennett2020",
+          "loc": "введение"
+        },
+        {
+          "ref": "merrill2009",
+          "loc": "разд. «The Introduction of Maize Agriculture»",
+          "note": "4280 cal. B.C."
+        }
+      ]
+    },
+    {
+      "id": "meso_productive",
+      "region": "meso",
+      "crop": "кукуруза",
+      "kind": "milestone",
+      "origin": "local",
+      "label": "более урожайные сорта (Эль-Хиганте, Гондурас): 4300–2500 лет назад",
+      "time": {
+        "from": -2350,
+        "to": -550,
+        "dating": "approx"
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "kistler2020",
+          "loc": "аннотация"
+        }
+      ]
+    },
+    {
+      "id": "meso_staple_belize",
+      "region": "meso",
+      "crop": "кукуруза",
+      "kind": "staple",
+      "origin": "local",
+      "label": "основа рациона (Белиз): у части людей ≈30% питания 4700–4000 лет назад, после 4000 — больше 70%",
+      "time": {
+        "from": -2750,
+        "to": -2050,
+        "dating": "approx"
+      },
+      "evidence": "isotopes",
+      "sources": [
+        {
+          "ref": "kennett2020",
+          "loc": "аннотация"
+        }
+      ]
+    },
+    {
+      "id": "meso_staple_other",
+      "region": "meso",
+      "crop": "кукуруза",
+      "kind": "staple",
+      "origin": "local",
+      "label": "основа рациона в других районах Мезоамерики — к ≈3000 лет назад",
+      "time": {
+        "from": -1050,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "isotopes",
+      "sources": [
+        {
+          "ref": "kennett2020",
+          "loc": "обсуждение",
+          "note": "по другим изотопным исследованиям, на которые ссылаются авторы"
+        }
+      ]
+    },
+    {
+      "id": "south_maize_ca",
+      "region": "south",
+      "crop": "кукуруза",
+      "kind": "first",
+      "origin": "introduced",
+      "label": "кукуруза прошла Центральную Америку к ≈7500 лет назад",
+      "time": {
+        "from": -5550,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "kistler2018",
+          "loc": "аннотация"
+        }
+      ]
+    },
+    {
+      "id": "south_maize_first",
+      "region": "south",
+      "crop": "кукуруза",
+      "kind": "first",
+      "origin": "introduced",
+      "label": "кукуруза в Южной Америке — не позже ≈7000 лет назад (оценка 2020 г.) или к ≈6500 (оценка 2018 г.); ещё не до конца одомашненная",
+      "time": {
+        "from": -5050,
+        "to": -4550,
+        "dating": "approx"
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "kistler2020",
+          "loc": "аннотация",
+          "note": "«by at least 7,000 cal. BP»"
+        },
+        {
+          "ref": "kistler2018",
+          "loc": "аннотация",
+          "note": "«by ~6500 yr B.P.»"
+        }
+      ]
+    },
+    {
+      "id": "south_maize_moxos",
+      "region": "lowlands",
+      "crop": "кукуруза",
+      "kind": "cultivation",
+      "origin": "introduced",
+      "label": "кукуруза на лесных островах Льянос-де-Мохос — ≈6850 лет назад",
+      "time": {
+        "from": -4900,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "lombardo2020",
+          "loc": "аннотация"
+        }
+      ]
+    },
+    {
+      "id": "south_maize_staple",
+      "region": "south",
+      "crop": "кукуруза",
+      "kind": "staple",
+      "origin": "introduced",
+      "label": "основа рациона в Южной Америке — не раньше ≈3500 лет назад",
+      "time": {
+        "from": -1550,
+        "to": null,
+        "dating": "approx"
+      },
+      "evidence": "isotopes",
+      "sources": [
+        {
+          "ref": "kennett2020",
+          "loc": "обсуждение",
+          "note": "по другим изотопным исследованиям, на которые ссылаются авторы"
+        }
+      ]
+    },
+    {
+      "id": "low_manioc",
+      "region": "lowlands",
+      "crop": "маниок",
+      "kind": "cultivation",
+      "origin": "local",
+      "label": "возделывание маниока (Льянос-де-Мохос) — ≈10 350 лет назад",
+      "time": {
+        "from": -8400,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "lombardo2020",
+          "loc": "аннотация"
+        }
+      ]
+    },
+    {
+      "id": "low_squash",
+      "region": "lowlands",
+      "crop": "тыква",
+      "kind": "cultivation",
+      "origin": "local",
+      "label": "возделывание тыквы (Льянос-де-Мохос) — ≈10 250 лет назад",
+      "time": {
+        "from": -8300,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "lombardo2020",
+          "loc": "аннотация"
+        }
+      ]
+    },
+    {
+      "id": "low_teotonio",
+      "region": "lowlands",
+      "crop": "маниок, тыква, фасоль",
+      "kind": "domestication",
+      "origin": "local",
+      "label": "одомашненные маниок, тыква, фасоль на стоянке Теотониу (река Мадейра): 9000–5000 лет назад",
+      "time": {
+        "from": -7050,
+        "to": -3050,
+        "dating": "approx"
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "watling2018",
+          "loc": "аннотация"
+        }
+      ],
+      "todo": [
+        "Фасоль в Теотониу авторы относят к «пришлым» одомашненным растениям; уточнить, какие слои дают какие растения."
+      ]
+    },
+    {
+      "id": "low_ade",
+      "region": "lowlands",
+      "crop": "тёмные земли",
+      "kind": "complex",
+      "origin": "local",
+      "label": "тёмные земли появляются в VI тыс. лет назад; быстро множатся после ≈2500 лет назад",
+      "time": {
+        "from": -4050,
+        "to": -550,
+        "dating": "approx"
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "clement2015",
+          "loc": "разд. о почвах"
+        }
+      ]
+    },
+    {
+      "id": "andes_alpaca",
+      "region": "andes",
+      "crop": "альпака",
+      "kind": "domestication",
+      "origin": "local",
+      "label": "одомашнивание альпаки (влажная пуна Центральных Анд) — 7000–6000 лет назад",
+      "time": {
+        "from": -5050,
+        "to": -4050,
+        "dating": "approx"
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "fan2020",
+          "loc": "введение",
+          "note": "по археозоологическим данным, на которые ссылаются авторы"
+        }
+      ]
+    },
+    {
+      "id": "andes_potato",
+      "region": "andes",
+      "crop": "картофель",
+      "kind": "first",
+      "origin": "local",
+      "label": "крахмал картофеля на тёрочных орудиях (Хискайрумоко, бассейн Титикаки): 3400–1600 гг. до н. э.; дикий или культурный — не установлено",
+      "time": {
+        "from": -3400,
+        "to": -1600,
+        "dating": "approx"
+      },
+      "evidence": "archaeology",
+      "contested": true,
+      "sources": [
+        {
+          "ref": "rumold2016",
+          "loc": "аннотация"
+        }
+      ]
+    },
+    {
+      "id": "andes_quinoa",
+      "region": "andes",
+      "crop": "киноа",
+      "kind": "domestication",
+      "origin": "local",
+      "label": "одомашненная киноа в Центральных и Южно-Центральных Андах — уже ≈3500 лет назад",
+      "time": {
+        "from": -1550,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "smith2009",
+          "loc": "разд. «Domesticated C. berlanderi at the Riverton Site»"
+        }
+      ],
+      "todo": [
+        "Калибрована ли дата 3500 B.P., из текста Смита и Ярнелла не ясно; проверить по первоисточнику (их ссылка 32)."
+      ]
+    },
+    {
+      "id": "sw_maize_first",
+      "region": "sw",
+      "crop": "кукуруза",
+      "kind": "first",
+      "origin": "introduced",
+      "label": "кукуруза на юго-западе США — не позже 2100 г. до н. э.",
+      "time": {
+        "from": -2100,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "merrill2009",
+          "loc": "аннотация и табл. 1",
+          "note": "15 радиоуглеродных дат по кукурузе с пяти стоянок; несколько дат старше"
+        }
+      ]
+    },
+    {
+      "id": "sw_squash",
+      "region": "sw",
+      "crop": "тыква",
+      "kind": "first",
+      "origin": "introduced",
+      "label": "тыква на юго-западе — около 1200 г. до н. э. (сообщение о 2000 г. до н. э. не опубликовано полностью)",
+      "time": {
+        "from": -1200,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "merrill2009",
+          "loc": "разд. «Other Considerations…»"
+        }
+      ]
+    },
+    {
+      "id": "sw_beans",
+      "region": "sw",
+      "crop": "фасоль",
+      "kind": "first",
+      "origin": "introduced",
+      "label": "фасоль (вместе с амарантом и хлопком) на юго-западе — между 800 г. до н. э. и 300 г. н. э.",
+      "time": {
+        "from": -800,
+        "to": 300,
+        "dating": "approx"
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "merrill2009",
+          "loc": "разд. «Other Considerations…»"
+        }
+      ]
+    },
+    {
+      "id": "sw_uplands",
+      "region": "sw",
+      "crop": "кукуруза",
+      "kind": "staple",
+      "origin": "introduced",
+      "label": "в пустынных низинах земледелие сложилось быстро, в умеренных нагорьях — примерно на 2000 лет позже",
+      "time": {
+        "from": 0,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "swarts2017",
+          "loc": "аннотация"
+        }
+      ],
+      "todo": [
+        "Дата — «через 2000 лет» после ≈4000 лет назад по аннотации; точную границу брать из статьи."
+      ]
+    },
+    {
+      "id": "sw_turkeypen",
+      "region": "sw",
+      "crop": "кукуруза",
+      "kind": "milestone",
+      "origin": "introduced",
+      "label": "початки из укрытия Терки-Пен ≈1900 лет назад: лишь отчасти приспособлены к раннему цветению",
+      "time": {
+        "from": 50,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "genetics",
+      "sources": [
+        {
+          "ref": "swarts2017",
+          "loc": "аннотация"
+        }
+      ]
+    },
+    {
+      "id": "east_squash",
+      "region": "east",
+      "crop": "тыква",
+      "kind": "domestication",
+      "origin": "local",
+      "label": "одомашненная тыква (Филлипс-Спринг, Миссури) — ≈5000 лет назад",
+      "time": {
+        "from": -3075,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "smith2006",
+          "loc": "разд. «Squash» и табл. 1",
+          "note": "5025 cal BP — пересечение с калибровочной кривой"
+        }
+      ]
+    },
+    {
+      "id": "east_sunflower",
+      "region": "east",
+      "crop": "подсолнечник",
+      "kind": "domestication",
+      "origin": "local",
+      "label": "одомашненный подсолнечник (Хейс, Теннесси) — ≈4800 лет назад",
+      "time": {
+        "from": -2890,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "smith2006",
+          "loc": "разд. «Sunflower» и табл. 1",
+          "note": "4840 cal BP"
+        }
+      ]
+    },
+    {
+      "id": "east_marshelder",
+      "region": "east",
+      "crop": "Iva annua",
+      "kind": "domestication",
+      "origin": "local",
+      "label": "одомашненная Iva annua (Наполеон-Холлоу, Иллинойс) — ≈4400 лет назад",
+      "time": {
+        "from": -2450,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "smith2006",
+          "loc": "разд. «Marshelder»"
+        }
+      ]
+    },
+    {
+      "id": "east_complex",
+      "region": "east",
+      "crop": "марь и др.",
+      "kind": "complex",
+      "origin": "local",
+      "label": "набор не менее пяти одомашненных растений (Ривертон, Иллинойс), древнейшая одомашненная марь — ≈3800 лет назад",
+      "time": {
+        "from": -1850,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "smith2009",
+          "loc": "аннотация"
+        }
+      ]
+    },
+    {
+      "id": "east_maize_ne",
+      "region": "east",
+      "crop": "кукуруза",
+      "kind": "first",
+      "origin": "introduced",
+      "label": "древнейшие свидетельства кукурузы на востоке — на северо-востоке, ≈2300 лет назад",
+      "time": {
+        "from": -350,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "contested": true,
+      "sources": [
+        {
+          "ref": "mueller2025",
+          "loc": "разд. 2"
+        },
+        {
+          "ref": "hart2021",
+          "loc": "аннотация",
+          "note": "защита ранних данных"
+        },
+        {
+          "ref": "emerson2020",
+          "loc": "аннотация",
+          "note": "называют эти данные «загадочными»"
+        }
+      ]
+    },
+    {
+      "id": "east_maize_ohio",
+      "region": "east",
+      "crop": "кукуруза",
+      "kind": "first",
+      "origin": "introduced",
+      "label": "начало возделывания кукурузы в средней долине Огайо — ≈1400 лет назад",
+      "time": {
+        "from": 550,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "mueller2025",
+          "loc": "разд. 2"
+        }
+      ]
+    },
+    {
+      "id": "east_maize_staple",
+      "region": "east",
+      "crop": "кукуруза",
+      "kind": "important",
+      "origin": "introduced",
+      "label": "после ≈1100 лет назад кукуруза быстро становится важной культурой почти по всему востоку",
+      "time": {
+        "from": 850,
+        "to": null,
+        "dating": "approx"
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "mueller2025",
+          "loc": "разд. 2"
+        }
+      ]
+    },
+    {
+      "id": "east_maize_cahokia",
+      "region": "east",
+      "crop": "кукуруза",
+      "kind": "staple",
+      "origin": "introduced",
+      "label": "окрестности Кахокии: кукуруза в рационе — резко, около 900 г., затем быстро растёт",
+      "time": {
+        "from": 900,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "isotopes",
+      "sources": [
+        {
+          "ref": "emerson2020",
+          "loc": "аннотация"
+        },
+        {
+          "ref": "simon2017",
+          "loc": "аннотация"
+        }
+      ]
+    },
+    {
+      "id": "east_maize_ozark",
+      "region": "east",
+      "crop": "кукуруза",
+      "kind": "milestone",
+      "origin": "introduced",
+      "label": "кукуруза из Озарка ≈1000 лет назад близка к линии будущих северных кремнистых сортов",
+      "time": {
+        "from": 950,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "genetics",
+      "sources": [
+        {
+          "ref": "ramosmadrigal2024",
+          "loc": "аннотация"
+        }
+      ],
+      "todo": [
+        "«1,000-year-old» — по аннотации; точные даты образцов — в статье."
+      ]
+    },
+    {
+      "id": "east_beans",
+      "region": "east",
+      "crop": "фасоль",
+      "kind": "first",
+      "origin": "introduced",
+      "label": "фасоль на востоке — к ≈900 лет назад",
+      "time": {
+        "from": 1050,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "mueller2025",
+          "loc": "разд. 2"
+        }
+      ]
+    },
+    {
+      "id": "east_beans_ne",
+      "region": "east",
+      "crop": "фасоль",
+      "kind": "first",
+      "origin": "introduced",
+      "label": "на северо-востоке фасоль заметна в находках с ≈1250 г.",
+      "time": {
+        "from": 1250,
+        "to": null,
+        "dating": "approx",
+        "point": true
+      },
+      "evidence": "archaeology",
+      "sources": [
+        {
+          "ref": "hart2021b",
+          "loc": "аннотация"
+        }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "id": "south",
+      "label": "через Центральную Америку в Южную",
+      "steps": [
+        "balsas",
+        "central_am",
+        "sw_amazon"
+      ],
+      "sources": [
+        {
+          "ref": "matsuoka2002",
+          "loc": "разд. «Spread of Maize over the Americas»"
+        },
+        {
+          "ref": "kistler2018",
+          "loc": "аннотация"
+        }
+      ]
+    },
+    {
+      "id": "north",
+      "label": "через запад и север Мексики на юго-запад США, затем через Великие равнины в Озарк и дальше",
+      "steps": [
+        "balsas",
+        "sw_us",
+        "ozarks"
+      ],
+      "sources": [
+        {
+          "ref": "matsuoka2002",
+          "loc": "разд. «Spread of Maize over the Americas»"
+        },
+        {
+          "ref": "ramosmadrigal2024",
+          "loc": "аннотация",
+          "note": "«to the Ozarks and beyond»; куда именно дальше, на карте не показано"
+        }
+      ],
+      "todo": [
+        "Маршрут между Мексикой и юго-западом США неизвестен: данных для 4300–2100 гг. до н. э. почти нет (Merrill et al. 2009)."
+      ],
+      "open_end": true
+    }
+  ]
+}

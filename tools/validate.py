@@ -195,6 +195,44 @@ def check_peopling(p) -> list[str]:
     return errors
 
 
+def iter_agriculture(a):
+    for c in a["centers"]:
+        yield f"очаг {c['id']}", c
+    for ev in a["events"]:
+        yield f"событие {ev['id']}", ev
+    for r in a["routes"]:
+        yield f"путь {r['id']}", r
+
+
+def check_agriculture(a) -> list[str]:
+    """Годы календарные: начало не позже конца; точки и пути ссылаются на существующие записи."""
+    errors = unique([c["id"] for c in a["centers"]], "agriculture: очаг")
+    events = [ev["id"] for ev in a["events"]]
+    places = [p["id"] for p in a["places"]]
+    errors += unique(events, "agriculture: событие")
+    errors += unique(places, "agriculture: точка")
+    errors += unique([r["id"] for r in a["routes"]], "agriculture: путь")
+    for ev in a["events"]:
+        t, where = ev["time"], f"agriculture: событие {ev['id']}"
+        if t["dating"] == "documented" and t["from"] < EXACT_BEFORE:  # здесь нет надписей и колец
+            errors.append(f"{where}: точная дата до {EXACT_BEFORE} г.")
+        if t["to"] is not None and t["to"] < t["from"]:
+            errors.append(f"{where}: конец ({t['to']}) раньше начала ({t['from']})")
+        if t.get("point") and t["to"] is not None:
+            errors.append(f"{where}: точечная оценка с концом периода")
+        c = t.get("central")
+        if c is not None and (t["to"] is None or not t["from"] <= c <= t["to"]):
+            errors.append(f"{where}: центральная оценка вне диапазона")
+    for p in a["places"]:
+        if p["event"] not in events:
+            errors.append(f"agriculture: точка {p['id']}: неизвестное событие {p['event']!r}")
+    for r in a["routes"]:
+        for step in r["steps"]:
+            if step not in places:
+                errors.append(f"agriculture: путь {r['id']}: неизвестная точка {step!r}")
+    return errors
+
+
 def unique(values: list, what: str) -> list[str]:
     seen: set = set()
     errors = []
@@ -216,6 +254,7 @@ DATASETS = {
     "zones": (iter_zones, check_zones),
     "theses": (iter_theses, check_theses),
     "peopling": (iter_peopling, check_peopling),
+    "agriculture": (iter_agriculture, check_agriculture),
 }
 
 

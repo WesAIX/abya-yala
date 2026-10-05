@@ -23,6 +23,7 @@ ROOT = Path(__file__).resolve().parent.parent
 TOKENS = ROOT / "visuals" / "shared" / "tokens.css"
 BASEMAP = ROOT / "visuals" / "shared" / "americas-50m.geojson"
 PEOPLING = ROOT / "data" / "peopling.json"
+AGRICULTURE = ROOT / "data" / "agriculture.json"
 OUT = ROOT / "chapters" / "img"
 
 SANS = "'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"
@@ -514,25 +515,28 @@ SITE_NOTES = {  # пояснения к стоянкам, которые ина�
 }
 
 
-def fig_routes(t: dict) -> str:
-    data = peopling()
-    base = json.loads(BASEMAP.read_text(encoding="utf-8"))
-    land = next(f for f in base["features"] if f["properties"]["kind"] == "land")
-    lakes = next(f for f in base["features"] if f["properties"]["kind"] == "lake")
-    proj = laea(*MAP_CENTER)
-
-    fit = [proj(lon, lat) for lon, lat in MAP_FIT]
+def map_projection(center, fit_pts, w: int, h: int) -> Callable[[float, float], tuple]:
+    """LAEA с центром center, вписанная в рамку w×h так, чтобы точки fit_pts попали в неё."""
+    proj = laea(*center)
+    fit = [proj(lon, lat) for lon, lat in fit_pts]
     xs, ys = [p[0] for p in fit], [p[1] for p in fit]
-    k = min(MAP_W / (max(xs) - min(xs)), MAP_H / (max(ys) - min(ys)))
-    ox = -min(xs) * k + (MAP_W - (max(xs) - min(xs)) * k) / 2
-    oy = -min(ys) * k + (MAP_H - (max(ys) - min(ys)) * k) / 2
+    k = min(w / (max(xs) - min(xs)), h / (max(ys) - min(ys)))
+    ox = -min(xs) * k + (w - (max(xs) - min(xs)) * k) / 2
+    oy = -min(ys) * k + (h - (max(ys) - min(ys)) * k) / 2
 
     def pr(lon: float, lat: float) -> tuple[float, float]:
         x, y = proj(lon, lat)
         return ox + x * k, oy + y * k
 
+    return pr
+
+
+def basemap_paths(pr, w: int, h: int) -> tuple[str, str]:
+    """Пути суши и озёр подложки в координатах рисунка; полигоны за краем рамки отброшены."""
+    base = json.loads(BASEMAP.read_text(encoding="utf-8"))
+
     def inside(pt, m=40):
-        return -m <= pt[0] <= MAP_W + m and -m <= pt[1] <= MAP_H + m
+        return -m <= pt[0] <= w + m and -m <= pt[1] <= h + m
 
     def multipolygon_d(geom) -> str:
         parts = []
@@ -542,6 +546,18 @@ def fig_routes(t: dict) -> str:
                 continue  # полигон целиком за краем карты
             parts += [path_d(r, close=True) for r in rings]
         return "".join(parts)
+
+    land, lakes = (
+        next(f for f in base["features"] if f["properties"]["kind"] == kind)
+        for kind in ("land", "lake")
+    )
+    return multipolygon_d(land["geometry"]), multipolygon_d(lakes["geometry"])
+
+
+def fig_routes(t: dict) -> str:
+    data = peopling()
+    pr = map_projection(MAP_CENTER, MAP_FIT, MAP_W, MAP_H)
+    land_d, lakes_d = basemap_paths(pr, MAP_W, MAP_H)
 
     corridor = [(c["lon"], c["lat"]) for c in data["corridor"]]
     corridor_line = smooth([pr(*p) for p in CORRIDOR_ENTRY + corridor + CORRIDOR_EXIT])
@@ -560,7 +576,7 @@ def fig_routes(t: dict) -> str:
         f'<pattern id="offmap" width="7" height="7" patternUnits="userSpaceOnUse" '
         f'patternTransform="rotate(45)"><rect width="7" height="7" fill="{t["bg"]}"/>'
         f'<line x1="0" y1="0" x2="0" y2="7" stroke="{t["rule"]}" stroke-width="1.4"/></pattern>',
-        f'<path id="land" d="{multipolygon_d(land["geometry"])}"/>',
+        f'<path id="land" d="{land_d}"/>',
         '<filter id="soft" x="-20%" y="-20%" width="140%" height="140%">'
         f'<feGaussianBlur stdDeviation="{ICE_BLUR}"/></filter>',
         '<filter id="soft-narrow" x="-20%" y="-20%" width="140%" height="140%">'
@@ -585,7 +601,7 @@ def fig_routes(t: dict) -> str:
         f'<g mask="url(#gap)" opacity="{ICE_OPACITY}" fill="{t["muted"]}">'
         f'<g filter="url(#soft)">{blobs(ICE_LAURENTIDE + ICE_GREENLAND)}</g>'
         f'<g filter="url(#soft-narrow)">{blobs(ICE_CORDILLERAN)}</g></g>',
-        f'<path d="{multipolygon_d(lakes["geometry"])}" fill="{t["bg"]}" stroke="{t["muted"]}" '
+        f'<path d="{lakes_d}" fill="{t["bg"]}" stroke="{t["muted"]}" '
         f'stroke-width=".4" stroke-opacity=".5"/>',
         f'<use href="#land" fill="none" stroke="{t["muted"]}" stroke-width=".6" '
         f'stroke-opacity=".6"/>',
@@ -1125,12 +1141,755 @@ def fig_ancestry(t: dict) -> str:
     )
 
 
+# ── Глава 2. Общее: данные, годы, знаки
+
+# Местные растения и пришедшие из другого очага — пара из tokens.css (--z-m, --z-s),
+# проверена validate_palette.js навыка dataviz для обеих тем: зелёный и янтарный
+# (--z-m/--z-n) при дейтеранопии не различаются, эта пара — различается.
+ORIGIN = {"local": "z-m", "introduced": "z-s"}
+
+
+def agriculture() -> dict:
+    return json.loads(AGRICULTURE.read_text(encoding="utf-8"))
+
+
+def grouped(n: int) -> str:
+    """Тысячи — через неразрывный пробел, как в тексте: 8700, но 13 100."""
+    return f"{n:,}".replace(",", " ") if n >= 10000 else str(n)
+
+
+def cal_year(y: int) -> str:
+    """Календарный год словами: «2100 г. до н. э.», «900 г.», «рубеж эр»."""
+    if y == 0:
+        return "рубеж эр"
+    return f"{grouped(-y)} г. до н. э." if y < 0 else f"{grouped(y)} г."
+
+
+def bp(y: int) -> int:
+    """Календарный год → «лет назад» (от 1950 г., как в источниках). Годы в данных
+    пересчитаны из «лет назад» и кратны 50; расчётные (9188 → 9200) — до сотни."""
+    v = 1950 - y
+    return v if v % 50 == 0 else math.floor(v / 100 + 0.5) * 100
+
+
+def bp_span(tm: dict) -> str:
+    """«≈7500», «7000–6500», «≈9200» (центральная оценка) — без слов «лет назад»."""
+    if tm.get("central") is not None:
+        return f"≈{grouped(bp(tm['central']))}"
+    if tm["to"] is None:
+        return f"≈{grouped(bp(tm['from']))}"
+    return f"{grouped(bp(tm['from']))}–{grouped(bp(tm['to']))}"
+
+
+def hatch_defs(t: dict, color: str, pid: str = "hatch") -> str:
+    return (
+        f'<pattern id="{pid}" width="4" height="4" patternUnits="userSpaceOnUse" '
+        f'patternTransform="rotate(45)"><rect width="4" height="4" fill="{t["bg"]}"/>'
+        f'<line x1="0" y1="0" x2="0" y2="4" stroke="{color}" stroke-width="2"/></pattern>'
+    )
+
+
+def mark(shape: str, x: float, y: float, fill: str, stroke: str, ring: str, r: float = 5.5) -> str:
+    """Знак события: circle — круг, square — квадрат, diamond — ромб, half — круг, залитый
+    наполовину (левая половина — fill, правая — цвет фона); ring — кольцо цвета фона."""
+    common = f'fill="{fill}" stroke="{stroke}" stroke-width="1.6"'
+    halo = f'stroke="{ring}" stroke-width="5" fill="{ring}"'
+    if shape == "half":
+        geo = f'cx="{x:.1f}" cy="{y:.1f}" r="{r}"'
+        left = f"M{x:.1f},{y - r:.1f}A{r},{r} 0 0 0 {x:.1f},{y + r:.1f}Z"
+        return (
+            f'<circle {geo} {halo}/><circle {geo} fill="{ring}"/>'
+            f'<path d="{left}" fill="{fill}"/>'
+            f'<circle {geo} fill="none" stroke="{stroke}" stroke-width="1.6"/>'
+        )
+    if shape == "circle":
+        geo = f'cx="{x:.1f}" cy="{y:.1f}" r="{r}"'
+        return f"<circle {geo} {halo}/><circle {geo} {common}/>"
+    if shape == "square":
+        geo = f'x="{x - r:.1f}" y="{y - r:.1f}" width="{2 * r}" height="{2 * r}" rx="1"'
+        return f"<rect {geo} {halo}/><rect {geo} {common}/>"
+    q = r * 1.3
+    pts = f"{x:.1f},{y - q:.1f} {x + q:.1f},{y:.1f} {x:.1f},{y + q:.1f} {x - q:.1f},{y:.1f}"
+    return f'<polygon points="{pts}" {halo}/><polygon points="{pts}" {common}/>'
+
+
+# ── Рис. 2.1. Очаги одомашнивания и пути кукурузы (схема)
+
+CENTERS_W, CENTERS_H = 760, 860
+CENTERS_CENTER = (-86, 8)
+CENTERS_FIT = [(-138, 32), (-55, 52), (-72, -38), (-34, -7)]  # океан у Калифорнии,
+# Ньюфаундленд, север Патагонии, восток Бразилии
+CENTERS_BLUR, CENTERS_OPACITY = 9, 0.6
+# Раскладка подписей точек: смещение от точки и выравнивание. Только положение, текст — из данных.
+PLACE_LABELS = {
+    "balsas": (12, -20, "start"),
+    "central_am": (-12, 4, "end"),
+    "sw_amazon": (12, 26, "start"),
+    "sw_us": (-12, -20, "end"),
+    "ozarks": (-12, -32, "end"),
+    "cahokia": (10, -14, "start"),
+    "northeast": (10, -14, "start"),
+}
+# Что значит дата у точки: даты на пути разной природы, и ни одна не «время прихода».
+# Текст — как в главе; число — из события точки в данных.
+PLACE_WHEN = {
+    "balsas": "находки {when}",
+    "central_am": "прошла её к {when}",
+    "sw_amazon": "в Южной Америке —\nк {when}",
+    "sw_us": "{when}",
+    "ozarks": "образцы {when}",
+    "cahokia": "резко входит в рацион {when}",
+    "northeast": "{when}",
+}
+# Даты, которые в тексте главы названы календарным годом, а не «лет назад».
+PLACE_CALENDAR = {"sw_us", "cahokia"}
+# Хвост «и дальше» у открытого конца пути: направление (градусы, 0 — на восток, + вниз), px.
+ROUTE_TAIL = (8, 64)
+# Изгиб отрезков пути (доля длины, + влево по ходу): линия огибает сушу, а не идёт морем.
+ROUTE_BEND = {("balsas", "central_am"): 0.1, ("central_am", "sw_amazon"): 0.08}
+# Отрезок, путь по которому неизвестен (todo пути north в data/agriculture.json).
+ROUTE_UNKNOWN = {("balsas", "sw_us")}
+
+
+def fig_centers(t: dict) -> str:
+    data = agriculture()
+    w, h = CENTERS_W, CENTERS_H
+    pr = map_projection(CENTERS_CENTER, CENTERS_FIT, w, h)
+    land_d, lakes_d = basemap_paths(pr, w, h)
+    local, introduced = t[ORIGIN["local"]], t[ORIGIN["introduced"]]
+    events = {e["id"]: e for e in data["events"]}
+    places = {p["id"]: p for p in data["places"]}
+
+    def blob(lon, lat, radius_km) -> str:
+        return f'<path d="{path_d([pr(*q) for q in geo_circle(lon, lat, radius_km)], True)}"/>'
+
+    blobs = "".join(blob(**b) for c in data["centers"] for b in c["blobs"])
+    b = [
+        "<defs>",
+        f'<clipPath id="frame"><rect width="{w}" height="{h}"/></clipPath>',
+        f'<path id="land" d="{land_d}"/>',
+        '<filter id="soft" x="-30%" y="-30%" width="160%" height="160%">'
+        f'<feGaussianBlur stdDeviation="{CENTERS_BLUR}"/></filter>',
+        '<filter id="soft-key" x="-40%" y="-60%" width="180%" height="220%">'
+        '<feGaussianBlur stdDeviation="2"/></filter>',
+        f'<marker id="head" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" '
+        f'markerHeight="5" orient="auto"><path d="M0,0L10,5L0,10z" fill="{introduced}"/></marker>',
+        hatch_defs(t, introduced),
+        "</defs>",
+        '<g clip-path="url(#frame)">',
+        f'<use href="#land" fill="{t["panel"]}"/>',
+        f'<g opacity="{CENTERS_OPACITY}" fill="{local}" filter="url(#soft)">{blobs}</g>',
+        f'<path d="{lakes_d}" fill="{t["bg"]}" stroke="{t["muted"]}" stroke-width=".4" '
+        f'stroke-opacity=".5"/>',
+        f'<use href="#land" fill="none" stroke="{t["muted"]}" stroke-width=".6" '
+        f'stroke-opacity=".6"/>',
+        "</g>",
+    ]
+
+    def place_text(x, y, s, size=13.5, anchor="middle"):
+        return text(x, y, s, t["muted"], size, anchor, 400, SERIF, italic=True, halo=t["bg"])
+
+    b.append(place_text(*pr(-104, -6), "Тихий океан", 14))
+    b.append(place_text(*pr(-42, 22), "Атлантический океан", 14))
+    b.append(place_text(*pr(-89, 24.6), "Мексиканский залив", 12))
+
+    # пути кукурузы: отрезки между точками, у каждого — стрелка
+    def segment(a: str, z: str) -> str:
+        (x0, y0), (x1, y1) = (
+            pr(places[a]["lon"], places[a]["lat"]),
+            pr(places[z]["lon"], places[z]["lat"]),
+        )
+        dx, dy = x1 - x0, y1 - y0
+        dist = math.hypot(dx, dy)
+        ux, uy = dx / dist, dy / dist
+        x0, y0, x1, y1 = x0 + ux * 9, y0 + uy * 9, x1 - ux * 11, y1 - uy * 11
+        bend = ROUTE_BEND.get((a, z), 0.0) * dist
+        cx, cy = (x0 + x1) / 2 + uy * bend, (y0 + y1) / 2 - ux * bend
+        dash = ' stroke-dasharray="2 5"' if (a, z) in ROUTE_UNKNOWN else ""
+        return (
+            f'<path d="M{x0:.1f},{y0:.1f}Q{cx:.1f},{cy:.1f} {x1:.1f},{y1:.1f}" fill="none" '
+            f'stroke="{introduced}" stroke-width="2.6" stroke-linecap="round"{dash} '
+            f'marker-end="url(#head)"/>'
+        )
+
+    on_route = set()
+    for r in data["routes"]:
+        for a, z in zip(r["steps"], r["steps"][1:], strict=False):
+            b.append(segment(a, z))
+        on_route.update(r["steps"])
+        if r.get("open_end"):  # «и дальше»: линия гаснет, куда — неизвестно
+            end = places[r["steps"][-1]]
+            ex, ey = pr(end["lon"], end["lat"])
+            ang, ln = math.radians(ROUTE_TAIL[0]), ROUTE_TAIL[1]
+            ux, uy = math.cos(ang), math.sin(ang)
+            ax, ay, zx, zy = ex + ux * 9, ey + uy * 9, ex + ux * ln, ey + uy * ln
+            b.append(
+                f'<linearGradient id="tail-{r["id"]}" gradientUnits="userSpaceOnUse" '
+                f'x1="{ax:.1f}" y1="{ay:.1f}" x2="{zx:.1f}" y2="{zy:.1f}">'
+                f'<stop offset="0" stop-color="{introduced}"/>'
+                f'<stop offset="1" stop-color="{introduced}" stop-opacity="0"/></linearGradient>'
+            )
+            b.append(
+                f'<path d="M{ax:.1f},{ay:.1f}L{zx:.1f},{zy:.1f}" stroke="url(#tail-{r["id"]})" '
+                f'stroke-width="2.6" stroke-linecap="round" stroke-dasharray="7 4"/>'
+            )
+            b.append(
+                text(
+                    ex + ux * (ln * 0.55),
+                    ey + uy * (ln * 0.55) + 17,
+                    "и дальше",
+                    t["ink"],
+                    12.5,
+                    "middle",
+                    italic=True,
+                    halo=t["bg"],
+                )
+            )
+
+    # очаги: название и растения
+    for c in data["centers"]:
+        x, y = pr(c["label"]["lon"], c["label"]["lat"])
+        anchor = c["label"]["anchor"]
+        names = split_label(c["name"], 24)
+        crops = ", ".join(re.sub(r"\s*\(.*?\)", "", s) for s in c["crops"])
+        lines = [(s, t["ink"], 14, 600) for s in names]
+        lines += [(s, t["muted"], 12, 400) for s in textwrap.wrap(crops, 26)]
+        if c.get("todo"):  # пятно меньше очага — сказать об этом на карте
+            lines.append(("пятно — только юго-запад Амазонии", t["muted"], 11.5, 400))
+        for i, (s1, col, size, wt) in enumerate(lines):
+            b.append(text(x, y + i * 15, s1, col, size, anchor, wt, halo=t["bg"]))
+
+    # точки и даты
+    for pid, p in places.items():
+        x, y = pr(p["lon"], p["lat"])
+        ev = events[p["event"]]
+        tm = ev["time"]
+        if pid in PLACE_CALENDAR:
+            when = ("не позже " if "не позже" in ev["label"] else "≈") + cal_year(tm["from"])
+        else:
+            when = f"{bp_span(tm)} лет назад"
+        when = PLACE_WHEN[pid].format(when=when)
+        if ev.get("contested"):
+            when += " — спорно"
+        if ev["kind"] in ("staple", "important"):  # не точка пути, а перемена в питании
+            b.append(mark("square", x, y, introduced, introduced, t["bg"], 5))
+        else:
+            fill = "url(#hatch)" if ev.get("contested") or pid not in on_route else introduced
+            b.append(mark("circle", x, y, fill, introduced, t["bg"], 5.5))
+        dx, dy, anchor = PLACE_LABELS[pid]
+        b.append(text(x + dx, y + dy, p["name"], t["ink"], 13.5, anchor, 600, halo=t["bg"]))
+        for k, s1 in enumerate(when.split("\n")):
+            b.append(text(x + dx, y + dy + 15 * (k + 1), s1, t["ink"], 12.5, anchor, halo=t["bg"]))
+
+    # легенда — в пустом углу Тихого океана
+    lx, ly = 20, h - 236
+    rows = [
+        ("blob", "очаг одомашнивания растений"),
+        ("arrow", "путь кукурузы"),
+        ("unknown", "путь неизвестен: находок почти нет"),
+        ("point", "точка на пути кукурузы"),
+        ("square", "кукуруза входит в питание (не точка пути)"),
+        ("hatch", "кукуруза без известного пути, дата спорна"),
+    ]
+    for i, (kind, s1) in enumerate(rows):
+        yy = ly + i * 22
+        if kind == "blob":
+            b.append(rect(lx, yy - 9, 28, 18, t["panel"], 4))
+            b.append(
+                rect(lx + 3, yy - 6, 22, 12, local, 6, CENTERS_OPACITY, ' filter="url(#soft-key)"')
+            )
+        elif kind in ("arrow", "unknown"):
+            dash = ' stroke-dasharray="2 5"' if kind == "unknown" else ""
+            b.append(
+                f'<path d="M{lx},{yy}L{lx + 24},{yy}" stroke="{introduced}" stroke-width="2.6" '
+                f'stroke-linecap="round"{dash} marker-end="url(#head)"/>'
+            )
+        elif kind == "square":
+            b.append(mark("square", lx + 14, yy, introduced, introduced, t["bg"], 5))
+        else:
+            fill = "url(#hatch)" if kind == "hatch" else introduced
+            b.append(mark("circle", lx + 14, yy, fill, introduced, t["bg"], 5.5))
+        b.append(text(lx + 40, yy + 4, s1, t["ink"], 12.5))
+    notes = [
+        "Даты у точек — разного рода: находки, нижняя",
+        "граница, возраст образцов; это не время прихода",
+        "кукурузы. Все даты приблизительные.",
+    ]
+    for i, s1 in enumerate(notes):
+        b.append(text(lx, ly + len(rows) * 22 + 4 + i * 16, s1, t["muted"], 12))
+    b.append(
+        text(
+            lx,
+            ly + len(rows) * 22 + 4 + len(notes) * 16 + 10,
+            "Схема: пятна и линии условные",
+            t["muted"],
+            12.5,
+            italic=True,
+        )
+    )
+    b.append(
+        f'<rect x=".5" y=".5" width="{w - 1}" height="{h - 1}" fill="none" stroke="{t["rule"]}"/>'
+    )
+    names = ", ".join(c["name"] for c in data["centers"])
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Очаги одомашнивания и пути кукурузы (схема)",
+        f"Карта обеих Америк. Размытые пятна — очаги одомашнивания: {names}. Стрелки — пути "
+        "кукурузы из долины Бальсас: на юг через Центральную Америку в Южную и на север, "
+        "на юго-запад США и через Великие равнины в Озарк, а оттуда — «и дальше». Кахокия — "
+        "отдельный знак: время, когда кукуруза резко входит в рацион. Северо-восток — "
+        "отдельная точка без стрелки, датировка спорна. Даты у точек разного рода, а не время "
+        "прихода. Пятна и линии условные.",
+    )
+
+
+# ── Рис. 2.2. Кукуруза: от появления до основы питания (данные и оценки)
+
+LAG_FROM, LAG_TO = -11550, 1500  # календарные годы; слева — весь разброс генетической оценки
+LAG_BANDS = [  # (название полосы, регионы в данных, единица подписей)
+    ("Мезоамерика", ("meso",), "bp"),
+    ("Южная Америка", ("south", "lowlands"), "bp"),
+    ("Юго-запад США", ("sw",), "cal"),
+    ("Восток Северной Америки", ("east",), "bp"),
+]
+# Начало и конец разрыва «появилась → стала основой питания» в каждой полосе.
+LAG_GAPS = {
+    "Мезоамерика": ("meso_maize_balsas", "meso_staple_belize"),
+    "Южная Америка": ("south_maize_first", "south_maize_staple"),
+    "Юго-запад США": ("sw_maize_first", "sw_uplands"),
+    "Восток Северной Америки": ("east_maize_ohio", "east_maize_staple"),
+}
+# Раскладка подписей: (подпись к месту; сдвиг знака вниз от основной линии, px; сторона
+# подписи: up, up2, up3 — выше на ярус, down, right; выравнивание). Текст даты — из данных.
+LAG_LABELS = {
+    "meso_maize_balsas": ("Бальсас", 0, "down", "middle"),
+    "meso_staple_belize": ("Белиз", 0, "down", "middle"),
+    "meso_staple_other": ("остальная Мезоамерика", 0, "up", "middle"),
+    "south_maize_ca": ("по пути, Центральная Америка", 0, "up", "end"),
+    "south_maize_first": ("Южная Америка", 0, "down", "end"),
+    "south_maize_moxos": ("Льянос-де-Мохос", 30, "right", "start"),
+    "south_maize_staple": ("", 0, "up", "end"),
+    "sw_maize_first": ("", 0, "down", "middle"),
+    "sw_uplands": ("нагорья", 0, "up", "middle"),
+    "east_maize_ne": ("северо-восток", 0, "up2", "end"),
+    "east_maize_ohio": ("Огайо", 0, "down", "end"),
+    "east_maize_staple": ("почти весь восток", 0, "up3", "end"),
+    "east_maize_cahokia": ("Кахокия", 24, "down", "end"),
+}
+LAG_CAL = {"east_maize_cahokia"}  # в тексте главы — календарным годом
+
+
+def qualifier(label: str) -> str:
+    """«не позже», «не раньше», «после» — из подписи события в данных, иначе «≈»."""
+    for q in ("не позже", "не раньше", "после"):
+        if q in label:
+            return q + " "
+    return ""
+
+
+def when_text(ev: dict, unit: str) -> str:
+    tm = ev["time"]
+    q = qualifier(ev["label"]) if tm["to"] is None else ""  # у диапазона границы и так даны
+    if unit == "cal":
+        if tm["to"] is not None:
+            return f"{cal_year(tm['from'])} – {cal_year(tm['to'])}"
+        y = cal_year(tm["from"])
+        return f"{q}{y}" if q else ("около рубежа эр" if tm["from"] == 0 else f"≈{y}")
+    span = bp_span(tm)
+    if q:
+        span = span.lstrip("≈")
+        span = f"{q}≈{span}"
+    return f"{span} л. н."
+
+
+def gap_text(first: dict, staple: dict) -> str:
+    """Длина разрыва по данным: от начала основы питания назад до первого появления."""
+    a, z = first["time"], staple["time"]
+    hi = z["from"] - a["from"]
+    lo = z["from"] - (a["to"] if a["to"] is not None else a["from"])
+
+    def fmt(v: int) -> str:
+        return num(round(v / 500) / 2) if v >= 1000 else str(round(v / 100) * 100)
+
+    unit = "тыс. лет" if hi >= 1000 else "лет"
+    return f"≈{fmt(lo)} {unit}" if fmt(lo) == fmt(hi) else f"≈{fmt(lo)}–{fmt(hi)} {unit}"
+
+
+def fig_lag(t: dict) -> str:
+    data = agriculture()
+    events = data["events"]
+    w = 760
+    x0, x1 = 172, 742
+    top = 64
+    band_h = {"Мезоамерика": 146, "Восток Северной Америки": 118}
+    default_h = 104
+    h = top + sum(band_h.get(n, default_h) for n, *_ in LAG_BANDS) + 172
+    accent = t["z-n"]
+
+    def px(y: float) -> float:
+        return x0 + (y - LAG_FROM) / (LAG_TO - LAG_FROM) * (x1 - x0)
+
+    b = [
+        "<defs>",
+        hatch_defs(t, t["ink"]),
+        f'<clipPath id="plot"><rect x="{x0}" y="0" width="{x1 - x0}" height="{h}"/></clipPath>',
+        '<filter id="blur" x="-10%" y="-80%" width="120%" height="260%">'
+        '<feGaussianBlur stdDeviation="3 1.2"/></filter>',
+        '<filter id="blur-wide" x="-10%" y="-80%" width="120%" height="260%">'
+        '<feGaussianBlur stdDeviation="14 1.5"/></filter>',
+        f'<linearGradient id="tail" x1="0" x2="1"><stop offset="0" stop-color="{t["ink"]}" '
+        f'stop-opacity=".55"/><stop offset="1" stop-color="{t["ink"]}" stop-opacity="0"/>'
+        "</linearGradient>",
+        "</defs>",
+    ]
+
+    # шкалы: сверху — годы, снизу — «лет назад»
+    bands_h = sum(band_h.get(n, default_h) for n, *_ in LAG_BANDS)
+    yb = top + bands_h
+    for y in range(-11000, LAG_TO + 1, 1000):
+        x = px(y)
+        b.append(line(x, top - 6, x, yb, t["rule"], 1.1 if y == 0 else 0.7))
+        b.append(text(x, top - 12, grouped(abs(y)) if y else "0", t["ink"], 11.5, "middle"))
+    b.append(text(px(LAG_FROM), top - 32, "годы", t["muted"], 11.5))
+    b.append(text(px(0) + 6, top - 32, "н. э.", t["muted"], 11.5))
+    b.append(text(px(0) - 6, top - 32, "← до н. э.", t["muted"], 11.5, "end"))
+    for v in range(13000, 0, -1000):
+        x = px(1950 - v)
+        b.append(line(x, yb, x, yb + 5, t["muted"], 0.8))
+        b.append(text(x, yb + 18, grouped(v), t["muted"], 11.5, "middle"))
+    b.append(text((x0 + x1) / 2, yb + 36, "лет назад", t["muted"], 11.5, "middle"))
+
+    def soft_bar(a, z, y, hh, color, opacity, filt="blur"):
+        return (
+            f'<rect x="{a:.1f}" y="{y - hh / 2:.1f}" width="{max(z - a, 4):.1f}" height="{hh}" '
+            f'rx="{hh / 2}" fill="{color}" fill-opacity="{opacity}" filter="url(#{filt})"/>'
+        )
+
+    def sign(ev):
+        if ev["kind"] == "important":
+            return "half", t["ink"]
+        if ev["kind"] == "staple":
+            return ("square" if ev.get("evidence") == "isotopes" else "circle"), t["ink"]
+        return "circle", "url(#hatch)" if ev.get("contested") else t["bg"]
+
+    y_top = top
+    for name, regions, unit in LAG_BANDS:
+        bh = band_h.get(name, default_h)
+        i = [n for n, *_ in LAG_BANDS].index(name)
+        if i % 2 == 0:
+            b.append(rect(0, y_top, w, bh, t["band"], 0))
+        yc = y_top + bh - 54
+        for j, s1 in enumerate(split_label(name, 16)):
+            nl = len(split_label(name, 16))
+            b.append(text(14, yc + 5 + (j - (nl - 1) / 2) * 16, s1, t["ink"], 14, "start", 600))
+        b.append(line(x0, yc, x1, yc, t["rule"], 1))
+        halo = t["band"] if i % 2 == 0 else t["bg"]
+        evs = {
+            e["id"]: e
+            for e in events
+            if e["region"] in regions
+            and e["crop"] == "кукуруза"
+            and e["kind"] in ("first", "cultivation", "staple", "important", "domestication")
+        }
+
+        # генетическая оценка — широкий размытый отрезок над основной линией
+        for e in evs.values():
+            if e.get("evidence") != "genetics":
+                continue
+            tm = e["time"]
+            yg = yc - 36
+            b.append(
+                f'<g clip-path="url(#plot)">'
+                f"{soft_bar(px(tm['from']), px(tm['to']), yg, 12, t['muted'], 0.55, 'blur-wide')}"
+                "</g>"
+            )
+            xc = px(tm["central"])
+            b.append(line(xc, yg - 8, xc, yg + 8, t["ink"], 1.6))
+            gen = [
+                "генетический расчёт самого раннего возможного времени одомашнивания: "
+                f"≈{grouped(bp(tm['central']))} л. н.",
+                f"разброс {grouped(bp(tm['from']))}–{grouped(bp(tm['to']))} л. н.; "
+                "само одомашнивание, вероятно, позже",
+            ]
+            for k, s1 in enumerate(gen):
+                b.append(text(x0 + 4, yg - 29 + k * 15, s1, t["ink"], 12, halo=halo))
+
+        # разрыв
+        fa, za = LAG_GAPS[name]
+        ef, es = evs[fa], evs[za]
+
+        def xmid(ev):
+            tm = ev["time"]
+            return px((tm["from"] + tm["to"]) / 2) if tm["to"] is not None else px(tm["from"])
+
+        ga, gz = xmid(ef), px(es["time"]["from"])
+        b.append(rect(ga, yc - 7, gz - ga, 14, accent, 3, 0.38))
+        gt = gap_text(ef, es)
+        if gz - ga > 8 + len(gt) * 6.2:
+            b.append(text((ga + gz) / 2, yc + 4, gt, t["ink"], 11.5, "middle", 600))
+        else:  # узкий разрыв — подпись над ним
+            b.append(text(gz, yc - 12, gt, t["ink"], 11.5, "end", 600, halo=halo))
+
+        for eid, e in evs.items():
+            if e.get("evidence") == "genetics":
+                continue
+            place, dy, side, anchor = LAG_LABELS[eid]
+            tm = e["time"]
+            y = yc + dy
+            a = px(tm["from"])
+            if tm["to"] is not None:
+                b.append(soft_bar(a, px(tm["to"]), y, 10, t["ink"], 0.35))
+                x = xmid(e)
+            elif not tm.get("point"):  # открыто вправо: «не раньше», «после»
+                b.append(f'<g clip-path="url(#plot)">{rect(a, y - 3, 60, 6, "url(#tail)", 0)}</g>')
+                x = a
+            else:
+                x = a
+            shape, fill = sign(e)
+            b.append(mark(shape, x, y, fill, t["ink"], t["bg"], 5))
+            when = when_text(e, "cal" if eid in LAG_CAL else unit)
+            if e.get("contested"):
+                when += " — спорно"
+            s1 = f"{place}: {when}" if place else when
+            ly = y + {"up": -12, "up2": -28, "up3": -44, "down": 21, "right": 4}[side]
+            dx = 10 if side == "right" else {"start": -4, "end": 4, "middle": 0}[anchor]
+            b.append(text(x + dx, ly, s1, t["ink"], 12, anchor, halo=halo))
+        y_top += bh
+
+    # легенда
+    ly = yb + 62
+    items = [
+        ("first", "первое появление — по находкам"),
+        ("arch", "основа питания — по находкам и выводам авторов"),
+        ("iso", "основа питания — по изотопам костей"),
+        ("half", "важная культура, но не основа питания"),
+        ("gap", "от появления до времени, когда на неё опираются"),
+        ("hatch", "датировка спорна"),
+        ("gen", "генетический расчёт: самое раннее возможное время"),
+    ]
+    for k, (kind, s1) in enumerate(items):
+        lx = 24 + (k % 2) * 372
+        yy = ly + (k // 2) * 22
+        if kind == "gap":
+            b.append(rect(lx, yy - 6, 26, 12, accent, 3, 0.38))
+        elif kind == "gen":
+            b.append(soft_bar(lx, lx + 26, yy, 10, t["muted"], 0.55))
+        else:
+            shape = {"iso": "square", "half": "half"}.get(kind, "circle")
+            fill = {"first": t["bg"], "hatch": "url(#hatch)"}.get(kind, t["ink"])
+            b.append(mark(shape, lx + 13, yy, fill, t["ink"], t["bg"], 5))
+        b.append(text(lx + 36, yy + 4.5, s1, t["ink"], 12.5))
+    b.append(
+        text(
+            w - 16,
+            h - 12,
+            "Все даты приблизительные; размытый край — неточная граница",
+            t["muted"],
+            12,
+            "end",
+            italic=True,
+        )
+    )
+    desc = []
+    ev = {e["id"]: e for e in events}
+    for name, _regions, unit in LAG_BANDS:
+        fa, za = LAG_GAPS[name]
+        role = "важная культура" if ev[za]["kind"] == "important" else "основа питания"
+        desc.append(
+            f"{name}: появление — {when_text(ev[fa], unit)}, {role} — "
+            f"{when_text(ev[za], unit)}, разрыв {gap_text(ev[fa], ev[za])}"
+        )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Кукуруза: когда появляется и когда становится основой питания",
+        "; ".join(desc) + ". Генетическая оценка самого раннего возможного времени "
+        "одомашнивания — широкий размытый отрезок от 13 100 до 5700 лет назад.",
+    )
+
+
+# ── Рис. 2.3. Как собирались «три сестры» на востоке и на юго-западе (данные)
+
+SIS_FROM, SIS_TO = -3500, 1500
+# Раскладка: (подпись — культура; ярус подписи: + выше линии, − ниже; выравнивание).
+# Подписи одного ряда разнесены по ярусам так, чтобы выноски не пересекали текст.
+SISTERS = {
+    "Восток": {
+        "east_squash": ("тыква", 3, "start"),
+        "east_sunflower": ("подсолнечник", 2, "start"),
+        "east_marshelder": ("Iva annua", 1, "start"),
+        "east_complex": ("марь, набор из пяти культур", 1, "start"),
+        "east_maize_ne": ("кукуруза на северо-востоке — спорно", 2, "end"),
+        "east_maize_ohio": ("кукуруза на Огайо", -1, "end"),
+        "east_maize_staple": ("кукуруза — важная культура", -2, "end"),
+        "east_beans": ("фасоль", -3, "end"),
+        "east_beans_ne": ("фасоль на северо-востоке", -4, "end"),
+    },
+    "Юго-Запад": {
+        "sw_maize_first": ("кукуруза (не позже)", 1, "start"),
+        "sw_squash": ("тыква", -1, "start"),
+        "sw_beans": ("фасоль (с амарантом и хлопком)", -2, "middle"),
+        "sw_uplands": ("кукуруза кормит нагорья", 1, "middle"),
+    },
+}
+SISTERS_SUB = {"Восток": "Северной Америки", "Юго-Запад": "США"}
+
+
+def fig_sisters(t: dict) -> str:
+    ev = {e["id"]: e for e in agriculture()["events"]}
+    w, x0, x1 = 760, 132, 742
+    local, introduced = t[ORIGIN["local"]], t[ORIGIN["introduced"]]
+    step = 17
+
+    def levels(row):
+        lv = [v[1] for v in SISTERS[row].values()]
+        return max(0, *lv), -min(0, *lv)
+
+    top = 58
+    rows_y = []
+    y = top
+    for row in SISTERS:
+        up, down = levels(row)
+        y += 20 + up * step
+        rows_y.append(y)
+        y += 18 + down * step
+    foot = 114  # легенда и примечание под шкалой
+    h = y + foot
+
+    def px(yr: float) -> float:
+        return x0 + (yr - SIS_FROM) / (SIS_TO - SIS_FROM) * (x1 - x0)
+
+    b = [
+        "<defs>",
+        hatch_defs(t, introduced),
+        '<filter id="blur" x="-10%" y="-80%" width="120%" height="260%">'
+        '<feGaussianBlur stdDeviation="3 1"/></filter>',
+        "</defs>",
+    ]
+    for yr in range(SIS_FROM, SIS_TO + 1, 500):
+        x = px(yr)
+        b.append(line(x, top - 6, x, h - foot, t["rule"], 1.1 if yr == 0 else 0.7))
+        b.append(text(x, top - 12, grouped(abs(yr)) if yr else "0", t["ink"], 11.5, "middle"))
+    b.append(text(px(0) - 6, top - 30, "← до н. э.", t["muted"], 11.5, "end"))
+    b.append(text(px(0) + 6, top - 30, "н. э.", t["muted"], 11.5))
+    b.append(text(x0, top - 30, "годы", t["muted"], 11.5))
+
+    for row, yc in zip(SISTERS, rows_y, strict=True):
+        b.append(text(14, yc - 2, row, t["ink"], 14.5, "start", 600))
+        b.append(text(14, yc + 14, SISTERS_SUB[row], t["muted"], 12))
+        b.append(line(x0, yc, x1, yc, t["muted"], 1))
+        marks, labels = [], []
+        for eid, (crop, lvl, anchor) in SISTERS[row].items():
+            e = ev[eid]
+            tm = e["time"]
+            col = local if e["origin"] == "local" else introduced
+            a = px(tm["from"])
+            if tm["to"] is not None:
+                z = px(tm["to"])
+                marks.append(
+                    f'<rect x="{a:.1f}" y="{yc - 5:.1f}" width="{z - a:.1f}" height="10" rx="5" '
+                    f'fill="{col}" fill-opacity=".45" filter="url(#blur)"/>'
+                )
+                x = (a + z) / 2  # знака нет: точки внутри промежутка источник не даёт
+            else:
+                x = a  # «после» — знак роли кукурузы и так значит «с этого времени»
+            if tm["to"] is None:
+                if e["kind"] in ("staple", "important"):  # не приход, а рост роли кукурузы
+                    shape = "square"
+                else:
+                    shape = "circle" if e["origin"] == "local" else "diamond"
+                fill = "url(#hatch)" if e.get("contested") else col
+                r = 5 if shape == "square" else 5.5
+                marks.append(mark(shape, x, yc, fill, col, t["bg"], r))
+            ly = yc - 14 - (lvl - 1) * step if lvl > 0 else yc + 22 + (-lvl - 1) * step
+            lead_end = ly + 4 if lvl > 0 else ly - 12
+            if abs(lvl) > 1 or anchor != "middle":
+                labels.append(line(x, yc + (-8 if lvl > 0 else 8), x, lead_end, t["muted"], 0.8))
+            dx = {"start": -3, "end": 3, "middle": 0}[anchor]
+            labels.append(text(x + dx, ly, crop, t["ink"], 12.5, anchor, halo=t["bg"]))
+        b += labels + marks
+
+    ly = h - 88
+    items = [
+        ("local", "своё растение — одомашнено здесь"),
+        ("introduced", "пришло из Мезоамерики — первое появление"),
+        ("role", "с этого времени кукуруза важна в питании"),
+        ("hatch", "датировка спорна"),
+        ("range", "известен только промежуток"),
+    ]
+    for k, (kind, s1) in enumerate(items):
+        lx = 24 + (k % 2) * 372
+        yy = ly + (k // 2) * 22
+        if kind == "range":
+            b.append(
+                f'<rect x="{lx}" y="{yy - 5}" width="28" height="10" rx="5" fill="{introduced}" '
+                'fill-opacity=".45" filter="url(#blur)"/>'
+            )
+        elif kind == "role":
+            b.append(mark("square", lx + 14, yy, introduced, introduced, t["bg"], 5))
+        else:
+            shape = "circle" if kind == "local" else "diamond"
+            col = local if kind == "local" else introduced
+            fill = "url(#hatch)" if kind == "hatch" else col
+            b.append(mark(shape, lx + 14, yy, fill, col, t["bg"], 5.5))
+        b.append(text(lx + 36, yy + 4.5, s1, t["ink"], 12.5))
+    b.append(
+        text(
+            w - 16,
+            h - 12,
+            "Все даты приблизительные — по источникам, на которые ссылается глава",
+            t["muted"],
+            12,
+            "end",
+            italic=True,
+        )
+    )
+
+    def describe(row):
+        parts = []
+        for eid, (crop, *_r) in SISTERS[row].items():
+            tm = ev[eid]["time"]
+            when = (
+                f"{cal_year(tm['from'])} – {cal_year(tm['to'])}"
+                if tm["to"] is not None
+                else "около рубежа эр"
+                if tm["from"] == 0
+                else f"≈{cal_year(math.floor(tm['from'] / 50 + 0.5) * 50)}"
+            )
+            origin = (
+                "рост роли"
+                if ev[eid]["kind"] in ("staple", "important")
+                else "своё растение"
+                if ev[eid]["origin"] == "local"
+                else "пришло"
+            )
+            parts.append(f"{crop} ({origin}): {when}")
+        return f"{row} — " + ", ".join(parts)
+
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Как собирались «три сестры» на востоке и на юго-западе",
+        "; ".join(describe(r) for r in SISTERS) + ".",
+    )
+
+
 FIGURES: dict[str, Callable[[dict], str]] = {
     "00-radiocarbon": fig_radiocarbon,
     "00-precision": fig_precision,
     "01-routes": fig_routes,
     "01-timeline": fig_timeline,
     "01-ancestry": fig_ancestry,
+    "02-centers": fig_centers,
+    "02-lag": fig_lag,
+    "02-sisters": fig_sisters,
 }
 
 

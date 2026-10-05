@@ -242,6 +242,10 @@ def iter_complex(c):
         yield f"оценка {est['id']}", est
     for ev in c["inca_chronology"]:
         yield f"дата {ev['id']}", ev
+    for z in c["sea"]["zones"]:
+        yield f"область {z['id']}", z
+    for v in c["sea"]["voyages"]:
+        yield f"плавание {v['id']}", v
 
 
 def check_span(span, rec, where: str) -> list[str]:
@@ -301,6 +305,17 @@ def check_complex(c) -> list[str]:
             errors.append(f"{where}: high_open без high")
         if "upto" in e and "point" in e and e["upto"] < e["point"]:
             errors.append(f"{where}: upto меньше point")
+    sea = c["sea"]
+    errors += unique([z["id"] for z in sea["zones"]], "complex: область")
+    errors += unique([v["id"] for v in sea["voyages"]], "complex: плавание")
+    for z in sea["zones"]:
+        where = f"complex: область {z['id']}"
+        errors += check_span(z["when"], z, where)
+        errors += check_span(z.get("arrival"), z, where)
+    for v in sea["voyages"]:
+        m = v["months"]
+        if m["high"] is not None and m["high"] < m["low"]:
+            errors.append(f"complex: плавание {v['id']}: high < low")
     for ev in c["inca_chronology"]:
         where = f"complex: дата {ev['id']}"
         errors += check_span(ev["when"], ev, where)

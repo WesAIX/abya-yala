@@ -3,7 +3,7 @@
   "$id": "complex.schema.json",
   "title": "Сложные общества: пути вещей и людей, оценки населения, хронология инков",
   "type": "object",
-  "required": ["meta", "places", "links", "population", "inca_chronology"],
+  "required": ["meta", "places", "links", "population", "inca_chronology", "sea"],
   "additionalProperties": false,
   "properties": {
     "meta": {
@@ -177,6 +177,84 @@
           "note": {"type": "string"},
           "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
           "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    },
+    "sea": {
+      "description": "Морской путь Эквадор — Западная Мексика: гипотеза Хослер и расчёт Каллахана. Области — размытые зоны (blobs), а не границы; трассы плаваний в данных нет: на рисунке путь условный.",
+      "type": "object",
+      "required": ["zones", "voyages"],
+      "additionalProperties": false,
+      "properties": {
+        "zones": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "role", "blobs", "when", "sources"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+              "name": {"type": "string"},
+              "role": {
+                "description": "destination — куда, по гипотезе, пришла металлургия; source_first — источник техники первого периода; source_second — откуда добавились приёмы второго периода; exchange — область дальнего обмена по другому источнику (связь с Мексикой — вывод конспекта, не источника).",
+                "enum": ["destination", "source_first", "source_second", "exchange"]
+              },
+              "blobs": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": ["lon", "lat", "radius_km"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "lon": {"$ref": "zones.schema.json#/$defs/lon"},
+                    "lat": {"$ref": "zones.schema.json#/$defs/lat"},
+                    "radius_km": {"type": "number", "exclusiveMinimum": 0, "maximum": 3000}
+                  }
+                }
+              },
+              "when": {
+                "oneOf": [{"type": "null"}, {"$ref": "#/$defs/span"}]
+              },
+              "arrival": {"description": "Когда, по источнику, появилась металлургия.", "$ref": "#/$defs/span"},
+              "note": {"type": "string"},
+              "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+              "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+            }
+          }
+        },
+        "voyages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "direction", "months", "sources"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+              "direction": {"enum": ["north", "south"]},
+              "months": {
+                "description": "Срок плавания, мес.: low–high; low = high и about — «около»; high = null — «не меньше low».",
+                "type": "object",
+                "required": ["low", "high"],
+                "additionalProperties": false,
+                "properties": {
+                  "low": {"type": "number", "exclusiveMinimum": 0},
+                  "high": {
+                    "oneOf": [{"type": "null"}, {"type": "number", "exclusiveMinimum": 0}]
+                  },
+                  "about": {"type": "boolean"}
+                }
+              },
+              "offshore_months": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Сколько месяцев, возможно, пришлось бы провести далеко от берега."
+              },
+              "note": {"type": "string"},
+              "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+              "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+            }
+          }
         }
       }
     }

@@ -2514,7 +2514,283 @@ def fig_people(t: dict) -> str:
     )
 
 
-# ── Рис. 3.5. Оценки населения крупнейших городов (оценки)
+# ── Рис. 3.4. Море: Эквадор и Западная Мексика (гипотеза Хослер, схема)
+
+SEA_W, SEA_H = 760, 760
+SEA_CENTER = (-89, 3)
+SEA_FIT = [(-110, 23.5), (-68, 23.5), (-110, -18), (-68, -18)]
+# Трассы плаваний — схема, а не модель: Каллахан прочитан по аннотации, его маршрутов в
+# главе нет. Обе линии лишь показывают «вдоль берега» и «с уходом от берега»; на рисунке
+# это написано.
+SEA_NORTH = [
+    (-81.7, -2.4),
+    (-81.4, 1.6),
+    (-80.6, 5.0),
+    (-83.6, 6.6),
+    (-88.0, 10.2),
+    (-92.8, 13.0),
+    (-97.2, 14.8),
+    (-101.8, 16.6),
+    (-104.9, 18.7),
+]
+SEA_SOUTH = [
+    (-105.6, 18.9),
+    (-102.8, 13.0),
+    (-97.2, 7.6),
+    (-90.6, 2.6),
+    (-85.2, -1.6),
+    (-82.3, -2.9),
+]
+SEA_OFFSHORE = (-96.2, 8.1)  # где на схеме подписан возможный месяц вдали от берега
+# Подписи областей: (lon, lat, выравнивание, строки); {when}, {arrival} — из данных.
+SEA_LABELS = {
+    "west_mexico": (
+        -100.2,
+        20.6,
+        "start",
+        ["Западная Мексика", "металлургия — {arrival}", "первый период — {when_short}"],
+    ),
+    "first_period_source": (
+        -80.4,
+        13.6,
+        "start",
+        ["Эквадор, Колумбия,", "юг Центральной Америки:", "техника первого периода", "ближе всего"],
+    ),
+    "south_peru": (-76.6, -14.4, "end", ["южное Перу:", "приёмы второго периода"]),
+    "andean_exchange": (
+        -82.8,
+        -6.0,
+        "end",
+        [
+            "побережье Эквадора и севера Перу:",
+            "«топоры-деньги», бусы из раковин",
+            "и золота в дальнем обмене (Вернке);",
+            "шёл ли он морем до Мексики, Вернке",
+            "не пишет — эту связь проводит конспект",
+        ],
+    ),
+}
+SEA_BLUR, SEA_OPACITY = 10, 0.5
+
+
+def months_text(m: dict) -> str:
+    if m["high"] is None:
+        return f"не меньше {num(m['low'])} месяцев"
+    if m["low"] == m["high"]:
+        n = num(m["low"])
+        if m.get("about"):  # «около» требует родительного падежа: «около 2 месяцев»
+            return f"около {n} {'месяца' if n == '1' else 'месяцев'}"
+        return f"{n} месяц{'а' if n in ('2', '3', '4') else 'ев'}"
+    return f"{num(m['low'])}–{num(m['high'])} месяцев"
+
+
+def fig_sea(t: dict) -> str:
+    sea = complex_data()["sea"]
+    w, h = SEA_W, SEA_H
+    pr = map_projection(SEA_CENTER, SEA_FIT, w, h)
+    land_d, lakes_d = basemap_paths(pr, w, h)
+    zones = {z["id"]: z for z in sea["zones"]}
+    voy = {v["direction"]: v for v in sea["voyages"]}
+    zone, ink, muted = t["z-n"], t["ink"], t["muted"]
+
+    def blobs(z: dict) -> str:
+        rings = [geo_circle(bl["lon"], bl["lat"], bl["radius_km"]) for bl in z["blobs"]]
+        return "".join(f'<path d="{path_d([pr(*q) for q in r], True)}"/>' for r in rings)
+
+    metal = [z for z in sea["zones"] if z["role"] != "exchange"]
+    exch = [z for z in sea["zones"] if z["role"] == "exchange"]
+    b = [
+        "<defs>",
+        f'<clipPath id="frame"><rect width="{w}" height="{h}"/></clipPath>',
+        f'<path id="land" d="{land_d}"/>',
+        '<filter id="soft" x="-30%" y="-30%" width="160%" height="160%">'
+        f'<feGaussianBlur stdDeviation="{SEA_BLUR}"/></filter>',
+        '<filter id="soft-key" x="-40%" y="-60%" width="180%" height="220%">'
+        '<feGaussianBlur stdDeviation="2"/></filter>',
+        hatch_defs(t, ink, "hatch-ink"),
+        # штриховка без фона — поверх размытой заливки, чтобы обе области были видны
+        '<pattern id="hatch-lines" width="5" height="5" patternUnits="userSpaceOnUse" '
+        f'patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="{ink}" '
+        'stroke-width="1.6" stroke-opacity=".7"/></pattern>',
+        f'<mask id="exch-mask"><g fill="#fff" filter="url(#soft)">'
+        f"{''.join(blobs(z) for z in exch)}</g></mask>",
+        arrow_marker("head-n", ink, 5.5),
+        arrow_marker("head-s", muted, 5.5),
+        "</defs>",
+        '<g clip-path="url(#frame)">',
+        f'<use href="#land" fill="{t["panel"]}"/>',
+        f'<g opacity="{SEA_OPACITY}" fill="{zone}" filter="url(#soft)">'
+        f"{''.join(blobs(z) for z in metal)}</g>",
+        f'<rect width="{w}" height="{h}" fill="url(#hatch-lines)" mask="url(#exch-mask)"/>',
+        f'<path d="{lakes_d}" fill="{t["bg"]}" stroke="{muted}" stroke-width=".4" '
+        f'stroke-opacity=".5"/>',
+        f'<use href="#land" fill="none" stroke="{muted}" stroke-width=".6" stroke-opacity=".6"/>',
+        "</g>",
+    ]
+
+    def sea_name(lon, lat, s, size=14):
+        x, y = pr(lon, lat)
+        return text(x, y, s, muted, size, "middle", 400, SERIF, italic=True, halo=t["bg"])
+
+    b.append(sea_name(-99.5, -5.8, "Тихий океан", 15))
+    b.append(sea_name(-76.5, 15.8, "Карибское море", 13))
+
+    def trace(pts, color, mid, dash):
+        xy = smooth([pr(*p) for p in pts], 10)
+        return (
+            f'<path d="{path_d(xy)}" fill="none" stroke="{color}" stroke-width="2.4" '
+            f'stroke-dasharray="{dash}" stroke-linecap="round" marker-end="url(#{mid})"/>'
+        )
+
+    b.append(trace(SEA_SOUTH, muted, "head-s", "2 5"))
+    b.append(trace(SEA_NORTH, ink, "head-n", "7 4"))
+
+    labels = []
+    for zid, (lon, lat, anchor, rows) in SEA_LABELS.items():
+        z = zones[zid]
+        x, y = pr(lon, lat)
+        when_short = z["when"]["label"].split("— ")[-1] if z.get("when") else ""
+        for k, row in enumerate(rows):
+            s1 = row.format(
+                arrival=z["arrival"]["label"] if z.get("arrival") else "", when_short=when_short
+            )
+            labels.append(
+                text(
+                    x,
+                    y + k * 15,
+                    s1,
+                    ink if k == 0 else muted,
+                    13 if k == 0 else 12,
+                    anchor,
+                    600 if k == 0 else 400,
+                    halo=t["bg"],
+                )
+            )
+    # подписи плаваний
+    nx, ny = pr(-92.6, 16.6)
+    labels.append(
+        text(
+            nx,
+            ny,
+            f"на север: {months_text(voy['north']['months'])}",
+            ink,
+            13,
+            "start",
+            600,
+            halo=t["bg"],
+        )
+    )
+    labels.append(text(nx, ny + 15, "вдоль берега", muted, 12, "start", halo=t["bg"]))
+    ox, oy = pr(*SEA_OFFSHORE)
+    s_m = voy["south"]["months"]
+    labels.append(
+        text(ox, oy, f"на юг: {months_text(s_m)},", muted, 13, "start", 600, halo=t["bg"])
+    )
+    off = voy["south"].get("offshore_months")
+    labels.append(
+        text(
+            ox,
+            oy + 15,
+            f"возможно, {'месяц' if off == 1 else f'{num(off)} мес.'} вдали от берега",
+            muted,
+            12,
+            "start",
+            halo=t["bg"],
+        )
+    )
+    b += labels
+
+    # крупно: что это за рисунок
+    b.append(text(20, 330, "Гипотеза Хослер", ink, 22, "start", 700, halo=t["bg"]))
+    b.append(text(20, 354, "Схема: путь условный", muted, 15, "start", italic=True, halo=t["bg"]))
+
+    # легенда
+    ly = 392
+    rows = [
+        ("zone", "металлургия по Хослер"),
+        ("hatch", "дальний обмен по Вернке"),
+        ("north", "плавание на север — трасса условная"),
+        ("south", "плавание на юг — трасса условная"),
+    ]
+    for k, (kind, s1) in enumerate(rows):
+        yy = ly + k * 21
+        if kind == "zone":
+            b.append(
+                f'<ellipse cx="33" cy="{yy}" rx="13" ry="7" fill="{zone}" opacity="{SEA_OPACITY}" '
+                'filter="url(#soft-key)"/>'
+            )
+        elif kind == "hatch":
+            b.append(rect(20, yy - 7, 26, 14, "url(#hatch-ink)", 5, 0.6))
+        else:
+            c, mid, dash = (ink, "head-n", "7 4") if kind == "north" else (muted, "head-s", "2 5")
+            b.append(
+                f'<path d="M20,{yy}L44,{yy}" stroke="{c}" stroke-width="2.4" '
+                f'stroke-dasharray="{dash}" marker-end="url(#{mid})"/>'
+            )
+        b.append(text(56, yy + 4, s1, ink, 12, halo=t["bg"]))
+    b.append(
+        text(
+            20,
+            ly + len(rows) * 21 + 4,
+            "Границы областей и положение линий условные.",
+            muted,
+            11.5,
+            halo=t["bg"],
+        )
+    )
+
+    # врезка: сроки плаваний по расчёту Каллахана — туда и обратно неравноценно
+    ix, iy, unit = 20, 640, 40  # px на месяц
+    b.append(rect(ix - 8, iy - 34, 300, 118, t["bg"], 6, 0.9))
+    b.append(
+        text(ix, iy - 14, "Сколько длилось плавание (расчёт Каллахана)", ink, 12.5, "start", 600)
+    )
+    for k in range(7):
+        x = ix + 64 + k * unit
+        b.append(line(x, iy - 2, x, iy + 52, t["rule"], 0.8))
+        b.append(text(x, iy + 66, str(k), muted, 11, "middle"))
+    b.append(text(ix + 64 + 6.5 * unit, iy + 66, "мес.", muted, 11, "start"))
+    x0 = ix + 64
+    # на север: около двух — размытый конец
+    n_m = voy["north"]["months"]
+    b.append(text(ix, iy + 16, "на север", ink, 12))
+    b.append(
+        f'<linearGradient id="about-n" x1="0" x2="1"><stop offset="0" stop-color="{ink}" '
+        f'stop-opacity=".75"/><stop offset=".8" stop-color="{ink}" stop-opacity=".75"/>'
+        f'<stop offset="1" stop-color="{ink}" stop-opacity="0"/></linearGradient>'
+    )
+    b.append(rect(x0, iy + 7, (n_m["low"] + 0.4) * unit, 12, "url(#about-n)", 2))
+    # на юг: не меньше пяти — полоса дальше гаснет, конца нет
+    b.append(text(ix, iy + 42, "на юг", ink, 12))
+    b.append(
+        f'<linearGradient id="open-s" x1="0" x2="1"><stop offset="0" stop-color="{muted}" '
+        f'stop-opacity=".85"/><stop offset="1" stop-color="{muted}" stop-opacity="0"/>'
+        "</linearGradient>"
+    )
+    b.append(rect(x0, iy + 33, s_m["low"] * unit, 12, muted, 2, 0.85))
+    b.append(rect(x0 + s_m["low"] * unit, iy + 33, 1.4 * unit, 12, "url(#open-s)", 0))
+    b.append(
+        f'<rect width="{w - 1}" height="{h - 1}" x=".5" y=".5" fill="none" stroke="{t["rule"]}"/>'
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Гипотеза Хослер: металлургия морем из Эквадора в Западную Мексику (схема)",
+        "Схематическая карта тихоокеанского побережья от Западной Мексики до юга Перу. "
+        "Размытые области: Западная Мексика — куда, по Хослер, пришла металлургия "
+        f"({zones['west_mexico']['arrival']['label']}; {zones['west_mexico']['when']['label']}); "
+        "Эквадор, Колумбия и юг Центральной Америки — с ними ближе всего техника первого "
+        "периода; южное Перу — откуда добавились приёмы второго периода. Штриховкой — "
+        "побережье Эквадора и севера Перу, где, по Вернке, «топоры-деньги» и бусы шли в "
+        "дальний обмен; связь с Мексикой — вывод конспекта. Две условные линии: на север "
+        f"вдоль берега — {months_text(n_m)}, на юг с уходом от берега — {months_text(s_m)}. "
+        "Врезка сравнивает сроки. Трассы и границы условные.",
+    )
+
+
+# ── Рис. 3.6. Оценки населения крупнейших городов (оценки)
 
 POP_FROM, POP_TO = 1_000, 1_000_000
 POP_CITIES = ["Кахокия", "Теотиуакан", "Теночтитлан"]
@@ -2704,7 +2980,7 @@ def fig_population(t: dict) -> str:
     )
 
 
-# ── Рис. 3.6. Хронология инков: хроники и радиоуглерод (данные)
+# ── Рис. 3.7. Хронология инков: хроники и радиоуглерод (данные)
 
 INCA_FROM, INCA_TO = 1300, 1540
 INCA_SOFT = 12  # px: полуширина размытого края у начала «примерно с …»
@@ -2877,6 +3153,7 @@ FIGURES: dict[str, Callable[[dict], str]] = {
     "03-modes": fig_modes,
     "03-routes": fig_routes3,
     "03-people": fig_people,
+    "03-sea": fig_sea,
     "03-population": fig_population,
     "03-inca-chronology": fig_inca,
 }

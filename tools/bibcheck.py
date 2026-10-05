@@ -114,7 +114,8 @@ def pages(s: str | None) -> str:
 
 
 def is_article(e: dict) -> bool:
-    return bool(e.get("container") and e.get("volume") and e.get("pages"))
+    # статья: журнал и том со страницами — или DOI (у свежих статей тома ещё нет)
+    return bool(e.get("container") and ((e.get("volume") and e.get("pages")) or e.get("doi")))
 
 
 # ── Каталоги. Найденное приводится к одному виду: title, year, authors, volume, issue, page, doi
@@ -186,9 +187,9 @@ def compare(e: dict, f: dict, article: bool) -> list[str]:
         diffs.append(f"авторы в каталоге: {f['authors'][:3]}")
     if article:
         vol = f["volume"] + (f"({f['issue']})" if f.get("issue") else "")
-        if e["volume"] not in (vol, f["volume"]):
+        if e.get("volume", "") not in (vol, f["volume"]):
             diffs.append(f"том в каталоге: {vol or '—'}")
-        if pages(e["pages"]) != pages(f.get("page")):
+        if pages(e.get("pages")) != pages(f.get("page")):
             diffs.append(f"страницы в каталоге: {f.get('page') or '—'}")
     return diffs
 

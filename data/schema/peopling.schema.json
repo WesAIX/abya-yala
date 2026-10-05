@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "peopling.schema.json",
+  "title": "Заселение Америки: стоянки, пути, даты, линии наследственности",
+  "type": "object",
+  "required": ["meta", "sites", "corridor", "events", "lineages"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "license"],
+      "properties": {
+        "title": {"type": "string"},
+        "schema": {"type": "string"},
+        "license": {"type": "string"},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "sites": {
+      "description": "Стоянки на карте. Координаты — по публикации; precision_km — насколько точно известна точка.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "lat", "lon", "precision_km", "time", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "name": {"type": "string"},
+          "lat": {"$ref": "zones.schema.json#/$defs/lat"},
+          "lon": {"$ref": "zones.schema.json#/$defs/lon"},
+          "precision_km": {"type": "number", "exclusiveMinimum": 0},
+          "time": {"$ref": "#/$defs/ka_range"},
+          "contested": {"type": "boolean", "description": "Датировка спорна."},
+          "contested_since": {"type": "integer", "minimum": 1900, "description": "Год публикации, с которой датировка оспаривается; показывается на рисунках («спорно (2026)»). Только вместе с contested."},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    },
+    "corridor": {
+      "description": "Места датировки безлёдного коридора в порядке с севера на юг; на карте по ним проходит стрелка коридора.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "lat", "lon", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Z]{3}$"},
+          "lat": {"$ref": "zones.schema.json#/$defs/lat"},
+          "lon": {"$ref": "zones.schema.json#/$defs/lon"},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    },
+    "events": {
+      "description": "События шкалы времени. kind: archaeology — стоянка или культура; geology — пути и ландшафт; genetics — генетический расчёт.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "kind", "time", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "label": {"type": "string"},
+          "kind": {"enum": ["archaeology", "geology", "genetics"]},
+          "time": {"$ref": "#/$defs/ka_range"},
+          "contested": {"type": "boolean", "description": "Датировка спорна."},
+          "contested_since": {"type": "integer", "minimum": 1900, "description": "Год публикации, с которой датировка оспаривается; показывается на рисунках («спорно (2026)»). Только вместе с contested."},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    },
+    "lineages": {
+      "type": "object",
+      "required": ["nodes", "links"],
+      "additionalProperties": false,
+      "properties": {
+        "nodes": {
+          "description": "Группы людей, связанных происхождением, по генетическим моделям. ancestry: first — наследственность первых американцев, siberian — сибирская, родственная палеоэскимосской, mixed — смешение, hypothesis — гипотеза.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "label", "ancestry", "sources"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+              "label": {"type": "string"},
+              "ancestry": {"enum": ["first", "siberian", "mixed", "hypothesis"]},
+              "time": {"$ref": "#/$defs/ka_range"},
+              "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+              "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+            }
+          }
+        },
+        "links": {
+          "description": "kind: descent — происхождение; admixture — вклад в смешение (share — доля наследственности, %); hypothesis — гипотеза.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["from", "to", "kind", "sources"],
+            "additionalProperties": false,
+            "properties": {
+              "from": {"$ref": "genealogy.schema.json#/$defs/id"},
+              "to": {"$ref": "genealogy.schema.json#/$defs/id"},
+              "kind": {"enum": ["descent", "admixture", "hypothesis"]},
+              "share": {
+                "type": "object",
+                "required": ["low", "high"],
+                "additionalProperties": false,
+                "properties": {
+                  "low": {"type": "number", "minimum": 0, "maximum": 100},
+                  "high": {"type": "number", "minimum": 0, "maximum": 100}
+                }
+              },
+              "time": {"$ref": "#/$defs/ka_range"},
+              "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+              "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "ka_range": {
+      "description": "Время в тысячах календарных лет назад: from — начало (старше), to — конец; to = null — продолжается до конца шкалы или точечная оценка (тогда point = true). error — ± к from.",
+      "type": "object",
+      "required": ["from", "to", "dating"],
+      "additionalProperties": false,
+      "properties": {
+        "from": {"type": "number", "minimum": 0},
+        "to": {"oneOf": [{"type": "null"}, {"type": "number", "minimum": 0}]},
+        "error": {"type": "number", "exclusiveMinimum": 0},
+        "point": {"type": "boolean", "description": "Точечная оценка («около»), а не начало открытого периода."},
+        "dating": {"$ref": "genealogy.schema.json#/$defs/dating"}
+      }
+    }
+  }
+}

@@ -23,6 +23,8 @@
   Официальный доклад; первичный источник по системе школ-интернатов Канады (включает свидетельства). Главы: 11, 12. **Не сверено.**
 - <a id="usace2017"></a>`usace2017` — U.S. Army Corps of Engineers, Northwestern Division (2017). *U.S. Army Corps of Engineers conducts final transfer of Kennewick Man remains*. Northwestern Division News Releases. <https://www.nwd.usace.army.mil/Media/News-Releases/Article/1088463/us-army-corps-of-engineers-conducts-final-transfer-of-kennewick-man-remains/>.
   Пресс-релиз № 17-015 от 20.02.2017. Сайт не отдаёт страницу автоматическим клиентам; текст прочитан по копии в Wayback Machine. Главы: 0, 12.
+- <a id="uwyo2026"></a>`uwyo2026` — University of Wyoming (2026). *UW-Led Research Resets Age of Famous South American Archaeological Site*. University of Wyoming News. <https://www.uwyo.edu/news/2026/03/uw-led-research-resets-age-of-famous-south-american-archaeological-site.html>.
+  Пресс-релиз университета от 19.03.2026 с высказываниями Т. Суровелла о статье surovell2026. Свидетельство позиции автора, а не самостоятельный источник фактов. Главы: 1.
 
 ## Исследования
 
@@ -34,12 +36,18 @@
   Главы: 0.
 - <a id="bengoa1985"></a>`bengoa1985` — Bengoa, José (1985). *Historia del pueblo mapuche: siglo XIX y XX*. Santiago: Ediciones Sur.
   Главы: 8, 10, 11. **Не сверено.**
-- <a id="bennett2021"></a>`bennett2021` — Bennett, Matthew R.; et al. (2021). *Evidence of humans in North America during the Last Glacial Maximum*. Science, 373(6562), 1528–1531.
-  Следы в Уайт-Сэндс. Главы: 1. **Не сверено.**
+- <a id="bennett2021"></a>`bennett2021` — Bennett, Matthew R.; et al. (2021). *Evidence of humans in North America during the Last Glacial Maximum*. Science, 373(6562), 1528–1531. doi:10.1126/science.abg7586.
+  Следы в Уайт-Сэндс. Главы: 1.
+- <a id="bonatto1997"></a>`bonatto1997` — Bonatto, Sandro L.; Salzano, Francisco M. (1997). *A single and early migration for the peopling of the Americas supported by mitochondrial DNA sequence data*. Proceedings of the National Academy of Sciences, 94(5), 1866–1871. doi:10.1073/pnas.94.5.1866.
+  Ранняя модель с центральной ролью Берингии; у tamm2007 — «Beringian incubation model». Открытый доступ (PMC20009). Главы: 1.
+- <a id="broughton2018"></a>`broughton2018` — Broughton, Jack M.; Weitzel, Elic M. (2018). *Population reconstructions for humans and megafauna suggest mixed causes for North American Pleistocene extinctions*. Nature Communications, 9, 5441. doi:10.1038/s41467-018-07897-1.
+  Открытый доступ. Главы: 1.
 - <a id="calloway2006"></a>`calloway2006` — Calloway, Colin G. (2006). *The Scratch of a Pen: 1763 and the Transformation of North America*. Oxford: Oxford University Press.
   Главы: 8. **Не сверено.**
 - <a id="campbell1997"></a>`campbell1997` — Campbell, Lyle (1997). *American Indian Languages: The Historical Linguistics of Native America*. New York: Oxford University Press.
   Главы: 0, 1.
+- <a id="clark2022"></a>`clark2022` — Clark, Jorie; et al. (2022). *The age of the opening of the Ice-Free Corridor and implications for the peopling of the Americas*. Proceedings of the National Academy of Sciences, 119(14), e2118558119. doi:10.1073/pnas.2118558119.
+  Полное открытие безлёдного коридора — 13,8 ± 0,5 тыс. лет назад (по ¹⁰Be); открытый доступ. Главы: 1.
 - <a id="crosby1972"></a>`crosby1972` — Crosby, Alfred W. (1972). *The Columbian Exchange: Biological and Cultural Consequences of 1492*. Westport: Greenwood.
   Главы: 2, 5. **Не сверено.**
 - <a id="crosby1976"></a>`crosby1976` — Crosby, Alfred W. (1976). *Virgin Soil Epidemics as a Factor in the Aboriginal Depopulation in America*. William and Mary Quarterly, 33(2), 289–299.
@@ -52,22 +60,32 @@
   Главы: 0, 1.
 - <a id="daschuk2013"></a>`daschuk2013` — Daschuk, James (2013). *Clearing the Plains: Disease, Politics of Starvation, and the Loss of Aboriginal Life*. Regina: University of Regina Press.
   Главы: 5, 10. **Не сверено.**
+- <a id="davis2019"></a>`davis2019` — Davis, Loren G.; Madsen, David B.; et al. (2019). *Late Upper Paleolithic occupation at Cooper’s Ferry, Idaho, USA, ~16,000 years ago*. Science, 365(6456), 891–897. doi:10.1126/science.aax9830.
+  Купер-Ферри, запад Айдахо: древнейшая стадия заселения — 16 560–15 280 кал. л. н.; наконечники с черешком старше Кловиса. Главы: 1.
 - <a id="delay2008"></a>`delay2008` — DeLay, Brian (2008). *War of a Thousand Deserts: Indian Raids and the U.S.-Mexican War*. New Haven: Yale University Press.
   Главы: 4, 9. **Не сверено.**
+- <a id="uafdene"></a>`uafdene` — Dene (Athabaskan) Languages Conference (б. г.). *About Conference*. Fairbanks: University of Alaska Fairbanks. <https://www.uaf.edu/alc/about/>.
+  Страница ежегодной научной конференции по атабаскским языкам (раздел «About the Name»): названия «атабаски» и «дене», происхождение слова «атабаски» из языка кри. Просмотрено 05.10.2026. Главы: 1.
 - <a id="denevan1992b"></a>`denevan1992b` — Denevan, William M. (1992). *The Pristine Myth: The Landscape of the Americas in 1492*. Annals of the Association of American Geographers, 82(3), 369–385.
   Главы: 3, 5. **Не сверено.**
 - <a id="denevan1992"></a>`denevan1992` — Denevan, William M. (ред.) (1992). *The Native Population of the Americas in 1492*. Madison: University of Wisconsin Press.
   2-е издание; первое — 1976. Главы: 5. **Не сверено.**
-- <a id="dillehay2008"></a>`dillehay2008` — Dillehay, Tom D.; et al. (2008). *Monte Verde: Seaweed, Food, Medicine, and the Peopling of South America*. Science, 320(5877), 784–786.
-  Главы: 1. **Не сверено.**
+- <a id="dillehay2008"></a>`dillehay2008` — Dillehay, Tom D.; et al. (2008). *Monte Verde: Seaweed, Food, Medicine, and the Peopling of South America*. Science, 320(5877), 784–786. doi:10.1126/science.1156533.
+  Главы: 1.
+- <a id="dillehay2015"></a>`dillehay2015` — Dillehay, Tom D.; et al. (2015). *New Archaeological Evidence for an Early Human Presence at Monte Verde, Chile*. PLoS ONE, 10(11), e0141923. doi:10.1371/journal.pone.0141923.
+  Возможные следы людей в более древних слоях Монте-Верде; открытый доступ. Главы: 1.
+- <a id="dillehay2026"></a>`dillehay2026` — Dillehay, Tom D.; Pino, Mario; Lara, Luis E.; et al. (2026). *Archaeological and Geological Evidence at Monte Verde II, Chile, Supports a Human Occupation at ∼14,500 Years Ago*. PaleoAmerica, 1–12. doi:10.1080/20555563.2026.2699017.
+  Ответ на surovell2026; вышла онлайн 19.08.2026, том и выпуск по Crossref ещё не присвоены. 21 автор, среди них L. G. Davis, D. Madsen (в Crossref — «David G.»), D. K. Grayson, J. Erlandson, V. T. Holliday. Открытый доступ у издателя, но страница закрыта проверкой от роботов; краткая версия — отклик dillehay2026b. Главы: 1.
+- <a id="dillehay2026b"></a>`dillehay2026b` — Dillehay, Tom D.; Pino, Mario; Lara, Luis; Abarzúa, Ana; Davis, Loren; Madsen, David; et al. (2026). *Geomorphological and Archaeological Evidence at Monte Verde II, Chile Supports the Claim of Human Occupation 14,500 Years Ago*. Science, eLetters к статье Surovell et al. 2026 (doi:10.1126/science.adw9217). <https://liberalarts.tamu.edu/csfa/wp-content/uploads/sites/14/2026/05/Three-Critiques.pdf>.
+  Отклик (eLetter) от 04.05.2026 на сайте Science, 18 авторов; не рецензируется. Текст сверен по той же распечатке, что waters2026b. Рецензируемая версия — dillehay2026. Главы: 1.
 - <a id="dobyns1983"></a>`dobyns1983` — Dobyns, Henry F. (1983). *Their Number Become Thinned: Native American Population Dynamics in Eastern North America*. Knoxville: University of Tennessee Press.
   Верхняя граница оценок; методика оспаривается. Главы: 5. **Не сверено.**
 - <a id="earle1987"></a>`earle1987` — Earle, Timothy K. (1987). *Chiefdoms in Archaeological and Ethnohistorical Perspective*. Annual Review of Anthropology, 16, 279–308.
   Главы: 0, 3. **Не сверено.**
 - <a id="echohawk2000"></a>`echohawk2000` — Echo-Hawk, Roger C. (2000). *Ancient History in the New World: Integrating Oral Traditions and the Archaeological Record in Deep Time*. American Antiquity, 65(2), 267–290. doi:10.2307/2694059.
-  Главы: 0.
-- <a id="flegontov2019"></a>`flegontov2019` — Flegontov, Pavel; et al. (2019). *Palaeo-Eskimo genetic ancestry and the peopling of Chukotka and North America*. Nature, 570, 236–240.
-  Главы: 1. **Не сверено.**
+  Главы: 0, 1.
+- <a id="flegontov2019"></a>`flegontov2019` — Flegontov, Pavel; et al. (2019). *Palaeo-Eskimo genetic ancestry and the peopling of Chukotka and North America*. Nature, 570, 236–240. doi:10.1038/s41586-019-1251-y.
+  Главы: 1.
 - <a id="fried1975"></a>`fried1975` — Fried, Morton H. (1975). *The Notion of Tribe*. Menlo Park: Cummings.
   Критика понятия «племя»; многие племена — «вторичные», сложившиеся в контакте с государствами. Главы: 0. **Не сверено.**
 - <a id="friesen2008"></a>`friesen2008` — Friesen, T. Max; Arnold, Charles D. (2008). *The Timing of the Thule Migration: New Dates from the Western Canadian Arctic*. American Antiquity, 73(3), 527–538. doi:10.1017/S0002731600046850.
@@ -76,8 +94,12 @@
   Главы: 0, 1. **Не сверено.**
 - <a id="hassig1988"></a>`hassig1988` — Hassig, Ross (1988). *Aztec Warfare: Imperial Expansion and Political Control*. Norman: University of Oklahoma Press.
   Главы: 3, 6. **Не сверено.**
+- <a id="hoffecker2023"></a>`hoffecker2023` — Hoffecker, John F.; et al. (2023). *Beringia and the peopling of the Western Hemisphere*. Proceedings of the Royal Society B, 290(1990), 20222246. doi:10.1098/rspb.2022.2246.
+  Обзор: среды Берингии, уровень моря, ледники, маршруты; открытый доступ (CC BY). Главы: 1.
 - <a id="hogg2020"></a>`hogg2020` — Hogg, Alan G.; et al. (2020). *SHCal20 Southern Hemisphere Calibration, 0–55,000 Years cal BP*. Radiocarbon, 62(4), 759–778. doi:10.1017/rdc.2020.59.
   Калибровочная кривая для Южного полушария — нужна для дат из Южной Америки. Главы: 0.
+- <a id="holliday2025"></a>`holliday2025` — Holliday, Vance T.; et al. (2025). *Paleolake geochronology supports Last Glacial Maximum (LGM) age for human tracks at White Sands, New Mexico*. Science Advances, 11(25), eadv4951. doi:10.1126/sciadv.adv4951.
+  26 новых радиоуглеродных дат по отложениям палеоозера Отеро; открытый доступ. Холлидей — соавтор bennett2021. Главы: 1.
 - <a id="hosler1994"></a>`hosler1994` — Hosler, Dorothy (1994). *The Sounds and Colors of Power: The Sacred Metallurgical Technology of Ancient West Mexico*. Cambridge, MA: MIT Press.
   Главы: 3. **Не сверено.**
 - <a id="hamalainen2003"></a>`hamalainen2003` — Hämäläinen, Pekka (2003). *The Rise and Fall of Plains Indian Horse Cultures*. Journal of American History, 90(3), 833–862.
@@ -102,6 +124,12 @@
   Главы: 4. **Не сверено.**
 - <a id="koch2019"></a>`koch2019` — Koch, Alexander; Brierley, Chris; Maslin, Mark M.; Lewis, Simon L. (2019). *Earth system impacts of the European arrival and Great Dying in the Americas after 1492*. Quaternary Science Reviews, 207, 13–36.
   Гипотеза о климатическом следе депопуляции. Главы: 5. **Не сверено.**
+- <a id="lesnek2018"></a>`lesnek2018` — Lesnek, Alia J.; Briner, Jason P.; Lindqvist, Charlotte; Baichtal, James F.; Heaton, Timothy H. (2018). *Deglaciation of the Pacific coastal corridor directly preceded the human colonization of the Americas*. Science Advances, 4(5), eaar5040. doi:10.1126/sciadv.aar5040.
+  Отступание льда на юго-востоке Аляски; открытый доступ. Главы: 1.
+- <a id="lowe2011"></a>`lowe2011` — Lowe, David J. (2011). *Tephrochronology and its application: A review*. Quaternary Geochronology, 6(2), 107–153. doi:10.1016/j.quageo.2010.08.003.
+  Обзор датирования по слоям тефры; рукопись автора в открытом доступе (Research Commons, Университет Уаикато). Главы: 1. **Не сверено.**
+- <a id="madsen2022"></a>`madsen2022` — Madsen, David B.; Davis, Loren G.; Rhode, David; Oviatt, Charles G. (2022). *Comment on “Evidence of humans in North America during the Last Glacial Maximum”*. Science, 375(6577), eabm4678. doi:10.1126/science.abm4678.
+  Критика датировок Уайт-Сэндс: резервуарный эффект. Главы: 1.
 - <a id="marr2010"></a>`marr2010` — Marr, John S.; Cathey, John T. (2010). *New Hypothesis for Cause of Epidemic among Native Americans, New England, 1616–1619*. Emerging Infectious Diseases, 16(2), 281–286.
   Главы: 5. **Не сверено.**
 - <a id="martin2008"></a>`martin2008` — Martin, Simon; Grube, Nikolai (2008). *Chronicle of the Maya Kings and Queens: Deciphering the Dynasties of the Ancient Maya*. London: Thames & Hudson.
@@ -112,6 +140,10 @@
   Главы: 2. **Не сверено.**
 - <a id="matthew2007"></a>`matthew2007` — Matthew, Laura E. (ред.); Oudijk, Michel R. (ред.) (2007). *Indian Conquistadors: Indigenous Allies in the Conquest of Mesoamerica*. Norman: University of Oklahoma Press.
   Главы: 6. **Не сверено.**
+- <a id="meltzer1997"></a>`meltzer1997` — Meltzer, David J.; et al. (1997). *On the Pleistocene Antiquity of Monte Verde, Southern Chile*. American Antiquity, 62(4), 659–663. doi:10.2307/281884.
+  Итог осмотра Монте-Верде группой специалистов в январе 1997 г. Главы: 1.
+- <a id="meltzer2026"></a>`meltzer2026` — Meltzer, David J.; Moreno-Mayar, J. Víctor; Pinotti, Thomaz; Heintzman, Peter D.; Pedersen, Mikkel Winther; Willerslev, Eske (2026). *Genetic evidence and the peopling of the Americas: reply to Surovell et al. 2026*. Science, eLetters к статье Surovell et al. 2026 (doi:10.1126/science.adw9217). <https://liberalarts.tamu.edu/csfa/wp-content/uploads/sites/14/2026/05/Three-Critiques.pdf>.
+  Отклик (eLetter) от 04.05.2026 на сайте Science; не рецензируется. Среди авторов — авторы morenomayar2018, pinotti2019, pedersen2016, willerslev2021. Текст сверен по той же распечатке, что waters2026b. Главы: 1.
 - <a id="morenomayar2018"></a>`morenomayar2018` — Moreno-Mayar, J. Víctor; et al. (2018). *Terminal Pleistocene Alaskan genome reveals first founding population of Native Americans*. Nature, 553, 203–207. doi:10.1038/nature25173.
   Главы: 1.
 - <a id="nash1999"></a>`nash1999` — Nash, Stephen E. (1999). *Time, Trees, and Prehistory: Tree-Ring Dating and the Development of North American Archaeology, 1914–1950*. Salt Lake City: University of Utah Press.
@@ -120,8 +152,12 @@
   Справочник по федеральному праву США в отношении индейцев; цитировать конкретное издание. Главы: 9, 11, 12.
 - <a id="otis1973"></a>`otis1973` — Otis, D. S. (1973). *The Dawes Act and the Allotment of Indian Lands*. Norman: University of Oklahoma Press.
   Под ред. F. P. Prucha; текст написан в 1934 г. для правительства США. Главы: 11. **Не сверено.**
-- <a id="pigati2023"></a>`pigati2023` — Pigati, Jeffrey S.; et al. (2023). *Independent age estimates resolve the controversy of ancient human footprints at White Sands*. Science, 382(6666), 73–75.
-  Название утверждает больше, чем принято в литературе; спор продолжается. Главы: 1. **Не сверено.**
+- <a id="pedersen2016"></a>`pedersen2016` — Pedersen, Mikkel W.; et al. (2016). *Postglacial viability and colonization in North America’s ice-free corridor*. Nature, 537(7618), 45–49. doi:10.1038/nature19085.
+  Когда коридор стал пригоден для жизни: озёрные керны, древняя ДНК из осадков. Главы: 1.
+- <a id="pigati2023"></a>`pigati2023` — Pigati, Jeffrey S.; et al. (2023). *Independent age estimates resolve the controversy of ancient human footprints at White Sands*. Science, 382(6666), 73–75. doi:10.1126/science.adh5007.
+  Название утверждает больше, чем принято в литературе; спор продолжается. Главы: 1.
+- <a id="pinotti2019"></a>`pinotti2019` — Pinotti, Thomaz; et al. (2019). *Y Chromosome Sequences Reveal a Short Beringian Standstill, Rapid Expansion, and early Population structure of Native American Founders*. Current Biology, 29(1), 149–157.e3. doi:10.1016/j.cub.2018.11.029.
+  Главы: 1.
 - <a id="piperno2009"></a>`piperno2009` — Piperno, Dolores R.; et al. (2009). *Starch grain and phytolith evidence for early ninth millennium B.P. maize from the Central Balsas River Valley, Mexico*. Proceedings of the National Academy of Sciences, 106(13), 5019–5024.
   Главы: 2. **Не сверено.**
 - <a id="powell1952"></a>`powell1952` — Powell, Philip Wayne (1952). *Soldiers, Indians and Silver: The Northward Advance of New Spain, 1550–1600*. Berkeley: University of California Press.
@@ -130,6 +166,8 @@
   Два тома. Главы: 9, 11, 12. **Не сверено.**
 - <a id="raghavan2014"></a>`raghavan2014` — Raghavan, Maanasa; et al. (2014). *The genetic prehistory of the New World Arctic*. Science, 345(6200), 1255832. doi:10.1126/science.1255832.
   Палеоэскимосы и предки инуитов (туле) — разные популяции. Главы: 0, 1.
+- <a id="raghavan2015"></a>`raghavan2015` — Raghavan, Maanasa; et al. (2015). *Genomic evidence for the Pleistocene and recent population history of Native Americans*. Science, 349(6250), aab3884. doi:10.1126/science.aab3884.
+  Главы: 1.
 - <a id="rasmussen2015"></a>`rasmussen2015` — Rasmussen, Morten; et al. (2015). *The ancestry and affiliations of Kennewick Man*. Nature, 523, 455–458. doi:10.1038/nature14625.
   Главы: 0.
 - <a id="reimer2020"></a>`reimer2020` — Reimer, Paula J.; et al. (2020). *The IntCal20 Northern Hemisphere Radiocarbon Age Calibration Curve (0–55 cal kBP)*. Radiocarbon, 62(4), 725–757. doi:10.1017/rdc.2020.41.
@@ -138,16 +176,28 @@
   Главы: 6. **Не сверено.**
 - <a id="resendez2016"></a>`resendez2016` — Reséndez, Andrés (2016). *The Other Slavery: The Uncovered Story of Indian Enslavement in America*. Boston: Houghton Mifflin Harcourt.
   Главы: 4, 5, 6. **Не сверено.**
+- <a id="rhode2024"></a>`rhode2024` — Rhode, David; et al. (2024). *Unresolved: Persistent Problems with the White Sands Locality 2 Geochronology*. PaleoAmerica, 10(1), 10–27. doi:10.1080/20555563.2024.2345979.
+  Ответ на pigati2023: новые датировки тоже могут быть завышены. Главы: 1.
+- <a id="rhodes2011"></a>`rhodes2011` — Rhodes, Edward J. (2011). *Optically Stimulated Luminescence Dating of Sediments over the Past 200,000 Years*. Annual Review of Earth and Planetary Sciences, 39, 461–488. doi:10.1146/annurev-earth-040610-133425.
+  Обзор люминесцентного датирования осадков. Главы: 1. **Не сверено.**
 - <a id="secoy1953"></a>`secoy1953` — Secoy, Frank Raymond (1953). *Changing Military Patterns on the Great Plains (17th Century through Early 19th Century)*. Monographs of the American Ethnological Society, 21.
   Классическая модель встречи «фронтира лошадей» и «фронтира ружей». Главы: 7. **Не сверено.**
 - <a id="service1962"></a>`service1962` — Service, Elman R. (1962). *Primitive Social Organization: An Evolutionary Perspective*. New York: Random House.
   Типология «группа — племя — вождество — государство». Главы: 0. **Не сверено.**
+- <a id="skoglund2015"></a>`skoglund2015` — Skoglund, Pontus; et al. (2015). *Genetic evidence for two founding populations of the Americas*. Nature, 525(7567), 104–108. doi:10.1038/nature14895.
+  Сигнал «популяции Y» у части народов Амазонии. Главы: 1.
 - <a id="smith2006"></a>`smith2006` — Smith, Bruce D. (2006). *Eastern North America as an independent center of plant domestication*. Proceedings of the National Academy of Sciences, 103(33), 12223–12228.
   Главы: 2. **Не сверено.**
 - <a id="starostin2012"></a>`starostin2012` — Starostin, George (2012). *Dene-Yeniseian: a critical assessment*. Journal of Language Relationship, 8, 117–138. doi:10.31826/jlr-2012-080109.
   Критический разбор дене-енисейской гипотезы Вайды. Главы: 0, 1.
+- <a id="stewart2021"></a>`stewart2021` — Stewart, Mathew; Carleton, W. Christopher; Groucutt, Huw S. (2021). *Climate change, not human population growth, correlates with Late Quaternary megafauna declines in North America*. Nature Communications, 12, 965. doi:10.1038/s41467-021-21201-8.
+  Открытый доступ. Главы: 1.
 - <a id="hnai"></a>`hnai` — Sturtevant, William C. (ред. серии) (1978–2008). *Handbook of North American Indians*. Washington: Smithsonian Institution.
   Многотомное издание; цитировать конкретный том отдельной записью (hnai-vNN) с редактором тома и годом. Главы: 0, 1, 2, 3, 4, 5, 7, 8. **Не сверено.**
+- <a id="surovell2026"></a>`surovell2026` — Surovell, Todd A.; Méndez, César; García, Juan-Luis; Lüthgens, Christopher; Thompson, Jay M.; Latorre, Claudio (2026). *A mid-Holocene age for Monte Verde challenges the timeline of human colonization of South America*. Science, 391(6791), 1283–1288. doi:10.1126/science.adw9217.
+  Вышла 19.03.2026. Возраст Монте-Верде II оспорен: по выводу авторов, стоянка не старше среднего голоцена (8200–4200 лет назад). Ответы — waters2026, dillehay2026 (и отклики waters2026b, dillehay2026b, meltzer2026). Главы: 1.
+- <a id="tamm2007"></a>`tamm2007` — Tamm, Erika; Kivisild, Toomas; Reidla, Maere; et al. (2007). *Beringian Standstill and Spread of Native American Founders*. PLoS ONE, 2(9), e829. doi:10.1371/journal.pone.0000829.
+  Название «берингийская остановка» и её обоснование по митохондриальной ДНК; открытый доступ (PMC1952074). Главы: 1.
 - <a id="taylor2023"></a>`taylor2023` — Taylor, William Timothy Treal; et al. (2023). *Early dispersal of domestic horses into the Great Plains and northern Rockies*. Science, 379(6639), 1316–1323.
   Аргумент за распространение лошадей на север до 1680 г. Главы: 7. **Не сверено.**
 - <a id="thornton1987"></a>`thornton1987` — Thornton, Russell (1987). *American Indian Holocaust and Survival: A Population History since 1492*. Norman: University of Oklahoma Press.
@@ -160,12 +210,22 @@
   Главы: 0.
 - <a id="vagene2018"></a>`vagene2018` — Vågene, Åshild J.; et al. (2018). *Salmonella enterica genomes from victims of a major sixteenth-century epidemic in Mexico*. Nature Ecology & Evolution, 2, 520–528.
   Кандидат в возбудители кокольицтли 1545 г.; вывод не окончательный. Главы: 5. **Не сверено.**
-- <a id="waters2007"></a>`waters2007` — Waters, Michael R.; Stafford, Thomas W., Jr. (2007). *Redefining the Age of Clovis: Implications for the Peopling of the Americas*. Science, 315(5815), 1122–1126.
-  Главы: 1. **Не сверено.**
+- <a id="walker2018"></a>`walker2018` — Walker, Mike; Head, Martin J.; et al. (2018). *Formal ratification of the subdivision of the Holocene Series/Epoch (Quaternary System/Period): two new Global Boundary Stratotype Sections and Points (GSSPs) and three new stages/subseries*. Episodes, 41(4), 213–223. doi:10.18814/epiiugs/2018/018016.
+  Голоцен — с 11 700 лет до 2000 г. н. э.; деление на ранний, средний (с 8236) и поздний (с 4250 лет до 2000 г.). Открытый доступ. Главы: 1. **Не сверено.**
+- <a id="waters2007"></a>`waters2007` — Waters, Michael R.; Stafford, Thomas W., Jr. (2007). *Redefining the Age of Clovis: Implications for the Peopling of the Americas*. Science, 315(5815), 1122–1126. doi:10.1126/science.1137166.
+  Главы: 1.
+- <a id="waters2020"></a>`waters2020` — Waters, Michael R.; Stafford, Thomas W., Jr.; Carlson, David L. (2020). *The age of Clovis—13,050 to 12,750 cal yr B.P.*. Science Advances, 6(43), eaaz0455. doi:10.1126/sciadv.aaz0455.
+  Уточнённая хронология Кловиса по 32 радиоуглеродным датам с 10 стоянок; открытый доступ. Главы: 1.
+- <a id="waters2026"></a>`waters2026` — Waters, Michael R.; Halligan, Jessi J.; Mandel, Rolfe D.; Holcomb, Justin A.; Davis, Loren G.; Holliday, Vance T. (2026). *Evaluation of the Geoarchaeological Study that Proposes a Middle Holocene Age for Monte Verde II, Chile*. PaleoAmerica, 1–3. doi:10.1080/20555563.2026.2699013.
+  Ответ на surovell2026; вышла онлайн 12.08.2026, том и выпуск по Crossref ещё не присвоены. Полный текст платный; краткая версия — отклик waters2026b. Главы: 1.
+- <a id="waters2026b"></a>`waters2026b` — Waters, Michael R.; Halligan, Jessi J.; Mandel, Rolfe D.; Holcomb, Justin A.; Davis, Loren G.; Holliday, Vance T. (2026). *Geoarchaeological Assessment of the Suggested Middle Holocene Age for Monte Verde II, Chile*. Science, eLetters к статье Surovell et al. 2026 (doi:10.1126/science.adw9217). <https://liberalarts.tamu.edu/csfa/wp-content/uploads/sites/14/2026/05/Three-Critiques.pdf>.
+  Отклик (eLetter) от 05.05.2026 на сайте Science; отклики не рецензируются и не редактируются журналом. Текст сверен по распечатке страницы откликов, выложенной Center for the Study of the First Americans (Texas A&M). Рецензируемая версия — waters2026. Главы: 1.
 - <a id="white1991"></a>`white1991` — White, Richard (1991). *The Middle Ground: Indians, Empires, and Republics in the Great Lakes Region, 1650–1815*. Cambridge: Cambridge University Press.
   Главы: 8. **Не сверено.**
 - <a id="wilkinson2005"></a>`wilkinson2005` — Wilkinson, Charles (2005). *Blood Struggle: The Rise of Modern Indian Nations*. New York: W. W. Norton.
   Главы: 12. **Не сверено.**
+- <a id="willerslev2021"></a>`willerslev2021` — Willerslev, Eske; Meltzer, David J. (2021). *Peopling of the Americas as inferred from ancient genomics*. Nature, 594(7863), 356–364. doi:10.1038/s41586-021-03499-y.
+  Обзор палеогеномики заселения Америки. Главы: 1.
 - <a id="berezkin1991"></a>`berezkin1991` — Берёзкин, Юрий Евгеньевич (1991). *Инки: исторический опыт империи*. Л.: Наука.
   Главы: 3, 6. **Не сверено.**
 - <a id="knorozov1963"></a>`knorozov1963` — Кнорозов, Юрий Валентинович (1963). *Письменность индейцев майя*. М.; Л.: Издательство АН СССР.
@@ -182,5 +242,7 @@
 
 - <a id="mann2005"></a>`mann2005` — Mann, Charles C. (2005). *1491: New Revelations of the Americas Before Columbus*. New York: Knopf.
   Хороший обзор споров для входа в тему; утверждения проверять по академическим работам, на которые он ссылается. Главы: 1, 2, 3, 5. **Не сверено.**
+- <a id="metcalfe2026"></a>`metcalfe2026` — Metcalfe, Tom (2026). *A new study questions when people first reached South America*. Science News. <https://www.sciencenews.org/article/first-people-south-america-clovis>.
+  Заметка от 19.03.2026 с интервью Т. Суровелла, Т. Диллехея, М. Уотерса и Дж. Эрландсона. Главы: 1.
 - <a id="pauketat2009"></a>`pauketat2009` — Pauketat, Timothy R. (2009). *Cahokia: Ancient America's Great City on the Mississippi*. New York: Viking.
   Научно-популярная книга археолога, ведущего раскопки Кахокии. Главы: 3. **Не сверено.**

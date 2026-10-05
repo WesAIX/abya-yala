@@ -1,0 +1,276 @@
+{
+  "meta": {
+    "title": "Заселение Америки: стоянки, пути на юг, даты и линии наследственности",
+    "schema": "schema/peopling.schema.json",
+    "license": "CC BY 4.0",
+    "notes": [
+      "Используется рисунками главы 1 (tools/figures.py): карта путей (рис. 1.1), шкала времени (рис. 1.2), схема линий наследственности (рис. 1.3).",
+      "Время — в тысячах календарных лет назад (ka). Все даты приблизительны (dating: approx): это радиоуглеродные, космогенные и генетические оценки.",
+      "Генетические даты (kind: genetics, время в lineages) — расчёт по модели, а не наблюдение.",
+      "Линии стрелок путей и контуры ледников на карте — схема в tools/figures.py, а не данные; здесь только точки, привязанные к публикациям."
+    ]
+  },
+  "sites": [
+    {
+      "id": "usr",
+      "name": "Апвард-Сан-Ривер",
+      "lat": 64.5,
+      "lon": -146.5,
+      "precision_km": 50,
+      "time": {"from": 11.5, "to": null, "point": true, "dating": "approx"},
+      "sources": [
+        {"ref": "morenomayar2018", "loc": "SI, разд. 1, fig. S1", "note": "«Tanana River valley in central Alaska»; точных координат в публикации нет, точка поставлена в средней долине Тананы по описанию и карте fig. S1. Дата — среднее по углю из погребальной ямы, 11 600–11 270 кал. л. н."}
+      ],
+      "todo": ["Уточнить координаты по отчёту о раскопках (Potter et al.), если он будет добавлен в библиографию."]
+    },
+    {
+      "id": "white_sands",
+      "name": "Уайт-Сэндс",
+      "lat": 32.82,
+      "lon": -106.33,
+      "precision_km": 3,
+      "time": {"from": 23, "to": 21, "dating": "approx"},
+      "contested": true,
+      "sources": [
+        {"ref": "holliday2025", "loc": "fig. 1", "note": "Точка G (Gypsum Overlook) на восточном краю Алкали-Флэт, снята с координатной сетки карты; WHSA Locality 2 — рядом, к югу."},
+        {"ref": "bennett2021", "loc": "аннотация", "note": "Возраст отпечатков ≈ 23–21 тыс. лет; оспаривается (madsen2022, rhode2024)."}
+      ]
+    },
+    {
+      "id": "monte_verde",
+      "name": "Монте-Верде",
+      "lat": -41.49,
+      "lon": -73.21,
+      "precision_km": 2,
+      "time": {"from": 14.22, "to": 13.98, "dating": "approx"},
+      "contested": true,
+      "contested_since": 2026,
+      "sources": [
+        {"ref": "dillehay2015", "loc": "fig. 1", "note": "Звёздочка «Monte Verde Site», снята с координатной сетки карты: ≈ 41°29′ ю. ш., 73°12′ з. д."},
+        {"ref": "dillehay2008", "loc": "аннотация", "note": "Верхний слой (MV-II): 14 220–13 980 кал. л. н. по морским водорослям из очагов."},
+        {"ref": "surovell2026", "loc": "аннотация", "note": "Спорно с 2026 г.: по выводу авторов, стоянка не старше 8200–4200 лет назад (средний голоцен)."},
+        {"ref": "dillehay2026", "note": "Ответ на surovell2026: прежний возраст отстаивается; спор не решён."},
+        {"ref": "waters2026", "note": "Ответ на surovell2026; спор не решён."}
+      ],
+      "todo": ["Сверить с текстами ответов dillehay2026 и waters2026 и указать loc."]
+    },
+    {
+      "id": "coopers_ferry",
+      "name": "Купер-Ферри",
+      "lat": 45.9,
+      "lon": -116.4,
+      "precision_km": 10,
+      "time": {"from": 16.56, "to": 15.28, "dating": "approx"},
+      "sources": [
+        {"ref": "davis2019", "loc": "аннотация", "note": "Терраса у впадения ручья Рок-Крик в нижнее течение реки Салмон, запад Айдахо. Древнейшая стадия — 16 560–15 280 кал. л. н. Точных координат в открытом тексте нет: точка поставлена у этого слияния, ≈ 45,9° с. ш., 116,4° з. д."}
+      ],
+      "todo": ["Сверить координаты с fig. 1 в davis2019 (полный текст недоступен)."]
+    }
+  ],
+  "corridor": [
+    {"id": "BCN", "lat": 58.7, "lon": -123.8, "sources": [{"ref": "clark2022", "loc": "Materials and Methods, Field Sampling"}]},
+    {
+      "id": "BCC",
+      "lat": 57.5,
+      "lon": -122.9,
+      "sources": [{"ref": "clark2022", "loc": "Materials and Methods, Field Sampling", "note": "В разделе Results для BCC указано 56,1° с. ш. — по-видимому, опечатка; здесь — координаты из Methods."}]
+    },
+    {
+      "id": "BCS",
+      "lat": 56.1,
+      "lon": -122.2,
+      "sources": [{"ref": "clark2022", "loc": "Results; Materials and Methods", "note": "Последний открывшийся участок: 13,8 ± 0,5 тыс. лет назад."}]
+    },
+    {
+      "id": "ABN",
+      "lat": 54.0,
+      "lon": -119.0,
+      "sources": [{"ref": "clark2022", "loc": "Materials and Methods, Field Sampling", "note": "В Results — 53,9° с. ш."}]
+    },
+    {"id": "ABC", "lat": 52.2, "lon": -114.8, "sources": [{"ref": "clark2022", "loc": "Materials and Methods, Field Sampling"}]},
+    {"id": "ABS", "lat": 50.1, "lon": -113.8, "sources": [{"ref": "clark2022", "loc": "Materials and Methods, Field Sampling"}]}
+  ],
+  "events": [
+    {
+      "id": "white_sands",
+      "label": "Следы в Уайт-Сэндс",
+      "kind": "archaeology",
+      "time": {"from": 23, "to": 21, "dating": "approx"},
+      "contested": true,
+      "sources": [
+        {"ref": "bennett2021", "loc": "аннотация"},
+        {"ref": "holliday2025", "loc": "аннотация", "note": "Новая серия дат поддерживает возраст ледникового максимума."},
+        {"ref": "rhode2024", "loc": "аннотация", "note": "Критика: даты могут быть завышены."}
+      ]
+    },
+    {
+      "id": "branches_split",
+      "label": "Расхождение северной и южной ветвей",
+      "kind": "genetics",
+      "time": {"from": 17.5, "to": 14.6, "dating": "approx"},
+      "sources": [{"ref": "morenomayar2018", "loc": "аннотация"}]
+    },
+    {
+      "id": "coast_open",
+      "label": "Прибрежный путь открыт",
+      "kind": "geology",
+      "time": {"from": 17, "to": null, "dating": "approx"},
+      "sources": [{"ref": "lesnek2018", "loc": "аннотация", "note": "Юго-восток Аляски: ледник наибольший ≈ 20–17 тыс. лет назад, путь открыт после 17 тыс."}]
+    },
+    {
+      "id": "coopers_ferry",
+      "label": "Купер-Ферри, древнейшая стадия",
+      "kind": "archaeology",
+      "time": {"from": 16.56, "to": 15.28, "dating": "approx"},
+      "sources": [{"ref": "davis2019", "loc": "аннотация"}]
+    },
+    {
+      "id": "monte_verde",
+      "label": "Монте-Верде, верхний слой",
+      "kind": "archaeology",
+      "time": {"from": 14.22, "to": 13.98, "dating": "approx"},
+      "contested": true,
+      "contested_since": 2026,
+      "sources": [
+        {"ref": "dillehay2008", "loc": "аннотация"},
+        {"ref": "surovell2026", "loc": "аннотация", "note": "Критика: стоянка не старше 8200–4200 лет назад."},
+        {"ref": "dillehay2026", "note": "Ответ: прежний возраст отстаивается; спор не решён."},
+        {"ref": "waters2026", "note": "Ответ на surovell2026; спор не решён."}
+      ]
+    },
+    {
+      "id": "corridor_open",
+      "label": "Безлёдный коридор открыт целиком",
+      "kind": "geology",
+      "time": {"from": 13.8, "to": null, "error": 0.5, "dating": "approx"},
+      "sources": [{"ref": "clark2022", "loc": "аннотация; Results (участок BCS)"}]
+    },
+    {
+      "id": "clovis",
+      "label": "Кловис",
+      "kind": "archaeology",
+      "time": {"from": 13.05, "to": 12.75, "dating": "approx"},
+      "sources": [{"ref": "waters2020", "loc": "аннотация"}]
+    },
+    {
+      "id": "corridor_viable",
+      "label": "Коридор пригоден для жизни",
+      "kind": "geology",
+      "time": {"from": 12.6, "to": null, "point": true, "dating": "approx"},
+      "sources": [{"ref": "pedersen2016", "loc": "аннотация"}]
+    },
+    {
+      "id": "beringia_flooded",
+      "label": "Берингия затоплена",
+      "kind": "geology",
+      "time": {"from": 11, "to": null, "point": true, "dating": "approx"},
+      "sources": [{"ref": "hoffecker2023", "loc": "разд. 1–2"}]
+    }
+  ],
+  "lineages": {
+    "nodes": [
+      {"id": "founders", "label": "Группа основателей", "ancestry": "first", "sources": [{"ref": "morenomayar2018", "loc": "аннотация"}]},
+      {
+        "id": "ancient_beringians",
+        "label": "Древние берингийцы",
+        "ancestry": "first",
+        "time": {"from": 11.5, "to": null, "point": true, "dating": "approx"},
+        "sources": [{"ref": "morenomayar2018", "loc": "аннотация", "note": "Геном младенца из Апвард-Сан-Ривер, ≈ 11,5 тыс. лет назад."}]
+      },
+      {
+        "id": "other_americans",
+        "label": "Предки остальных коренных американцев",
+        "ancestry": "first",
+        "sources": [{"ref": "morenomayar2018", "loc": "аннотация"}]
+      },
+      {"id": "northern", "label": "Северная ветвь", "ancestry": "first", "sources": [{"ref": "morenomayar2018", "loc": "аннотация"}]},
+      {"id": "southern", "label": "Южная ветвь", "ancestry": "first", "sources": [{"ref": "morenomayar2018", "loc": "аннотация"}]},
+      {
+        "id": "pop_y",
+        "label": "«Популяция Y»",
+        "ancestry": "hypothesis",
+        "sources": [
+          {"ref": "skoglund2015", "loc": "аннотация", "note": "Примесь у части народов Амазонии; гипотеза о второй группе основателей."},
+          {"ref": "flegontov2019", "loc": "основной текст", "note": "Название «популяция Y»."}
+        ]
+      },
+      {
+        "id": "siberian",
+        "label": "Сибирская линия, родственная палеоэскимосам",
+        "ancestry": "siberian",
+        "sources": [{"ref": "flegontov2019", "loc": "аннотация"}]
+      },
+      {
+        "id": "paleo_eskimos",
+        "label": "Палеоэскимосы",
+        "ancestry": "siberian",
+        "time": {"from": 5.0, "to": 0.7, "dating": "approx"},
+        "sources": [{"ref": "raghavan2014", "loc": "аннотация", "note": "Арктика примерно с 3000 г. до н. э. до 1300 г. н. э.; исчезли ≈ 700 лет назад."}]
+      },
+      {
+        "id": "nadene_ancestors",
+        "label": "Предки на-дене",
+        "ancestry": "mixed",
+        "time": {"from": 5.0, "to": 4.4, "dating": "approx"},
+        "sources": [{"ref": "flegontov2019", "loc": "аннотация и основной текст", "note": "Время смешения — расчёт по модели."}]
+      },
+      {
+        "id": "eskaleut_ancestors",
+        "label": "Предки эскимосско-алеутских народов",
+        "ancestry": "mixed",
+        "time": {"from": 4.9, "to": 4.4, "dating": "approx"},
+        "sources": [{"ref": "flegontov2019", "loc": "основной текст", "note": "Время смешения — расчёт по модели."}]
+      },
+      {
+        "id": "thule",
+        "label": "Линия, расходящаяся по Арктике с туле",
+        "ancestry": "mixed",
+        "time": {"from": 0.8, "to": null, "point": true, "dating": "approx"},
+        "sources": [{"ref": "flegontov2019", "loc": "основной текст"}]
+      },
+      {"id": "yupik", "label": "Юпики", "ancestry": "mixed", "sources": [{"ref": "flegontov2019", "loc": "основной текст"}]},
+      {"id": "inuit", "label": "Инуиты", "ancestry": "mixed", "sources": [{"ref": "flegontov2019", "loc": "основной текст"}]}
+    ],
+    "links": [
+      {"from": "founders", "to": "ancient_beringians", "kind": "descent", "sources": [{"ref": "morenomayar2018", "loc": "аннотация"}]},
+      {"from": "founders", "to": "other_americans", "kind": "descent", "sources": [{"ref": "morenomayar2018", "loc": "аннотация"}]},
+      {
+        "from": "other_americans",
+        "to": "northern",
+        "kind": "descent",
+        "time": {"from": 17.5, "to": 14.6, "dating": "approx"},
+        "sources": [{"ref": "morenomayar2018", "loc": "аннотация", "note": "Расхождение северной и южной ветвей — расчёт."}]
+      },
+      {
+        "from": "other_americans",
+        "to": "southern",
+        "kind": "descent",
+        "time": {"from": 17.5, "to": 14.6, "dating": "approx"},
+        "sources": [{"ref": "morenomayar2018", "loc": "аннотация"}]
+      },
+      {"from": "pop_y", "to": "southern", "kind": "hypothesis", "sources": [{"ref": "skoglund2015", "loc": "аннотация"}]},
+      {"from": "siberian", "to": "paleo_eskimos", "kind": "descent", "sources": [{"ref": "flegontov2019", "loc": "аннотация"}]},
+      {
+        "from": "siberian",
+        "to": "nadene_ancestors",
+        "kind": "admixture",
+        "share": {"low": 11, "high": 15},
+        "time": {"from": 5.0, "to": 4.4, "dating": "approx"},
+        "sources": [{"ref": "flegontov2019", "loc": "основной текст", "note": "Доля линии, родственной палеоэскимосам, у предков атабасков."}]
+      },
+      {"from": "northern", "to": "nadene_ancestors", "kind": "admixture", "sources": [{"ref": "flegontov2019", "loc": "основной текст"}]},
+      {"from": "siberian", "to": "eskaleut_ancestors", "kind": "admixture", "sources": [{"ref": "flegontov2019", "loc": "аннотация и основной текст"}]},
+      {
+        "from": "northern",
+        "to": "eskaleut_ancestors",
+        "kind": "admixture",
+        "share": {"low": 55, "high": 62},
+        "time": {"from": 4.9, "to": 4.4, "dating": "approx"},
+        "sources": [{"ref": "flegontov2019", "loc": "основной текст", "note": "Вклад северной индейской ветви."}]
+      },
+      {"from": "eskaleut_ancestors", "to": "thule", "kind": "descent", "sources": [{"ref": "flegontov2019", "loc": "основной текст"}]},
+      {"from": "thule", "to": "yupik", "kind": "descent", "sources": [{"ref": "flegontov2019", "loc": "основной текст", "note": "Линия есть сегодня у юпиков и инуитов."}]},
+      {"from": "thule", "to": "inuit", "kind": "descent", "sources": [{"ref": "flegontov2019", "loc": "основной текст"}]}
+    ]
+  }
+}

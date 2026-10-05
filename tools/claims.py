@@ -120,10 +120,13 @@ def audit_status(path: Path) -> dict:
             status["verdicts"][cid] = e["verdict"]
             used.add(e["id"])
     current_texts = {(c["ref"], c["text"]) for c in current.values()}
+    # «больше нет» — только то, что не засчитано, не совпадает по тексту и не устарело на месте
     status["orphan"] = [
         e["id"]
         for e in entries
-        if e["id"] not in used and (e["ref"], e["text"]) not in current_texts
+        if e["id"] not in used
+        and (e["ref"], e["text"]) not in current_texts
+        and e["id"] not in status["stale"]
     ]
     return status
 

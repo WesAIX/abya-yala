@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 532" width="760" height="532" role="img" aria-labelledby="t d" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">
+<title id='t'>Последовательность событий заселения Америки</title><desc id='d'>Следы в Уайт-Сэндс: 23–21 тыс. лет назад — спорно; Расхождение северной и южной ветвей: 17,5–14,6 тыс. лет назад; Прибрежный путь открыт: ≈ 17 тыс. лет назад; Купер-Ферри, древнейшая стадия: 16,56–15,28 тыс. лет назад; Монте-Верде, верхний слой: 14,22–13,98 тыс. лет назад — спорно (2026); Безлёдный коридор открыт целиком: 13,8 ± 0,5 тыс. лет назад; Кловис: 13,05–12,75 тыс. лет назад; Коридор пригоден для жизни: ≈ 12,6 тыс. лет назад; Берингия затоплена: ≈ 11 тыс. лет назад.</desc>
+<rect width="760" height="532" fill="#EDF0EA"/>
+<defs>
+<pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#EDF0EA"/><line x1="0" y1="0" x2="0" y2="6" stroke="#1B2420" stroke-width="2.2" stroke-opacity=".6"/></pattern>
+<pattern id="hatch-fine" width="3.5" height="3.5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="3.5" height="3.5" fill="#EDF0EA"/><line x1="0" y1="0" x2="0" y2="3.5" stroke="#1B2420" stroke-width="1.5" stroke-opacity=".75"/></pattern>
+<linearGradient id="fadein" x1="0" x2="1"><stop offset="0" stop-color="#007A9A" stop-opacity="0"/><stop offset="1" stop-color="#007A9A" stop-opacity=".85"/></linearGradient>
+</defs>
+<text x="490.0" y="26.0" fill="#5B6862" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">тысяч лет назад</text>
+<text x="236.0" y="26.0" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-style="italic">← раньше</text>
+<text x="744.0" y="26.0" fill="#5B6862" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-style="italic">позже →</text>
+<line x1="236.0" y1="58.0" x2="236.0" y2="430.0" stroke="#C7CFC4" stroke-width="1.2" stroke-opacity="1.0"/>
+<text x="236.0" y="52.0" fill="#1B2420" font-size="12" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">25</text>
+<line x1="269.9" y1="58.0" x2="269.9" y2="430.0" stroke="#C7CFC4" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="269.9" y="52.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">24</text>
+<line x1="303.7" y1="58.0" x2="303.7" y2="430.0" stroke="#C7CFC4" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="303.7" y="52.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">23</text>
+<line x1="337.6" y1="58.0" x2="337.6" y2="430.0" stroke="#C7CFC4" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="337.6" y="52.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">22</text>
+<line x1="371.5" y1="58.0" x2="371.5" y2="430.0" stroke="#C7CFC4" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="371.5" y="52.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">21</text>
+<line x1="405.3" y1="58.0" x2="405.3" y2="430.0" stroke="#C7CFC4" stroke-width="1.2" stroke-opacity="1.0"/>
+<text x="405.3" y="52.0" fill="#1B2420" font-size="12" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">20</text>
+<line x1="439.2" y1="58.0" x2="439.2" y2="430.0" stroke="#C7CFC4" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="439.2" y="52.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">19</text>
+<line x1="473.1" y1="58.0" x2="473.1" y2="430.0" stroke="#C7CFC4" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="473.1" y="52.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">18</text>
+<line x1="506.9" y1="58.0" x2="506.9" y2="430.0" stroke="#C7CFC4" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="506.9" y="52.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">17</text>
+<line x1="540.8" y1="58.0" x2="540.8" y2="430.0" stroke="#C7CFC4" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="540.8" y="52.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">16</text>
+<line x1="574.7" y1="58.0" x2="574.7" y2="430.0" stroke="#C7CFC4" stroke-width="1.2" stroke-opacity="1.0"/>
+<text x="574.7" y="52.0" fill="#1B2420" font-size="12" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">15</text>
+<line x1="608.5" y1="58.0" x2="608.5" y2="430.0" stroke="#C7CFC4" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="608.5" y="52.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">14</text>
+<line x1="642.4" y1="58.0" x2="642.4" y2="430.0" stroke="#C7CFC4" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="642.4" y="52.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">13</text>
+<line x1="676.3" y1="58.0" x2="676.3" y2="430.0" stroke="#C7CFC4" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="676.3" y="52.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">12</text>
+<line x1="710.1" y1="58.0" x2="710.1" y2="430.0" stroke="#C7CFC4" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="710.1" y="52.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">11</text>
+<line x1="744.0" y1="58.0" x2="744.0" y2="430.0" stroke="#C7CFC4" stroke-width="1.2" stroke-opacity="1.0"/>
+<text x="744.0" y="52.0" fill="#1B2420" font-size="12" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">10</text>
+<text x="222.0" y="96.5" fill="#1B2420" font-size="13" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Следы в Уайт-Сэндс</text>
+<rect x="303.7" y="87.0" width="67.7" height="10.0" rx="4" fill="url(#hatch)" fill-opacity="1.0"/>
+<rect x="303.7" y="87.0" width="67.7" height="10" rx="4" fill="none" stroke="#1B2420" stroke-opacity=".7"/>
+<text x="379.5" y="96.5" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">23–21 — спорно</text>
+<text x="222.0" y="129.0" fill="#1B2420" font-size="13" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Расхождение северной</text>
+<text x="222.0" y="144.0" fill="#1B2420" font-size="13" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">и южной ветвей</text>
+<rect x="490.0" y="127.0" width="98.2" height="10" rx="4" fill="#5B6862" fill-opacity=".12" stroke="#5B6862" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="596.2" y="136.5" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">17,5–14,6 — расчёт</text>
+<text x="222.0" y="176.5" fill="#1B2420" font-size="13" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Прибрежный путь открыт</text>
+<rect x="484.9" y="167.0" width="22.0" height="10.0" rx="0" fill="url(#fadein)" fill-opacity="1.0"/>
+<rect x="506.9" y="167.0" width="237.1" height="10.0" rx="4" fill="#007A9A" fill-opacity="0.85"/>
+<text x="478.9" y="176.5" fill="#1B2420" font-size="12.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">после ≈ 17</text>
+<text x="222.0" y="216.5" fill="#1B2420" font-size="13" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Купер-Ферри, древнейшая стадия</text>
+<rect x="521.8" y="207.0" width="43.3" height="10.0" rx="4" fill="#1B2420" fill-opacity="0.85"/>
+<text x="573.2" y="216.5" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">16,56–15,28</text>
+<text x="222.0" y="256.5" fill="#1B2420" font-size="13" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Монте-Верде, верхний слой</text>
+<rect x="599.1" y="247.0" width="12.0" height="10.0" rx="3" fill="url(#hatch-fine)" fill-opacity="1.0"/>
+<rect x="599.1" y="247.0" width="12.0" height="10" rx="3" fill="none" stroke="#1B2420" stroke-opacity=".7"/>
+<text x="591.1" y="256.5" fill="#1B2420" font-size="12.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">14,22–13,98 — спорно (2026)</text>
+<text x="222.0" y="289.0" fill="#1B2420" font-size="13" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Безлёдный коридор</text>
+<text x="222.0" y="304.0" fill="#1B2420" font-size="13" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">открыт целиком</text>
+<rect x="615.3" y="287.0" width="128.7" height="10.0" rx="4" fill="#007A9A" fill-opacity="0.45"/>
+<line x1="598.4" y1="292.0" x2="632.2" y2="292.0" stroke="#1B2420" stroke-width="1.6" stroke-opacity="1.0"/>
+<line x1="598.4" y1="285.0" x2="598.4" y2="299.0" stroke="#1B2420" stroke-width="1.6" stroke-opacity="1.0"/>
+<line x1="632.2" y1="285.0" x2="632.2" y2="299.0" stroke="#1B2420" stroke-width="1.6" stroke-opacity="1.0"/>
+<circle cx="615.3" cy="292.0" r="4" fill="#007A9A" stroke="#EDF0EA" stroke-width="1.5"/>
+<text x="590.4" y="296.5" fill="#1B2420" font-size="12.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">13,8 ± 0,5</text>
+<text x="222.0" y="336.5" fill="#1B2420" font-size="13" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Кловис</text>
+<rect x="640.7" y="327.0" width="10.2" height="10.0" rx="4" fill="#1B2420" fill-opacity="0.85"/>
+<text x="658.9" y="336.5" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">13,05–12,75</text>
+<text x="222.0" y="376.5" fill="#1B2420" font-size="13" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Коридор пригоден для жизни</text>
+<rect x="650.9" y="367.0" width="10" height="10" fill="#007A9A" transform="rotate(45 655.9 372.0)"/>
+<text x="666.9" y="376.5" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">≈ 12,6</text>
+<text x="222.0" y="416.5" fill="#1B2420" font-size="13" text-anchor="end" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Берингия затоплена</text>
+<rect x="705.1" y="407.0" width="10" height="10" fill="#007A9A" transform="rotate(45 710.1 412.0)"/>
+<text x="721.1" y="416.5" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">≈ 11</text>
+<rect x="24.0" y="453.0" width="26.0" height="10.0" rx="4" fill="#1B2420" fill-opacity="0.85"/>
+<text x="60.0" y="462.5" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">стоянки и культуры</text>
+<rect x="384.0" y="453.0" width="26.0" height="10.0" rx="4" fill="#007A9A" fill-opacity="0.85"/>
+<text x="420.0" y="462.5" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">пути и ландшафт: ледники, коридор, суша</text>
+<rect x="24" y="475" width="26" height="10" rx="4" fill="#5B6862" fill-opacity=".12" stroke="#5B6862" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="60.0" y="484.5" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">генетический расчёт, а не наблюдение</text>
+<rect x="384.0" y="475.0" width="26.0" height="10.0" rx="4" fill="url(#hatch)" fill-opacity="1.0"/>
+<text x="420.0" y="484.5" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">датировка спорна</text>
+<text x="744.0" y="518.0" fill="#5B6862" font-size="12" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-style="italic">Даты — из публикаций, на которые ссылается глава; ромб — точечная оценка «около»</text>
+</svg>

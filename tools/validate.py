@@ -142,6 +142,59 @@ def check_theses(t) -> list[str]:
     return errors
 
 
+def iter_peopling(p):
+    for s in p["sites"]:
+        yield f"стоянка {s['id']}", s
+    for c in p["corridor"]:
+        yield f"коридор {c['id']}", c
+    for ev in p["events"]:
+        yield f"событие {ev['id']}", ev
+    for n in p["lineages"]["nodes"]:
+        yield f"линия {n['id']}", n
+    for link in p["lineages"]["links"]:
+        yield f"связь {link['from']}→{link['to']}", link
+
+
+def check_peopling(p) -> list[str]:
+    """Время — в тыс. лет назад: начало не моложе конца; связи ведут к существующим линиям."""
+    errors = unique([s["id"] for s in p["sites"]], "peopling: стоянка")
+    errors += unique([c["id"] for c in p["corridor"]], "peopling: точка коридора")
+    errors += unique([ev["id"] for ev in p["events"]], "peopling: событие")
+    nodes = [n["id"] for n in p["lineages"]["nodes"]]
+    errors += unique(nodes, "peopling: линия")
+    for label, rec in iter_peopling(p):
+        t = rec.get("time")
+        if t is None:
+            continue
+        if t["dating"] == "documented":  # всё в наборе старше 1500 г.
+            errors.append(f"peopling: {label}: точная дата до {EXACT_BEFORE} г.")
+        if t["to"] is not None and t["to"] > t["from"]:
+            errors.append(f"peopling: {label}: конец ({t['to']}) старше начала ({t['from']})")
+        if t.get("point") and t["to"] is not None:
+            errors.append(f"peopling: {label}: точечная оценка с концом периода")
+        if rec.get("contested_since") and not rec.get("contested"):
+            errors.append(f"peopling: {label}: contested_since без contested")
+    # стоянка на карте и её событие на шкале — одна датировка и один статус спора
+    sites = {s["id"]: s for s in p["sites"]}
+    for ev in p["events"]:
+        site = sites.get(ev["id"])
+        if site is None:
+            continue
+        for field in ("time", "contested", "contested_since"):
+            if site.get(field) != ev.get(field):
+                errors.append(f"peopling: стоянка и событие {ev['id']!r}: расходится {field}")
+    for link in p["lineages"]["links"]:
+        for side in ("from", "to"):
+            if link[side] not in nodes:
+                errors.append(f"peopling: связь: неизвестная линия {link[side]!r}")
+        share = link.get("share")
+        if share and share["low"] > share["high"]:
+            errors.append(f"peopling: связь {link['from']}→{link['to']}: доля low > high")
+        if share and link["kind"] != "admixture":
+            errors.append(f"peopling: связь {link['from']}→{link['to']}: доля только у смешения")
+    return errors
+
+
 def unique(values: list, what: str) -> list[str]:
     seen: set = set()
     errors = []
@@ -162,6 +215,7 @@ DATASETS = {
     "genealogy": (iter_genealogy, check_genealogy),
     "zones": (iter_zones, check_zones),
     "theses": (iter_theses, check_theses),
+    "peopling": (iter_peopling, check_peopling),
 }
 
 

@@ -2091,98 +2091,150 @@ def fig_modes(t: dict) -> str:
     )
 
 
-# ── Рис. 3.2. Вещи и люди в пути (карта по data/complex.json)
+# ── Рис. 3.2 и 3.3. Вещи в пути и люди в пути (карты по data/complex.json)
+#
+# Обе карты рисует route_map по спецификации: какие виды связей показывать, рамка, подписи.
+# Точки берутся только те, что стоят на показанных связях (и места разведения ара — на
+# карте вещей).
 
-ROUTES_W, ROUTES_H = 760, 780
-ROUTES_CENTER = (-98, 31)
-ROUTES_FIT = [(-127, 50.5), (-67, 48.5), (-127, 21), (-118, 11), (-80, 11.5)]
 # Линии без начала: откуда начинается хвост (lon, lat) — схема направления, а не место.
 # Какао и ара подходят к Чако с юга, мимо Олд-Тауна и Пакиме, а не через них: Мезоамерика
 # лежит к югу, но откуда и каким путём они шли на самом деле, неизвестно, — линия и не
 # начинается нигде. Ближайшие плантации какао по Крауну — и на севере Веракруса, и в
 # Колиме, так что ни восток, ни запад хвост не выбирает.
-ROUTE_TAILS = {
-    "cacao_chaco": [(-105.8, 28.9)],
-    "macaw_chaco": [(-104.8, 29.3)],
-    "cahokia_migrants": [(-96.6, 39.6), (-92.2, 43.2), (-89.6, 34.6)],
+THINGS_MAP = {
+    "kinds": {"thing", "disproved"},
+    "size": (760, 720),
+    "center": (-98, 33),
+    "fit": [(-127, 50.5), (-67, 48.5), (-127, 23), (-118, 15.5), (-80, 16)],
+    "seas": [
+        (-121, 24, "Тихий океан", 14),
+        (-89.6, 27.3, "Мексиканский", 12),
+        (-89.6, 26.3, "залив", 12),
+        (-66, 33, "Атлантический", 13),
+        (-66, 31.8, "океан", 13),
+    ],
+    "tails": {"cacao_chaco": [(-105.8, 28.9)], "macaw_chaco": [(-104.8, 29.3)]},
+    "bend": {"copper_superior": 0.0, "obsidian": 0.1, "turquoise": 0.0},
+    # Подписи путей: (lon, lat, выравнивание, строки). Числа — из данных: {d} расстояние,
+    # {s} доля, {s2} доля в самой точке to, {y} время.
+    "link_labels": {
+        "copper_superior": (
+            -82.2,
+            45.9,
+            "start",
+            [
+                "медь Верхнего озера",
+                "{d} по прямой",
+                "{s} вещей семи центров;",
+                "в самой Маунд-Сити",
+                "меди Мичипикотена нет",
+            ],
+        ),
+        "copper_appalachia": (
+            -79.4,
+            32.5,
+            "end",
+            ["медь южных Аппалачей", "{d} · {s} по семи центрам,", "в самой Маунд-Сити — {s2}"],
+        ),
+        "obsidian": (-101.5, 42.0, "middle", ["обсидиан Йеллоустона"]),
+        "cacao_chaco": (-103.8, 27.4, "end", ["какао — откуда,", "неизвестно"]),
+        "macaw_chaco": (-103.8, 25.5, "end", ["ара: природный ареал —", "{d} южнее"]),
+        "turquoise": (
+            -103.1,
+            32.4,
+            "start",
+            [
+                "бирюза юго-запада",
+                "в Теночтитлане —",
+                "не подтвердилась",
+                "(последний век",
+                "перед испанцами)",
+            ],
+        ),
+    },
+    "place_labels": {  # (dx, dy, выравнивание); подпись — из name; None — без подписи
+        "mound_city": (-2, -12, "start"),
+        "keweenaw": (-6, 15, "end"),
+        "isle_royale": (-8, -6, "end"),
+        "michipicoten": (8, -6, "start"),
+        "appalachia": None,  # район назван в подписи пути
+        "obsidian_cliff": (0, -10, "middle"),
+        "chaco": (9, -6, "start"),
+        "old_town": (-10, 0, "end"),
+        "paquime": (-10, 4, "end"),
+        "southwest": None,  # район назван в подписи пути
+        "tenochtitlan": (-4, 17, "end"),
+    },
+    # Пояснения под подписью точки: (путь, откуда доля, или None; строки; сдвиг по x).
+    "place_extra": {"mound_city": (None, ["на карте — все центры", "хоупвелла в Огайо"], 10)},
+    "legend": [
+        ("thing", "путь вещи: источник найден по составу"),
+        ("tail", "путь вещи: откуда — неизвестно"),
+        ("disproved", "связь, которую анализ не подтвердил"),
+        ("source", "источник материала"),
+        ("breeding", "где разводили ара"),
+        ("probable", "вероятный центр разведения"),
+    ],
+    "notes": [
+        "Линии — направления, а не дороги.",
+        "Положение точек ориентировочное.",
+        "Даты приблизительные.",
+    ],
+    "legend_w": 276,
+    "legend_right": True,  # слева внизу — подписи какао и ара
 }
-# Изгиб линий: доля длины, + влево по ходу.
-ROUTES_BEND = {
-    "copper_superior": 0.0,
-    "obsidian": 0.1,
-    "turquoise": 0.0,
-    "teo_tikal": -0.2,
-    "teo_chiapas": 0.1,
-    "teo_michoacan": 0.15,
+
+PEOPLE_MAP = {
+    "kinds": {"people"},
+    # Кахокия вне рамки, а откуда шли её переселенцы, неизвестно, — она описана в тексте.
+    "exclude": {"cahokia_migrants"},
+    "size": (760, 480),
+    "center": (-96, 18),
+    "fit": [(-103.6, 21.6), (-88.2, 21.6), (-103.6, 14.6), (-88.2, 14.6)],
+    "seas": [
+        (-100.6, 16.2, "Тихий океан", 14),
+        (-94.6, 21.1, "Мексиканский залив", 13),
+    ],
+    "tails": {},
+    "bend": {"teo_tikal": -0.18, "teo_chiapas": 0.12, "teo_michoacan": 0.12, "teo_oaxaca": -0.1},
+    "link_labels": {
+        "teo_tikal": (-92.6, 19.75, "start", ["вторжение в Тикаль,", "{y}, по надписям майя"]),
+    },
+    "place_labels": {
+        "teotihuacan": (0, -14, "middle"),
+        "tikal": (9, 16, "start"),
+        "oaxaca": (0, 20, "middle"),
+        "michoacan": (0, 20, "middle"),
+        "gulf_coast": (10, 4, "start"),
+        "chiapas": (0, 20, "middle"),
+    },
+    "place_extra": {
+        "teotihuacan": (
+            "teo_tlajinga",
+            ["в районе Тлахинга ≈{s} погребённых —", "переселенцы; откуда — не сказано"],
+            0,
+            -70,
+        ),
+        "oaxaca": (None, ["«квартал Оахаки»"], 0),
+        "gulf_coast": (None, ["«квартал торговцев»"], 0),
+        "michoacan": (None, ["небольшая группа"], 0),
+        "chiapas": (None, ["погребены в Теопанкаско"], 0),
+    },
+    "legend": [
+        ("people", "путь людей"),
+        ("origin", "откуда пришли (условная точка района)"),
+        ("center", "город"),
+    ],
+    "notes": [
+        "Линии — направления, а не дороги.",
+        "Время переселений в Теотиуакан не указано;",
+        "378 г. — год из надписей майя.",
+    ],
+    "legend_w": 290,
 }
-ROUTES_SKIP = {"teo_tlajinga", "cahokia_migrants"}  # подписью у точки, а не у линии
-# Подписи: (lon, lat, выравнивание, строки). Числа — из данных, в строках есть {d} и {s}.
-ROUTES_LABELS = {
-    "copper_superior": (
-        -82.2,
-        45.9,
-        "start",
-        [
-            "медь Верхнего озера",
-            "{d} по прямой",
-            "{s} вещей семи центров;",
-            "в самой Маунд-Сити",
-            "меди Мичипикотена нет",
-        ],
-    ),
-    "copper_appalachia": (
-        -79.4,
-        32.5,
-        "end",
-        ["медь южных Аппалачей", "{d} · {s} по семи центрам,", "в самой Маунд-Сити — {s2}"],
-    ),
-    "obsidian": (-101.5, 42.0, "middle", ["обсидиан Йеллоустона"]),
-    "cacao_chaco": (-103.8, 27.4, "end", ["какао — откуда,", "неизвестно"]),
-    "macaw_chaco": (-103.8, 25.5, "end", ["ара: природный ареал —", "{d} южнее"]),
-    "turquoise": (
-        -103.1,
-        32.4,
-        "start",
-        [
-            "бирюза юго-запада",
-            "в Теночтитлане —",
-            "не подтвердилась",
-            "(последний век",
-            "перед испанцами)",
-        ],
-    ),
-    "teo_tikal": (-93.6, 22.4, "start", ["вторжение в Тикаль,", "{y} (надписи майя)"]),
-}
-PLACE_LABEL = {  # (dx, dy, выравнивание); подпись — из name
-    "mound_city": (-2, -12, "start"),  # пояснение «все центры» — в PLACE_EXTRA
-    "keweenaw": (-6, 15, "end"),
-    "isle_royale": (-8, -6, "end"),
-    "michipicoten": (8, -6, "start"),
-    "appalachia": None,  # район назван в подписи пути
-    "obsidian_cliff": (0, -10, "middle"),
-    "chaco": (9, -6, "start"),
-    "old_town": (-10, 0, "end"),
-    "paquime": (-10, 4, "end"),
-    "southwest": None,  # район назван в подписи пути
-    "teotihuacan": (4, -11, "start"),
-    "tenochtitlan": (-4, 17, "end"),
-    "tikal": (8, 15, "start"),
-    "cahokia": (-9, 16, "end"),
-    "oaxaca": (-6, 16, "end"),
-    "michoacan": (-6, -8, "end"),
-    "gulf_coast": (8, 4, "start"),
-    "chiapas": (6, 16, "start"),
-}
-# Пояснения у точек из данных пути (что и какая доля). Тлахинга (45% переселенцев в одном
-# районе Теотиуакана) на карте не подписана: направления нет, а у города нет места.
-PLACE_EXTRA = {
-    "cahokia": (
-        "cahokia_migrants",
-        ["{s} погребённых", "выросла не здесь;", "откуда — не указано"],
-    ),
-    "mound_city": (None, ["на карте — все центры", "хоупвелла в Огайо"]),
-}
-PLACE_EXTRA_DX = {"mound_city": 10}  # сдвиг пояснения вправо от знака
+
+
 # Пояснения у центров разведения: когда — из данных; формулировки — из главы.
 BREEDING_NOTE = {
     "old_town": ["разведение (по скорлупе яиц), {w}"],
@@ -2215,13 +2267,38 @@ def km_text(d: dict) -> str:
     return f"{grouped(int(d['low']))}–{grouped(int(d['high']))} км"
 
 
-def fig_routes3(t: dict) -> str:
+def share_text(link: dict) -> str:
+    return f"{num(link['share_pct'])}%" if "share_pct" in link else link.get("share_words", "")
+
+
+def map_curve(x0, y0, x1, y1, bend, trim0=7.0, trim1=9.0):
+    """Квадратичная кривая от (x0, y0) к (x1, y1) с обрезанными концами; bend — доля длины."""
+    dx, dy = x1 - x0, y1 - y0
+    dist = math.hypot(dx, dy) or 1
+    ux, uy = dx / dist, dy / dist
+    x0, y0, x1, y1 = x0 + ux * trim0, y0 + uy * trim0, x1 - ux * trim1, y1 - uy * trim1
+    cx, cy = (x0 + x1) / 2 + uy * bend * dist, (y0 + y1) / 2 - ux * bend * dist
+    return (x0, y0, cx, cy, x1, y1)
+
+
+def route_map(t: dict, spec: dict, title: str, desc: str) -> str:
     data = complex_data()
-    w, h = ROUTES_W, ROUTES_H
-    pr = map_projection(ROUTES_CENTER, ROUTES_FIT, w, h)
+    w, h = spec["size"]
+    pr = map_projection(spec["center"], spec["fit"], w, h)
     land_d, lakes_d = basemap_paths(pr, w, h)
-    places = {p["id"]: p for p in data["places"]}
+    all_places = {p["id"]: p for p in data["places"]}
+    links = [
+        lk
+        for lk in data["links"]
+        if lk["kind"] in spec["kinds"] and lk["id"] not in spec.get("exclude", ())
+    ]
+    links_by_id = {lk["id"]: lk for lk in data["links"]}
+    used = {pid for lk in links for pid in [*lk["from"], lk["to"]]}
+    if "thing" in spec["kinds"]:
+        used |= {pid for pid, p in all_places.items() if p["role"] == "breeding"}
+    places = {pid: p for pid, p in all_places.items() if pid in used}
     col = {k: t[v] for k, v in KIND.items()}
+    kinds = sorted({lk["kind"] for lk in links})
 
     def xy(pid):
         p = places[pid]
@@ -2231,7 +2308,7 @@ def fig_routes3(t: dict) -> str:
         "<defs>",
         f'<clipPath id="frame"><rect width="{w}" height="{h}"/></clipPath>',
         f'<path id="land" d="{land_d}"/>',
-        *(arrow_marker(f"head-{k}", c, 5) for k, c in col.items()),
+        *(arrow_marker(f"head-{k}", col[k], 5) for k in kinds),
         "</defs>",
         '<g clip-path="url(#frame)">',
         f'<use href="#land" fill="{t["panel"]}"/>',
@@ -2241,37 +2318,21 @@ def fig_routes3(t: dict) -> str:
         f'stroke-opacity=".6"/>',
         "</g>",
     ]
-
-    def sea(lon, lat, s, size=13.5):
+    for lon, lat, s, size in spec["seas"]:
         x, y = pr(lon, lat)
-        return text(x, y, s, t["muted"], size, "middle", 400, SERIF, italic=True, halo=t["bg"])
-
-    b.append(sea(-121, 22, "Тихий океан", 14))
-    b.append(sea(-90.5, 25.2, "Мексиканский", 12))
-    b.append(sea(-90.5, 24.2, "залив", 12))
-    b.append(sea(-66, 33, "Атлантический", 13))
-    b.append(sea(-66, 31.8, "океан", 13))
+        b.append(text(x, y, s, t["muted"], size, "middle", 400, SERIF, italic=True, halo=t["bg"]))
 
     lines, marks, labels = [], [], []
-
-    def curve(x0, y0, x1, y1, bend, trim0=7.0, trim1=9.0):
-        dx, dy = x1 - x0, y1 - y0
-        dist = math.hypot(dx, dy) or 1
-        ux, uy = dx / dist, dy / dist
-        x0, y0, x1, y1 = x0 + ux * trim0, y0 + uy * trim0, x1 - ux * trim1, y1 - uy * trim1
-        cx, cy = (x0 + x1) / 2 + uy * bend * dist, (y0 + y1) / 2 - ux * bend * dist
-        return (x0, y0, cx, cy, x1, y1)
-
-    for link in data["links"]:
-        if link["id"] in ROUTES_SKIP and not link["from"] and link["id"] not in ROUTE_TAILS:
-            continue
+    for link in links:
+        if not link["from"] and link["id"] not in spec["tails"]:
+            continue  # ни начала, ни хвоста — подписью у точки (place_extra)
         kind, c = link["kind"], col[link["kind"]]
         x1, y1 = xy(link["to"])
-        bend = ROUTES_BEND.get(link["id"], 0.05)
+        bend = spec["bend"].get(link["id"], 0.05)
         if link["from"]:
             for pid in link["from"]:
                 x0, y0 = xy(pid)
-                a, bb, cx, cy, z, zz = curve(x0, y0, x1, y1, bend)
+                a, bb, cx, cy, z, zz = map_curve(x0, y0, x1, y1, bend)
                 dash = ' stroke-dasharray="6 4"' if kind == "disproved" else ""
                 lines.append(
                     f'<path d="M{a:.1f},{bb:.1f}Q{cx:.1f},{cy:.1f} {z:.1f},{zz:.1f}" fill="none" '
@@ -2283,9 +2344,9 @@ def fig_routes3(t: dict) -> str:
                     for s in (1, -1):
                         lines.append(line(mx - 7, my - 7 * s, mx + 7, my + 7 * s, t["ink"], 2.4))
         else:  # начала нет: линия появляется из ничего
-            for k, (lon, lat) in enumerate(ROUTE_TAILS[link["id"]]):
+            for k, (lon, lat) in enumerate(spec["tails"][link["id"]]):
                 x0, y0 = pr(lon, lat)
-                a, bb, cx, cy, z, zz = curve(x0, y0, x1, y1, 0.0, 0, 9)
+                a, bb, cx, cy, z, zz = map_curve(x0, y0, x1, y1, 0.0, 0, 9)
                 gid = f"fade-{link['id']}-{k}"
                 dash = ' stroke-dasharray="5 4"' if kind == "thing" else ""
                 lines.append(
@@ -2298,16 +2359,15 @@ def fig_routes3(t: dict) -> str:
                     f'stroke="url(#{gid})" stroke-width="2.2" stroke-linecap="round"{dash} '
                     f'marker-end="url(#head-{kind})"/>'
                 )
-        lab = ROUTES_LABELS.get(link["id"])
+        lab = spec["link_labels"].get(link["id"])
         if lab:
             lon, lat, anchor, rows = lab
             d = km_text(link["distance_km"]) if link.get("distance_km") else ""
-            s = f"{num(link['share_pct'])}%" if "share_pct" in link else link.get("share_words", "")
             s2 = f"{num(link['share_at_to']['pct'])}%" if "share_at_to" in link else ""
             yr = span_text(link["when"]) if link.get("when") else ""
             lx, ly = pr(lon, lat)
             for k, row in enumerate(rows):
-                s1 = row.format(d=d, s=s, s2=s2, y=yr)
+                s1 = row.format(d=d, s=share_text(link), s2=s2, y=yr)
                 labels.append(
                     text(
                         lx,
@@ -2343,38 +2403,39 @@ def fig_routes3(t: dict) -> str:
                 f'<polygon points="{x:.1f},{y - q:.1f} {x + q:.1f},{y:.1f} {x:.1f},{y + q:.1f} '
                 f'{x - q:.1f},{y:.1f}" fill="{c}" stroke="{t["bg"]}" stroke-width="1.5"/>'
             )
-        if PLACE_LABEL[pid] is None:
+        if spec["place_labels"][pid] is None:
             continue
-        dx, dy, anchor = PLACE_LABEL[pid]
+        dx, dy, anchor = spec["place_labels"][pid]
         weight = 600 if role == "center" else 400
         size = 13 if role == "center" else 12
         labels.append(text(x + dx, y + dy, p["name"], t["ink"], size, anchor, weight, halo=t["bg"]))
-        link_id, extra = PLACE_EXTRA.get(pid, (None, []))
+        link_id, extra, ex, *ey = spec["place_extra"].get(pid, (None, [], 0))
         if role == "breeding":
             extra = [row.format(w=span_text(p["when"])) for row in BREEDING_NOTE[pid]]
-        ex = x + dx + PLACE_EXTRA_DX.get(pid, 0)
+        y_extra = y + (ey[0] if ey else dy)
         for k, row in enumerate(extra):
             if link_id:
-                lk = next(lk for lk in data["links"] if lk["id"] == link_id)
-                row = row.format(s=lk.get("share_words") or f"{num(lk['share_pct'])}%")
+                row = row.format(s=share_text(links_by_id[link_id]))
             labels.append(
-                text(ex, y + dy + 14 * (k + 1), row, t["muted"], 11.5, anchor, halo=t["bg"])
+                text(
+                    x + dx + ex,
+                    y_extra + 14 * (k + 1),
+                    row,
+                    t["muted"],
+                    11.5,
+                    anchor,
+                    halo=t["bg"],
+                )
             )
 
     b += lines + marks + labels
 
-    # легенда — в Тихом океане
-    lx, ly = 18, h - 196
-    b.append(rect(8, ly - 16, 276, 196, t["bg"], 6, 0.86))
-    rows = [
-        ("thing", "путь вещи: источник найден по составу"),
-        ("tail", "путь вещи: откуда — неизвестно"),
-        ("people", "путь людей"),
-        ("disproved", "связь, которую анализ не подтвердил"),
-        ("source", "источник материала"),
-        ("breeding", "где разводили ара"),
-        ("probable", "вероятный центр разведения"),
-    ]
+    # легенда — в нижнем углу, в море
+    rows, notes = spec["legend"], spec["notes"]
+    box_h = 16 + len(rows) * 20 + len(notes) * 15 + 4
+    bx = w - spec["legend_w"] - 8 if spec.get("legend_right") else 8
+    lx, ly = bx + 10, h - box_h + 8
+    b.append(rect(bx, ly - 16, spec["legend_w"], box_h, t["bg"], 6, 0.86))
     for k, (kind, s1) in enumerate(rows):
         yy = ly + k * 20
         if kind in ("thing", "people", "disproved"):
@@ -2400,44 +2461,60 @@ def fig_routes3(t: dict) -> str:
                 f'<polygon points="{lx + 13},{yy - 5} {lx + 18},{yy} {lx + 13},{yy + 5} '
                 f'{lx + 8},{yy}" fill="{col["thing"]}"/>'
             )
+        elif kind == "origin":
+            b.append(
+                f'<circle cx="{lx + 13}" cy="{yy}" r="3.6" fill="{t["bg"]}" '
+                f'stroke="{col["people"]}" stroke-width="1.8"/>'
+            )
+        elif kind == "center":
+            b.append(f'<circle cx="{lx + 13}" cy="{yy}" r="4.6" fill="{t["ink"]}"/>')
         else:
             b.append(breeding_mark(lx + 13, yy, t["bg"], col["thing"], kind == "probable"))
         b.append(text(lx + 36, yy + 4, s1, t["ink"], 12, halo=t["bg"]))
-    notes = [
-        "Линии — направления, а не дороги.",
-        "Положение точек ориентировочное.",
-        "Даты приблизительные, кроме года из надписей.",
-    ]
     for k, s1 in enumerate(notes):
         b.append(text(lx, ly + len(rows) * 20 + 6 + k * 15, s1, t["muted"], 11.5, halo=t["bg"]))
     b.append(
         f'<rect x=".5" y=".5" width="{w - 1}" height="{h - 1}" fill="none" stroke="{t["rule"]}"/>'
     )
-    links = {link["id"]: link for link in data["links"]}
+    return svg(w, h, t, b, title, desc)
+
+
+def fig_routes3(t: dict) -> str:
+    links = {link["id"]: link for link in complex_data()["links"]}
     cu, ap = links["copper_superior"], links["copper_appalachia"]
-    return svg(
-        w,
-        h,
+    return route_map(
         t,
-        b,
-        "Вещи и люди в пути: Северная Америка и Мезоамерика",
+        THINGS_MAP,
+        "Вещи в пути: Северная Америка и Мезоамерика",
         "Карта. К центрам хоупвелла в Огайо (на карте — одна точка «Маунд-Сити») идут "
         f"стрелки: медь Верхнего озера ({km_text(cu['distance_km'])} по прямой, "
         f"{num(cu['share_pct'])}% вещей семи центров; в самой Маунд-Сити меди Мичипикотена "
         f"нет), медь южных Аппалачей ({km_text(ap['distance_km'])}, {num(ap['share_pct'])}% по "
         f"семи центрам, в самой Маунд-Сити — {num(ap['share_at_to']['pct'])}%) и обсидиан "
-        "Йеллоустона. К Чако с юга — пунктиры без начала: какао и ара; отмечены Олд-Таун, где "
-        "разводили ара, и Пакиме — вероятный центр разведения без прямых свидетельств. "
-        "Перечёркнутая стрелка от юго-запада к Теночтитлану — связь, которую не подтвердил "
-        "анализ бирюзы последнего века перед испанцами. Стрелки людей ведут в Теотиуакан из "
-        "Мичоакана, "
-        "Оахаки, Чьяпаса и с побережья Мексиканского залива, из Теотиуакана — в Тикаль "
-        f"({span_text(links['teo_tikal']['when'])}), в Кахокию — без начала. Положение точек "
+        "Йеллоустона. К Чако (Пуэбло-Бонито) с юга — пунктиры без начала: какао и ара; "
+        "отмечены Олд-Таун, где разводили ара, и Пакиме — вероятный центр разведения без "
+        "прямых свидетельств. Перечёркнутая стрелка от юго-запада к Теночтитлану — связь, "
+        "которую не подтвердил анализ бирюзы последнего века перед испанцами. Положение точек "
         "ориентировочное.",
     )
 
 
-# ── Рис. 3.4. Оценки населения крупнейших городов (оценки)
+def fig_people(t: dict) -> str:
+    links = {link["id"]: link for link in complex_data()["links"]}
+    return route_map(
+        t,
+        PEOPLE_MAP,
+        "Люди в пути: Центральная Мексика и земли майя",
+        "Карта. В Теотиуакан ведут стрелки людей из Оахаки («квартал Оахаки»), с побережья "
+        "Мексиканского залива («квартал торговцев»), из Мичоакана (небольшая группа) и из "
+        "Чьяпаса (погребены в Теопанкаско); в районе Тлахинга около "
+        f"{share_text(links['teo_tlajinga'])} погребённых — переселенцы, откуда — не сказано. "
+        "Из Теотиуакана в Тикаль — стрелка вторжения, "
+        f"{span_text(links['teo_tikal']['when'])}, по надписям майя. Точки районов условные.",
+    )
+
+
+# ── Рис. 3.5. Оценки населения крупнейших городов (оценки)
 
 POP_FROM, POP_TO = 1_000, 1_000_000
 POP_CITIES = ["Кахокия", "Теотиуакан", "Теночтитлан"]
@@ -2627,7 +2704,7 @@ def fig_population(t: dict) -> str:
     )
 
 
-# ── Рис. 3.5. Хронология инков: хроники и радиоуглерод (данные)
+# ── Рис. 3.6. Хронология инков: хроники и радиоуглерод (данные)
 
 INCA_FROM, INCA_TO = 1300, 1540
 INCA_SOFT = 12  # px: полуширина размытого края у начала «примерно с …»
@@ -2799,6 +2876,7 @@ FIGURES: dict[str, Callable[[dict], str]] = {
     "02-sisters": fig_sisters,
     "03-modes": fig_modes,
     "03-routes": fig_routes3,
+    "03-people": fig_people,
     "03-population": fig_population,
     "03-inca-chronology": fig_inca,
 }

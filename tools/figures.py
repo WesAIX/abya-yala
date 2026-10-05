@@ -24,6 +24,7 @@ TOKENS = ROOT / "visuals" / "shared" / "tokens.css"
 BASEMAP = ROOT / "visuals" / "shared" / "americas-50m.geojson"
 PEOPLING = ROOT / "data" / "peopling.json"
 AGRICULTURE = ROOT / "data" / "agriculture.json"
+COMPLEX = ROOT / "data" / "complex.json"
 OUT = ROOT / "chapters" / "img"
 
 SANS = "'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"
@@ -1881,6 +1882,912 @@ def fig_sisters(t: dict) -> str:
     )
 
 
+# ── Глава 3. Общее: данные, цвета видов связей
+
+# Вещь и люди — пара токенов --z-n / --z-t: validate_palette.js навыка dataviz проходит
+# для обеих тем (на фонах --bg). Третьего цвета для «не подтвердилось» нет: любой третий
+# токен проваливает проверку различимости при дальтонизме хотя бы в одной теме, поэтому
+# опровергнутая связь — нейтральный --muted, пунктир и крест (не цвет, а форма).
+KIND = {"thing": "z-n", "people": "z-t", "disproved": "muted"}
+
+
+def complex_data() -> dict:
+    return json.loads(COMPLEX.read_text(encoding="utf-8"))
+
+
+def arrow_marker(mid: str, color: str, size: float = 5.0) -> str:
+    return (
+        f'<marker id="{mid}" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="{size}" '
+        f'markerHeight="{size}" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" '
+        f'fill="{color}"/></marker>'
+    )
+
+
+def bird(shape: str, x: float, y: float, fill: str, r: float = 3.6) -> str:
+    """Маленький знак птицы на схеме 3.1: форма — материнская линия."""
+    if shape == "circle":
+        return f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r}" fill="{fill}"/>'
+    if shape == "square":
+        return rect(x - r * 0.9, y - r * 0.9, r * 1.8, r * 1.8, fill, 0.6)
+    if shape == "diamond":
+        q = r * 1.25
+        return polygon([(x, y - q), (x + q, y), (x, y + q), (x - q, y)], fill)
+    q = r * 1.2  # triangle
+    return polygon([(x, y - q), (x + q, y + q * 0.8), (x - q, y + q * 0.8)], fill)
+
+
+# ── Рис. 3.1. Четыре пути вещи или человека (схема)
+
+MODES = [  # (название, что происходит — две строки, след)
+    (
+        "Эстафета",
+        ["вещь переходит", "от соседа к соседу"],
+        "находки есть по всему пути, и чем дальше от источника, тем их меньше",
+    ),
+    (
+        "Целевой поход",
+        ["люди сами ходят", "к далёкому источнику"],
+        "у источника и у потребителя находки есть, а между ними — нет",
+    ),
+    (
+        "Промежуточный центр",
+        ["птиц разводят", "на полпути"],
+        "все птицы у потребителей — потомки немногих предков",
+    ),
+    (
+        "Переселение",
+        ["движутся", "сами люди"],
+        "стронций в зубах не местный: человек вырос в другом месте",
+    ),
+]
+
+
+def fig_modes(t: dict) -> str:
+    w, top, lane = 760, 34, 128
+    h = top + lane * len(MODES) + 12
+    x0, x1 = 206, 726  # схема: слева источник, справа потребитель
+    thing, people, ink, muted = t[KIND["thing"]], t[KIND["people"]], t["ink"], t["muted"]
+    b = [
+        "<defs>",
+        arrow_marker("head-thing", thing),
+        arrow_marker("head-people", people),
+        arrow_marker("head-muted", muted),
+        hatch_defs(t, people, "hatch-people"),
+        '<filter id="soft" x="-30%" y="-60%" width="160%" height="220%">'
+        '<feGaussianBlur stdDeviation="5"/></filter>',
+        "</defs>",
+        text(w - 14, 20, "Схема: условно", muted, 12, "end", italic=True),
+    ]
+
+    def node(x, y, label, filled=False, color=ink, r=6.5):
+        fill = color if filled else t["bg"]
+        out = [
+            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r}" fill="{fill}" stroke="{color}" '
+            'stroke-width="1.6"/>'
+        ]
+        if label:
+            out.append(text(x, y + 24, label, muted, 12, "middle"))
+        return out
+
+    def arrow(xa, ya, xz, yz, mid, color, width=1.8, dash=None, bend=0.0):
+        cx, cy = (xa + xz) / 2, (ya + yz) / 2 - bend
+        d = f' stroke-dasharray="{dash}"' if dash else ""
+        return (
+            f'<path d="M{xa:.1f},{ya:.1f}Q{cx:.1f},{cy:.1f} {xz:.1f},{yz:.1f}" fill="none" '
+            f'stroke="{color}" stroke-width="{width}" stroke-linecap="round"{d} '
+            f'marker-end="url(#{mid})"/>'
+        )
+
+    def finds(x, y, n):  # столбик находок над узлом
+        return [rect(x - 5, y - 13 - k * 7, 10, 5, thing, 1.5) for k in range(n)]
+
+    for i, (name, what, trace) in enumerate(MODES):
+        y0 = top + i * lane
+        if i % 2 == 0:
+            b.append(rect(0, y0, w, lane, t["band"], 0))
+        b.append(text(16, y0 + 30, name, ink, 15, "start", 600))
+        for k, s in enumerate(what):
+            b.append(text(16, y0 + 48 + k * 15, s, muted, 12.5))
+        yc = y0 + 70
+        b.append(text(x0 - 6, y0 + lane - 12, "След: ", ink, 12.5, "start", 600))
+        b.append(text(x0 + 32, y0 + lane - 12, trace, ink, 12.5))
+
+        if i == 0:  # эстафета: цепочка общин, находок всё меньше
+            xs = [x0 + k * (x1 - x0) / 5 for k in range(6)]
+            for k, x in enumerate(xs):
+                b += finds(x, yc, 6 - k)
+                if k:
+                    b.append(arrow(xs[k - 1] + 9, yc, x - 10, yc, "head-thing", thing))
+                b += node(x, yc, "", filled=k == 0, color=thing if k == 0 else ink)
+            b.append(text(xs[0], yc + 24, "источник", muted, 12, "middle"))
+            b.append(text((xs[1] + xs[-1]) / 2, yc + 24, "общины по цепочке", muted, 12, "middle"))
+        elif i == 1:  # целевой поход: туда и обратно, по пути пусто
+            xs, xc = x0, x1 - 24
+            mids = [xs + k * (xc - xs) / 4 for k in (1, 2, 3)]
+            b.append(arrow(xc - 8, yc - 6, xs + 10, yc - 6, "head-muted", muted, 1.4, "4 4", 76))
+            b.append(arrow(xs + 10, yc - 2, xc - 10, yc - 2, "head-thing", thing, 1.8, None, 26))
+            b.append(text((xs + xc) / 2, yc - 50, "поход туда", muted, 11.5, "middle", italic=True))
+            b.append(
+                text(
+                    (xs + xc) / 2, yc - 20, "обратно — с вещью", muted, 11.5, "middle", italic=True
+                )
+            )
+            b += finds(xs, yc, 3)
+            b += finds(xc, yc, 6)
+            for x in mids:
+                b += node(x, yc, "", r=5, color=muted)
+            b += node(xs, yc, "источник", filled=True, color=thing)
+            b += node(xc, yc, "потребитель")
+            b.append(text(mids[1], yc + 24, "общины по пути", muted, 12, "middle"))
+        elif i == 2:  # промежуточный центр: разнообразие в ареале, одна линия дальше
+            ax, cx_, zx = x0 + 44, (x0 + x1) / 2 - 4, x1 - 20
+            b.append(
+                f'<ellipse cx="{ax:.1f}" cy="{yc - 4:.1f}" rx="54" ry="26" fill="{thing}" '
+                f'fill-opacity=".28" filter="url(#soft)"/>'
+            )
+            shapes = ["circle", "square", "diamond", "triangle", "square", "circle", "diamond"]
+            spots = [(-28, -14), (-10, -18), (10, -14), (28, -8), (-20, 2), (2, 0), (22, 8)]
+            for s, (dx, dy) in zip(shapes, spots, strict=True):
+                b.append(bird(s, ax + dx, yc - 4 + dy, ink))
+            b.append(text(ax, yc + 30, "природный ареал", muted, 12, "middle"))
+            b.append(arrow(ax + 58, yc - 4, cx_ - 40, yc - 4, "head-thing", thing))
+            b.append(rect(cx_ - 34, yc - 20, 68, 32, t["panel"], 6, 1, f' stroke="{thing}"'))
+            b.append(bird("circle", cx_ - 9, yc - 4, ink))
+            b.append(bird("circle", cx_ + 9, yc - 4, ink))
+            b.append(text(cx_, yc + 30, "поселение, где разводят", muted, 12, "middle"))
+            # дальше от центра — любым путём: эстафетой (вверху) или походом (внизу)
+            xa, xz = cx_ + 38, zx - 30
+            yu, yd = yc - 32, yc + 4
+            relay = [xa + (xz - xa) * k / 3 for k in range(4)]
+            b.append(arrow(xa, yc - 14, relay[1] - 7, yu, "head-thing", thing, 1.5))
+            for k in (2, 3):
+                b.append(arrow(relay[k - 1] + 6, yu, relay[k] - 8, yu, "head-thing", thing, 1.5))
+            for x in relay[1:3]:
+                b += node(x, yu, "", r=4, color=ink)
+            b.append(
+                text(
+                    (xa + xz) / 2, yu - 8, "дальше — эстафетой", muted, 11.5, "middle", italic=True
+                )
+            )
+            b.append(arrow(xz - 4, yd - 3, xa + 2, yd - 3, "head-muted", muted, 1.3, "4 4", 10))
+            b.append(arrow(xa + 2, yd + 3, xz - 6, yd + 3, "head-thing", thing, 1.6, None, -10))
+            b.append(
+                text((xa + xz) / 2 + 24, yd + 26, "или походом", muted, 11.5, "middle", italic=True)
+            )
+            for yy in (yu, yd):
+                for j in range(3):
+                    b.append(bird("circle", zx - 16 + j * 11, yy, ink, 3.2))
+            b.append(text(zx, yc + 38, "потребители", muted, 12, "middle"))
+        else:  # переселение: зубы выдают родные места
+            hx, nx = x0 + 40, x1 - 90
+            b.append(rect(hx - 44, yc - 22, 88, 36, "url(#hatch-people)", 6, 0.6))
+            b.append(text(hx, yc + 30, "родные места", muted, 12, "middle"))
+            b.append(rect(nx - 90, yc - 22, 180, 36, t["panel"], 6, 1, f' stroke="{t["rule"]}"'))
+            b.append(text(nx, yc + 30, "новое место: погребения", muted, 12, "middle"))
+            b.append(arrow(hx + 52, yc - 4, nx - 100, yc - 4, "head-people", people, 2.2))
+            for k in range(3):
+                b.append(
+                    f'<circle cx="{hx + 90 + k * 26:.1f}" cy="{yc - 4:.1f}" r="4.5" '
+                    f'fill="{people}" stroke="{t["bg"]}" stroke-width="1.5"/>'
+                )
+            for k in range(6):  # погребения: двое — с «чужим» стронцием, как у родных мест
+                gx = nx - 70 + k * 28
+                migrant = k in (1, 4)
+                fill = "url(#hatch-people)" if migrant else t["bg"]
+                stroke = people if migrant else muted
+                b.append(rect(gx - 6, yc - 12, 12, 16, fill, 3, 1, f' stroke="{stroke}"'))
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Четыре пути, которыми вещь или человек проходили далеко (схема)",
+        "Эстафета: вещь переходит от общины к общине, и находок тем меньше, чем дальше от "
+        "источника. Целевой поход: люди потребителя сами ходят к источнику и обратно, между "
+        "ними находок нет. Промежуточный центр: птиц из природного ареала разводят в "
+        "поселении на полпути, и все птицы у потребителей — потомки немногих предков. "
+        "Переселение: движутся сами люди, и стронций в их зубах не совпадает с местным. "
+        "Расстояния и число участников условные.",
+    )
+
+
+# ── Рис. 3.2. Вещи и люди в пути (карта по data/complex.json)
+
+ROUTES_W, ROUTES_H = 760, 780
+ROUTES_CENTER = (-98, 31)
+ROUTES_FIT = [(-127, 50.5), (-67, 48.5), (-127, 21), (-118, 11), (-80, 11.5)]
+# Линии без начала: откуда начинается хвост (lon, lat) — схема направления, а не место.
+# Какао и ара подходят к Чако с юга, мимо Олд-Тауна и Пакиме, а не через них: Мезоамерика
+# лежит к югу, но откуда и каким путём они шли на самом деле, неизвестно, — линия и не
+# начинается нигде. Ближайшие плантации какао по Крауну — и на севере Веракруса, и в
+# Колиме, так что ни восток, ни запад хвост не выбирает.
+ROUTE_TAILS = {
+    "cacao_chaco": [(-105.8, 28.9)],
+    "macaw_chaco": [(-104.8, 29.3)],
+    "cahokia_migrants": [(-96.6, 39.6), (-92.2, 43.2), (-89.6, 34.6)],
+}
+# Изгиб линий: доля длины, + влево по ходу.
+ROUTES_BEND = {
+    "copper_superior": 0.0,
+    "obsidian": 0.1,
+    "turquoise": 0.0,
+    "teo_tikal": -0.2,
+    "teo_chiapas": 0.1,
+    "teo_michoacan": 0.15,
+}
+ROUTES_SKIP = {"teo_tlajinga", "cahokia_migrants"}  # подписью у точки, а не у линии
+# Подписи: (lon, lat, выравнивание, строки). Числа — из данных, в строках есть {d} и {s}.
+ROUTES_LABELS = {
+    "copper_superior": (
+        -82.2,
+        45.9,
+        "start",
+        [
+            "медь Верхнего озера",
+            "{d} по прямой",
+            "{s} вещей семи центров;",
+            "в самой Маунд-Сити",
+            "меди Мичипикотена нет",
+        ],
+    ),
+    "copper_appalachia": (
+        -79.4,
+        32.5,
+        "end",
+        ["медь южных Аппалачей", "{d} · {s} по семи центрам,", "в самой Маунд-Сити — {s2}"],
+    ),
+    "obsidian": (-101.5, 42.0, "middle", ["обсидиан Йеллоустона"]),
+    "cacao_chaco": (-103.8, 27.4, "end", ["какао — откуда,", "неизвестно"]),
+    "macaw_chaco": (-103.8, 25.5, "end", ["ара: природный ареал —", "{d} южнее"]),
+    "turquoise": (
+        -103.1,
+        32.4,
+        "start",
+        [
+            "бирюза юго-запада",
+            "в Теночтитлане —",
+            "не подтвердилась",
+            "(последний век",
+            "перед испанцами)",
+        ],
+    ),
+    "teo_tikal": (-93.6, 22.4, "start", ["вторжение в Тикаль,", "{y} (надписи майя)"]),
+}
+PLACE_LABEL = {  # (dx, dy, выравнивание); подпись — из name
+    "mound_city": (-2, -12, "start"),  # пояснение «все центры» — в PLACE_EXTRA
+    "keweenaw": (-6, 15, "end"),
+    "isle_royale": (-8, -6, "end"),
+    "michipicoten": (8, -6, "start"),
+    "appalachia": None,  # район назван в подписи пути
+    "obsidian_cliff": (0, -10, "middle"),
+    "chaco": (9, -6, "start"),
+    "old_town": (-10, 0, "end"),
+    "paquime": (-10, 4, "end"),
+    "southwest": None,  # район назван в подписи пути
+    "teotihuacan": (4, -11, "start"),
+    "tenochtitlan": (-4, 17, "end"),
+    "tikal": (8, 15, "start"),
+    "cahokia": (-9, 16, "end"),
+    "oaxaca": (-6, 16, "end"),
+    "michoacan": (-6, -8, "end"),
+    "gulf_coast": (8, 4, "start"),
+    "chiapas": (6, 16, "start"),
+}
+# Пояснения у точек из данных пути (что и какая доля). Тлахинга (45% переселенцев в одном
+# районе Теотиуакана) на карте не подписана: направления нет, а у города нет места.
+PLACE_EXTRA = {
+    "cahokia": (
+        "cahokia_migrants",
+        ["{s} погребённых", "выросла не здесь;", "откуда — не указано"],
+    ),
+    "mound_city": (None, ["на карте — все центры", "хоупвелла в Огайо"]),
+}
+PLACE_EXTRA_DX = {"mound_city": 10}  # сдвиг пояснения вправо от знака
+# Пояснения у центров разведения: когда — из данных; формулировки — из главы.
+BREEDING_NOTE = {
+    "old_town": ["разведение (по скорлупе яиц), {w}"],
+    "paquime": ["вероятный центр разведения, {w};", "прямых свидетельств нет"],
+}
+
+
+def breeding_mark(x: float, y: float, bg: str, c: str, probable: bool) -> str:
+    """Кольцо с точкой — где разводили ара; пунктирное — разведение вероятно, но не доказано."""
+    dash = ' stroke-dasharray="2.6 1.9"' if probable else ""
+    return (
+        f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5.5" fill="{bg}" stroke="{c}" '
+        f'stroke-width="2.2"{dash}/><circle cx="{x:.1f}" cy="{y:.1f}" r="2" fill="{c}"/>'
+    )
+
+
+def span_text(sp: dict) -> str:
+    if sp.get("label") and sp["start"] != sp["end"]:
+        return sp["label"]
+    if sp["end"] is None or sp["start"] == sp["end"]:
+        return f"{sp['start']} г." if sp["dating"] == "documented" else f"≈{sp['start']} г."
+    return f"{sp['start']}–{sp['end']} гг."
+
+
+def km_text(d: dict) -> str:
+    if d["high"] is None:
+        return f"больше {grouped(int(d['low']))} км"
+    if d["low"] == d["high"]:
+        return f"{'≈' if d.get('about') else ''}{grouped(int(d['low']))} км"
+    return f"{grouped(int(d['low']))}–{grouped(int(d['high']))} км"
+
+
+def fig_routes3(t: dict) -> str:
+    data = complex_data()
+    w, h = ROUTES_W, ROUTES_H
+    pr = map_projection(ROUTES_CENTER, ROUTES_FIT, w, h)
+    land_d, lakes_d = basemap_paths(pr, w, h)
+    places = {p["id"]: p for p in data["places"]}
+    col = {k: t[v] for k, v in KIND.items()}
+
+    def xy(pid):
+        p = places[pid]
+        return pr(p["lon"], p["lat"])
+
+    b = [
+        "<defs>",
+        f'<clipPath id="frame"><rect width="{w}" height="{h}"/></clipPath>',
+        f'<path id="land" d="{land_d}"/>',
+        *(arrow_marker(f"head-{k}", c, 5) for k, c in col.items()),
+        "</defs>",
+        '<g clip-path="url(#frame)">',
+        f'<use href="#land" fill="{t["panel"]}"/>',
+        f'<path d="{lakes_d}" fill="{t["bg"]}" stroke="{t["muted"]}" stroke-width=".4" '
+        f'stroke-opacity=".5"/>',
+        f'<use href="#land" fill="none" stroke="{t["muted"]}" stroke-width=".6" '
+        f'stroke-opacity=".6"/>',
+        "</g>",
+    ]
+
+    def sea(lon, lat, s, size=13.5):
+        x, y = pr(lon, lat)
+        return text(x, y, s, t["muted"], size, "middle", 400, SERIF, italic=True, halo=t["bg"])
+
+    b.append(sea(-121, 22, "Тихий океан", 14))
+    b.append(sea(-90.5, 25.2, "Мексиканский", 12))
+    b.append(sea(-90.5, 24.2, "залив", 12))
+    b.append(sea(-66, 33, "Атлантический", 13))
+    b.append(sea(-66, 31.8, "океан", 13))
+
+    lines, marks, labels = [], [], []
+
+    def curve(x0, y0, x1, y1, bend, trim0=7.0, trim1=9.0):
+        dx, dy = x1 - x0, y1 - y0
+        dist = math.hypot(dx, dy) or 1
+        ux, uy = dx / dist, dy / dist
+        x0, y0, x1, y1 = x0 + ux * trim0, y0 + uy * trim0, x1 - ux * trim1, y1 - uy * trim1
+        cx, cy = (x0 + x1) / 2 + uy * bend * dist, (y0 + y1) / 2 - ux * bend * dist
+        return (x0, y0, cx, cy, x1, y1)
+
+    for link in data["links"]:
+        if link["id"] in ROUTES_SKIP and not link["from"] and link["id"] not in ROUTE_TAILS:
+            continue
+        kind, c = link["kind"], col[link["kind"]]
+        x1, y1 = xy(link["to"])
+        bend = ROUTES_BEND.get(link["id"], 0.05)
+        if link["from"]:
+            for pid in link["from"]:
+                x0, y0 = xy(pid)
+                a, bb, cx, cy, z, zz = curve(x0, y0, x1, y1, bend)
+                dash = ' stroke-dasharray="6 4"' if kind == "disproved" else ""
+                lines.append(
+                    f'<path d="M{a:.1f},{bb:.1f}Q{cx:.1f},{cy:.1f} {z:.1f},{zz:.1f}" fill="none" '
+                    f'stroke="{c}" stroke-width="2.2" stroke-linecap="round"{dash} '
+                    f'marker-end="url(#head-{kind})"/>'
+                )
+                if kind == "disproved":  # крест на середине линии
+                    mx, my = 0.25 * a + 0.5 * cx + 0.25 * z, 0.25 * bb + 0.5 * cy + 0.25 * zz
+                    for s in (1, -1):
+                        lines.append(line(mx - 7, my - 7 * s, mx + 7, my + 7 * s, t["ink"], 2.4))
+        else:  # начала нет: линия появляется из ничего
+            for k, (lon, lat) in enumerate(ROUTE_TAILS[link["id"]]):
+                x0, y0 = pr(lon, lat)
+                a, bb, cx, cy, z, zz = curve(x0, y0, x1, y1, 0.0, 0, 9)
+                gid = f"fade-{link['id']}-{k}"
+                dash = ' stroke-dasharray="5 4"' if kind == "thing" else ""
+                lines.append(
+                    f'<linearGradient id="{gid}" gradientUnits="userSpaceOnUse" x1="{a:.1f}" '
+                    f'y1="{bb:.1f}" x2="{z:.1f}" y2="{zz:.1f}"><stop offset="0" stop-color="{c}" '
+                    f'stop-opacity="0"/><stop offset=".55" stop-color="{c}"/></linearGradient>'
+                )
+                lines.append(
+                    f'<path d="M{a:.1f},{bb:.1f}L{z:.1f},{zz:.1f}" fill="none" '
+                    f'stroke="url(#{gid})" stroke-width="2.2" stroke-linecap="round"{dash} '
+                    f'marker-end="url(#head-{kind})"/>'
+                )
+        lab = ROUTES_LABELS.get(link["id"])
+        if lab:
+            lon, lat, anchor, rows = lab
+            d = km_text(link["distance_km"]) if link.get("distance_km") else ""
+            s = f"{num(link['share_pct'])}%" if "share_pct" in link else link.get("share_words", "")
+            s2 = f"{num(link['share_at_to']['pct'])}%" if "share_at_to" in link else ""
+            yr = span_text(link["when"]) if link.get("when") else ""
+            lx, ly = pr(lon, lat)
+            for k, row in enumerate(rows):
+                s1 = row.format(d=d, s=s, s2=s2, y=yr)
+                labels.append(
+                    text(
+                        lx,
+                        ly + k * 14,
+                        s1,
+                        t["ink"] if k == 0 else t["muted"],
+                        12.5 if k == 0 else 11.5,
+                        anchor,
+                        600 if k == 0 else 400,
+                        halo=t["bg"],
+                    )
+                )
+
+    for pid, p in places.items():
+        x, y = xy(pid)
+        role = p["role"]
+        if role == "center":
+            marks.append(
+                f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4.6" fill="{t["ink"]}" '
+                f'stroke="{t["bg"]}" stroke-width="1.8"/>'
+            )
+        elif role == "breeding":
+            marks.append(breeding_mark(x, y, t["bg"], col["thing"], p.get("probable", False)))
+        elif role == "origin":
+            marks.append(
+                f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.6" fill="{t["bg"]}" '
+                f'stroke="{col["people"]}" stroke-width="1.8"/>'
+            )
+        else:  # source, region — откуда шла вещь
+            c = col["disproved"] if pid == "southwest" else col["thing"]
+            q = 5
+            marks.append(
+                f'<polygon points="{x:.1f},{y - q:.1f} {x + q:.1f},{y:.1f} {x:.1f},{y + q:.1f} '
+                f'{x - q:.1f},{y:.1f}" fill="{c}" stroke="{t["bg"]}" stroke-width="1.5"/>'
+            )
+        if PLACE_LABEL[pid] is None:
+            continue
+        dx, dy, anchor = PLACE_LABEL[pid]
+        weight = 600 if role == "center" else 400
+        size = 13 if role == "center" else 12
+        labels.append(text(x + dx, y + dy, p["name"], t["ink"], size, anchor, weight, halo=t["bg"]))
+        link_id, extra = PLACE_EXTRA.get(pid, (None, []))
+        if role == "breeding":
+            extra = [row.format(w=span_text(p["when"])) for row in BREEDING_NOTE[pid]]
+        ex = x + dx + PLACE_EXTRA_DX.get(pid, 0)
+        for k, row in enumerate(extra):
+            if link_id:
+                lk = next(lk for lk in data["links"] if lk["id"] == link_id)
+                row = row.format(s=lk.get("share_words") or f"{num(lk['share_pct'])}%")
+            labels.append(
+                text(ex, y + dy + 14 * (k + 1), row, t["muted"], 11.5, anchor, halo=t["bg"])
+            )
+
+    b += lines + marks + labels
+
+    # легенда — в Тихом океане
+    lx, ly = 18, h - 196
+    b.append(rect(8, ly - 16, 276, 196, t["bg"], 6, 0.86))
+    rows = [
+        ("thing", "путь вещи: источник найден по составу"),
+        ("tail", "путь вещи: откуда — неизвестно"),
+        ("people", "путь людей"),
+        ("disproved", "связь, которую анализ не подтвердил"),
+        ("source", "источник материала"),
+        ("breeding", "где разводили ара"),
+        ("probable", "вероятный центр разведения"),
+    ]
+    for k, (kind, s1) in enumerate(rows):
+        yy = ly + k * 20
+        if kind in ("thing", "people", "disproved"):
+            dash = ' stroke-dasharray="6 4"' if kind == "disproved" else ""
+            b.append(
+                f'<path d="M{lx},{yy}L{lx + 26},{yy}" stroke="{col[kind]}" stroke-width="2.2"'
+                f'{dash} marker-end="url(#head-{kind})"/>'
+            )
+            if kind == "disproved":
+                b.append(line(lx + 9, yy - 5, lx + 17, yy + 5, t["ink"], 2))
+                b.append(line(lx + 9, yy + 5, lx + 17, yy - 5, t["ink"], 2))
+        elif kind == "tail":
+            b.append(
+                f'<linearGradient id="fade-key" x1="0" x2="1"><stop offset="0" '
+                f'stop-color="{col["thing"]}" stop-opacity="0"/><stop offset=".55" '
+                f'stop-color="{col["thing"]}"/></linearGradient>'
+            )
+            b.append(
+                f'<rect x="{lx}" y="{yy - 1.1}" width="26" height="2.2" fill="url(#fade-key)"/>'
+            )
+        elif kind == "source":
+            b.append(
+                f'<polygon points="{lx + 13},{yy - 5} {lx + 18},{yy} {lx + 13},{yy + 5} '
+                f'{lx + 8},{yy}" fill="{col["thing"]}"/>'
+            )
+        else:
+            b.append(breeding_mark(lx + 13, yy, t["bg"], col["thing"], kind == "probable"))
+        b.append(text(lx + 36, yy + 4, s1, t["ink"], 12, halo=t["bg"]))
+    notes = [
+        "Линии — направления, а не дороги.",
+        "Положение точек ориентировочное.",
+        "Даты приблизительные, кроме года из надписей.",
+    ]
+    for k, s1 in enumerate(notes):
+        b.append(text(lx, ly + len(rows) * 20 + 6 + k * 15, s1, t["muted"], 11.5, halo=t["bg"]))
+    b.append(
+        f'<rect x=".5" y=".5" width="{w - 1}" height="{h - 1}" fill="none" stroke="{t["rule"]}"/>'
+    )
+    links = {link["id"]: link for link in data["links"]}
+    cu, ap = links["copper_superior"], links["copper_appalachia"]
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Вещи и люди в пути: Северная Америка и Мезоамерика",
+        "Карта. К центрам хоупвелла в Огайо (на карте — одна точка «Маунд-Сити») идут "
+        f"стрелки: медь Верхнего озера ({km_text(cu['distance_km'])} по прямой, "
+        f"{num(cu['share_pct'])}% вещей семи центров; в самой Маунд-Сити меди Мичипикотена "
+        f"нет), медь южных Аппалачей ({km_text(ap['distance_km'])}, {num(ap['share_pct'])}% по "
+        f"семи центрам, в самой Маунд-Сити — {num(ap['share_at_to']['pct'])}%) и обсидиан "
+        "Йеллоустона. К Чако с юга — пунктиры без начала: какао и ара; отмечены Олд-Таун, где "
+        "разводили ара, и Пакиме — вероятный центр разведения без прямых свидетельств. "
+        "Перечёркнутая стрелка от юго-запада к Теночтитлану — связь, которую не подтвердил "
+        "анализ бирюзы последнего века перед испанцами. Стрелки людей ведут в Теотиуакан из "
+        "Мичоакана, "
+        "Оахаки, Чьяпаса и с побережья Мексиканского залива, из Теотиуакана — в Тикаль "
+        f"({span_text(links['teo_tikal']['when'])}), в Кахокию — без начала. Положение точек "
+        "ориентировочное.",
+    )
+
+
+# ── Рис. 3.4. Оценки населения крупнейших городов (оценки)
+
+POP_FROM, POP_TO = 1_000, 1_000_000
+POP_CITIES = ["Кахокия", "Теотиуакан", "Теночтитлан"]
+
+
+def fig_population(t: dict) -> str:
+    data = complex_data()["population"]
+    w, x0, x1 = 760, 214, 728
+    top, row, gap = 70, 40, 14
+    by_city = {c: [e for e in data if e["place"] == c] for c in POP_CITIES}
+    plot_h = sum(len(v) * row + gap for v in by_city.values())
+    h = top + plot_h + 96
+    ink, muted = t["ink"], t["muted"]
+
+    def px(v: float) -> float:
+        return x0 + math.log10(v / POP_FROM) / math.log10(POP_TO / POP_FROM) * (x1 - x0)
+
+    b = [
+        "<defs>",
+        f'<linearGradient id="more" x1="0" x2="1"><stop offset="0" stop-color="{ink}" '
+        f'stop-opacity=".5"/><stop offset="1" stop-color="{ink}" stop-opacity="0"/>'
+        "</linearGradient>",
+        arrow_marker("head-ink", ink, 5),
+        "</defs>",
+    ]
+    yb = top + plot_h
+    y = top
+    for ci, ests in enumerate(by_city.values()):  # полосы городов — под сеткой
+        block = len(ests) * row + gap
+        if ci % 2 == 0:
+            b.append(rect(0, y, w, block, t["band"], 0))
+        y += block
+    for exp in range(3, 7):
+        for m in (1, 2, 5):
+            v = m * 10**exp
+            if v > POP_TO:
+                continue
+            x = px(v)
+            major = m == 1
+            b.append(line(x, top - 8, x, yb, t["rule"], 1.2 if major else 0.6))
+            if major:
+                b.append(text(x, top - 14, grouped(v), ink, 12, "middle", 500))
+            else:
+                b.append(text(x, yb + 15, grouped(v), muted, 10.5, "middle"))
+    b.append(text(x0, top - 40, "жителей", muted, 12))
+    b.append(
+        text(
+            x1,
+            top - 40,
+            "шкала логарифмическая: каждый шаг — в 10 раз больше",
+            muted,
+            12,
+            "end",
+            italic=True,
+        )
+    )
+
+    y = top
+    for ci, (city, ests) in enumerate(by_city.items()):
+        block = len(ests) * row + gap
+        halo = t["band"] if ci % 2 == 0 else t["bg"]
+        b.append(text(14, y + 26, city, ink, 14.5, "start", 600))
+        period = ests[0].get("period")
+        for k, s1 in enumerate(split_label(period, 20) if period else []):
+            b.append(text(14, y + 42 + k * 14, s1, muted, 11.5))
+        for j, e in enumerate(ests):
+            yc = y + gap / 2 + j * row + row - 8  # линия меток; подпись — над ней
+            parts = []
+            if "low" in e:
+                a, z = px(e["low"]), px(e["high"])
+                b.append(rect(a, yc - 4, z - a, 8, ink, 4, 0.5))
+                if e.get("high_open"):
+                    b.append(rect(z, yc - 4, 40, 8, "url(#more)", 0))
+                    parts.append(f"{grouped(e['low'])} — более {grouped(e['high'])}")
+                else:
+                    parts.append(f"{grouped(e['low'])}–{grouped(e['high'])}")
+            if "point" in e:
+                x = px(e["point"])
+                if "low" in e:  # отметка внутри диапазона
+                    b.append(line(x, yc - 8, x, yc + 8, ink, 2))
+                    parts.append(f"{e.get('point_label', '')} {grouped(e['point'])}".strip())
+                else:
+                    hollow = e.get("mentioned")
+                    b.append(
+                        f'<circle cx="{x:.1f}" cy="{yc:.1f}" r="5" '
+                        f'fill="{halo if hollow else ink}" stroke="{ink}" stroke-width="1.6"/>'
+                    )
+                    parts.append(grouped(e["point"]) if hollow else f"≈{grouped(e['point'])}")
+            if "alternatives" in e:  # «или»: отдельные отметки, между ними ничего не утверждается
+                for v in e["alternatives"]:
+                    b.append(
+                        f'<circle cx="{px(v):.1f}" cy="{yc:.1f}" r="5" fill="{halo}" '
+                        f'stroke="{ink}" stroke-width="1.6"/>'
+                    )
+                parts.append(" или ".join(grouped(v) for v in e["alternatives"]))
+            if "upto" in e:
+                xa, xz = px(e["point"]) + 6, px(e["upto"])
+                b.append(
+                    f'<path d="M{xa:.1f},{yc:.1f}L{xz:.1f},{yc:.1f}" stroke="{ink}" '
+                    f'stroke-width="1.6" stroke-dasharray="2 3"/>'
+                )
+                b.append(line(xz, yc - 6, xz, yc + 6, ink, 1.6))
+                parts.append(f"до {grouped(e['upto'])} {e['upto_label']}")
+            s1 = f"{e['author']}: " + "; ".join(parts)
+            if e.get("mentioned"):  # не оценка автора, а упомянутая им чужая
+                s1 = f"{e.get('mention', '')} " + "; ".join(parts) + f" (по словам {e['author']})"
+                s1 = s1.strip()
+                if e.get("period") is None and period:
+                    s1 += "; время не указано"
+            if "words" in e:  # без числа — ни одной метки на шкале, только слова
+                b.append(
+                    text(
+                        px(1200),
+                        yc + 4,
+                        f"{e['author']}: «{e['words']}» — без числа",
+                        ink,
+                        12.5,
+                        italic=True,
+                        halo=halo,
+                    )
+                )
+                continue
+            # подпись — над метками, от левой метки; не влезает — прижата к правому краю
+            marks = [e[k] for k in ("low", "point") if k in e] + e.get("alternatives", [])
+            left = px(min(marks))
+            if left + len(s1) * 6.1 < w - 10:
+                b.append(text(left, yc - 11, s1, ink, 12, halo=halo))
+            else:
+                b.append(text(w - 10, yc - 11, s1, ink, 12, "end", halo=halo))
+        y += block
+
+    # легенда
+    ly = yb + 40
+    items = [
+        ("range", "диапазон оценки"),
+        ("point", "одно число — «около»"),
+        ("hollow", "оценка, которую автор только упоминает"),
+        ("upto", "«до» — верхняя граница"),
+    ]
+    for k, (kind, s1) in enumerate(items):
+        lx = 24 + (k % 2) * 372
+        yy = ly + (k // 2) * 22
+        if kind == "range":
+            b.append(rect(lx, yy - 4, 26, 8, ink, 4, 0.5))
+        elif kind == "upto":
+            b.append(
+                f'<path d="M{lx},{yy}L{lx + 24},{yy}" stroke="{ink}" stroke-width="1.6" '
+                f'stroke-dasharray="2 3"/>'
+            )
+            b.append(line(lx + 24, yy - 6, lx + 24, yy + 6, ink, 1.6))
+        else:
+            fill = t["bg"] if kind == "hollow" else ink
+            b.append(
+                f'<circle cx="{lx + 13}" cy="{yy}" r="5" fill="{fill}" stroke="{ink}" '
+                f'stroke-width="1.6"/>'
+            )
+        b.append(text(lx + 36, yy + 4.5, s1, ink, 12.5))
+    b.append(
+        text(
+            w - 16,
+            h - 10,
+            "Оценки разных авторов; среднее не показано намеренно",
+            muted,
+            12,
+            "end",
+            italic=True,
+        )
+    )
+    desc = "; ".join(
+        f"{e['place']} — {e['author']}: "
+        + (
+            f"{grouped(e['low'])}–{grouped(e['high'])}"
+            if "low" in e
+            else " или ".join(grouped(v) for v in e["alternatives"])
+            if "alternatives" in e
+            else e.get("words") or f"≈{grouped(e['point'])}"
+        )
+        for e in data
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Сколько людей жило в крупнейших городах: оценки разных авторов",
+        f"Полосы и точки на логарифмической шкале от тысячи до миллиона жителей. {desc}.",
+    )
+
+
+# ── Рис. 3.5. Хронология инков: хроники и радиоуглерод (данные)
+
+INCA_FROM, INCA_TO = 1300, 1540
+INCA_SOFT = 12  # px: полуширина размытого края у начала «примерно с …»
+INCA_ROWS = [  # (строка в данных, подпись, подзаголовок)
+    ("Мачу-Пикчу", "Мачу-Пикчу", ""),
+    ("Чамикаль (Эквадор)", "Север", "Чамикаль, Эквадор"),
+    ("Мендоса (Аргентина)", "Юго-восток", "Мендоса, Аргентина"),
+    ("Титикака", "Титикака", "район озера"),
+]
+
+
+def fig_inca(t: dict) -> str:
+    data = complex_data()["inca_chronology"]
+    w, x0, x1 = 760, 168, 740
+    top, row = 58, 84
+    h = top + row * len(INCA_ROWS) + 92
+    chron, model, ink, muted = t["z-n"], t["z-t"], t["ink"], t["muted"]
+
+    def px(y: float) -> float:
+        return x0 + (y - INCA_FROM) / (INCA_TO - INCA_FROM) * (x1 - x0)
+
+    b = [
+        "<defs>",
+        '<filter id="blur" x="-10%" y="-80%" width="120%" height="260%">'
+        '<feGaussianBlur stdDeviation="3 1"/></filter>',
+        # начало без конца: размытое начало (≈) и угасание вправо; отметки-черты нет
+        f'<linearGradient id="open-key" x1="0" x2="1"><stop offset="0" stop-color="{model}" '
+        f'stop-opacity="0"/><stop offset=".35" stop-color="{model}" stop-opacity=".6"/>'
+        f'<stop offset="1" stop-color="{model}" stop-opacity="0"/></linearGradient>',
+        hatch_defs(t, ink, "hatch-ink"),
+        "</defs>",
+    ]
+    yb = top + row * len(INCA_ROWS)
+    for i in range(0, len(INCA_ROWS), 2):  # полосы строк — под сеткой
+        b.append(rect(0, top + i * row, w, row, t["band"], 0))
+    for yr in range(INCA_FROM, INCA_TO + 1, 20):
+        x = px(yr)
+        b.append(line(x, top - 6, x, yb, t["rule"], 1.0 if yr % 100 == 0 else 0.6))
+        b.append(text(x, top - 12, str(yr), ink, 11.5, "middle"))
+    b.append(text(x0, top - 34, "годы", muted, 11.5))
+
+    for i, (site, name, sub) in enumerate(INCA_ROWS):
+        y0 = top + i * row
+        halo = t["band"] if i % 2 == 0 else t["bg"]
+        yc = y0 + row / 2
+        b.append(text(14, yc + (0 if sub else 5), name, ink, 14, "start", 600))
+        if sub:
+            b.append(text(14, yc + 16, sub, muted, 11.5))
+        evs = [e for e in data if e["site"] == site]
+        chron_evs = [e for e in evs if e["kind"] == "chronicle"]
+        for e in evs:
+            sp = e["when"]
+            a = px(sp["start"])
+            if e["kind"] == "model":
+                ym = yc + 10
+                if sp["end"] is None:
+                    a0 = a - INCA_SOFT  # размытое начало: от a0 до a + INCA_SOFT
+                    peak = 2 * INCA_SOFT / (x1 - a0)
+                    gid = f"open-{e['id']}"
+                    b.append(
+                        f'<linearGradient id="{gid}" gradientUnits="userSpaceOnUse" '
+                        f'x1="{a0:.1f}" x2="{x1}"><stop offset="0" stop-color="{model}" '
+                        f'stop-opacity="0"/><stop offset="{peak:.3f}" stop-color="{model}" '
+                        f'stop-opacity=".6"/><stop offset="1" stop-color="{model}" '
+                        'stop-opacity="0"/></linearGradient>'
+                    )
+                    b.append(rect(a0, ym - 5, x1 - a0, 10, f"url(#{gid})", 0))
+                    s1 = f"радиоуглерод: {e['label']}"
+                else:
+                    z = px(sp["end"])
+                    b.append(
+                        f'<rect x="{a:.1f}" y="{ym - 5:.1f}" width="{z - a:.1f}" height="10" '
+                        f'rx="5" fill="{model}" fill-opacity=".6" filter="url(#blur)"/>'
+                    )
+                    s1 = f"радиоуглерод: {e['label']} {sp['start']}–{sp['end']}"
+                    if e.get("prob"):
+                        s1 += f" ({num(e['prob'])}%)"
+                    if e.get("duration"):
+                        s1 += f"; пробыли {e['duration']['low']}–{e['duration']['high']} лет"
+                b.append(text(a, ym + 21, s1, ink, 12, halo=halo))
+            elif e["kind"] == "finds":
+                z = px(sp["end"])
+                b.append(rect(a, yc - 5, z - a, 10, "url(#hatch-ink)", 5, 0.8))
+                b.append(
+                    text(z + 10, yc + 4, f"{e['label']} — уже в {sp['label']}", ink, 12, halo=halo)
+                )
+        # хроники: ромбы и короткая полоса над линией модели; подписи — выше
+        for k, e in enumerate(chron_evs):
+            sp = e["when"]
+            yh = yc - 12
+            a = px(sp["start"])
+            if sp["end"] != sp["start"]:
+                z = px(sp["end"])
+                b.append(rect(a, yh - 4, z - a, 8, chron, 2))
+                xm = (a + z) / 2
+                when = f"{sp['start']}–{sp['end']}"
+            else:
+                xm = a
+                b.append(mark("diamond", a, yh, chron, chron, t["bg"], 4.5))
+                when = str(sp["start"])
+            s1 = f"хроники: {e['label']}, {when}"
+            anchor = "start" if k else ("end" if len(chron_evs) > 1 else "start")
+            dx = 8 if anchor == "start" else -8
+            b.append(text(xm + dx, yh - 10, s1, ink, 12, anchor, halo=halo))
+
+    ly = yb + 34
+    items = [
+        ("chron", "дата по хроникам (полоска — промежуток)"),
+        ("model", "интервал по радиоуглероду — модель авторов"),
+        ("open", "начало по радиоуглероду (≈), конец не указан"),
+        ("finds", "находки — век по выводу авторов"),
+    ]
+    for k, (kind, s1) in enumerate(items):
+        lx = 24 + (k % 2) * 372
+        yy = ly + (k // 2) * 22
+        if kind == "chron":
+            b.append(mark("diamond", lx + 13, yy, chron, chron, t["bg"], 4.5))
+        elif kind == "model":
+            b.append(
+                f'<rect x="{lx}" y="{yy - 5}" width="26" height="10" rx="5" fill="{model}" '
+                'fill-opacity=".6" filter="url(#blur)"/>'
+            )
+        elif kind == "open":
+            b.append(rect(lx, yy - 5, 26, 10, "url(#open-key)", 0))
+        else:
+            b.append(rect(lx, yy - 5, 26, 10, "url(#hatch-ink)", 5, 0.8))
+        b.append(text(lx + 36, yy + 4.5, s1, ink, 12.5))
+    b.append(
+        text(
+            w - 16,
+            h - 10,
+            "Все даты приблизительные; размытый край — неточная граница",
+            muted,
+            12,
+            "end",
+            italic=True,
+        )
+    )
+    kinds = {"chronicle": "хроники", "model": "радиоуглерод", "finds": "находки"}
+
+    def when(sp: dict) -> str:
+        if sp.get("label"):
+            return sp["label"]
+        if sp["end"] is None:
+            return f"с {sp['start']}"
+        return str(sp["start"]) if sp["end"] == sp["start"] else f"{sp['start']}–{sp['end']}"
+
+    desc = "; ".join(
+        f"{e['site']} — {kinds[e['kind']]}: {e['label']}, {when(e['when'])}" for e in data
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Хронология инков: даты хроник и радиоуглерода",
+        f"Шкала от 1300 до 1540 г. {desc}.",
+    )
+
+
 FIGURES: dict[str, Callable[[dict], str]] = {
     "00-radiocarbon": fig_radiocarbon,
     "00-precision": fig_precision,
@@ -1890,6 +2797,10 @@ FIGURES: dict[str, Callable[[dict], str]] = {
     "02-centers": fig_centers,
     "02-lag": fig_lag,
     "02-sisters": fig_sisters,
+    "03-modes": fig_modes,
+    "03-routes": fig_routes3,
+    "03-population": fig_population,
+    "03-inca-chronology": fig_inca,
 }
 
 

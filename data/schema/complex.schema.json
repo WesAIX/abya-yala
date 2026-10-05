@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "complex.schema.json",
+  "title": "Сложные общества: пути вещей и людей, оценки населения, хронология инков",
+  "type": "object",
+  "required": ["meta", "places", "links", "population", "inca_chronology"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "license"],
+      "properties": {
+        "title": {"type": "string"},
+        "schema": {"type": "string"},
+        "license": {"type": "string"},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "places": {
+      "description": "Точки карты путей. Координаты ориентировочные (approx: true): это положение знака на мелкой карте, а не координаты памятника из публикации.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "lon", "lat", "approx", "role", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "name": {"type": "string"},
+          "lon": {"$ref": "zones.schema.json#/$defs/lon"},
+          "lat": {"$ref": "zones.schema.json#/$defs/lat"},
+          "approx": {"const": true, "description": "Координаты ориентировочные — всегда; поле напоминает об этом тем, кто берёт точки из набора."},
+          "role": {
+            "description": "source — источник вещи (месторождение, район добычи); center — поселение или центр, куда шли вещи и люди; breeding — поселение, где разводили ара; origin — откуда пришли переселенцы; region — условная точка большого района, а не места.",
+            "enum": ["source", "center", "breeding", "origin", "region"]
+          },
+          "when": {
+            "description": "Время, к которому относится роль точки (например, разведение ара), если источник его даёт.",
+            "$ref": "#/$defs/span"
+          },
+          "probable": {
+            "type": "boolean",
+            "description": "Роль точки вероятна, но прямых свидетельств нет (Пакиме: разведение ара предполагают по костям, генетике, изотопам и обстановке находок)."
+          },
+          "note": {"type": "string"},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    },
+    "links": {
+      "description": "Прослеженные (или опровергнутые) пути вещей и людей. Линия на карте — направление, а не дорога.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "from", "to", "what", "kind", "when", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "from": {
+            "description": "Точки, откуда шли вещь или люди. Пустой список — начало пути неизвестно (линия без начала).",
+            "type": "array",
+            "items": {"$ref": "genealogy.schema.json#/$defs/id"}
+          },
+          "to": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "what": {"type": "string"},
+          "kind": {
+            "description": "thing — шла вещь (материал, растение, птица); people — шли люди; disproved — предполагавшаяся связь, которую анализ не подтвердил.",
+            "enum": ["thing", "people", "disproved"]
+          },
+          "distance_km": {
+            "description": "Расстояние по прямой, как его даёт источник: low–high; low = high — одно число; about — «около»; high = null — «больше чем low».",
+            "type": "object",
+            "required": ["low", "high"],
+            "additionalProperties": false,
+            "properties": {
+              "low": {"type": "number", "exclusiveMinimum": 0},
+              "high": {
+                "oneOf": [{"type": "null"}, {"type": "number", "exclusiveMinimum": 0}]
+              },
+              "about": {"type": "boolean"},
+              "measured_from": {"type": "string", "description": "От чего считается расстояние, если не от точки from."}
+            }
+          },
+          "share_pct": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Доля вещей или людей, пришедших этим путём, %, как в источнике."
+          },
+          "share_at_to": {
+            "description": "Доля в самой точке to, если источник даёт её отдельно от общей доли share_pct (точка to стоит за несколько центров): pct — %, n из of — число вещей.",
+            "type": "object",
+            "required": ["pct"],
+            "additionalProperties": false,
+            "properties": {
+              "pct": {"type": "number", "minimum": 0, "maximum": 100},
+              "n": {"type": "integer", "minimum": 0},
+              "of": {"type": "integer", "minimum": 1}
+            }
+          },
+          "share_words": {"type": "string", "description": "Доля словами, если источник не даёт процента («треть»)."},
+          "when": {
+            "description": "Время, к которому относится путь; null — источники главы его не дают.",
+            "oneOf": [{"type": "null"}, {"$ref": "#/$defs/span"}]
+          },
+          "evidence": {"$ref": "#/$defs/evidence"},
+          "note": {"type": "string"},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    },
+    "population": {
+      "description": "Оценки числа жителей. Каждая запись — одна оценка одного автора; среднее не хранится и не рисуется.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "place", "author", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "place": {"type": "string"},
+          "period": {
+            "description": "К какому времени относится оценка; null — источники главы его не называют.",
+            "oneOf": [{"type": "null"}, {"type": "string"}]
+          },
+          "author": {"type": "string", "description": "Чья это оценка — подпись на рисунке."},
+          "low": {"type": "number", "exclusiveMinimum": 0},
+          "high": {"type": "number", "exclusiveMinimum": 0},
+          "high_open": {"type": "boolean", "description": "Верхняя граница — «более чем high»."},
+          "point": {"type": "number", "exclusiveMinimum": 0, "description": "Одно число: «около» или «вероятно» внутри диапазона."},
+          "point_label": {"type": "string", "description": "Как автор называет point («вероятно»)."},
+          "upto": {"type": "number", "exclusiveMinimum": 0, "description": "Верхняя граница без нижней: «до upto»."},
+          "upto_label": {"type": "string"},
+          "alternatives": {
+            "type": "array",
+            "minItems": 2,
+            "items": {"type": "number", "exclusiveMinimum": 0},
+            "description": "Несколько отдельных чисел через «или» («10 000 или 20 000») — не диапазон: между ними ничего не утверждается."
+          },
+          "words": {"type": "string", "description": "Оценка словами без числа («несколько тысяч»)."},
+          "mentioned": {"type": "boolean", "description": "Оценка не автора источника, а упомянутая им как встречающаяся."},
+          "mention": {
+            "type": "string",
+            "description": "Как автор источника подаёт упомянутую оценку («чаще называют», «встречаются и оценки в») — начало подписи на рисунке."
+          },
+          "note": {"type": "string"},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    },
+    "inca_chronology": {
+      "description": "Даты экспансии инков: по хроникам и по радиоуглеродным моделям.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "site", "kind", "label", "when", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "site": {"type": "string", "description": "Строка шкалы: памятник или район."},
+          "kind": {
+            "description": "chronicle — дата колониальных хроник; model — интервал по радиоуглероду (модель авторов); finds — находки, датированные авторами без интервала в главе.",
+            "enum": ["chronicle", "model", "finds"]
+          },
+          "label": {"type": "string"},
+          "when": {"$ref": "#/$defs/span"},
+          "prob": {"type": "number", "exclusiveMinimum": 0, "maximum": 100, "description": "Вероятность интервала модели, %."},
+          "duration": {
+            "description": "Сколько лет длилось присутствие по модели.",
+            "type": "object",
+            "required": ["low", "high"],
+            "additionalProperties": false,
+            "properties": {"low": {"type": "integer"}, "high": {"type": "integer"}}
+          },
+          "note": {"type": "string"},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "span": {
+      "description": "Календарные годы н. э. start — начало, end — конец; end = null при open_end — «с start и дальше»; start = end — один год. label — как время названо в тексте главы («начало XII в.»).",
+      "type": "object",
+      "required": ["start", "end", "dating"],
+      "additionalProperties": false,
+      "properties": {
+        "start": {"type": "integer"},
+        "end": {
+          "oneOf": [{"type": "null"}, {"type": "integer"}]
+        },
+        "open_end": {"type": "boolean"},
+        "label": {"type": "string"},
+        "dating": {"$ref": "genealogy.schema.json#/$defs/dating"}
+      }
+    },
+    "evidence": {
+      "description": "На чём держится дата documented до 1500 г.: inscription — датированная надпись; dendro — дендрохронология.",
+      "enum": ["inscription", "dendro"]
+    }
+  }
+}

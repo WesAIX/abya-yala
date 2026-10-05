@@ -233,6 +233,82 @@ def check_agriculture(a) -> list[str]:
     return errors
 
 
+def iter_complex(c):
+    for p in c["places"]:
+        yield f"точка {p['id']}", p
+    for link in c["links"]:
+        yield f"путь {link['id']}", link
+    for est in c["population"]:
+        yield f"оценка {est['id']}", est
+    for ev in c["inca_chronology"]:
+        yield f"дата {ev['id']}", ev
+
+
+def check_span(span, rec, where: str) -> list[str]:
+    """Годы н. э.: начало не позже конца; точная дата до 1500 г. — только из надписи или колец
+    (поле evidence) и со ссылкой на источник."""
+    if span is None:
+        return []
+    errors = []
+    if span["end"] is not None and span["end"] < span["start"]:
+        errors.append(f"{where}: конец ({span['end']}) раньше начала ({span['start']})")
+    if span.get("open_end") and span["end"] is not None:
+        errors.append(f"{where}: open_end с указанным концом")
+    exact = span["dating"] == "documented" and span["start"] < EXACT_BEFORE
+    if exact and (not rec.get("evidence") or not rec["sources"]):
+        errors.append(
+            f"{where}: точная дата {span['start']} до {EXACT_BEFORE} г. — только из надписи "
+            "или дендрохронологии (поле evidence) и со ссылкой на источник"
+        )
+    return errors
+
+
+def check_complex(c) -> list[str]:
+    """Пути ведут к существующим точкам; у оценки населения есть хоть одно число или слова,
+    и числа согласованы; интервалы не перевёрнуты."""
+    places = [p["id"] for p in c["places"]]
+    errors = unique(places, "complex: точка")
+    errors += unique([link["id"] for link in c["links"]], "complex: путь")
+    errors += unique([e["id"] for e in c["population"]], "complex: оценка")
+    errors += unique([e["id"] for e in c["inca_chronology"]], "complex: дата")
+    for p in c["places"]:
+        errors += check_span(p.get("when"), p, f"complex: точка {p['id']}")
+    for link in c["links"]:
+        where = f"complex: путь {link['id']}"
+        for pid in [*link["from"], link["to"]]:
+            if pid not in places:
+                errors.append(f"{where}: неизвестная точка {pid!r}")
+        if link["to"] in link["from"]:
+            errors.append(f"{where}: путь из точки в неё же")
+        d = link.get("distance_km")
+        if d and d["high"] is not None and d["high"] < d["low"]:
+            errors.append(f"{where}: расстояние high < low")
+        errors += check_span(link["when"], link, where)
+    for e in c["population"]:
+        where = f"complex: оценка {e['id']}"
+        if not any(k in e for k in ("low", "high", "point", "upto", "words", "alternatives")):
+            errors.append(f"{where}: нет ни числа, ни оценки словами")
+        if "alternatives" in e and any(k in e for k in ("low", "high", "point", "upto")):
+            errors.append(f"{where}: alternatives («или») не сочетаются с диапазоном и point")
+        if ("low" in e) != ("high" in e):
+            errors.append(f"{where}: у диапазона нужны и low, и high")
+        if "low" in e and "high" in e:
+            if e["low"] > e["high"]:
+                errors.append(f"{where}: low > high")
+            if "point" in e and not e["low"] <= e["point"] <= e["high"]:
+                errors.append(f"{where}: point вне диапазона")
+        if e.get("high_open") and "high" not in e:
+            errors.append(f"{where}: high_open без high")
+        if "upto" in e and "point" in e and e["upto"] < e["point"]:
+            errors.append(f"{where}: upto меньше point")
+    for ev in c["inca_chronology"]:
+        where = f"complex: дата {ev['id']}"
+        errors += check_span(ev["when"], ev, where)
+        if ("prob" in ev or "duration" in ev) and ev["kind"] != "model":
+            errors.append(f"{where}: вероятность и длительность — только у модели")
+    return errors
+
+
 def unique(values: list, what: str) -> list[str]:
     seen: set = set()
     errors = []
@@ -255,6 +331,7 @@ DATASETS = {
     "theses": (iter_theses, check_theses),
     "peopling": (iter_peopling, check_peopling),
     "agriculture": (iter_agriculture, check_agriculture),
+    "complex": (iter_complex, check_complex),
 }
 
 

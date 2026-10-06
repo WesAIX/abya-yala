@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 760" width="760" height="760" role="img" aria-labelledby="t d" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">
+<title id='t'>Восстание пуэбло 1680 г. и после (схема)</title><desc id='d'>Карта Нью-Мексико и соседних земель. Пуэбло — точками без границ земель: Таос (отсюда Попе разослал верёвку с узлами), Пикурис, Сан-Хуан (Окай-Овинге), Санта-Клара, Сия, Санта-Ана и Сан-Фелипе (в 1690-х — на стороне испанцев), Ислета (не участвовала; около 1500 беженцев), хопи. Квадратами — Санта-Фе, где собрались уцелевшие испанцы, и Эль-Пасо. Стрелки отступления испанцев ведут от Санта-Фе и Ислеты к Эль-Пасо (конец сентября 1680 г.). Стрелки от Санта-Клары и Пикуриса ведут на равнины, к союзникам-апачам в Эль-Куартелехо (октябрь 1696 г.). Пунктир от Таоса до хопи — бег 1980 г. со шнуром с узлами в память о гонцах 1680 г. Положение точек ориентировочное.</desc>
+<rect width="760" height="760" fill="#EDF0EA"/>
+<defs>
+<clipPath id="frame"><rect width="760" height="640"/></clipPath>
+<clipPath id="landclip"><path d=""/></clipPath>
+<path id="land" d=""/>
+<filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
+<filter id="soft-key" x="-40%" y="-60%" width="180%" height="220%"><feGaussianBlur stdDeviation="2"/></filter>
+<marker id="head-retreat" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#A36A0E"/></marker>
+<marker id="head-flight" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#007A9A"/></marker>
+<marker id="head-run" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#5B6862"/></marker>
+</defs>
+<g clip-path="url(#frame)">
+<use href="#land" fill="#F8FAF6"/>
+<path d="" fill="#EDF0EA" stroke="#5B6862" stroke-width=".4" stroke-opacity=".5"/>
+<use href="#land" fill="none" stroke="#5B6862" stroke-width=".6" stroke-opacity=".6"/>
+</g>
+<g clip-path="url(#frame)">
+<path d="M268.0,159.9L270.4,162.2L285.6,161.7L292.9,163.3L295.4,161.1L296.7,156.4L298.5,155.7L308.2,159.7L310.6,163.6L316.7,168.2L337.4,168.4L347.2,174.6L360.6,178.5L363.6,180.8L368.5,187.0L372.2,197.8L371.0,202.4L371.6,205.5L369.7,216.3L372.2,220.2L371.6,225.6L374.0,232.5L374.7,241.0L371.6,260.2L371.6,270.3L367.8,276.4L358.5,282.6L351.0,290.3L350.4,296.4L347.2,305.7L343.4,311.8L334.6,320.3L334.6,324.1L330.1,333.3L328.2,340.3L317.4,351.0L316.8,356.4L313.6,358.7L310.4,364.0L312.2,370.2L310.9,376.4L311.5,379.4L308.9,384.8L309.5,387.9L307.6,392.5L306.8,404.1L303.5,419.5L300.2,424.0L300.8,427.9L297.6,431.7L299.2,457.2L298.5,465.7L295.2,471.8L290.0,475.6L290.0,478.7L282.8,487.1L278.8,500.9L277.9,515.5L274.7,516.2L271.4,519.3L269.1,539.3L269.7,543.1L274.8,552.5L287.7,556.5L290.9,565.0L294.7,567.4L298.6,572.8L297.9,574.4L298.5,581.3L309.4,600.7L314.5,618.5L321.6,624.7L328.2,625.5L332.1,630.9L334.7,638.6L339.9,646.4L356.3,654.9L368.8,669.6L380.7,678.1L382.7,683.4" fill="none" stroke="#007A9A" stroke-width="1.3" stroke-opacity=".55" stroke-linejoin="round"/>
+<path d="M-367.4,523.4L-210.7,524.7L-219.8,540.1L21.7,649.5L208.0,656.0L208.9,621.3L324.2,623.9L343.8,648.7L425.3,715.6L441.5,750.1L445.7,771.7L460.7,793.0L538.2,835.5L549.6,832.2L562.8,818.0L572.7,785.3L598.3,767.6L621.9,771.4L651.3,769.5L662.9,774.4L706.9,815.6L737.7,866.5L740.4,879.5L780.1,923.5L797.2,936.4L802.6,973.9L819.7,996.0L829.3,1019.3L888.2,1041.5L921.8,1044.5L951.7,1055.3L967.2,1047.1" fill="none" stroke="#1B2420" stroke-width="1.2" stroke-linejoin="round"/>
+</g>
+<g transform="translate(273.9,482.3) rotate(-80)"><text x="0.0" y="0.0" fill="#007A9A" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-style="italic" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">Рио-Гранде</text></g>
+<text x="183.0" y="633.0" fill="#1B2420" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">граница США и Мексики сегодня</text>
+<text x="624.4" y="331.5" fill="#5B6862" font-size="16" text-anchor="middle" font-weight="400" font-family="Alegreya,Georgia,'Times New Roman',serif" font-style="italic" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">равнины</text>
+<path d="M357.6,328.9Q370.6,476.3 322.8,616.3" fill="none" stroke="#A36A0E" stroke-width="2.6" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#head-retreat)"/>
+<path d="M311.1,388.7Q301.5,503.1 321.2,616.2" fill="none" stroke="#A36A0E" stroke-width="2.6" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#head-retreat)"/>
+<path d="M354.9,296.3Q482.6,161.9 653.5,90.0" fill="none" stroke="#007A9A" stroke-width="2.6" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#head-flight)"/>
+<path d="M378.6,278.6Q502.1,164.1 653.4,90.0" fill="none" stroke="#007A9A" stroke-width="2.6" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#head-flight)"/>
+<path d="M375.8,265.0Q220.3,181.2 91.6,302.2" fill="none" stroke="#5B6862" stroke-width="1.6" stroke-dasharray="2 4" stroke-linecap="round" marker-end="url(#head-run)"/>
+<text x="383.1" y="529.3" fill="#A36A0E" font-size="12.5" text-anchor="start" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">отступление испанцев</text>
+<text x="383.1" y="543.3" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">конец сентября 1680 г.</text>
+<text x="503.5" y="115.4" fill="#007A9A" font-size="12.5" text-anchor="end" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">октябрь 1696 г.</text>
+<text x="503.5" y="129.4" fill="#5B6862" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">Санта-Клара и Пикурис —</text>
+<text x="503.5" y="143.4" fill="#5B6862" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">на равнины, к союзникам</text>
+<text x="214.5" y="176.4" fill="#1B2420" font-size="12.5" text-anchor="middle" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1980 г.: бег со шнуром</text>
+<text x="214.5" y="190.4" fill="#5B6862" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">с узлами — от Таоса до хопи</text>
+<path d="M382.7,264.1L414.8,268.1" stroke="#5B6862" stroke-width=".7" fill="none"/>
+<text x="420.8" y="272.1" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">Таос</text>
+<text x="420.8" y="286.1" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">Попе разослал отсюда по пуэбло</text>
+<text x="420.8" y="300.1" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">верёвку с узлами</text>
+<path d="M372.8,282.6L414.8,318.6" stroke="#5B6862" stroke-width=".7" fill="none"/>
+<text x="420.8" y="322.6" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">Пикурис</text>
+<text x="420.8" y="336.6" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">Луис Тупату</text>
+<path d="M358.4,321.9L414.8,361.9" stroke="#5B6862" stroke-width=".7" fill="none"/>
+<text x="420.8" y="365.9" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">Санта-Фе</text>
+<text x="420.8" y="379.9" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">здесь собрались уцелевшие испанцы</text>
+<path d="M350.4,294.1L275.2,276.1" stroke="#5B6862" stroke-width=".7" fill="none"/>
+<text x="269.2" y="280.1" fill="#1B2420" font-size="12.5" text-anchor="end" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">Сан-Хуан (Окай-Овинге)</text>
+<text x="269.2" y="294.1" fill="#5B6862" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">пуэбло Попе</text>
+<path d="M349.1,300.3L275.2,316.3" stroke="#5B6862" stroke-width=".7" fill="none"/>
+<text x="269.2" y="320.3" fill="#1B2420" font-size="12.5" text-anchor="end" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">Санта-Клара</text>
+<path d="M309.4,336.2L275.2,342.2" stroke="#5B6862" stroke-width=".7" fill="none"/>
+<path d="M321.9,347.9L275.2,342.2" stroke="#5B6862" stroke-width=".7" fill="none"/>
+<path d="M326.3,341.8L275.2,342.2" stroke="#5B6862" stroke-width=".7" fill="none"/>
+<text x="269.2" y="346.2" fill="#1B2420" font-size="12.5" text-anchor="end" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">Сия, Санта-Ана, Сан-Фелипе</text>
+<text x="269.2" y="360.2" fill="#5B6862" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">в 1690-х — за испанцев</text>
+<path d="M310.8,381.8L275.2,381.8" stroke="#5B6862" stroke-width=".7" fill="none"/>
+<text x="269.2" y="385.8" fill="#1B2420" font-size="12.5" text-anchor="end" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">Ислета</text>
+<text x="269.2" y="399.8" fill="#5B6862" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">не участвовала; здесь —</text>
+<text x="269.2" y="413.8" fill="#5B6862" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">около 1500 беженцев</text>
+<path d="M321.6,626.2L414.8,578.2" stroke="#5B6862" stroke-width=".7" fill="none"/>
+<text x="420.8" y="582.2" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">Эль-Пасо</text>
+<text x="420.8" y="596.2" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">переправа у монастыря Гуадалупе;</text>
+<text x="420.8" y="610.2" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">отсюда — поселения вокруг Эль-Пасо</text>
+<text x="665.7" y="34.3" fill="#1B2420" font-size="12.5" text-anchor="end" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">Эль-Куартелехо</text>
+<text x="665.7" y="48.3" fill="#5B6862" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">у союзников-апачей; большинство</text>
+<text x="665.7" y="62.3" fill="#5B6862" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">прожило здесь около десяти лет</text>
+<text x="90.7" y="307.5" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">хопи</text>
+<circle cx="382.7" cy="264.1" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="382.7" cy="264.1" r="3.4" fill="#1B2420" stroke="#1B2420" stroke-width="1.6"/>
+<circle cx="372.8" cy="282.6" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="372.8" cy="282.6" r="3.4" fill="#1B2420" stroke="#1B2420" stroke-width="1.6"/>
+<rect x="354.0" y="317.5" width="8.8" height="8.8" rx="1" fill="#1B2420" fill-opacity="1.0" stroke="#EDF0EA" stroke-width="1.6"/>
+<circle cx="350.4" cy="294.1" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="350.4" cy="294.1" r="3.4" fill="#1B2420" stroke="#1B2420" stroke-width="1.6"/>
+<circle cx="349.1" cy="300.3" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="349.1" cy="300.3" r="3.4" fill="#1B2420" stroke="#1B2420" stroke-width="1.6"/>
+<circle cx="309.4" cy="336.2" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="309.4" cy="336.2" r="3.4" fill="#1B2420" stroke="#1B2420" stroke-width="1.6"/>
+<circle cx="321.9" cy="347.9" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="321.9" cy="347.9" r="3.4" fill="#1B2420" stroke="#1B2420" stroke-width="1.6"/>
+<circle cx="326.3" cy="341.8" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="326.3" cy="341.8" r="3.4" fill="#1B2420" stroke="#1B2420" stroke-width="1.6"/>
+<circle cx="310.8" cy="381.8" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="310.8" cy="381.8" r="3.4" fill="#1B2420" stroke="#1B2420" stroke-width="1.6"/>
+<rect x="317.2" y="621.8" width="8.8" height="8.8" rx="1" fill="#1B2420" fill-opacity="1.0" stroke="#EDF0EA" stroke-width="1.6"/>
+<polygon points="661.7,78.8 667.1,84.3 661.7,89.8 656.2,84.3" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><polygon points="661.7,78.8 667.1,84.3 661.7,89.8 656.2,84.3" fill="#EDF0EA" stroke="#1B2420" stroke-width="1.6"/>
+<circle cx="81.7" cy="303.5" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="81.7" cy="303.5" r="3.4" fill="#1B2420" stroke="#1B2420" stroke-width="1.6"/>
+<text x="20.0" y="36.0" fill="#1B2420" font-size="21" text-anchor="start" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">Восстание пуэбло: 1680 г. и после</text>
+<text x="20.0" y="58.0" fill="#1B2420" font-size="14" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">пуэбло — точками, без границ земель</text>
+<rect x=".5" y=".5" width="759" height="639" fill="none" stroke="#C7CFC4"/>
+<circle cx="33.0" cy="666.0" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="33.0" cy="666.0" r="3.4" fill="#1B2420" stroke="#1B2420" stroke-width="1.6"/>
+<text x="56.0" y="670.0" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">пуэбло</text>
+<rect x="28.6" y="683.6" width="8.8" height="8.8" rx="1" fill="#1B2420" fill-opacity="1.0" stroke="#EDF0EA" stroke-width="1.6"/>
+<text x="56.0" y="692.0" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">испанский город, миссия</text>
+<polygon points="33.0,704.5 38.5,710.0 33.0,715.5 27.5,710.0" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><polygon points="33.0,704.5 38.5,710.0 33.0,715.5 27.5,710.0" fill="#EDF0EA" stroke="#1B2420" stroke-width="1.6"/>
+<text x="56.0" y="714.0" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">место у союзников-апачей</text>
+<path d="M392,666L414,666" stroke="#A36A0E" stroke-width="2.6" stroke-dasharray="7 4" marker-end="url(#head-retreat)"/>
+<text x="428.0" y="670.0" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">отступление испанцев, 1680</text>
+<path d="M392,688L414,688" stroke="#007A9A" stroke-width="2.6" stroke-dasharray="7 4" marker-end="url(#head-flight)"/>
+<text x="428.0" y="692.0" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">уход пуэбло к союзникам, 1696</text>
+<path d="M392,710L414,710" stroke="#5B6862" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#head-run)"/>
+<text x="428.0" y="714.0" fill="#1B2420" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">бег в память о гонцах, 1980</text>
+<text x="20.0" y="734.0" fill="#5B6862" font-size="12" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Стрелки — направления, а не дороги.</text>
+<text x="20.0" y="750.0" fill="#5B6862" font-size="12" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-style="italic">Положение точек ориентировочное.</text>
+</svg>

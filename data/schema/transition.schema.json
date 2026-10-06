@@ -1,0 +1,347 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "transition.schema.json",
+  "title": "Переходная зона: понятия Кирхгофа, Меса-Верде, переселения, Чичимекская война, Хемес, восстание пуэбло, два «мира покупкой», граница",
+  "type": "object",
+  "required": ["meta", "places", "areas", "peoples", "mesaverde", "jemez", "timeline", "moves", "lines", "rivers"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "license"],
+      "properties": {
+        "title": {"type": "string"},
+        "schema": {"type": "string"},
+        "license": {"type": "string"},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "places": {
+      "description": "Точки карт главы 4. Координаты ориентировочные (approx: true) — положение знака на мелкой карте; откуда они сверены — в поле coords. Чако и Пакиме берутся из complex.json.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "lon", "lat", "approx", "coords", "role", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "name": {"type": "string"},
+          "lon": {"$ref": "zones.schema.json#/$defs/lon"},
+          "lat": {"$ref": "zones.schema.json#/$defs/lat"},
+          "approx": {"const": true},
+          "coords": {"type": "string", "description": "По чему сверены координаты (Natural Earth, Wikidata и т. п.)."},
+          "role": {
+            "description": "landmark — ориентир; edge — опорная точка северного края Мезоамерики по Кирхгофу; mine — рудник, испанский город при руднике; colony — колония тлашкальтеков; origin — откуда шли переселенцы; pueblo — селение пуэбло (точка, без границ земель); spanish — испанский город, миссия или убежище испанцев; region — условная область, рисуется размытым пятном радиуса radius_km; place — прочее место.",
+            "enum": ["landmark", "edge", "mine", "colony", "origin", "pueblo", "spanish", "region", "place"]
+          },
+          "when": {"$ref": "#/$defs/span"},
+          "note": {"type": "string"},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"},
+          "radius_km": {"type": "number", "exclusiveMinimum": 0, "maximum": 1000, "description": "Только у region: радиус размытого пятна, схема."}
+        }
+      }
+    },
+    "areas": {
+      "description": "Культурные области Кирхгофа и земли народов (kind: land). Очертания условные (schematic: true): blobs — пятна для размытой заливки, edge — опорные точки края, через которые проходит размытая полоса.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "kind", "schematic", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "name": {"type": "string"},
+          "original": {"type": "string", "description": "Название у Кирхгофа."},
+          "kind": {
+            "description": "meso — Мезоамерика ко времени завоевания; arid — земли собирателей и охотников; oasis — земли земледельческих «оазисов»; land — земли одного народа (размытым пятном, без границы).",
+            "enum": ["meso", "arid", "oasis", "land"]
+          },
+          "schematic": {"const": true},
+          "zone": {"type": "string", "description": "Зона из zones.json, чей цвет у области на карте."},
+          "edge": {
+            "description": "Опорные точки северного края (id из places, с запада на восток).",
+            "type": "array",
+            "minItems": 2,
+            "items": {"$ref": "genealogy.schema.json#/$defs/id"}
+          },
+          "blobs": {"$ref": "#/$defs/blobs"},
+          "when": {"$ref": "#/$defs/span"},
+          "note": {"type": "string"},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    },
+    "peoples": {
+      "description": "Народы, которых испанцы звали «чичимеками». Точка — место подписи на схеме, а не граница и не центр земель: земли известны лишь в общих чертах.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "label", "schematic", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "name": {"type": "string"},
+          "label": {
+            "type": "object",
+            "required": ["lon", "lat"],
+            "additionalProperties": false,
+            "properties": {
+              "lon": {"$ref": "zones.schema.json#/$defs/lon"},
+              "lat": {"$ref": "zones.schema.json#/$defs/lat"}
+            }
+          },
+          "schematic": {"const": true},
+          "note": {"type": "string"},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    },
+    "mesaverde": {
+      "description": "Население центральной части Меса-Верде по периодам (Schwindt et al. 2016, табл. 2).",
+      "type": "object",
+      "required": ["periods", "after", "drought", "sources"],
+      "additionalProperties": false,
+      "properties": {
+        "periods": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["when", "centers", "small_sites", "population", "ci80", "sources"],
+            "additionalProperties": false,
+            "properties": {
+              "when": {"$ref": "#/$defs/span"},
+              "centers": {"type": "integer", "minimum": 0, "description": "Жители общинных центров — столбец «centers» итога по району."},
+              "small_sites": {"type": "integer", "minimum": 0, "description": "Жители малых поселений — столбец «small sites»."},
+              "population": {"type": "integer", "minimum": 0, "description": "centers + small_sites; валидатор проверяет сумму."},
+              "ci80": {"type": "integer", "minimum": 0, "description": "± полуширина неформального 80-процентного интервала для суммы (столбец «80% C.I.»)."},
+              "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+            }
+          }
+        },
+        "after": {
+          "description": "Что после последнего периода: население — ноль через несколько лет.",
+          "type": "object",
+          "required": ["when", "population", "label", "sources"],
+          "additionalProperties": false,
+          "properties": {
+            "when": {"$ref": "#/$defs/span"},
+            "population": {"type": "integer", "minimum": 0},
+            "label": {"type": "string"},
+            "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+          }
+        },
+        "drought": {
+          "type": "object",
+          "required": ["name", "when", "sources"],
+          "additionalProperties": false,
+          "properties": {
+            "name": {"type": "string"},
+            "when": {"$ref": "#/$defs/span"},
+            "evidence": {"$ref": "complex.schema.json#/$defs/evidence"},
+            "note": {"type": "string"},
+            "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+          }
+        },
+        "note": {"type": "string"},
+        "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+      }
+    },
+    "jemez": {
+      "description": "Население провинции Хемес (Liebmann et al. 2016): оценки по развалинам и числа испанских документов; вехи колонизации.",
+      "type": "object",
+      "required": ["estimates", "marks", "decline"],
+      "additionalProperties": false,
+      "properties": {
+        "estimates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "kind", "when", "label", "sources"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+              "kind": {
+                "description": "ruins — оценка по развалинам (площадь построек); document — число испанского документа.",
+                "enum": ["ruins", "document"]
+              },
+              "when": {"$ref": "#/$defs/span"},
+              "low": {"type": "integer", "minimum": 0},
+              "high": {"type": "integer", "minimum": 0},
+              "value": {"type": "integer", "minimum": 0},
+              "bound": {
+                "description": "Как подано число: exact — как есть; at_most — «не больше» (максимум по развалинам); less_than — «меньше».",
+                "enum": ["exact", "at_most", "less_than"]
+              },
+              "what": {"type": "string", "description": "Что считали («крещёных»), если не всех жителей."},
+              "label": {"type": "string"},
+              "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+            }
+          }
+        },
+        "marks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "when", "label", "sources"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+              "when": {"$ref": "#/$defs/span"},
+              "label": {"type": "string"},
+              "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+            }
+          }
+        },
+        "decline": {
+          "description": "Убыль за промежуток, как её считают авторы.",
+          "type": "object",
+          "required": ["from", "to", "pct", "label", "sources"],
+          "additionalProperties": false,
+          "properties": {
+            "from": {"type": "integer"},
+            "to": {"type": "integer"},
+            "pct": {"type": "number", "minimum": 0, "maximum": 100},
+            "label": {"type": "string"},
+            "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+          }
+        }
+      }
+    },
+    "timeline": {
+      "description": "Две шкалы рисунка «дважды мир покупкой»: chichimeca — 1540–1600, apache — 1740–1860.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "row", "kind", "label", "when", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "row": {"enum": ["chichimeca", "apache"]},
+          "kind": {
+            "description": "event — событие; war — война или набеги; peace — «мир покупкой» и его плоды; state — события государств (независимость, война США и Мексики, договоры).",
+            "enum": ["event", "war", "peace", "state"]
+          },
+          "label": {"type": "string"},
+          "when": {"$ref": "#/$defs/span"},
+          "note": {"type": "string"},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    },
+    "moves": {
+      "description": "Стрелки карт главы 4: направление переселения, отступления или пути, а не дорога. from и to — id из places или areas.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "figure", "from", "to", "kind", "label", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "figure": {
+            "description": "Какая карта рисует стрелку.",
+            "enum": ["migrations", "revolt", "border"]
+          },
+          "from": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "to": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "kind": {
+            "description": "migration — переселение общин; retreat — отступление испанцев; flight — уход пуэбло к союзникам; run — бег со шнуром в память о гонцах; pilgrimage — паломничество.",
+            "enum": ["migration", "retreat", "flight", "run", "pilgrimage"]
+          },
+          "when": {"$ref": "#/$defs/span"},
+          "label": {"type": "string"},
+          "note": {"type": "string"},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    },
+    "lines": {
+      "description": "Линии границ по описанию договоров. current: true — линия совпадает с нынешней границей и берётся из visuals/shared/borders-50m.geojson; иначе coords — схема по описанию договора (schematic: true).",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "when", "schematic", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "name": {"type": "string"},
+          "when": {"$ref": "#/$defs/span"},
+          "current": {"type": "boolean"},
+          "schematic": {"type": "boolean"},
+          "coords": {"$ref": "#/$defs/coords"},
+          "coords_note": {"type": "string", "description": "Как построены координаты линии."},
+          "note": {"type": "string"},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"},
+          "todo": {"$ref": "genealogy.schema.json#/$defs/todo"}
+        }
+      }
+    },
+    "rivers": {
+      "description": "Реки для ориентира на картах главы 4: Natural Earth 1:10m (rivers_lake_centerlines, v5.1.2, общественное достояние), упрощены до ≈1 км. География, а не данные с источниками.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "coords", "coords_source"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "name": {"type": "string"},
+          "coords": {"$ref": "#/$defs/coords"},
+          "coords_source": {"type": "string"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "span": {
+      "description": "Календарные годы н. э. start = end — один год; day — точная дата «ГГГГ-ММ-ДД», если она есть в источнике; fuzzy_start / fuzzy_end — край известен лишь примерно («начало 1830-х», «больше четырёх десятилетий»); open_end — конец не указан в источниках главы; label — как время названо в тексте главы.",
+      "type": "object",
+      "required": ["start", "end", "dating"],
+      "additionalProperties": false,
+      "properties": {
+        "start": {"type": "integer"},
+        "end": {"oneOf": [{"type": "null"}, {"type": "integer"}]},
+        "day": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+        "fuzzy_start": {"type": "boolean"},
+        "fuzzy_end": {"type": "boolean"},
+        "open_end": {"type": "boolean"},
+        "label": {"type": "string"},
+        "dating": {"$ref": "genealogy.schema.json#/$defs/dating"}
+      }
+    },
+    "blobs": {
+      "description": "Пятна для размытой заливки: схема, а не граница.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["lon", "lat", "radius_km"],
+        "additionalProperties": false,
+        "properties": {
+          "lon": {"$ref": "zones.schema.json#/$defs/lon"},
+          "lat": {"$ref": "zones.schema.json#/$defs/lat"},
+          "radius_km": {"type": "number", "exclusiveMinimum": 0, "maximum": 3000}
+        }
+      }
+    },
+    "coords": {
+      "description": "Ломаная [долгота, широта].",
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "array",
+        "prefixItems": [
+          {"$ref": "zones.schema.json#/$defs/lon"},
+          {"$ref": "zones.schema.json#/$defs/lat"}
+        ],
+        "minItems": 2,
+        "maxItems": 2
+      }
+    }
+  }
+}

@@ -3141,6 +3141,1883 @@ def fig_inca(t: dict) -> str:
     )
 
 
+# ── Глава 4. Общее: данные, граница, пятна областей
+
+TRANSITION = ROOT / "data" / "transition.json"
+BORDERS = ROOT / "visuals" / "shared" / "borders-50m.geojson"
+
+# Цвета главы 4. Пары проверены validate_palette.js навыка dataviz для обеих тем:
+# --z-m / --z-t (Мезоамерика и Оазисамерика, Мезоамерика и колонии на рис. 4.7) — на фоне
+# суши --panel; --z-n / --z-t (война и мир на рис. 4.10, развалины и документы на рис. 4.8) —
+# на фоне --bg; та же пара --z-n / --z-t на фоне суши --panel — отступление испанцев и уход
+# пуэбло на рис. 4.9, полоса Гадсдена и земли оодхам на рис. 4.12 (проверено отдельно, обе
+# темы). Третьего цвета для Аридоамерики нет: пара --z-n / --z-m проваливает проверку
+# различимости при дальтонизме, поэтому Аридоамерика — нейтральная точечная фактура.
+
+
+def transition() -> dict:
+    return json.loads(TRANSITION.read_text(encoding="utf-8"))
+
+
+def border_d(pr, pair: tuple[str, str]) -> str:
+    """Нынешняя граница двух стран (коды ISO A3) из visuals/shared/borders-50m.geojson."""
+    fc = json.loads(BORDERS.read_text(encoding="utf-8"))
+    out = []
+    for f in fc["features"]:
+        if f["properties"]["between"] != sorted(pair):
+            continue
+        g = f["geometry"]
+        parts = [g["coordinates"]] if g["type"] == "LineString" else g["coordinates"]
+        out += [path_d([pr(lon, lat) for lon, lat in part]) for part in parts]
+    return "".join(out)
+
+
+def blobs_d(pr, blobs) -> str:
+    """Пятна {lon, lat, radius_km} — кругами на сфере, для размытой заливки или маски."""
+    rings = [geo_circle(b["lon"], b["lat"], b["radius_km"]) for b in blobs]
+    return "".join(f'<path d="{path_d([pr(*q) for q in r], True)}"/>' for r in rings)
+
+
+# Мезоамерика к югу от края Кирхгофа: край — опорные точки из data/transition.json, а
+# замыкание с юга (через море и Центральную Америку) — схема; суша обрезает его по берегу.
+MESO_SOUTH = [
+    (-96.4, 22.9),
+    (-93.0, 17.6),
+    (-88.0, 13.4),
+    (-93.5, 11.5),
+    (-105.6, 16.6),
+    (-108.9, 22.6),  # восточнее мыса Нижней Калифорнии: полуостров в Мезоамерику не входит
+]
+MESO_BLUR = 9
+
+
+def meso_d(pr, tr: dict) -> str:
+    places = {p["id"]: p for p in tr["places"]}
+    meso = next(a for a in tr["areas"] if a["kind"] == "meso")
+    edge = [(places[pid]["lon"], places[pid]["lat"]) for pid in meso["edge"]]
+    return path_d([pr(*q) for q in [*edge, *MESO_SOUTH]], close=True)
+
+
+def place_mark(kind: str, x: float, y: float, t: dict) -> str:
+    """Знаки карт главы 4: landmark — ориентир, mine — рудник, colony — колония,
+    origin — откуда шли переселенцы, edge — опорная точка края Мезоамерики."""
+    if kind == "mine":
+        return rect(
+            x - 4.4, y - 4.4, 8.8, 8.8, t["ink"], 1, extra=f' stroke="{t["bg"]}" stroke-width="1.6"'
+        )
+    if kind == "colony":
+        return (
+            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5" fill="{t["z-t"]}" stroke="{t["bg"]}" '
+            'stroke-width="1.8"/>'
+        )
+    if kind == "origin":
+        return (
+            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5" fill="{t["bg"]}" stroke="{t["z-t"]}" '
+            'stroke-width="2.2"/>'
+        )
+    if kind == "edge":
+        return (
+            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.2" fill="{t["panel"]}" stroke="{t["ink"]}" '
+            'stroke-width="1.4"/>'
+        )
+    return (
+        f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4" fill="{t["ink"]}" stroke="{t["bg"]}" '
+        'stroke-width="1.6"/>'
+    )
+
+
+def map_base(t: dict, w: int, h: int, pr, extra_defs: list[str]) -> list[str]:
+    """Начало карты главы 4: рамка, суша, фильтры размытия; заливки — до озёр и берега."""
+    land_d, _ = basemap_paths(pr, w, h)
+    return [
+        "<defs>",
+        f'<clipPath id="frame"><rect width="{w}" height="{h}"/></clipPath>',
+        f'<clipPath id="landclip"><path d="{land_d}"/></clipPath>',
+        f'<path id="land" d="{land_d}"/>',
+        '<filter id="soft" x="-30%" y="-30%" width="160%" height="160%">'
+        f'<feGaussianBlur stdDeviation="{MESO_BLUR}"/></filter>',
+        '<filter id="soft-key" x="-40%" y="-60%" width="180%" height="220%">'
+        '<feGaussianBlur stdDeviation="2"/></filter>',
+        *extra_defs,
+        "</defs>",
+        '<g clip-path="url(#frame)">',
+        f'<use href="#land" fill="{t["panel"]}"/>',
+    ]
+
+
+def map_coast(t: dict, pr, w: int, h: int) -> list[str]:
+    _, lakes_d = basemap_paths(pr, w, h)
+    return [
+        f'<path d="{lakes_d}" fill="{t["bg"]}" stroke="{t["muted"]}" stroke-width=".4" '
+        'stroke-opacity=".5"/>',
+        f'<use href="#land" fill="none" stroke="{t["muted"]}" stroke-width=".6" '
+        'stroke-opacity=".6"/>',
+        "</g>",
+    ]
+
+
+def sea_label(pr, lon, lat, s, t, size=13) -> str:
+    x, y = pr(lon, lat)
+    return text(x, y, s, t["muted"], size, "middle", 400, SERIF, italic=True, halo=t["bg"])
+
+
+def day_text(sp: dict) -> str:
+    """«21 августа 1591 г.», «1591 г.», «≈1546 г.», «1785–1787 гг.»."""
+    months = [
+        "января",
+        "февраля",
+        "марта",
+        "апреля",
+        "мая",
+        "июня",
+        "июля",
+        "августа",
+        "сентября",
+        "октября",
+        "ноября",
+        "декабря",
+    ]
+    if sp.get("day"):
+        y, m, d = sp["day"].split("-")
+        return f"{int(d)} {months[int(m) - 1]} {y} г."
+    if sp.get("label", "").startswith("около"):
+        return f"≈{sp['start']} г."
+    if sp["end"] is not None and sp["end"] != sp["start"]:
+        return f"{sp['start']}–{sp['end']} гг."
+    return f"{sp['start']} г."
+
+
+# ── Рис. 4.1. Понятия Кирхгофа и нынешняя граница (схема)
+
+ZONES4_W, ZONES4_H = 760, 860
+ZONES4_CENTER = (-107.5, 29.5)
+ZONES4_FIT = [(-122.4, 42.2), (-93.0, 42.2), (-122.4, 17.0), (-93.0, 17.0)]
+# Подписи областей: (lon, lat, вторая строка); Аридоамерика подписана дважды — по обе
+# стороны границы, чтобы было видно, что граница её разрезает.
+ZONES4_AREA_LABELS = {
+    "aridoamerica": [(-116.4, 40.6, "собиратели и охотники"), (-103.6, 27.7, None)],
+    "oasisamerica": [(-110.6, 35.0, "земледельцы «оазисов»")],
+    "mesoamerica": [(-102.6, 18.6, "ко времени завоевания")],
+}
+ZONES4_PLACES = {  # id: (откуда: transition или complex, подпись, dx, dy, выравнивание)
+    "mexico_city": ("transition", "Мехико", 8, 14, "start"),
+    "paquime": ("complex", "Пакиме", -8, 4, "end"),
+    "casa_grande": ("transition", "Каса-Гранде", -8, -7, "end"),
+    "mesa_verde": ("transition", "Меса-Верде", -8, -6, "end"),
+    "chaco": ("complex", "Чако", 8, 4, "start"),
+    "santa_fe": ("transition", "Санта-Фе", 8, 4, "start"),
+}
+ZONES4_EDGE_LABELS = {
+    "sinaloa_mouth": (-8, -6, "end"),
+    "lerma": (0, 16, "middle"),
+    "panuco_mouth": (8, -6, "start"),
+}
+# Подпись границы — вдоль нижнего течения Рио-Гранде, между двумя точками (lon, lat);
+# сдвиг — в пикселях поперёк линии, на сторону США.
+ZONES4_BORDER_LABEL = ((-102.2, 29.9), (-99.0, 27.3), -9)
+
+
+def fig_zones(t: dict) -> str:
+    tr = transition()
+    w, h = ZONES4_W, ZONES4_H
+    pr = map_projection(ZONES4_CENTER, ZONES4_FIT, w, h)
+    areas = {a["kind"]: a for a in tr["areas"]}
+    meso_c, oasis_c, ink, muted = t["z-m"], t["z-t"], t["ink"], t["muted"]
+    arid_mask = (
+        '<mask id="arid-mask">'
+        f'<g fill="#fff" filter="url(#soft)">{blobs_d(pr, areas["arid"]["blobs"])}</g>'
+        f'<g fill="#000" filter="url(#soft)">{blobs_d(pr, areas["oasis"]["blobs"])}'
+        f'<path d="{meso_d(pr, tr)}"/></g></mask>'
+    )
+    dots = (
+        '<pattern id="dots" width="7" height="7" patternUnits="userSpaceOnUse">'
+        f'<circle cx="3.5" cy="3.5" r="1.25" fill="{muted}"/></pattern>'
+    )
+    b = map_base(t, w, h, pr, [arid_mask, dots])
+    b += [
+        '<g clip-path="url(#landclip)">',
+        f'<rect width="{w}" height="{h}" fill="{muted}" fill-opacity=".14" '
+        'mask="url(#arid-mask)"/>',
+        f'<rect width="{w}" height="{h}" fill="url(#dots)" mask="url(#arid-mask)"/>',
+        f'<g fill="{oasis_c}" opacity=".5" filter="url(#soft)">'
+        f"{blobs_d(pr, areas['oasis']['blobs'])}</g>",
+        f'<path d="{meso_d(pr, tr)}" fill="{meso_c}" opacity=".55" filter="url(#soft)"/>',
+        "</g>",
+    ]
+    b += map_coast(t, pr, w, h)
+    b.append(
+        f'<path d="{border_d(pr, ("MEX", "USA"))}" fill="none" stroke="{ink}" '
+        'stroke-width="1.5" stroke-linejoin="round"/>'
+    )
+    b.append(sea_label(pr, -119.2, 29.0, "Тихий океан", t, 15))
+    b.append(sea_label(pr, -94.6, 24.4, "Мексиканский", t, 13))
+    b.append(sea_label(pr, -94.6, 23.7, "залив", t, 13))
+
+    # области: крупная подпись и пояснение
+    for kind, aid in (("arid", "aridoamerica"), ("oasis", "oasisamerica"), ("meso", "mesoamerica")):
+        for lon, lat, sub in ZONES4_AREA_LABELS[aid]:
+            x, y = pr(lon, lat)
+            b.append(text(x, y, areas[kind]["name"], ink, 18, "middle", 600, SERIF, True, t["bg"]))
+            if sub:
+                b.append(text(x, y + 17, sub, muted, 12.5, "middle", halo=t["bg"]))
+
+    # граница — подпись вдоль линии
+    (ax, ay), (zx, zy) = (pr(*q) for q in ZONES4_BORDER_LABEL[:2])
+    rot = math.degrees(math.atan2(zy - ay, zx - ax))
+    bx, by = (ax + zx) / 2, (ay + zy) / 2
+    b.append(
+        f'<g transform="translate({bx:.1f},{by:.1f}) rotate({rot:.1f})">'
+        + text(
+            0,
+            ZONES4_BORDER_LABEL[2],
+            "граница США и Мексики сегодня",
+            ink,
+            12,
+            "middle",
+            600,
+            halo=t["bg"],
+        )
+        + "</g>"
+    )
+
+    # край Мезоамерики: опорные точки Кирхгофа
+    places = {p["id"]: p for p in tr["places"]}
+    for pid, (dx, dy, anchor) in ZONES4_EDGE_LABELS.items():
+        p = places[pid]
+        x, y = pr(p["lon"], p["lat"])
+        b.append(place_mark("edge", x, y, t))
+        b.append(text(x + dx, y + dy, p["name"], ink, 11.5, anchor, italic=True, halo=t["bg"]))
+
+    # ориентиры
+    cplaces = {p["id"]: p for p in complex_data()["places"]}
+    for pid, (src, name, dx, dy, anchor) in ZONES4_PLACES.items():
+        p = places[pid] if src == "transition" else cplaces[pid]
+        x, y = pr(p["lon"], p["lat"])
+        b.append(place_mark("landmark", x, y, t))
+        b.append(text(x + dx, y + dy, name, ink, 12.5, anchor, 500, halo=t["bg"]))
+
+    # крупно: что это за рисунок; легенда — в океане
+    lx, ly = 22, h - 232
+    b.append(text(lx, ly, "Схема: границы областей", ink, 21, "start", 700, halo=t["bg"]))
+    b.append(text(lx, ly + 25, "условные", ink, 21, "start", 700, halo=t["bg"]))
+    rows = [
+        ("meso", "Мезоамерика — по Кирхгофу (1943)"),
+        ("oasis", "Оазисамерика"),
+        ("arid", "Аридоамерика"),
+        ("edge", "край Мезоамерики: Пануко — Лерма — Синалоа"),
+        ("border", "нынешняя граница США и Мексики"),
+        ("landmark", "ориентир"),
+    ]
+    y0 = ly + 56
+    for k, (kind, s1) in enumerate(rows):
+        yy = y0 + k * 21
+        if kind == "meso":
+            b.append(
+                f'<ellipse cx="35" cy="{yy}" rx="13" ry="7" fill="{meso_c}" opacity=".55" '
+                'filter="url(#soft-key)"/>'
+            )
+        elif kind == "oasis":
+            b.append(
+                f'<ellipse cx="35" cy="{yy}" rx="13" ry="7" fill="{oasis_c}" opacity=".5" '
+                'filter="url(#soft-key)"/>'
+            )
+        elif kind == "arid":
+            b.append(rect(22, yy - 7, 26, 14, muted, 6, 0.14))
+            b.append(rect(22, yy - 7, 26, 14, "url(#dots)", 6))
+        elif kind == "edge":
+            b.append(place_mark("edge", 35, yy, t))
+        elif kind == "border":
+            b.append(line(22, yy, 48, yy, ink, 1.5))
+        else:
+            b.append(place_mark("landmark", 35, yy, t))
+        b.append(text(58, yy + 4, s1, ink, 12, halo=t["bg"]))
+    notes = [
+        "Названия Аридо- и Оазисамерики — Кирхгоф, 1954.",
+        "Положение точек ориентировочное.",
+    ]
+    for k, s1 in enumerate(notes):
+        b.append(text(lx, y0 + len(rows) * 21 + 4 + k * 15, s1, muted, 11.5, halo=t["bg"]))
+    b.append(
+        f'<rect x=".5" y=".5" width="{w - 1}" height="{h - 1}" fill="none" stroke="{t["rule"]}"/>'
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Понятия Кирхгофа и нынешняя граница США и Мексики (схема)",
+        "Схематическая карта Мексики и юго-запада США. Размытым пятном на юге — Мезоамерика ко "
+        "времени завоевания; её северный край проходит размытой полосой от устья реки Пануко "
+        "через Лерму к устью реки Синалоа. Севернее — Аридоамерика (точечная фактура: земли "
+        "собирателей и охотников, от севера Мексики до Большого Бассейна) и Оазисамерика "
+        "(земледельцы юго-запада США и северо-запада Мексики). Тонкая линия — нынешняя граница "
+        "США и Мексики, она проходит поперёк обеих областей. Ориентиры: Мехико, Пакиме, "
+        "Каса-Гранде, Меса-Верде, Чако, Санта-Фе. Границы областей условные, положение точек "
+        "ориентировочное.",
+    )
+
+
+# ── Рис. 4.2. Как работает и как ломается самотёчный канал (схема)
+
+# Числа на рисунке — из текста главы (сноска nelson2010): больше 500 км каналов, до 650 км²
+# полей, распад сети около 1070 г., паводки и маловодье 1356–1384 гг. Профили условные.
+CANAL_PANELS = [
+    {
+        "title": "Канал работает",
+        "ground": 0,  # насколько врезалось русло, px
+        "water": 106,  # уровень воды, y в панели
+        "notes": ["река стоит выше дна канала —", "вода сама идёт к полям"],
+        "muted": [],
+    },
+    {
+        "title": "Река ниже водозабора",
+        "ground": 30,
+        "water": 160,
+        "notes": ["русло врезалось или выше по реке", "воду забрали новые каналы —"],
+        "muted": ["так объясняют распад ≈1070 г.;", "что из этого верно, спорят"],
+    },
+    {
+        "title": "Паводок выше берегов",
+        "ground": 0,
+        "water": 70,
+        "notes": ["1356–1384 гг.: очень высокие паводки", "чередовались с маловодьем —"],
+        "muted": ["могли разрушать водозаборы"],
+    },
+]
+
+
+def fig_canals(t: dict) -> str:
+    w, h = 760, 420
+    pw, ph, gap, x00, y00 = 236, 196, 14, 16, 86
+    ink, muted, water = t["ink"], t["muted"], t["z-t"]
+    gy, bed, cb = 96, 150, 124  # поверхность земли, дно русла, дно канала (y в панели)
+    rx0, rx1, sl = 18, 112, 14  # берега русла (водозабор — на правом) и откос
+    b = [
+        text(
+            16,
+            30,
+            "Самотёчный канал: вода идёт в него, только пока река стоит выше его дна",
+            ink,
+            17,
+            "start",
+            700,
+        ),
+        text(
+            16,
+            52,
+            "Каналы хохокам на Солт-Ривер — больше 500 км; ими поливали, возможно, до "
+            "650 км² полей",
+            muted,
+            12.5,
+        ),
+    ]
+    for k, pn in enumerate(CANAL_PANELS):
+        ox = x00 + k * (pw + gap)
+
+        def P(pts, ox=ox):
+            return [(ox + x, y00 + y) for x, y in pts]
+
+        b.append(rect(ox, y00, pw, ph, t["panel"], 4, 1, f' stroke="{t["rule"]}"'))
+        b.append(text(ox + 10, y00 + 22, f"{k + 1}. {pn['title']}", ink, 13.5, "start", 700))
+        bd = bed + pn["ground"]
+        # грунт: берега и русло; справа от русла — канава канала: мы смотрим вдоль неё,
+        # дальняя стенка канавы — светлее
+        ground = [
+            (0, gy),
+            (rx0, gy),
+            (rx0 + sl, bd),
+            (rx1 - sl, bd),
+            (rx1, cb),
+            (pw, cb),
+            (pw, ph),
+            (0, ph),
+        ]
+        b.append(polygon(P(ground), muted, 0.32))
+        b.append(polygon(P([(rx1, gy), (pw, gy), (pw, cb), (rx1, cb)]), muted, 0.12))
+        b.append(
+            polyline(
+                P([(0, gy), (rx0, gy), (rx0 + sl, bd), (rx1 - sl, bd), (rx1, cb), (pw, cb)]),
+                muted,
+                1.2,
+            )
+        )
+        b.append(polyline(P([(rx1, gy), (pw, gy)]), muted, 0.8))
+        if pn["ground"]:  # прежнее дно — пунктиром
+            (xa, ya), (xz, _) = P([(rx0 + sl * 0.6, bed), (rx1 - sl * 0.6, bed)])
+            b.append(line(xa, ya, xz, ya, ink, 1.1, "3 3"))
+        wl = pn["water"]
+        if wl < gy:  # паводок: вода выше берегов
+            wpoly = [
+                (0, wl),
+                (pw, wl),
+                (pw, cb),
+                (rx1, cb),
+                (rx1 - sl, bd),
+                (rx0 + sl, bd),
+                (rx0, gy),
+                (0, gy),
+            ]
+        else:
+            f = (wl - gy) / (bd - gy)
+            wpoly = [(rx0 + sl * f, wl), (rx1 - sl * f, wl), (rx1 - sl, bd), (rx0 + sl, bd)]
+            if wl < cb:  # вода заходит в канал
+                wpoly = [
+                    (rx0 + sl * f, wl),
+                    (pw, wl),
+                    (pw, cb),
+                    (rx1, cb),
+                    (rx1 - sl, bd),
+                    (rx0 + sl, bd),
+                ]
+        b.append(polygon(P(wpoly), water, 0.55))
+        xs = [x for x, _ in wpoly]
+        (xa, ya), (xz, _) = P([(min(xs), wl), (max(xs), wl)])
+        b.append(line(xa, ya, xz, ya, water, 1.6))
+        b.append(
+            text(
+                ox + (rx0 + rx1) / 2,
+                y00 + bd - 8,
+                "река",
+                ink,
+                11.5,
+                "middle",
+                italic=True,
+                halo=t["panel"],
+            )
+        )
+        if k == 0:
+            (xa, ya), (xz, _) = P([(rx1 + 12, cb - 7), (pw - 12, cb - 7)])
+            b.append(
+                f'<path d="M{xa:.1f},{ya:.1f}L{xz:.1f},{ya:.1f}" stroke="{ink}" '
+                'stroke-width="1.4" marker-end="url(#head-ink)"/>'
+            )
+            b.append(
+                text(
+                    ox + pw - 10, y00 + gy - 8, "канал — к полям", ink, 11.5, "end", halo=t["panel"]
+                )
+            )
+            b.append(text(ox + rx1 + 4, y00 + cb + 16, "водозабор", muted, 11, halo=t["panel"]))
+        if k == 1:
+            b.append(
+                text(ox + pw - 10, y00 + gy - 8, "канал сухой", ink, 11.5, "end", halo=t["panel"])
+            )
+            b.append(text(ox + rx1 + 4, y00 + cb + 16, "водозабор", muted, 11, halo=t["panel"]))
+            b.append(text(ox + rx0 + 2, y00 + bed - 6, "прежнее дно", ink, 10.5, halo=t["panel"]))
+        if k == 2:  # водозабор размыт: зубчатый край
+            jag = [(rx1 - 2, gy + 2), (rx1 + 8, gy + 9), (rx1 + 1, gy + 16), (rx1 + 10, cb - 2)]
+            b.append(polyline(P(jag), ink, 1.6))
+            b.append(
+                text(
+                    ox + rx1 + 18,
+                    y00 + gy + 18,
+                    "водозабор",
+                    ink,
+                    11.5,
+                    "start",
+                    600,
+                    halo=t["panel"],
+                )
+            )
+            b.append(
+                text(
+                    ox + rx1 + 18, y00 + gy + 32, "размыт", ink, 11.5, "start", 600, halo=t["panel"]
+                )
+            )
+        # пояснения под панелью
+        for j, s1 in enumerate(pn["notes"]):
+            b.append(text(ox + 2, y00 + ph + 24 + j * 16, s1, ink, 12))
+        for j, s1 in enumerate(pn["muted"]):
+            b.append(text(ox + 2, y00 + ph + 24 + (len(pn["notes"]) + j) * 16, s1, muted, 12))
+    b.insert(0, f"<defs>{arrow_marker('head-ink', ink, 5)}</defs>")
+    b.append(text(16, h - 30, "Схема: профили условные, без масштаба.", ink, 14, "start", 700))
+    b.append(
+        text(
+            16,
+            h - 12,
+            "Показаны только объяснения, связанные с водой; третье — беспорядки на северной "
+            "окраине — схема не показывает.",
+            muted,
+            12,
+        )
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Как работает и как ломается самотёчный канал (схема)",
+        "Три условных поперечных профиля реки с каналом, отходящим от правого берега. 1 — канал "
+        "работает: уровень реки выше дна канала, вода сама идёт к полям. 2 — река ниже "
+        "водозабора: русло врезалось или выше по реке воду забрали новые каналы, канал сухой; "
+        "так объясняют распад сети около 1070 г., что верно — спорят. 3 — паводок выше берегов: "
+        "в 1356–1384 гг. очень высокие паводки чередовались с маловодьем и могли разрушать "
+        "водозаборы. Каналы хохокам на Солт-Ривер — больше 500 км, поливали, возможно, до "
+        "650 км² полей.",
+    )
+
+
+# ── Рис. 4.5. Население центральной части Меса-Верде и «Великая засуха» (данные)
+
+MV_FROM, MV_TO, MV_MAX = 600, 1300, 36000
+MV_ZERO_AFTER = 6  # лет: «через несколько лет после 1280 г.» — схематичный спуск к нулю
+
+
+def fig_mesaverde(t: dict) -> str:
+    mv = transition()["mesaverde"]
+    w, h = 760, 500
+    x0, x1, top, yb = 84, 736, 70, 380
+    ink, muted, dry = t["ink"], t["muted"], t["z-n"]
+
+    def px(yr: float) -> float:
+        return x0 + (yr - MV_FROM) / (MV_TO - MV_FROM) * (x1 - x0)
+
+    def py(v: float) -> float:
+        return yb - v / MV_MAX * (yb - top)
+
+    dr = mv["drought"]["when"]
+    b = [
+        "<defs>",
+        '<pattern id="dry" width="5" height="5" patternUnits="userSpaceOnUse" '
+        f'patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="{dry}" '
+        'stroke-width="1.8"/></pattern>',
+        "</defs>",
+    ]
+    for v in range(0, MV_MAX + 1, 5000):
+        y = py(v)
+        b.append(line(x0, y, x1, y, t["rule"], 1.0 if v == 0 else 0.6))
+        b.append(text(x0 - 8, y + 4, grouped(v), muted, 11.5, "end"))
+    for yr in range(MV_FROM, MV_TO + 1, 100):
+        b.append(line(px(yr), yb, px(yr), yb + 5, muted, 1))
+        b.append(text(px(yr), yb + 19, f"{yr}", ink, 12, "middle"))
+    b.append(text(x0 - 8, top - 22, "жителей одновременно, в среднем за период", muted, 12))
+
+    # засуха — штриховка во всю высоту
+    b.append(
+        rect(px(dr["start"]), top, px(dr["end"]) - px(dr["start"]), yb - top, "url(#dry)", 0, 0.75)
+    )
+
+    # полоса интервала и ступенчатая линия
+    periods = mv["periods"]
+    for per in periods:
+        a, z = px(per["when"]["start"]), px(per["when"]["end"])
+        lo = max(per["population"] - per["ci80"], 0)
+        hi = per["population"] + per["ci80"]
+        b.append(rect(a, py(hi), z - a, py(lo) - py(hi), muted, 0, 0.3))
+    pts = []
+    for per in periods:
+        y = py(per["population"])
+        pts += [(px(per["when"]["start"]), y), (px(per["when"]["end"]), y)]
+    b.append(polyline(pts, ink, 2.4))
+    last = periods[-1]
+    xe, ye = px(last["when"]["end"]), py(last["population"])
+    xz = px(last["when"]["end"] + MV_ZERO_AFTER)
+    b.append(
+        f'<path d="M{xe:.1f},{ye:.1f}L{xz:.1f},{py(0):.1f}" stroke="{ink}" stroke-width="2.4" '
+        'stroke-dasharray="4 3" fill="none"/>'
+    )
+    b.append(line(xz, py(0), x1, py(0), ink, 2.4))
+
+    # подписи
+    peak = max(periods, key=lambda p: p["population"])
+
+    def when(p):
+        return f"{p['when']['start']}–{p['when']['end']} гг."
+
+    xp = px(peak["when"]["start"]) - 10
+    b.append(
+        text(
+            xp,
+            py(peak["population"]) - 6,
+            f"{when(peak)}: {grouped(peak['population'])}",
+            ink,
+            12.5,
+            "end",
+            600,
+            halo=t["bg"],
+        )
+    )
+    # последний период — под его полосой, выноской вверх: слева ступени почти того же уровня
+    xl = (px(last["when"]["start"]) + px(last["when"]["end"])) / 2
+    y_lo = py(last["population"] - last["ci80"])
+    y_lab = py(9000)
+    b.append(line(xl, y_lo + 2, xl, y_lab - 14, muted, 0.8))
+    b.append(
+        text(
+            xl + 4,
+            y_lab,
+            f"{when(last)}: {grouped(last['population'])}",
+            ink,
+            12.5,
+            "end",
+            600,
+            halo=t["bg"],
+        )
+    )
+    b.append(
+        text(xl + 4, y_lab + 15, "население падает ещё до засухи", muted, 12, "end", halo=t["bg"])
+    )
+    after = mv["after"]
+    b.append(
+        text(
+            x1 - 6,
+            py(0) - 10,
+            f"{after['when']['label']} — {after['label']}",
+            ink,
+            12,
+            "end",
+            halo=t["bg"],
+        )
+    )
+    b.append(
+        text(
+            x1,
+            top - 22,
+            f"{mv['drought']['name']} {dr['start']}–{dr['end']} гг.",
+            dry,
+            12.5,
+            "end",
+            600,
+        )
+    )
+    b.append(text(x1, top - 8, "по годичным кольцам", muted, 11.5, "end"))
+
+    # легенда
+    ly = yb + 50
+    items = [
+        ("line", "среднее за период — сумма жителей общинных центров и малых поселений"),
+        ("band", "неформальный 80-процентный интервал авторов"),
+        ("dry", "самая тяжёлая часть засухи"),
+    ]
+    for k, (kind, s1) in enumerate(items):
+        yy = ly + k * 20
+        if kind == "line":
+            b.append(line(24, yy, 50, yy, ink, 2.4))
+        elif kind == "band":
+            b.append(rect(24, yy - 6, 26, 12, muted, 0, 0.3))
+        else:
+            b.append(rect(24, yy - 6, 26, 12, "url(#dry)", 0, 0.75))
+        b.append(text(60, yy + 4.5, s1, ink, 12.5))
+    b.append(text(w - 16, h - 10, "Даты периодов приблизительные", muted, 12, "end", italic=True))
+    desc = "; ".join(
+        f"{p['when']['start']}–{p['when']['end']}: "
+        f"{grouped(p['population'])} ± {grouped(p['ci80'])}"
+        for p in periods
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Население центральной части Меса-Верде, 600–1280 гг., и «Великая засуха»",
+        "Ступенчатый график: по горизонтали годы 600–1300, по вертикали — среднее число жителей "
+        f"одновременно. По периодам (жителей ± 80-процентный интервал): {desc}. Через несколько "
+        f"лет после 1280 г. — никого. Штриховкой — «Великая засуха» {dr['start']}–{dr['end']} гг.: "
+        "она начинается, когда население уже падает.",
+    )
+
+
+# ── Карты главы 4: общие помощники для рис. 4.6, 4.9 и 4.12
+
+
+def river_d(pr, tr: dict, rid: str) -> str:
+    r = next(r for r in tr["rivers"] if r["id"] == rid)
+    return path_d([pr(lon, lat) for lon, lat in r["coords"]])
+
+
+def rivers_layer(t: dict, pr, tr: dict, ids) -> list[str]:
+    return [
+        f'<path d="{river_d(pr, tr, rid)}" fill="none" stroke="{t["z-t"]}" stroke-width="1.3" '
+        'stroke-opacity=".55" stroke-linejoin="round"/>'
+        for rid in ids
+    ]
+
+
+def region_blob(pr, p: dict, color: str, opacity: float = 0.45) -> str:
+    """Условная область — размытое пятно радиуса radius_km."""
+    ring = geo_circle(p["lon"], p["lat"], p["radius_km"])
+    return (
+        f'<path d="{path_d([pr(*q) for q in ring], True)}" fill="{color}" opacity="{opacity}" '
+        'filter="url(#soft)"/>'
+    )
+
+
+def move_path(x0, y0, x1, y1, bend, color, width, dash, marker, trim0=9.0, trim1=11.0) -> str:
+    a, bb, cx, cy, z, zz = map_curve(x0, y0, x1, y1, bend, trim0, trim1)
+    d = f' stroke-dasharray="{dash}"' if dash else ""
+    return (
+        f'<path d="M{a:.1f},{bb:.1f}Q{cx:.1f},{cy:.1f} {z:.1f},{zz:.1f}" fill="none" '
+        f'stroke="{color}" stroke-width="{width}"{d} stroke-linecap="round" '
+        f'marker-end="url(#{marker})"/>'
+    )
+
+
+def label_lines(x, y, rows, t, anchor="start", size=12.5, lh=15) -> list[str]:
+    """rows — [(строка, цвет, жирность)]; первая — на y, остальные ниже."""
+    return [
+        text(x, y + k * lh, s1, c, size if k == 0 else size - 1, anchor, wt, halo=t["bg"])
+        for k, (s1, c, wt) in enumerate(rows)
+    ]
+
+
+def scale_bar(pr, x, y, kms, t, lon=-108.0, lat=34.0) -> list[str]:
+    """Масштабная линейка: штрихи на расстояниях kms (км) от начала."""
+    x0, y0 = pr(lon, lat)
+    x1, y1 = pr(lon, lat + 1)
+    px_km = math.hypot(x1 - x0, y1 - y0) / 111.2
+    out = [line(x, y, x + kms[-1] * px_km, y, t["ink"], 1.6)]
+    for km in [0, *kms]:
+        xx = x + km * px_km
+        out.append(line(xx, y - 4, xx, y + 4, t["ink"], 1.4))
+        out.append(text(xx, y + 17, f"{km} км" if km else "0", t["ink"], 11.5, "middle"))
+    return out
+
+
+# ── Рис. 4.6. Дальние переселения конца XIII в. (схема по тексту главы)
+
+MIG_W, MIG_MAP_H, MIG_KEY_H = 760, 620, 104
+MIG_CENTER = (-108.8, 35.0)
+MIG_FIT = [(-113.6, 38.1), (-104.4, 38.1), (-113.6, 32.0), (-104.4, 32.0)]
+MIG_BEND = {"mesa_verde_exodus": -0.12, "kayenta_south": -0.12}
+MIG_LANDMARKS = {  # id: (откуда, dx, dy, выравнивание)
+    "santa_fe": ("transition", 8, 14, "start"),
+    "casa_grande": ("transition", 8, 14, "start"),
+    "chaco": ("complex", 8, 4, "start"),
+}
+# Подписи областей: id: (dx, dy от центра пятна, выравнивание, строки — первая жирная)
+MIG_TEXT = {
+    "mesa_verde": (
+        -10,
+        -8,
+        "end",
+        ["Меса-Верде", "уход начался до 1260 г.,", "к 1285 г. — никого"],
+    ),
+    "kayenta": (0, -4, "middle", ["район Каента"]),
+    "rio_grande_north": (
+        None,  # по правому краю карты
+        74,
+        "end",
+        [
+            "север долины Рио-Гранде",
+            "сюда ушло большинство жителей",
+            "Меса-Верде: условия для земледелия",
+            "без полива здесь были лучше;",
+            "плато Пахарито — убежище в засуху",
+        ],
+    ),
+    "central_arizona": (
+        -16,
+        96,
+        "start",
+        [
+            "центральная Аризона",
+            "1280-е гг.: здесь начали делать",
+            "посуду саладо — по осторожной",
+            "формулировке авторов, те, кого",
+            "считают этими переселенцами",
+        ],
+    ),
+}
+
+
+def fig_migrations(t: dict) -> str:
+    tr = transition()
+    w, mh = MIG_W, MIG_MAP_H
+    h = mh + MIG_KEY_H
+    pr = map_projection(MIG_CENTER, MIG_FIT, w, mh)
+    places = {p["id"]: p for p in tr["places"]}
+    ink, muted, col = t["ink"], t["muted"], t["z-t"]
+    moves = [m for m in tr["moves"] if m["figure"] == "migrations"]
+    b = map_base(t, w, mh, pr, [arrow_marker("head-col", col, 5)])
+    regions = {m["to"] for m in moves} | {m["from"] for m in moves}
+    b.append('<g clip-path="url(#landclip)">')
+    b += [region_blob(pr, places[r], col, 0.4) for r in sorted(regions) if "radius_km" in places[r]]
+    b.append("</g>")
+    b += map_coast(t, pr, w, mh)
+    b.append('<g clip-path="url(#frame)">')
+    b += rivers_layer(t, pr, tr, ["rio_grande", "gila"])
+    b.append("</g>")
+    for rid, lon, lat, rot in (("Рио-Гранде", -107.05, 33.9, -84), ("Хила", -109.75, 33.2, 22)):
+        x, y = pr(lon, lat)
+        b.append(
+            f'<g transform="translate({x:.1f},{y:.1f}) rotate({rot})">'
+            + text(0, 0, rid, col, 11.5, "middle", italic=True, halo=t["bg"])
+            + "</g>"
+        )
+    x, y = pr(-112.5, 36.55)
+    b.append(text(x, y, "плато Колорадо", muted, 15, "middle", 400, SERIF, True, t["bg"]))
+
+    # стрелки — направления, а не дороги
+    for m in moves:
+        a, z = places[m["from"]], places[m["to"]]
+        (x0, y0), (x1, y1) = pr(a["lon"], a["lat"]), pr(z["lon"], z["lat"])
+        trim1 = 44 if "radius_km" in z else 11
+        trim0 = 26 if "radius_km" in a else 12
+        b.append(
+            move_path(x0, y0, x1, y1, MIG_BEND[m["id"]], col, 3.2, "7 4", "head-col", trim0, trim1)
+        )
+
+    cpl = {p["id"]: p for p in complex_data()["places"]}
+    for pid, (src, dx, dy, anchor) in MIG_LANDMARKS.items():
+        p = places[pid] if src == "transition" else cpl[pid]
+        x, y = pr(p["lon"], p["lat"])
+        b.append(place_mark("landmark", x, y, t))
+        b.append(text(x + dx, y + dy, p["name"], ink, 12, anchor, 500, halo=t["bg"]))
+    for pid in ("hopi", "zuni"):
+        x, y = pr(places[pid]["lon"], places[pid]["lat"])
+        b.append(mark("circle", x, y, t["bg"], ink, t["bg"], 4.2))
+        b += label_lines(x + 9, y + 4, [(places[pid]["name"], ink, 700)], t)
+    xz, yz = pr(places["zuni"]["lon"], places["zuni"]["lat"])
+    b += label_lines(
+        xz,
+        yz + 22,
+        [
+            ("хопи и зуни — северные группы,", muted, 400),
+            ("уцелевшие после распада южной", muted, 400),
+            ("сети в 1400–1450 гг.", muted, 400),
+        ],
+        t,
+        "middle",
+        12.5,
+        14,
+    )
+
+    mv = places["mesa_verde"]
+    x, y = pr(mv["lon"], mv["lat"])
+    b.append(place_mark("origin", x, y, t))
+    for pid, (dx, dy, anchor, rows) in MIG_TEXT.items():
+        p = places[pid]
+        x, y = pr(p["lon"], p["lat"])
+        if dx is None:
+            x, dx = w - 12, 0
+        b += label_lines(
+            x + dx,
+            y + dy,
+            [(rows[0], ink, 700)] + [(r, muted, 400) for r in rows[1:]],
+            t,
+            anchor,
+            12.5,
+            14,
+        )
+
+    # заголовок и масштаб связей
+    b.append(text(20, 36, "Дальние переселения конца XIII в.", ink, 21, "start", 700, halo=t["bg"]))
+    b.append(text(20, 58, "стрелки — направления, а не дороги", ink, 14, halo=t["bg"]))
+    sx, sy = w - 300, mh - 52
+    b.append(text(sx, sy - 22, "Сходство посуды связывало поселения", ink, 12, halo=t["bg"]))
+    b.append(
+        text(sx, sy - 8, "в среднем на 70–120 км, часть — больше 250 км", ink, 12, halo=t["bg"])
+    )
+    b += scale_bar(pr, sx, sy + 10, [100, 250], t)
+    b.append(
+        f'<rect x=".5" y=".5" width="{w - 1}" height="{mh - 1}" fill="none" stroke="{t["rule"]}"/>'
+    )
+
+    # легенда
+    ky0 = mh + 26
+    rows = [
+        ("region", "откуда и куда шли — области условные"),
+        ("move", "направление переселения, а не дорога"),
+        ("origin", "Меса-Верде"),
+        ("pueblo", "нынешние хопи и зуни"),
+        ("landmark", "ориентир"),
+        ("river", "реки — для ориентира"),
+    ]
+    for k, (kind, s1) in enumerate(rows):
+        lx = 20 + (k // 3) * 372
+        yy = ky0 + (k % 3) * 22
+        if kind == "region":
+            b.append(
+                f'<ellipse cx="{lx + 13}" cy="{yy}" rx="13" ry="7" fill="{col}" opacity=".45" '
+                'filter="url(#soft-key)"/>'
+            )
+        elif kind == "move":
+            b.append(
+                f'<path d="M{lx},{yy}L{lx + 22},{yy}" stroke="{col}" stroke-width="3" '
+                'stroke-dasharray="7 4" marker-end="url(#head-col)"/>'
+            )
+        elif kind == "pueblo":
+            b.append(mark("circle", lx + 13, yy, t["bg"], ink, t["bg"], 4.2))
+        elif kind == "river":
+            b.append(line(lx, yy, lx + 26, yy, col, 1.3, opacity=0.55))
+        else:
+            b.append(place_mark(kind, lx + 13, yy, t))
+        b.append(text(lx + 36, yy + 4, s1, ink, 12.5))
+    b.append(
+        text(
+            20,
+            h - 10,
+            "Схема: области условные; положение точек ориентировочное.",
+            muted,
+            12,
+            italic=True,
+        )
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Дальние переселения конца XIII в. (схема)",
+        "Карта плато Колорадо и юга Аризоны. Толстая пунктирная стрелка ведёт от Меса-Верде к "
+        "размытому пятну на севере долины Рио-Гранде: сюда ушло большинство жителей; уход "
+        "начался до 1260 г., к 1285 г. на Меса-Верде никого. Вторая стрелка — от района Каента "
+        "на северо-востоке Аризоны к размытому пятну в центральной Аризоне: переселенцы 1280-х "
+        "гг.; здесь, по осторожной формулировке авторов, начали делать посуду саладо. Кругами "
+        "отмечены хопи и зуни — северные группы, уцелевшие после распада южной сети в "
+        "1400–1450 гг. Линейка: сходство посуды связывало поселения в среднем на 70–120 км, "
+        "часть — больше 250 км. Ориентиры: Чако, Санта-Фе, Каса-Гранде; реки Рио-Гранде и "
+        "Хила. Схема: области условные.",
+    )
+
+
+# ── Рис. 4.7. Чичимекская война и колонии тлашкальтеков (данные)
+
+CHICH_W, CHICH_MAP_H, CHICH_KEY_H = 760, 600, 132
+CHICH_CENTER = (-100.9, 22.5)
+CHICH_FIT = [(-105.6, 27.0), (-96.2, 27.0), (-105.6, 18.35), (-96.2, 18.35)]
+CHICH_BLUR = 16  # px: край Мезоамерики в крупном масштабе размыт сильнее, чем на рис. 4.1
+# Стрелки: id цели: (откуда, изгиб). Паррас основали в 1598 г. семьи из Сан-Эстебана, а не
+# переселенцы 1591 г. из Тлашкалы, — поэтому его стрелка короткая, от Сан-Эстебана.
+CHICH_ROUTES = {
+    "colotlan": ("tlaxcala", -0.14),
+    "saltillo": ("tlaxcala", -0.1),
+    "parras": ("saltillo", 0.12),
+}
+CHICH_LABELS = {  # id: (dx, dy, выравнивание, вторая строка: шаблон по when)
+    "zacatecas": (-10, -6, "end", "серебро {w}"),
+    "san_luis_potosi": (0, -27, "middle", "рудник {w} — уже после мира"),
+    "colotlan": (-10, 18, "end", "основан {w}"),
+    "saltillo": (10, -6, "start", "колония {w}"),
+    "parras": (-10, 16, "end", "основан {w}"),
+    "tlaxcala": (10, 4, "start", None),
+    "mexico_city": (-9, 4, "end", None),
+}
+CHICH_NAMES = {"saltillo": ["Сан-Эстебан-де-ла-Нуэва-", "Тласкала (у Сальтильо)"]}
+CHICH_NOTES = {"parras": "семьями из Сан-Эстебана"}  # третья строка подписи
+# Опорные точки края Мезоамерики, попавшие в рамку: подпись (dx, dy, выравнивание). Без них
+# не видно, что Колотлан и Сакатекас стоят в размытой полосе края, а не внутри Мезоамерики.
+CHICH_EDGE = {"lerma": (0, 17, "middle"), "panuco_mouth": (-8, 4, "end")}
+CHICH_MESO_LABEL = (-104.0, 20.0)
+
+
+def fig_chichimeca(t: dict) -> str:
+    tr = transition()
+    w, mh = CHICH_W, CHICH_MAP_H
+    h = mh + CHICH_KEY_H
+    pr = map_projection(CHICH_CENTER, CHICH_FIT, w, mh)
+    places = {p["id"]: p for p in tr["places"]}
+    ink, muted, col, meso_c = t["ink"], t["muted"], t["z-t"], t["z-m"]
+    b = map_base(
+        t,
+        w,
+        mh,
+        pr,
+        [
+            arrow_marker("head-col", col, 5.5),
+            '<filter id="soft-wide" x="-30%" y="-30%" width="160%" height="160%">'
+            f'<feGaussianBlur stdDeviation="{CHICH_BLUR}"/></filter>',
+        ],
+    )
+    b += [
+        '<g clip-path="url(#landclip)">',
+        f'<path d="{meso_d(pr, tr)}" fill="{meso_c}" opacity=".5" filter="url(#soft-wide)"/>',
+        "</g>",
+    ]
+    b += map_coast(t, pr, w, mh)
+    b.append(sea_label(pr, -96.6, 24.3, "Мексиканский", t, 13))
+    b.append(sea_label(pr, -96.6, 23.75, "залив", t, 13))
+    b.append(sea_label(pr, -105.0, 19.2, "Тихий океан", t, 13))
+    x, y = pr(*CHICH_MESO_LABEL)
+    b.append(text(x, y, "Мезоамерика", ink, 16, "middle", 600, SERIF, True, t["bg"]))
+    b.append(
+        text(x, y + 15, "по Кирхгофу, ко времени завоевания", muted, 11.5, "middle", halo=t["bg"])
+    )
+
+    # край Мезоамерики: опорные точки Кирхгофа
+    for pid, (dx, dy, anchor) in CHICH_EDGE.items():
+        p = places[pid]
+        x, y = pr(p["lon"], p["lat"])
+        b.append(place_mark("edge", x, y, t))
+        b.append(text(x + dx, y + dy, p["name"], ink, 11.5, anchor, italic=True, halo=t["bg"]))
+
+    # переселение тлашкальтеков: направления, а не дороги
+    for pid, (src, bend) in CHICH_ROUTES.items():
+        ox, oy = pr(places[src]["lon"], places[src]["lat"])
+        x1, y1 = pr(places[pid]["lon"], places[pid]["lat"])
+        a, bb, cx, cy, z, zz = map_curve(ox, oy, x1, y1, bend, 8, 9)
+        b.append(
+            f'<path d="M{a:.1f},{bb:.1f}Q{cx:.1f},{cy:.1f} {z:.1f},{zz:.1f}" fill="none" '
+            f'stroke="{col}" stroke-width="2.2" stroke-dasharray="6 4" stroke-linecap="round" '
+            'marker-end="url(#head-col)"/>'
+        )
+
+    # народы — подписи без границ, поверх стрелок
+    for p in tr["peoples"]:
+        x, y = pr(p["label"]["lon"], p["label"]["lat"])
+        b.append(
+            f'<text x="{x:.1f}" y="{y:.1f}" fill="{muted}" font-size="17" text-anchor="middle" '
+            f'font-family="{SERIF}" font-style="italic" letter-spacing="1.5" paint-order="stroke" '
+            f'stroke="{t["bg"]}" stroke-width="4" stroke-linejoin="round">'
+            f"{escape(p['name'])}</text>"
+        )
+
+    marks, labels = [], []
+    for pid, (dx, dy, anchor, sub) in CHICH_LABELS.items():
+        p = places[pid]
+        x, y = pr(p["lon"], p["lat"])
+        marks.append(place_mark(p["role"], x, y, t))
+        names = CHICH_NAMES.get(pid, [p["name"]])
+        for k, s1 in enumerate(names):
+            labels.append(text(x + dx, y + dy + k * 15, s1, ink, 13, anchor, 600, halo=t["bg"]))
+        if sub:
+            s1 = sub.format(w=day_text(p["when"]))
+            labels.append(
+                text(x + dx, y + dy + len(names) * 15, s1, muted, 12, anchor, halo=t["bg"])
+            )
+        if pid in CHICH_NOTES:
+            labels.append(
+                text(x + dx, y + dy + 30, CHICH_NOTES[pid], muted, 12, anchor, halo=t["bg"])
+            )
+    # Тлашкала: капитуляции и выход колонистов
+    cap = next(e for e in tr["timeline"] if e["id"] == "capitulations")
+    tx, ty = pr(places["tlaxcala"]["lon"], places["tlaxcala"]["lat"])
+    for k, s1 in enumerate(
+        [f"капитуляции {day_text(cap['when'])};", "в июне 1591 г. вышли первые колонисты"]
+    ):
+        labels.append(text(tx - 10, ty + 20 + k * 14, s1, muted, 12, "end", halo=t["bg"]))
+    b += marks + labels
+
+    # крупно: что это за рисунок
+    war = next(e for e in tr["timeline"] if e["id"] == "war")
+    span = f"{war['when']['start']}–{war['when']['end']}"
+    b.append(text(20, 38, f"Война {span} гг.", ink, 22, "start", 700, halo=t["bg"]))
+    b.append(text(20, 60, "и колонии тлашкальтеков 1591 г.", ink, 15, "start", halo=t["bg"]))
+    b.append(
+        f'<rect x=".5" y=".5" width="{w - 1}" height="{mh - 1}" fill="none" stroke="{t["rule"]}"/>'
+    )
+
+    # легенда — полосой под картой, в два столбца
+    rows = [
+        ("mine", "рудник, испанский город"),
+        ("colony", "колония тлашкальтеков"),
+        ("origin", "откуда шли переселенцы"),
+        ("edge", "опорная точка края по Кирхгофу"),
+        ("route", "направление переселения, а не дорога"),
+        ("meso", "Мезоамерика — край размыт"),
+        ("people", "народы, которых испанцы звали «чичимеками»;"),
+    ]
+    ky = mh + 26
+    for k, (kind, s1) in enumerate(rows):
+        lx = 20 + (k // 4) * 372
+        yy = ky + (k % 4) * 22
+        if kind == "route":
+            b.append(
+                f'<path d="M{lx},{yy}L{lx + 24},{yy}" stroke="{col}" stroke-width="2.2" '
+                'stroke-dasharray="6 4" marker-end="url(#head-col)"/>'
+            )
+        elif kind == "meso":
+            b.append(
+                f'<ellipse cx="{lx + 13}" cy="{yy}" rx="13" ry="7" fill="{meso_c}" opacity=".5" '
+                'filter="url(#soft-key)"/>'
+            )
+        elif kind == "people":
+            b.append(text(lx + 13, yy + 5, "пами", muted, 13, "middle", family=SERIF, italic=True))
+        else:
+            b.append(place_mark(kind, lx + 13, yy, t))
+        b.append(text(lx + 36, yy + 4, s1, ink, 12.5))
+    b.append(text(20 + 372 + 36, ky + 3 * 22 - 4, "подписи без границ: земли известны", muted, 12))
+    b.append(text(20 + 372 + 36, ky + 3 * 22 + 10, "лишь в общих чертах", muted, 12))
+    b.append(text(20, h - 10, "Положение точек ориентировочное.", muted, 12, italic=True))
+    col_names = ", ".join(
+        f"{places[pid]['name']} ({day_text(places[pid]['when'])})"
+        for pid, (src, _) in CHICH_ROUTES.items()
+        if src == "tlaxcala"
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        f"Чичимекская война {span} гг. и колонии тлашкальтеков",
+        "Карта центральной и северной Мексики. Размытой полосой — северный край Мезоамерики по "
+        "Кирхгофу. Севернее — подписи народов без границ: "
+        + ", ".join(p["name"] for p in tr["peoples"])
+        + f". Рудники: Сакатекас (серебро {day_text(places['zacatecas']['when'])}), "
+        f"Сан-Луис-Потоси ({day_text(places['san_luis_potosi']['when'])}, после мира). Из "
+        f"Тлашкалы (капитуляции {day_text(cap['when'])}) пунктирные стрелки ведут к колониям: "
+        f"{col_names}; от Сан-Эстебана — короткая стрелка к Паррасу, основанному его семьями в "
+        f"{places['parras']['when']['start']} г. Опорные точки края — Лерма и устье Пануко. "
+        "Положение точек ориентировочное.",
+    )
+
+
+# ── Рис. 4.8. Население провинции Хемес до и после миссий (данные)
+
+JZ_FROM, JZ_TO, JZ_MAX = 1480, 1700, 8500
+JZ_KIND = {"ruins": "z-n", "document": "z-t"}
+# Подписи точек: id: (где, сдвиг по y) — "left" — слева от точки; "col" — в колонке справа от
+# поля графика, с выноской (поздние точки стоят тесно у края шкалы).
+JZ_LABELS = {
+    "zarate": ("left", 0),
+    "benavides": ("left", 0),
+    "record_1644": ("left", 4),
+    "patokwa": ("col", -60),
+    "military_1694": ("col", 14),
+}
+JZ_MARK_ROWS = {"contact": 0, "colony": 0, "missions": 1, "revolt": 0}  # ряд подписи вехи
+
+
+def jz_value(e: dict) -> str:
+    v = grouped(e["value"])
+    return {"exact": v, "at_most": f"не больше {v}", "less_than": f"меньше {v}"}[e["bound"]]
+
+
+def fig_jemez(t: dict) -> str:
+    jz = transition()["jemez"]
+    w, h = 760, 520
+    x0, x1, top, yb, xc = 70, 592, 104, 404, 612
+    ink, muted = t["ink"], t["muted"]
+    col = {k: t[v] for k, v in JZ_KIND.items()}
+
+    def px(yr: float) -> float:
+        return x0 + (yr - JZ_FROM) / (JZ_TO - JZ_FROM) * (x1 - x0)
+
+    def py(v: float) -> float:
+        return yb - v / JZ_MAX * (yb - top)
+
+    b = ["<defs>"]
+    b += [arrow_marker(f"head-{k}", c, 5) for k, c in col.items()]
+    b += [arrow_marker("head-muted", muted, 5), "</defs>"]
+    for v in range(0, JZ_MAX + 1, 1000):
+        y = py(v)
+        b.append(line(x0, y, x1, y, t["rule"], 1.0 if v == 0 else 0.6))
+        b.append(text(x0 - 8, y + 4, grouped(v), muted, 11.5, "end"))
+    for yr in range(JZ_FROM, JZ_TO + 1, 20):
+        b.append(line(px(yr), yb, px(yr), yb + 5, muted, 1))
+        b.append(text(px(yr), yb + 19, f"{yr}", ink, 12, "middle"))
+    b.append(text(x0 - 8, 22, "жителей провинции Хемес", muted, 12))
+
+    # вехи колонизации
+    for m in jz["marks"]:
+        sp = m["when"]
+        a = px(sp["start"])
+        ytxt = top - 46 + JZ_MARK_ROWS[m["id"]] * 28
+        if sp["end"] != sp["start"]:
+            z = px(sp["end"] + 1)
+            b.append(rect(a, top - 4, z - a, yb - top + 4, t["band"], 0))
+            xm, when = (a + z) / 2, sp["label"]
+        else:
+            b.append(line(a, top - 4, a, yb, muted, 1, "3 3"))
+            xm, when = a, f"{sp['start']}"
+        b.append(text(xm, ytxt, when, ink, 12, "middle", 600, halo=t["bg"]))
+        b.append(text(xm, ytxt + 14, m["label"], muted, 11.5, "middle", halo=t["bg"]))
+
+    # убыль за 1620–1680 гг. — скобкой по оси времени, а не линией между точками: численность
+    # в промежутках неизвестна
+    d = jz["decline"]
+    xa, xz, yr_ = px(d["from"]), px(d["to"]), py(4500)
+    b.append(
+        f'<path d="M{xa:.1f},{yr_ + 6:.1f}V{yr_:.1f}H{xz:.1f}V{yr_ + 6:.1f}" stroke="{muted}" '
+        'stroke-width="1.2" fill="none"/>'
+    )
+    xm_ = (xa + xz) / 2
+    b.append(
+        text(
+            xm_ + 24,
+            yr_ - 22,
+            f"−{num(d['pct'])}% за {d['from']}–{d['to']} гг.",
+            ink,
+            14,
+            "middle",
+            700,
+            halo=t["bg"],
+        )
+    )
+    b.append(text(xm_ + 24, yr_ - 7, d["label"], muted, 12, "middle", halo=t["bg"]))
+
+    for e in jz["estimates"]:
+        c, sp = col[e["kind"]], e["when"]
+        a, z = px(sp["start"]), px(sp["end"])
+        if "low" in e:  # диапазон по развалинам — подпись внутри полосы
+            b.append(
+                rect(
+                    a,
+                    py(e["high"]),
+                    z - a,
+                    py(e["low"]) - py(e["high"]),
+                    c,
+                    2,
+                    0.35,
+                    f' stroke="{c}" stroke-width="1.4"',
+                )
+            )
+            xm = (a + z) / 2
+            yt = py(e["high"]) + 22
+            b.append(
+                text(xm, yt, f"{grouped(e['low'])}–{grouped(e['high'])}", ink, 13.5, "middle", 700)
+            )
+            b.append(text(xm, yt + 17, sp["label"], ink, 11.5, "middle"))
+            for k, s1 in enumerate(split_label(e["label"], 14)):
+                b.append(text(xm, yt + 32 + k * 14, s1, ink, 11.5, "middle"))
+            continue
+        y = py(e["value"])
+        xm = (a + z) / 2
+        if sp["end"] != sp["start"]:
+            b.append(line(a, y, z, y, c, 3))
+        if e["kind"] == "ruins":
+            b.append(mark("diamond", xm, y, t["bg"], c, t["bg"], 4.6))
+        else:
+            b.append(mark("circle", xm, y, c, c, t["bg"], 4.6))
+        if e["bound"] != "exact":  # «не больше», «меньше» — стрелка вниз
+            b.append(
+                f'<path d="M{xm:.1f},{y + 7:.1f}L{xm:.1f},{y + 19:.1f}" stroke="{c}" '
+                f'stroke-width="1.6" marker-end="url(#head-{e["kind"]})"/>'
+            )
+        where, dy = JZ_LABELS[e["id"]]
+        when = sp.get("label") or (
+            f"{sp['start']}–{sp['end']}" if sp["end"] != sp["start"] else f"{sp['start']}"
+        )
+        what = f" {e['what']}" if e.get("what") else ""
+        s1, s2 = f"{jz_value(e)}{what} — {when}", e["label"]
+        if where == "left":
+            b.append(text(a - 10, y + dy - 2, s1, ink, 12.5, "end", 600, halo=t["bg"]))
+            b.append(text(a - 10, y + dy + 12, s2, muted, 11.5, "end", halo=t["bg"]))
+            continue
+        # колонка справа: число, время, пояснение — по строке; выноска от точки
+        rows = [(jz_value(e) + what, ink, 600), (when, ink, 400)]
+        rows += [(r, muted, 400) for r in split_label(s2, 20)]
+        yt = y + dy
+        b.append(
+            f'<path d="M{xm + 7:.1f},{y:.1f}L{x1 + 6:.1f},{yt - 4:.1f}L{xc - 4:.1f},{yt - 4:.1f}" '
+            f'stroke="{muted}" stroke-width=".8" fill="none"/>'
+        )
+        for k, (r, c2, wt) in enumerate(rows):
+            b.append(
+                text(xc, yt + k * 14, r, c2, 12.5 if k == 0 else 11.5, "start", wt, halo=t["bg"])
+            )
+
+    # легенда
+    ly = yb + 52
+    items = [
+        ("ruins", "оценка по развалинам"),
+        ("document", "число из испанского документа"),
+        ("down", "«не больше», «меньше»"),
+    ]
+    for k, (kind, s1) in enumerate(items):
+        lx = 24 + k * 240
+        if kind == "down":
+            b.append(
+                f'<path d="M{lx + 8},{ly - 8}L{lx + 8},{ly + 5}" stroke="{ink}" stroke-width="1.6" '
+                'marker-end="url(#head-muted)"/>'
+            )
+        elif kind == "ruins":
+            b.append(mark("diamond", lx + 8, ly, t["bg"], col["ruins"], t["bg"], 4.6))
+        else:
+            b.append(mark("circle", lx + 8, ly, col["document"], col["document"], t["bg"], 4.6))
+        b.append(text(lx + 22, ly + 4.5, s1, ink, 12.5))
+    b.append(
+        text(
+            w - 16,
+            h - 10,
+            "Между точками линий нет: численность в промежутках неизвестна",
+            muted,
+            12,
+            "end",
+            italic=True,
+        )
+    )
+
+    def est_desc(e):
+        if "low" in e:
+            return f"{e['when']['label']}: {grouped(e['low'])}–{grouped(e['high'])} (по развалинам)"
+        when = e["when"].get("label") or e["when"]["start"]
+        src = "по развалинам" if e["kind"] == "ruins" else "по документам"
+        return f"{when}: {jz_value(e)} ({src})"
+
+    desc = "; ".join(est_desc(e) for e in jz["estimates"])
+    marks_desc = "; ".join(
+        f"{m['when'].get('label') or m['when']['start']} — {m['label']}" for m in jz["marks"]
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Население провинции Хемес, 1480–1700 гг.",
+        f"По горизонтали годы 1480–1700, по вертикали — число жителей. {desc}. Вехи: {marks_desc}. "
+        f"Убыль за {d['from']}–{d['to']} гг. — {num(d['pct'])}% ({d['label']}).",
+    )
+
+
+# ── Рис. 4.9. Восстание пуэбло 1680 г. и после (схема по тексту главы)
+
+REV_W, REV_MAP_H, REV_KEY_H = 760, 640, 120
+REV_CENTER = (-105.7, 35.4)
+REV_FIT = [(-110.9, 39.75), (-100.3, 39.75), (-110.9, 31.45), (-100.3, 31.45)]
+REV_KIND = {"retreat": "z-n", "flight": "z-t", "run": "muted"}
+REV_BEND = {
+    "retreat_santa_fe": 0.10,
+    "retreat_isleta": -0.06,
+    "flight_santa_clara": 0.10,
+    "flight_picuris": 0.07,
+    "run_1980": -0.34,
+}
+# Подписи точек: id: (столбец, сдвиг по y от точки, строки). Точки у Рио-Гранде стоят
+# тесно — подписи вынесены в два столбца, к точке ведёт выноска. Столбец: "e" — восточный
+# (по долготе REV_COL_E, выравнивание влево), "w" — западный (REV_COL_W, вправо), "near" —
+# у самой точки.
+REV_COL_E, REV_COL_W = -104.95, -107.35
+REV_LABELS = {
+    "taos": ("e", 8, ["Таос", "Попе разослал отсюда по пуэбло", "верёвку с узлами"]),
+    "picuris": ("e", 40, ["Пикурис", "Луис Тупату"]),
+    "santa_fe": ("e", 44, ["Санта-Фе", "здесь собрались уцелевшие испанцы"]),
+    "san_juan": ("w", -14, ["Сан-Хуан (Окай-Овинге)", "пуэбло Попе"]),
+    "santa_clara": ("w", 20, ["Санта-Клара"]),
+    "zia": ("w", 10, ["Сия, Санта-Ана, Сан-Фелипе", "в 1690-х — за испанцев"]),
+    "isleta": ("w", 4, ["Ислета", "не участвовала; здесь —", "около 1500 беженцев"]),
+    "el_paso": (
+        "e",
+        -44,
+        ["Эль-Пасо", "переправа у монастыря Гуадалупе;", "отсюда — поселения вокруг Эль-Пасо"],
+    ),
+    "el_cuartelejo": (
+        "near",
+        0,
+        ["Эль-Куартелехо", "у союзников-апачей; большинство", "прожило здесь около десяти лет"],
+    ),
+    "hopi": ("near", 0, ["хопи"]),
+}
+REV_GROUP = {"zia": ["zia", "santa_ana", "san_felipe"]}  # одна подпись на три точки
+# Подписи стрелок: id: (lon, lat, выравнивание, строки)
+REV_MOVE_LABELS = {
+    "retreat_santa_fe": (
+        -105.55,
+        33.0,
+        "start",
+        ["отступление испанцев", "конец сентября 1680 г."],
+    ),
+    "flight_picuris": (
+        -103.55,
+        38.35,
+        "end",
+        ["октябрь 1696 г.", "Санта-Клара и Пикурис —", "на равнины, к союзникам"],
+    ),
+    "run_1980": (
+        -108.3,
+        37.55,
+        "middle",
+        ["1980 г.: бег со шнуром", "с узлами — от Таоса до хопи"],
+    ),
+}
+
+
+def fig_revolt(t: dict) -> str:
+    tr = transition()
+    w, mh = REV_W, REV_MAP_H
+    h = mh + REV_KEY_H
+    pr = map_projection(REV_CENTER, REV_FIT, w, mh)
+    places = {p["id"]: p for p in tr["places"]}
+    ink, muted = t["ink"], t["muted"]
+    col = {k: t[v] for k, v in REV_KIND.items()}
+    moves = [m for m in tr["moves"] if m["figure"] == "revolt"]
+    b = map_base(t, w, mh, pr, [arrow_marker(f"head-{k}", c, 5) for k, c in col.items()])
+    b += map_coast(t, pr, w, mh)
+    b.append('<g clip-path="url(#frame)">')
+    b += rivers_layer(t, pr, tr, ["rio_grande"])
+    b.append(
+        f'<path d="{border_d(pr, ("MEX", "USA"))}" fill="none" stroke="{ink}" '
+        'stroke-width="1.2" stroke-linejoin="round"/>'
+    )
+    b.append("</g>")
+    x, y = pr(-107.25, 33.6)
+    b.append(
+        f'<g transform="translate({x:.1f},{y:.1f}) rotate(-80)">'
+        + text(0, 0, "Рио-Гранде", t["z-t"], 11.5, "middle", italic=True, halo=t["bg"])
+        + "</g>"
+    )
+    x, y = pr(-108.6, 31.62)
+    b.append(text(x, y, "граница США и Мексики сегодня", ink, 11.5, "middle", halo=t["bg"]))
+    x, y = pr(-101.7, 35.5)
+    b.append(text(x, y, "равнины", muted, 16, "middle", 400, SERIF, True, t["bg"]))
+
+    for m in moves:
+        a, z = places[m["from"]], places[m["to"]]
+        (x0, y0), (x1, y1) = pr(a["lon"], a["lat"]), pr(z["lon"], z["lat"])
+        dash, wd = ("2 4", 1.6) if m["kind"] == "run" else ("7 4", 2.6)
+        b.append(
+            move_path(
+                x0,
+                y0,
+                x1,
+                y1,
+                REV_BEND[m["id"]],
+                col[m["kind"]],
+                wd,
+                dash,
+                f"head-{m['kind']}",
+                7,
+                10,
+            )
+        )
+    for mid, (lon, lat, anchor, rows) in REV_MOVE_LABELS.items():
+        kind = next(m["kind"] for m in moves if m["id"] == mid)
+        x, y = pr(lon, lat)
+        c = col[kind] if kind != "run" else ink
+        b += label_lines(
+            x, y, [(rows[0], c, 700)] + [(r, muted, 400) for r in rows[1:]], t, anchor, 12.5, 14
+        )
+
+    # точки и подписи с выносками
+    marks, labels = [], []
+    xe_col, xw_col = pr(REV_COL_E, 35)[0], pr(REV_COL_W, 35)[0]
+    for pid, (colname, dy, rows) in REV_LABELS.items():
+        group = REV_GROUP.get(pid, [pid])
+        pts = [pr(places[g]["lon"], places[g]["lat"]) for g in group]
+        for g, (x, y) in zip(group, pts, strict=True):
+            role = places[g]["role"]
+            if role == "spanish":
+                marks.append(place_mark("mine", x, y, t))
+            elif role == "place":
+                marks.append(mark("diamond", x, y, t["bg"], ink, t["bg"], 4.2))
+            else:
+                marks.append(mark("circle", x, y, ink, ink, t["bg"], 3.4))
+        x, y = pts[0]
+        if colname == "near":
+            anchor = "end" if pid == "el_cuartelejo" else "start"
+            lx, ly = (x + 4, y - 50) if anchor == "end" else (x + 9, y + 4)
+        else:
+            anchor = "start" if colname == "e" else "end"
+            lx = xe_col if colname == "e" else xw_col
+            ly = y + dy
+            xe = lx + (-6 if anchor == "start" else 6)
+            for x2, y2 in pts:
+                labels.append(
+                    f'<path d="M{x2:.1f},{y2:.1f}L{xe:.1f},{ly - 4:.1f}" stroke="{muted}" '
+                    'stroke-width=".7" fill="none"/>'
+                )
+        labels += label_lines(
+            lx, ly, [(rows[0], ink, 700)] + [(r, muted, 400) for r in rows[1:]], t, anchor, 12.5, 14
+        )
+    b += labels + marks
+
+    b.append(text(20, 36, "Восстание пуэбло: 1680 г. и после", ink, 21, "start", 700, halo=t["bg"]))
+    b.append(text(20, 58, "пуэбло — точками, без границ земель", ink, 14, halo=t["bg"]))
+    b.append(
+        f'<rect x=".5" y=".5" width="{w - 1}" height="{mh - 1}" fill="none" stroke="{t["rule"]}"/>'
+    )
+
+    # легенда
+    ky0 = mh + 26
+    rows = [
+        ("pueblo", "пуэбло"),
+        ("spanish", "испанский город, миссия"),
+        ("place", "место у союзников-апачей"),
+        ("retreat", "отступление испанцев, 1680"),
+        ("flight", "уход пуэбло к союзникам, 1696"),
+        ("run", "бег в память о гонцах, 1980"),
+    ]
+    for k, (kind, s1) in enumerate(rows):
+        lx = 20 + (k // 3) * 372
+        yy = ky0 + (k % 3) * 22
+        if kind in col:
+            dash, wd = ("2 4", 1.6) if kind == "run" else ("7 4", 2.6)
+            b.append(
+                f'<path d="M{lx},{yy}L{lx + 22},{yy}" stroke="{col[kind]}" stroke-width="{wd}" '
+                f'stroke-dasharray="{dash}" marker-end="url(#head-{kind})"/>'
+            )
+        elif kind == "pueblo":
+            b.append(mark("circle", lx + 13, yy, ink, ink, t["bg"], 3.4))
+        elif kind == "spanish":
+            b.append(place_mark("mine", lx + 13, yy, t))
+        else:
+            b.append(mark("diamond", lx + 13, yy, t["bg"], ink, t["bg"], 4.2))
+        b.append(text(lx + 36, yy + 4, s1, ink, 12.5))
+    b.append(text(20, h - 26, "Стрелки — направления, а не дороги.", muted, 12))
+    b.append(text(20, h - 10, "Положение точек ориентировочное.", muted, 12, italic=True))
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Восстание пуэбло 1680 г. и после (схема)",
+        "Карта Нью-Мексико и соседних земель. Пуэбло — точками без границ земель: Таос (отсюда "
+        "Попе разослал верёвку с узлами), Пикурис, Сан-Хуан (Окай-Овинге), Санта-Клара, Сия, "
+        "Санта-Ана и Сан-Фелипе (в 1690-х — на стороне испанцев), Ислета (не участвовала; около "
+        "1500 беженцев), хопи. Квадратами — Санта-Фе, где собрались уцелевшие испанцы, и "
+        "Эль-Пасо. Стрелки отступления испанцев ведут от Санта-Фе и Ислеты к Эль-Пасо (конец "
+        "сентября 1680 г.). Стрелки от Санта-Клары и Пикуриса ведут на равнины, к союзникам-апачам "
+        "в Эль-Куартелехо (октябрь 1696 г.). Пунктир от Таоса до хопи — бег 1980 г. со шнуром с "
+        "узлами в память о гонцах 1680 г. Положение точек ориентировочное.",
+    )
+
+
+# ── Рис. 4.10. Дважды «мир покупкой» (схема по данным)
+
+# Строка на событие: слева дата и подпись, справа — метка или полоса на шкале. Так подписи
+# не налезают друг на друга даже там, где события идут через год (1785–1787, 1591).
+PEACE_ROWS = {"chichimeca": (1540, 1600, 10), "apache": (1740, 1860, 20)}  # от, до, шаг меток
+PEACE_TITLES = {
+    "chichimeca": "Конец Чичимекской войны, 1540–1600",
+    "apache": "Апачи, команчи и Мексика, 1740–1860",
+}
+PEACE_COLOR = {"war": "z-n", "peace": "z-t", "event": "ink", "state": "ink"}
+PEACE_FADE = 22  # px: размытый край полосы
+PEACE_OPEN = 60  # px: сколько тянется полоса без конца, прежде чем погаснуть
+PEACE_WHEN = {  # даты, которые в столбец дат не помещаются словами из данных
+    "establecimientos": "с 1786",
+    "raids": "с начала 1830-х",
+}
+PEACE_ON_BAR = {  # пояснение в той же строке, слева от полосы или метки
+    "establecimientos": "больше четырёх десятилетий",
+    "gadsden": "подписан; в силу — 1854",
+}
+
+
+def peace_when(ev: dict) -> str:
+    sp = ev["when"]
+    if ev["id"] in PEACE_WHEN:
+        return PEACE_WHEN[ev["id"]]
+    if sp.get("day"):
+        y, m, d = sp["day"].split("-")
+        return f"{int(d)}.{m}.{y}"
+    if sp.get("label", "").startswith("около"):
+        return f"≈{sp['start']}"
+    if sp["end"] is not None and sp["end"] != sp["start"]:
+        return f"{sp['start']}–{sp['end']}"
+    return f"{sp['start']}"
+
+
+def fig_peace(t: dict) -> str:
+    tl = transition()["timeline"]
+    w, xd, xl, x0, x1 = 760, 112, 122, 400, 744
+    row_h, head, gap = 21, 48, 30
+    counts = {r: sum(e["row"] == r for e in tl) for r in PEACE_ROWS}
+    h = 16 + sum(head + n * row_h for n in counts.values()) + gap + 84
+    ink, muted = t["ink"], t["muted"]
+    b = ["<defs>"]
+    for kind, tok in PEACE_COLOR.items():
+        c = t[tok]
+        b.append(
+            f'<linearGradient id="fade-r-{kind}" x1="0" x2="1"><stop offset="0" stop-color="{c}"/>'
+            f'<stop offset="1" stop-color="{c}" stop-opacity="0"/></linearGradient>'
+            f'<linearGradient id="fade-l-{kind}" x1="0" x2="1"><stop offset="0" stop-color="{c}" '
+            f'stop-opacity="0"/><stop offset="1" stop-color="{c}"/></linearGradient>'
+        )
+    b.append("</defs>")
+    y_top = 16
+    for row, (lo, hi, step) in PEACE_ROWS.items():
+
+        def px(yr: float, lo=lo, hi=hi) -> float:
+            return x0 + (yr - lo) / (hi - lo) * (x1 - x0)
+
+        evs = sorted((e for e in tl if e["row"] == row), key=lambda e: e["when"]["start"])
+        b.append(text(16, y_top + 20, PEACE_TITLES[row], ink, 15, "start", 700))
+        ya = y_top + head
+        yb = ya + len(evs) * row_h
+        for yr in range(lo, hi + 1, step):
+            b.append(line(px(yr), ya - 6, px(yr), yb, t["rule"], 0.7))
+            b.append(text(px(yr), ya - 12, f"{yr}", muted, 11.5, "middle"))
+        for i, ev in enumerate(evs):
+            yc = ya + i * row_h + row_h / 2
+            if i % 2 == 0:
+                b.append(rect(0, yc - row_h / 2, w, row_h, t["band"], 0))
+            c = t[PEACE_COLOR[ev["kind"]]]
+            sp = ev["when"]
+            b.append(text(xd, yc + 4, peace_when(ev), ink, 12, "end", 600))
+            b.append(text(xl, yc + 4, ev["label"], ink, 12))
+            a = px(sp["start"])
+            fs = sp.get("fuzzy_start")
+            fe = sp.get("fuzzy_end") or sp.get("open_end")
+            if sp["end"] is None or sp["end"] != sp["start"]:  # полоса
+                z = px(sp["end"]) if sp["end"] is not None else min(a + PEACE_OPEN, x1)
+                core_a = a + (PEACE_FADE / 2 if fs else 0)
+                core_z = z - (PEACE_FADE / 2 if fe else 0)
+                if sp.get("open_end"):
+                    core_z = core_a + 4
+                    z = core_z + PEACE_OPEN
+                if fs:
+                    b.append(
+                        rect(
+                            a - PEACE_FADE / 2,
+                            yc - 5,
+                            core_a - a + PEACE_FADE / 2,
+                            10,
+                            f"url(#fade-l-{ev['kind']})",
+                            0,
+                        )
+                    )
+                b.append(rect(core_a, yc - 5, max(core_z - core_a, 2), 10, c, 0))
+                if fe:
+                    b.append(
+                        rect(
+                            core_z,
+                            yc - 5,
+                            min(z - core_z + PEACE_FADE / 2, x1 - core_z),
+                            10,
+                            f"url(#fade-r-{ev['kind']})",
+                            0,
+                        )
+                    )
+                note = PEACE_ON_BAR.get(ev["id"])
+                if note:  # в той же строке, слева от полосы: справа места нет
+                    x_note = a - (PEACE_FADE / 2 if fs else 0) - 6
+                    b.append(text(x_note, yc + 4, note, muted, 11, "end", italic=True))
+            else:
+                b.append(mark("diamond", a, yc, c, c, t["bg"], 4.2))
+                note = PEACE_ON_BAR.get(ev["id"])
+                if note:
+                    b.append(text(a - 10, yc + 4, note, muted, 11, "end", italic=True))
+        y_top = yb + gap
+
+    # легенда
+    ly = h - 52
+    items = [
+        ("war", "война, набеги"),
+        ("peace", "«мир покупкой» и его плоды"),
+        ("event", "другие события"),
+    ]
+    for k, (kind, s1) in enumerate(items):
+        lx = 16 + k * 220
+        b.append(rect(lx, ly - 5, 22, 10, t[PEACE_COLOR[kind]], 0))
+        b.append(text(lx + 30, ly + 4, s1, ink, 12.5))
+    b.append(
+        text(16, h - 28, "Шкалы — в разном масштабе: верхняя — 60 лет, нижняя — 120.", muted, 12)
+    )
+    b.append(
+        text(
+            16,
+            h - 12,
+            "Размытый край — срок известен лишь примерно; "
+            "конец набегов источники главы не называют.",
+            muted,
+            12,
+        )
+    )
+    desc = "; ".join(
+        f"{peace_when(e)} — {e['label']}"
+        + (f" ({PEACE_ON_BAR[e['id']]})" if e["id"] in PEACE_ON_BAR else "")
+        for e in tl
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Дважды «мир покупкой»: конец Чичимекской войны и мир с апачами и команчами",
+        "Две шкалы, 1540–1600 и 1740–1860; строка на событие, цвет — война и набеги, «мир "
+        f"покупкой» или другие события. {desc}.",
+    )
+
+
+# ── Рис. 4.12. Граница поперёк земли оодхам (схема: линии условные)
+
+BOR_W, BOR_MAP_H, BOR_KEY_H = 760, 470, 150
+BOR_CENTER = (-111.6, 32.2)
+BOR_FIT = [(-117.4, 34.25), (-105.9, 34.25), (-117.4, 30.25), (-105.9, 30.25)]
+BOR_STRIP = (-114.8, -106.45)  # долготы, между которыми нынешняя граница — линия Гадсдена
+
+
+def border_pts(pair=("MEX", "USA")) -> list[list[tuple[float, float]]]:
+    """Точки нынешней границы двух стран (lon, lat) — по частям линии."""
+    fc = json.loads(BORDERS.read_text(encoding="utf-8"))
+    out = []
+    for f in fc["features"]:
+        if f["properties"]["between"] != sorted(pair):
+            continue
+        g = f["geometry"]
+        out += [g["coordinates"]] if g["type"] == "LineString" else g["coordinates"]
+    return out
+
+
+def gadsden_strip(tr: dict) -> list[tuple[float, float]]:
+    """Полоса между линией 1848 г. и нынешней границей. Линия 1848 г. в данных идёт от
+    Эль-Пасо на запад; её разворачиваем (с запада на восток) и замыкаем нынешней границей
+    обратно на запад — её отрезок между Колорадо и Эль-Пасо."""
+    l48 = next(ln for ln in tr["lines"] if ln["id"] == "border1848")["coords"]
+    lo, hi = BOR_STRIP
+    now = [
+        (lon, lat) for part in border_pts() for lon, lat in part if lo <= lon <= hi and lat < 32.75
+    ]
+    now.sort(key=lambda q: -q[0])  # с востока на запад
+    return [(lon, lat) for lon, lat in l48[::-1]] + now
+
+
+def fig_border(t: dict) -> str:
+    tr = transition()
+    w, mh = BOR_W, BOR_MAP_H
+    h = mh + BOR_KEY_H
+    pr = map_projection(BOR_CENTER, BOR_FIT, w, mh)
+    places = {p["id"]: p for p in tr["places"]}
+    areas = {a["id"]: a for a in tr["areas"]}
+    ink, muted, strip_c, land_c = t["ink"], t["muted"], t["z-n"], t["z-t"]
+    l48 = next(ln for ln in tr["lines"] if ln["id"] == "border1848")
+    hatch = (
+        '<pattern id="strip" width="6" height="6" patternUnits="userSpaceOnUse" '
+        f'patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="{strip_c}" '
+        'stroke-width="2.2"/></pattern>'
+    )
+    b = map_base(t, w, mh, pr, [hatch, arrow_marker("head-land", land_c, 5)])
+    strip = [pr(lon, lat) for lon, lat in gadsden_strip(tr)]
+    b += [
+        '<g clip-path="url(#landclip)">',
+        f'<g fill="{land_c}" opacity=".42" filter="url(#soft)">'
+        f"{blobs_d(pr, areas['tohono_oodham']['blobs'])}</g>",
+        f'<path d="{path_d(strip, True)}" fill="url(#strip)" opacity=".55"/>',
+        region_blob(pr, places["gila_villages"], land_c, 0.5),
+        "</g>",
+    ]
+    b += map_coast(t, pr, w, mh)
+    b.append('<g clip-path="url(#frame)">')
+    b += rivers_layer(t, pr, tr, ["rio_grande", "gila"])
+    b.append(
+        f'<path d="{border_d(pr, ("MEX", "USA"))}" fill="none" stroke="{ink}" '
+        'stroke-width="1.8" stroke-linejoin="round"/>'
+    )
+    b.append(
+        f'<path d="{path_d([pr(*q) for q in l48["coords"]])}" fill="none" stroke="{ink}" '
+        'stroke-width="2" stroke-dasharray="7 4" stroke-linejoin="round"/>'
+    )
+    b.append("</g>")
+
+    # паломничество — направление
+    pil = next(m for m in tr["moves"] if m["id"] == "salt_pilgrimage")
+    xa, ya = pr(-112.15, 31.55)
+    xz, yz = pr(places[pil["to"]]["lon"], places[pil["to"]]["lat"])
+    b.append(move_path(xa, ya, xz, yz, 0.18, land_c, 2.4, "6 4", "head-land", 4, 6))
+
+    # подписи
+    def lab(lon, lat, rows, anchor="start", size=12.5):
+        x, y = pr(lon, lat)
+        return label_lines(x, y, rows, t, anchor, size, 14)
+
+    b += lab(
+        -116.5,
+        33.2,
+        [
+            ("граница 1848 г. — по Хиле", ink, 700),
+            ("по ст. V договора Гуадалупе-Идальго", muted, 400),
+        ],
+    )
+    b += lab(
+        -109.2,
+        31.1,
+        [("граница с 1854 г. — нынешняя", ink, 700), ("по ст. I договора Гадсдена", muted, 400)],
+    )
+    b += lab(
+        -110.7,
+        32.55,
+        [
+            ("полоса покупки Гадсдена", strip_c, 700),
+            ("подписан 30 декабря 1853 г.,", muted, 400),
+            ("в силу — 1854 г.", muted, 400),
+        ],
+    )
+    b += lab(
+        -111.25,
+        30.68,
+        [
+            ("земли тохоно-оодхам", land_c, 700),
+            ("по обе стороны границы, около 100 км", muted, 400),
+            ("вдоль неё; резервация ≈1,1 млн га —", muted, 400),
+            ("лишь часть родовых земель", muted, 400),
+        ],
+    )
+    gv = places["gila_villages"]
+    b += lab(
+        gv["lon"] - 0.1,
+        gv["lat"] + 0.55,
+        [("долина Хилы: деревни", ink, 700), ("акимел-оодхам отошли США", muted, 400)],
+    )
+    xg, yg = pr(-113.55, 31.0)
+    b.append(text(xg, yg, "паломники — к заливу", ink, 12, "end", 600, halo=t["bg"]))
+    b.append(text(xg, yg + 14, "за солью и раковинами", muted, 11.5, "end", halo=t["bg"]))
+    b.append(sea_label(pr, -114.1, 30.45, "Калифорнийский залив", t, 13))
+    b.append(sea_label(pr, -116.9, 31.2, "Тихий", t, 13))
+    b.append(sea_label(pr, -116.9, 30.95, "океан", t, 13))
+    for s1, lon, lat in (("США", -107.9, 33.75), ("Мексика", -107.4, 30.55)):
+        x, y = pr(lon, lat)
+        b.append(text(x, y, s1, muted, 15, "middle", 600, halo=t["bg"]))
+    for s1, lon, lat, rot in (("Рио-Гранде", -106.6, 33.3, -84), ("Колорадо", -114.95, 32.2, -60)):
+        x, y = pr(lon, lat)
+        b.append(
+            f'<g transform="translate({x:.1f},{y:.1f}) rotate({rot})">'
+            + text(0, 0, s1, land_c, 11.5, "middle", italic=True, halo=t["bg"])
+            + "</g>"
+        )
+    b.append(text(20, 34, "Схема: линии условные", ink, 20, "start", 700, halo=t["bg"]))
+    b.append(
+        text(
+            20,
+            54,
+            "граница США и Мексики в 1848 г. и после покупки Гадсдена",
+            ink,
+            13.5,
+            halo=t["bg"],
+        )
+    )
+    b.append(
+        f'<rect x=".5" y=".5" width="{w - 1}" height="{mh - 1}" fill="none" stroke="{t["rule"]}"/>'
+    )
+
+    # легенда
+    ky0 = mh + 26
+    rows = [
+        ("l48", "граница 1848 г. — по описанию договора"),
+        ("l53", "граница с 1854 г. — нынешняя"),
+        ("strip", "полоса, купленная по договору Гадсдена"),
+        ("land", "земли оодхам — размыто, без границ"),
+        ("move", "направление, а не путь"),
+        ("river", "реки — для ориентира"),
+    ]
+    for k, (kind, s1) in enumerate(rows):
+        lx = 20 + (k // 3) * 372
+        yy = ky0 + (k % 3) * 22
+        if kind == "l48":
+            b.append(line(lx, yy, lx + 26, yy, ink, 2, "7 4"))
+        elif kind == "l53":
+            b.append(line(lx, yy, lx + 26, yy, ink, 1.8))
+        elif kind == "strip":
+            b.append(rect(lx, yy - 7, 26, 14, "url(#strip)", 0, 0.55))
+        elif kind == "land":
+            b.append(
+                f'<ellipse cx="{lx + 13}" cy="{yy}" rx="13" ry="7" fill="{land_c}" opacity=".45" '
+                'filter="url(#soft-key)"/>'
+            )
+        elif kind == "move":
+            b.append(
+                f'<path d="M{lx},{yy}L{lx + 22},{yy}" stroke="{land_c}" stroke-width="2.4" '
+                'stroke-dasharray="6 4" marker-end="url(#head-land)"/>'
+            )
+        else:
+            b.append(line(lx, yy, lx + 26, yy, land_c, 1.3, opacity=0.55))
+        b.append(text(lx + 36, yy + 4, s1, ink, 12.5))
+    notes = [
+        "Линия 1848 г.: вверх по Рио-Гранде до южной границы Нью-Мексико, по ней на запад, на "
+        "север до Хилы и по Хиле",
+        "до Колорадо. Границы Нью-Мексико договор берёт с карты 1847 г.; здесь эти отрезки "
+        "условные. По Хиле — по линии реки.",
+        "Западнее Колорадо и ниже Эль-Пасо обе линии совпадают. Пятна земель оодхам — схема.",
+    ]
+    for k, s1 in enumerate(notes):
+        b.append(text(20, ky0 + 74 + k * 15, s1, muted, 11.5))
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Граница поперёк земли оодхам (схема: линии условные)",
+        "Карта юга Аризоны и Нью-Мексико и севера Соноры и Чиуауа. Пунктиром — граница 1848 г. "
+        "по ст. V договора Гуадалупе-Идальго: вверх по Рио-Гранде от Эль-Пасо, условно на запад "
+        "и на север до Хилы, по Хиле до Колорадо. Сплошной линией — нынешняя граница, "
+        "проведённая по ст. I договора Гадсдена (подписан 30 декабря 1853 г., в силу — 1854 г.). "
+        "Штриховкой между ними — полоса покупки Гадсдена; в ней долина Хилы с деревнями "
+        "акимел-оодхам. Размытым пятном по обе стороны нынешней границы — земли тохоно-оодхам: "
+        "около 100 км вдоль границы; резервация около 1,1 млн га — лишь часть родовых земель. "
+        "Стрелка от них — к Калифорнийскому заливу: паломники ходят за солью и раковинами. "
+        "Схема: линии условные.",
+    )
+
+
 FIGURES: dict[str, Callable[[dict], str]] = {
     "00-radiocarbon": fig_radiocarbon,
     "00-precision": fig_precision,
@@ -3156,6 +5033,15 @@ FIGURES: dict[str, Callable[[dict], str]] = {
     "03-sea": fig_sea,
     "03-population": fig_population,
     "03-inca-chronology": fig_inca,
+    "04-zones": fig_zones,
+    "04-canals": fig_canals,
+    "04-mesaverde": fig_mesaverde,
+    "04-migrations": fig_migrations,
+    "04-chichimeca": fig_chichimeca,
+    "04-jemez": fig_jemez,
+    "04-revolt": fig_revolt,
+    "04-peace": fig_peace,
+    "04-border": fig_border,
 }
 
 

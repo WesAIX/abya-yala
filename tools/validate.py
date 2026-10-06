@@ -324,6 +324,130 @@ def check_complex(c) -> list[str]:
     return errors
 
 
+def iter_transition(tr):
+    for p in tr["places"]:
+        yield f"точка {p['id']}", p
+    for a in tr["areas"]:
+        yield f"область {a['id']}", a
+    for p in tr["peoples"]:
+        yield f"народ {p['id']}", p
+    mv = tr["mesaverde"]
+    yield "Меса-Верде", mv
+    for per in mv["periods"]:
+        yield f"период {per['when']['start']}–{per['when']['end']}", per
+    yield "после-1280", mv["after"]
+    yield "засуха", mv["drought"]
+    for e in tr["jemez"]["estimates"]:
+        yield f"Хемес {e['id']}", e
+    for m in tr["jemez"]["marks"]:
+        yield f"веха {m['id']}", m
+    yield "убыль", tr["jemez"]["decline"]
+    for ev in tr["timeline"]:
+        yield f"шкала {ev['id']}", ev
+    for mv_ in tr["moves"]:
+        yield f"стрелка {mv_['id']}", mv_
+    for ln in tr["lines"]:
+        yield f"линия {ln['id']}", ln
+
+
+def check_span4(span, rec, where: str) -> list[str]:
+    """Как check_span, плюс день совпадает с годом и размытый край не сочетается с открытым."""
+    errors = check_span(span, rec, where)
+    if span.get("day") and int(span["day"][:4]) != span["start"]:
+        errors.append(f"{where}: день {span['day']} не в году {span['start']}")
+    if span.get("fuzzy_end") and span["end"] is None and not span.get("open_end"):
+        errors.append(f"{where}: fuzzy_end без конца — нужен примерный конец или open_end")
+    if span["end"] is None and not span.get("open_end") and not span.get("fuzzy_end"):
+        errors.append(f"{where}: end = null без open_end или fuzzy_end")
+    return errors
+
+
+def check_transition(tr) -> list[str]:
+    """Точки края Мезоамерики существуют; население Меса-Верде — сумма столбцов, периоды идут
+    подряд; оценки Хемеса — либо диапазон, либо одно число; шкалы — в своих рамках; концы
+    стрелок существуют; линия границы — либо нынешняя, либо схема по договору."""
+    places = {p["id"]: p for p in tr["places"]}
+    errors = unique([p["id"] for p in tr["places"]], "transition: точка")
+    errors += unique([a["id"] for a in tr["areas"]], "transition: область")
+    errors += unique([p["id"] for p in tr["peoples"]], "transition: народ")
+    for p in tr["places"]:
+        if "when" in p:
+            errors += check_span4(p["when"], p, f"transition: точка {p['id']}")
+    for a in tr["areas"]:
+        where = f"transition: область {a['id']}"
+        for pid in a.get("edge", []):
+            if pid not in places:
+                errors.append(f"{where}: неизвестная точка края {pid!r}")
+            elif places[pid]["role"] != "edge":
+                errors.append(f"{where}: точка {pid!r} — не опорная точка края")
+        if not a.get("edge") and not a.get("blobs"):
+            errors.append(f"{where}: нет ни края, ни пятен")
+        if "when" in a:
+            errors += check_span4(a["when"], a, where)
+    mv = tr["mesaverde"]
+    prev_end = None
+    for per in mv["periods"]:
+        w = per["when"]
+        where = f"transition: период {w['start']}–{w['end']}"
+        errors += check_span4(w, per, where)
+        if per["centers"] + per["small_sites"] != per["population"]:
+            errors.append(f"{where}: centers + small_sites ≠ population")
+        if prev_end is not None and w["start"] != prev_end:
+            errors.append(f"{where}: разрыв или наложение с предыдущим периодом")
+        prev_end = w["end"]
+    if mv["after"]["when"]["start"] != prev_end:
+        errors.append("transition: Меса-Верде: «после» начинается не с конца последнего периода")
+    errors += check_span4(mv["drought"]["when"], mv["drought"], "transition: засуха")
+    jz = tr["jemez"]
+    errors += unique([e["id"] for e in jz["estimates"]], "transition: оценка Хемеса")
+    for e in jz["estimates"]:
+        where = f"transition: Хемес {e['id']}"
+        errors += check_span4(e["when"], e, where)
+        has_range, has_value = "low" in e or "high" in e, "value" in e
+        if has_range == has_value:
+            errors.append(f"{where}: нужен либо диапазон low–high, либо одно число value")
+        if has_range and not ("low" in e and "high" in e and e["low"] <= e["high"]):
+            errors.append(f"{where}: диапазон без low/high или low > high")
+        if has_value and "bound" not in e:
+            errors.append(f"{where}: у числа нужен bound")
+    for m in jz["marks"]:
+        errors += check_span4(m["when"], m, f"transition: веха {m['id']}")
+    d = jz["decline"]
+    if d["to"] <= d["from"]:
+        errors.append("transition: убыль Хемеса: конец не позже начала")
+    rows = {"chichimeca": (1540, 1600), "apache": (1740, 1860)}
+    errors += unique([ev["id"] for ev in tr["timeline"]], "transition: событие шкалы")
+    for ev in tr["timeline"]:
+        where = f"transition: шкала {ev['id']}"
+        errors += check_span4(ev["when"], ev, where)
+        lo, hi = rows[ev["row"]]
+        end = ev["when"]["end"] if ev["when"]["end"] is not None else ev["when"]["start"]
+        if not lo <= ev["when"]["start"] <= end <= hi:
+            errors.append(f"{where}: вне шкалы {lo}–{hi}")
+    for p in tr["places"]:
+        if (p["role"] == "region") != ("radius_km" in p):
+            errors.append(f"transition: точка {p['id']}: radius_km — только и обязательно у region")
+    ends = set(places) | {a["id"] for a in tr["areas"]}
+    errors += unique([m["id"] for m in tr["moves"]], "transition: стрелка")
+    for m in tr["moves"]:
+        where = f"transition: стрелка {m['id']}"
+        for end_ in (m["from"], m["to"]):
+            if end_ not in ends:
+                errors.append(f"{where}: неизвестная точка или область {end_!r}")
+        if "when" in m:
+            errors += check_span4(m["when"], m, where)
+    errors += unique([ln["id"] for ln in tr["lines"]], "transition: линия")
+    for ln in tr["lines"]:
+        where = f"transition: линия {ln['id']}"
+        errors += check_span4(ln["when"], ln, where)
+        if ln.get("current") == ("coords" in ln):
+            errors.append(f"{where}: нужна либо нынешняя линия (current), либо coords")
+        if "coords" in ln and not ln["schematic"]:
+            errors.append(f"{where}: линия по описанию договора — только schematic: true")
+    errors += unique([r["id"] for r in tr["rivers"]], "transition: река")
+    return errors
+
+
 def unique(values: list, what: str) -> list[str]:
     seen: set = set()
     errors = []
@@ -347,6 +471,7 @@ DATASETS = {
     "peopling": (iter_peopling, check_peopling),
     "agriculture": (iter_agriculture, check_agriculture),
     "complex": (iter_complex, check_complex),
+    "transition": (iter_transition, check_transition),
 }
 
 

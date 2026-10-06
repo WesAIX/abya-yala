@@ -9,28 +9,52 @@
 
 ## Первичные источники
 
+- <a id="bartlett1854"></a>`bartlett1854` — Bartlett, John Russell (1854). *Personal Narrative of Explorations and Incidents in Texas, New Mexico, California, Sonora, and Chihuahua, Connected with the United States and Mexican Boundary Commission, during the Years 1850, ’51, ’52, and ’53.*. New York: D. Appleton & Company. <https://commons.wikimedia.org/wiki/File:Personal_narrative_of_explorations_and_incidents_in_Texas,_New_Mexico,_California,_Sonora,_and_Chihuahua_-_connected_with_the_United_States_and_Mexican_Boundary_Commission,_during_the_years_1850,_%2751,_(14770710161).jpg>.
+  Лицензия: Общественное достояние (издание 1854 г.; на Wikimedia Commons — «No known copyright restrictions», Flickr Commons / Internet Archive Book Images). Два тома, оба в одном скане archive.org/details/personalnarrativ01bart (экземпляр University of North Carolina at Chapel Hill). Т. 1, гл. 1 — назначение Бартлетта комиссаром по проведению границы по договору 1848 г. Литография «Ruins at Casas Grandes, Chihuahua» — фронтиспис т. 2 (по списку иллюстраций тома; подпись видна на скане, стр. n573). Файл в главе: chapters/img/04-bartlett-casas-grandes.jpg (уменьшен до 1200 px). Главы: 4.
+- <a id="fr2008"></a>`fr2008` — Bureau of Indian Affairs (2008). *Indian Entities Recognized and Eligible To Receive Services From the United States Bureau of Indian Affairs*. Federal Register, 73, 18553. <https://www.federalregister.gov/documents/2008/04/04/E8-6968/indian-entities-recognized-and-eligible-to-receive-services-from-the-united-states-bureau-of-indian>.
+  Список признанных племён от 4 апреля 2008 г.: «Ohkay Owingeh, New Mexico (formerly the Pueblo of San Juan)». Главы: 4.
 - <a id="burke2017"></a>`burke2017` — Burke Museum (2017). *The Ancient One, Kennewick Man*. Seattle: Burke Museum of Natural History and Culture. <https://www.burkemuseum.org/news/ancient-one-kennewick-man>.
   Заявление музея о возвращении останков (20.02.2017) и справка об истории спора. Главы: 0, 12.
+- <a id="reglamento1772"></a>`reglamento1772` — Carlos III (король Испании) (1772). *Reglamento e instrucción para los presidios que se han de formar en la línea de frontera de la Nueva España. Resuelto por el Rey Nuestro Señor en cédula de 10 de setiembre de 1772*. México: Oficina de la Águila, 1834 (переиздание). <https://archive.org/details/reglamento-e-instruccion-para-los-presidios-que-se-han-de-formar>.
+  Прочитано по переизданию 1834 г. (экземпляр Southern Methodist University, цифровая копия Fundación Ignacio Larramendi, 2020; копия под лицензией CC BY-NC-ND 4.0, поэтому в главе не воспроизводится). Линия из 15 пресидио от Альтара до Баия-дель-Эспириту-Санто; запрет капитанам заключать мир с апачами. Главы: 4.
 - <a id="darski2024"></a>`darski2024` — Darski, Lech (2024). *Miedź rodzima - Półwysep Keweenaw, stan Michigan, USA (фотография образца самородной меди)*. Wikimedia Commons. <https://commons.wikimedia.org/wiki/File:Mied%C5%BA_rodzima_-_P%C3%B3%C5%82wysep_Keweenaw,_stan_Michigan,_USA.jpg>.
   Лицензия: CC BY 4.0 (Creative Commons Attribution 4.0); автор на странице файла — Lech Darski, источник — Own work. Описание на странице файла: «Miedź rodzima - Półwysep Keweenaw, stan Michigan, USA.» (самородная медь, полуостров Кивино, Мичиган); дата съёмки — 2024-09-28; категории «Native copper from Michigan», «Minerals of the Keweenaw Peninsula». На снимке — образец, вставка с масштабной линейкой 41 мм. Файл в главе: chapters/img/03-copper-keweenaw.jpg (уменьшен до 960 px). Главы: 3.
+- <a id="dischamelrider2014"></a>`dischamelrider2014` — DiSchamelrider (участник Википедии) (2014). *Casas Grandes Macaw Pens (фотография)*. Wikimedia Commons. <https://commons.wikimedia.org/wiki/File:Casas_Grandes_Macaw_Pens.JPG>.
+  Лицензия: CC0 1.0 (передано в общественное достояние автором); автор на странице файла — DiSchamelrider. Описание на странице файла: «Macaw Pens at Paquimé», снято автором в Пакиме; дата загрузки — 9 ноября 2014 г. Файл в главе: chapters/img/04-paquime-macaw-pens.jpg (уменьшен до 960 px). Главы: 4.
 - <a id="frank2021"></a>`frank2021` — Frank, Jacob W. (U.S. National Park Service) (2021). *Obsidian Cliff and Obsidian Creek (фотография)*. Wikimedia Commons (из Flickr-ленты YellowstoneNPS). <https://commons.wikimedia.org/wiki/File:Obsidian_Cliff_and_Obsidian_Creek_(51164209076).jpg>.
   Лицензия: Общественное достояние (Public domain; шаблон PD-USGov-NPS — работа сотрудника Службы национальных парков США); автор на странице файла — YellowstoneNPS, описание — «NPS / Jacob W. Frank». Обсидиановый утёс и ручей Обсидиан-Крик в Йеллоустонском национальном парке; снято 28 апреля 2021 г. Источник: https://www.flickr.com/photos/yellowstonenps/51164209076. Файл в главе: chapters/img/03-obsidian-cliff.jpg (уменьшен до 960 px). Главы: 3.
+- <a id="goldmoney2024"></a>`goldmoney2024` — Goldmoney10 (участник Wikimedia Commons) (2024). *Casa Grand Ruins 2 (фотография)*. Wikimedia Commons. <https://commons.wikimedia.org/wiki/File:Casa_Grand_Ruins_2.jpg>.
+  Лицензия: CC0 1.0 (передано в общественное достояние автором); автор на странице файла — Goldmoney10, Own work. Описание на странице файла: «Casa Grande Ruins National Monument, Pinal County»; снято 15 октября 2024 г. Файл в главе: chapters/img/04-casa-grande.jpg (уменьшен до 960 px). Главы: 4.
 - <a id="guamanpoma1615"></a>`guamanpoma1615` — Guaman Poma de Ayala, Felipe (ок. 1615). *El primer nueva corónica y buen gobierno*.
   Лицензия: Общественное достояние: Королевская библиотека Дании помечает факсимиле знаком Public Domain Mark 1.0 (poma.kb.dk, страница проекта) — копировать и использовать можно без разрешения, с указанием автора. Рукопись андского автора с рисунками; хранится в Королевской библиотеке Дании, есть цифровое факсимиле. Год — приблизительный. Главы: 0, 6.
+- <a id="galvez1786"></a>`galvez1786` — Gálvez, Bernardo de (1786). *Instrucción formada en virtud de Real Orden de S. M., que se dirige al Señor Comandante General de Provincias internas Don Jacobo Ugarte y Loyola para gobierno y puntual observancia de este Superior Gefe y de sus inmediatos Subalternos*. <https://archive.org/details/instruccion-formada-en-virtud-de-real-orden-de-s.-m.>.
+  Датирована: México, 26 de agosto de 1786. Прочитано по цифровой копии экземпляра Southern Methodist University (Fundación Ignacio Larramendi, 2020; копия под лицензией CC BY-NC-ND 4.0, в главе не воспроизводится); текст распознан машинно; ст. 29–30 (с. 11), 62–67 (с. 19–20) и 69–78 (с. 21–23), дата и подпись (с. 60) сверены по изображению страниц. Ст. 29: «mala paz» выгоднее «buena guerra»; ст. 62–78: подарки, спиртное и ружья ради зависимости. Главы: 4.
 - <a id="hornaday1889"></a>`hornaday1889` — Hornaday, William T. (1889). *The Extermination of the American Bison*. Annual Report of the Board of Regents of the Smithsonian Institution for 1887, part 2 (Report of the U. S. National Museum). Washington: Government Printing Office.
   Лицензия: Общественное достояние. Первичный источник по истреблению бизонов, включая оценки численности конца 1880-х. Его собственные оценки ранней численности — тоже предмет критики. Главы: 10. **Не сверено.**
+- <a id="tratado1848"></a>`tratado1848` — República Mexicana; Estados Unidos de América (1848). *Tratado de paz, amistad, límites y arreglo definitivo entre la República mexicana y los Estados-Unidos de América. Concluido por los plenipotenciarios en Guadalupe Hidalgo el 2 de febrero, ratificado en Washington el 10 de marzo, y en Querétaro el 30 de mayo de 1848*. México: Impr. de I. Cumplido. <https://archive.org/details/tratadodepazamis00mexirich>.
+  Двуязычное издание 1848 г. (экземпляр University of California Libraries). Ст. XI — обязательство США сдерживать набеги «tribus salvages» в Мексику и запрет покупать пленных. Главы: 4, 9.
 - <a id="royce1899"></a>`royce1899` — Royce, Charles C. (1899). *Indian Land Cessions in the United States*. Eighteenth Annual Report of the Bureau of American Ethnology, part 2. Washington: Government Printing Office.
   Лицензия: Общественное достояние (издание правительства США). Реестр уступок земель с картами по штатам. Для визуализации 5 сначала искать готовые оцифрованные полигоны и проверить их лицензию. Главы: 9, 11. **Не сверено.**
 - <a id="sahagun1577"></a>`sahagun1577` — Sahagún, Bernardino de; науа-соавторы (ок. 1577). *Historia general de las cosas de Nueva España («Флорентийский кодекс»)*.
   Лицензия: Общественное достояние (рукопись XVI в.); условия использования факсимиле проверить. Текст на науатле и испанском, составленный францисканцем вместе с информантами и писцами-науа. Год завершения — приблизительный. Главы: 0, 5, 6.
+- <a id="srpmic"></a>`srpmic` — Salt River Pima-Maricopa Indian Community (б. г.). *Onk Akimel O’odham (Pima); Timeline of O’odham Piipaash History*. <https://srpmic-nsn.gov/about/oodham/>.
+  Страницы общины о себе: самоназвания O’odham («люди»), Akimel O’odham («речные люди»), Tohono O’odham («люди пустыни»); huhugam — слово о предках, от которого археологи взяли «хохокам». Хронология: https://srpmic-nsn.gov/about/history/timeline/. Прочитано 2026-10-06. Главы: 4, 12.
 - <a id="tankersley2023"></a>`tankersley2023` — Tankersley, Kenneth Barnett; et al. (2023). *Retraction Note: The Hopewell airburst event, 1699–1567 years ago (252–383 CE)*. Scientific Reports, 13, 14201. doi:10.1038/s41598-023-41237-8.
   Уведомление журнала об отзыве статьи 2022 г. Главы: 3.
+- <a id="ton2026"></a>`ton2026` — Tohono O’odham Nation (2026). *Issue Brief: Background on the Tohono O’odham Nation*. <https://www.tonation-nsn.gov/wp-content/uploads/2026/06/Issue-Brief-Tohono-Oodham-Nation-Background.pdf>.
+  Справка нации: 2,8 млн акров, около 62 миль вдоль границы, больше 37 000 членов, около 3000 — в Соноре; граница 1854 г. разделила земли и семьи. Главы: 4, 12.
 - <a id="trc2015"></a>`trc2015` — Truth and Reconciliation Commission of Canada (2015). *Honouring the Truth, Reconciling for the Future: Summary of the Final Report of the Truth and Reconciliation Commission of Canada*.
   Официальный доклад; первичный источник по системе школ-интернатов Канады (включает свидетельства). Главы: 11, 12. **Не сверено.**
 - <a id="usace2017"></a>`usace2017` — U.S. Army Corps of Engineers, Northwestern Division (2017). *U.S. Army Corps of Engineers conducts final transfer of Kennewick Man remains*. Northwestern Division News Releases. <https://www.nwd.usace.army.mil/Media/News-Releases/Article/1088463/us-army-corps-of-engineers-conducts-final-transfer-of-kennewick-man-remains/>.
   Пресс-релиз № 17-015 от 20.02.2017. Сайт не отдаёт страницу автоматическим клиентам; текст прочитан по копии в Wayback Machine. Главы: 0, 12.
+- <a id="nps-cagr"></a>`nps-cagr` — U.S. National Park Service, Casa Grande Ruins National Monument (б. г.). *History & Culture*. <https://www.nps.gov/cagr/learn/historyculture/index.htm>.
+  Каса-Гранде около 1350 г., заброшена около 1450 г.; «хохокам» — не название народа; Кино в 1694 г., Анса в 1775 г., Карни в 1846 г. Прочитано 2026-10-06. Главы: 4.
+- <a id="unesco1998"></a>`unesco1998` — UNESCO World Heritage Centre (1998). *Archaeological Zone of Paquimé, Casas Grandes*. <https://whc.unesco.org/en/list/560/>.
+  Описание объекта всемирного наследия (включён в список в 1998 г.): около 2000 помещений из сырцового кирпича, расцвет в XIV–XV вв.; развитие — 700–1475 гг. Описание выдержано в лексике «более развитых цивилизаций Мезоамерики». Главы: 4.
 - <a id="unesco2014"></a>`unesco2014` — UNESCO World Heritage Centre (2014). *Qhapaq Ñan, Andean Road System*. <https://whc.unesco.org/en/list/1459/>.
   Описание объекта всемирного наследия (включён в список в 2014 г.). Главы: 3.
+- <a id="gadsden1853"></a>`gadsden1853` — United States of America; Mexican Republic (1853). *Gadsden Purchase Treaty: December 30, 1853*. The Avalon Project, Lillian Goldman Law Library, Yale Law School. <https://avalon.law.yale.edu/19th_century/mx1853.asp>.
+  Текст договора (с поправками Сената; провозглашён 30 июня 1854 г.). Ст. II отменяет ст. XI договора 1848 г.; ст. III — 10 млн долларов. Главы: 4, 9.
 - <a id="uwyo2026"></a>`uwyo2026` — University of Wyoming (2026). *UW-Led Research Resets Age of Famous South American Archaeological Site*. University of Wyoming News. <https://www.uwyo.edu/news/2026/03/uw-led-research-resets-age-of-famous-south-american-archaeological-site.html>.
   Пресс-релиз университета от 19.03.2026 с высказываниями Т. Суровелла о статье surovell2026. Свидетельство позиции автора, а не самостоятельный источник фактов. Главы: 1.
 - <a id="codexmendoza"></a>`codexmendoza` — Неизвестные мастера Новой Испании (1529–1553). *Codex Mendoza (Bodleian Library, MS. Arch. Selden. A. 1), fol. 47r*. <https://commons.wikimedia.org/wiki/File:Codex_Mendoza_folio_47r.jpg>.
@@ -38,12 +62,16 @@
 
 ## Исследования
 
+- <a id="aml-aridoamerica"></a>`aml-aridoamerica` — Academia Mexicana de la Lengua, Comisión de Consultas (б. г.). *¿Se dice Aridoamérica o Aridamérica?*. Consultas frecuentes. <https://academia.org.mx/consultas/consultas-frecuentes/item/aridoamerica>.
+  Справка о происхождении слов Aridoamérica / Aridamérica: Кирхгоф в 1943 г. выделил Мезоамерику и «засушливую Северную Америку», в статье 1954 г. закрепил Arid America (с цитатой из неё) и дал карту с Arid America, Oasis America и Meso-America. Дата на странице не указана; прочитано 2026-10-06. Главы: 4.
 - <a id="adams1995"></a>`adams1995` — Adams, David Wallace (1995). *Education for Extinction: American Indians and the Boarding School Experience, 1875–1928*. Lawrence: University Press of Kansas.
   Главы: 11. **Не сверено.**
 - <a id="adelaar2012"></a>`adelaar2012` — Adelaar, Willem F. H. (2012). *Languages of the Middle Andes in areal-typological perspective: Emphasis on Quechuan and Aymaran*. Campbell, Lyle; Grondona, Verónica (ред.). The Indigenous Languages of South America: A Comprehensive Guide, 575–624. Berlin; Boston: De Gruyter Mouton. doi:10.1515/9783110258035.575.
   Открытый доступ (OAPEN). Прародина кечуа — Центральное Перу; версия о распространении кечуа инками отвергнута. Главы: 0, 3, 6.
 - <a id="aguilar2020"></a>`aguilar2020` — Aguilar Sánchez, Omar (2020). *Ñuu Savi: Pasado, presente y futuro. Descolonización, continuidad cultural y re-apropiación de los códices mixtecos en el Pueblo de la Lluvia*. Leiden: Leiden University Press (Archaeological Studies Leiden University 52). <https://hdl.handle.net/1887/138511>.
   Докторская диссертация, факультет археологии Лейденского университета; ISBN 9789087283612. Автор — сам из Ñuu Savi (Окотепек); разд. 1.1 «Ñuu Savi desde Ñuu Savi», с. 31–32 — о самоназвании. Главы: 3.
+- <a id="babcock2016"></a>`babcock2016` — Babcock, Matthew (2016). *Apache Adaptation to Hispanic Rule*. Cambridge: Cambridge University Press. doi:10.1017/CBO9781316344057.
+  Использованы описание книги (мир с апачами после 1786 г., «establecimientos» от Ларедо до Тусона) и гл. 1 «Peace and War», с. 19–60, в открытом доступе на сайте издательства: самоназвание ндé, отношения с испанцами до 1700 г., участие в восстании пуэбло. Главы: 4, 7.
 - <a id="baires2015"></a>`baires2015` — Baires, Sarah E.; Baltus, Melissa R.; Buchanan, Meghan E. (2015). *Correlation does not equal causation: Questioning the Great Cahokia Flood*. Proceedings of the National Academy of Sciences, 112(29), E3753. doi:10.1073/pnas.1509104112.
   Письмо в редакцию — ответ на Munoz et al. 2015. Главы: 3.
 - <a id="bayliss2009"></a>`bayliss2009` — Bayliss, Alex (2009). *Rolling Out Revolution: Using Radiocarbon Dating in Archaeology*. Radiocarbon, 51(1), 123–147. doi:10.1017/S0033822200033750.
@@ -54,6 +82,10 @@
   Следы в Уайт-Сэндс. Главы: 1.
 - <a id="bitocchi2012"></a>`bitocchi2012` — Bitocchi, Elena; et al. (2012). *Molecular analysis of the parallel domestication of the common bean (Phaseolus vulgaris) in Mesoamerica and the Andes*. New Phytologist, 197(1), 300–313. doi:10.1111/j.1469-8137.2012.04377.x.
   Фасоль обыкновенная одомашнена дважды — в Мезоамерике и в Андах. Использована аннотация. Главы: 2.
+- <a id="bocinsky2014"></a>`bocinsky2014` — Bocinsky, R. Kyle; Kohler, Timothy A. (2014). *A 2,000-year reconstruction of the rain-fed maize agricultural niche in the US Southwest*. Nature Communications, 5, 5618. doi:10.1038/ncomms6618.
+  Реконструкция по годичным кольцам области, где кукуруза росла без полива; уход с севера в XIII в. и север Рио-Гранде как одно из главных мест прибытия; открытый доступ. Главы: 4.
+- <a id="bocinsky2016"></a>`bocinsky2016` — Bocinsky, R. Kyle; Rush, Johnathan; Kintigh, Keith W.; Kohler, Timothy A. (2016). *Exploration and exploitation in the macrohistory of the pre-Hispanic Pueblo Southwest*. Science Advances, 2(4), e1501532. doi:10.1126/sciadv.1501532.
+  29 311 дендродат 500–1400 гг. с 1002 памятников; периоды Пекосской классификации; открытый доступ (PMC4820384). Главы: 4.
 - <a id="bonatto1997"></a>`bonatto1997` — Bonatto, Sandro L.; Salzano, Francisco M. (1997). *A single and early migration for the peopling of the Americas supported by mitochondrial DNA sequence data*. Proceedings of the National Academy of Sciences, 94(5), 1866–1871. doi:10.1073/pnas.94.5.1866.
   Ранняя модель с центральной ролью Берингии; у tamm2007 — «Beringian incubation model». Открытый доступ (PMC20009). Главы: 1.
 - <a id="bongers2026"></a>`bongers2026` — Bongers, Jacob L.; et al. (2026). *Ancient DNA reveals a family ossuary and long-distance migration on the Pacific coast before the Inca Empire*. Nature Communications, 17, 4222. doi:10.1038/s41467-026-72216-y.
@@ -100,14 +132,20 @@
   Главы: 3, 6.
 - <a id="davis2019"></a>`davis2019` — Davis, Loren G.; Madsen, David B.; et al. (2019). *Late Upper Paleolithic occupation at Cooper’s Ferry, Idaho, USA, ~16,000 years ago*. Science, 365(6456), 891–897. doi:10.1126/science.aax9830.
   Купер-Ферри, запад Айдахо: древнейшая стадия заселения — 16 560–15 280 кал. л. н.; наконечники с черешком старше Кловиса. Главы: 1.
+- <a id="delay2007"></a>`delay2007` — DeLay, Brian (2007). *Independent Indians and the U.S.-Mexican War*. The American Historical Review, 112(1), 35–68. doi:10.1086/ahr.112.1.35.
+  Статья в закрытом доступе; прочитано начало (первые страницы) по выдаче OpenAlex: набеги с начала 1830-х гг. в девяти штатах, тысячи погибших, север Мексики не готов к войне 1846 г. Главы: 4, 9.
+- <a id="delay2007b"></a>`delay2007b` — DeLay, Brian (2007). *The Wider World of the Handsome Man: Southern Plains Indians Invade Mexico, 1830–1848*. Journal of the Early Republic, 27(1), 83–113. doi:10.1353/jer.2007.0002.
+  Статья в закрытом доступе; прочитаны первые страницы (с. 83–85) по выдаче OpenAlex: набег 1841 г. на Сальтильо. Главы: 4, 9.
 - <a id="delay2008"></a>`delay2008` — DeLay, Brian (2008). *War of a Thousand Deserts: Indian Raids and the U.S.-Mexican War*. New Haven: Yale University Press.
-  Главы: 4, 9. **Не сверено.**
+  Главы: 4, 9.
 - <a id="uafdene"></a>`uafdene` — Dene (Athabaskan) Languages Conference (б. г.). *About Conference*. Fairbanks: University of Alaska Fairbanks. <https://www.uaf.edu/alc/about/>.
   Страница ежегодной научной конференции по атабаскским языкам (раздел «About the Name»): названия «атабаски» и «дене», происхождение слова «атабаски» из языка кри. Просмотрено 05.10.2026. Главы: 1.
 - <a id="denevan1992b"></a>`denevan1992b` — Denevan, William M. (1992). *The Pristine Myth: The Landscape of the Americas in 1492*. Annals of the Association of American Geographers, 82(3), 369–385.
   Главы: 3, 5. **Не сверено.**
 - <a id="denevan1992"></a>`denevan1992` — Denevan, William M. (ред.) (1992). *The Native Population of the Americas in 1492*. Madison: University of Wisconsin Press.
   2-е издание; первое — 1976. Главы: 5. **Не сверено.**
+- <a id="dipeso1974"></a>`dipeso1974` — Di Peso, Charles C. (1974). *Casas Grandes: A Fallen Trading Center of the Gran Chichimeca*. Dragoon, Ariz.: Amerind Foundation.
+  Многотомный отчёт о раскопках Пакиме (Amerind Foundation Series, № 9); тома 4–8 — в соавторстве с J. B. Rinaldo и G. J. Fenner. Текст недоступен; используется только как источник названия и как позиция, которую оспаривают Whalen & Minnis 2003. Главы: 4.
 - <a id="diehl1987"></a>`diehl1987` — Diehl, Richard A.; Mandeville, Margaret D. (1987). *Tula, and wheeled animal effigies in Mesoamerica*. Antiquity, 61(232), 239–246. doi:10.1017/S0003598X00052054.
   Главы: 3.
 - <a id="dillehay2007"></a>`dillehay2007` — Dillehay, Tom D.; et al. (2007). *Preceramic Adoption of Peanut, Squash, and Cotton in Northern Peru*. Science, 316(5833), 1890–1893. doi:10.1126/science.1141395.
@@ -144,6 +182,8 @@
   Главы: 0, 1. **Не сверено.**
 - <a id="gordus1968"></a>`gordus1968` — Gordus, Adon A.; Griffin, James B.; Wright, Gary A. (1968). *Activation Analysis Identification of the Geologic Origins of Prehistoric Obsidian Artifacts*. Ann Arbor: University of Michigan (отчёт; OSTI 4758582). doi:10.2172/4758582. <https://www.osti.gov/servlets/purl/4758582>.
   87 обсидиановых вещей хоупвелла: 68 — Обсидиановый утёс, 19 — другой образец из Йеллоустона. Главы: 3.
+- <a id="hackett1911"></a>`hackett1911` — Hackett, Charles Wilson (1911). *The Revolt of the Pueblo Indians of New Mexico in 1680*. The Quarterly of the Texas State Historical Association, 15(2), 93–147. <https://archive.org/details/jstor-30243029>.
+  Лицензия: Общественное достояние (JSTOR Early Journal Content). Разбор восстания по испанским актам (autos) 1680–1681 гг.: 47 знахарей в 1675 г., верёвка с узлами, больше 380 убитых испанцев и 21 духовное лицо, отступление к Эль-Пасо. Статья начинается на с. 93. Язык и оценки — начала XX в. Главы: 4.
 - <a id="hart2021"></a>`hart2021` — Hart, John P.; Lovis, William A.; Katzenberg, M. Anne (2021). *Early Maize in Northeastern North America: A Comment on Emerson and Colleagues*. American Antiquity, 86(2), 425–427. doi:10.1017/aaq.2020.93.
   Комментарий к emerson2020: защита свидетельств более ранней кукурузы на нижних Великих озёрах и реке Св. Лаврентия. Главы: 2.
 - <a id="hart2021b"></a>`hart2021b` — Hart, John P. (2021). *The effects of charring on common bean (Phaseolus vulgaris L) seed morphology and strength*. Journal of Archaeological Science: Reports, 37, 102996. doi:10.1016/j.jasrep.2021.102996.
@@ -192,6 +232,10 @@
   Учебное пособие семинаров European Maya Conference; очерк истории дешифровки — во введении (с. 10–12). Главы: 0, 3.
 - <a id="kirchhoff1943"></a>`kirchhoff1943` — Kirchhoff, Paul (1943). *Mesoamérica: sus límites geográficos, composición étnica y caracteres culturales*. Acta Americana, 1, 92–107.
   Главы: 4. **Не сверено.**
+- <a id="kirchhoff1954"></a>`kirchhoff1954` — Kirchhoff, Paul (1954). *Gatherers and Farmers in the Greater Southwest: A Problem in Classification*. American Anthropologist, 56(4), 529–550. doi:10.1525/aa.1954.56.4.02a00020.
+  Полный текст — скан выпуска в Internet Archive (sim_american-anthropologist_1954-08_56_4): о названии Arid America с 1942 г. — с. 533, карта трёх областей — с. 544, предложение названий Arid America и Oasis America — с. 550. Главы: 4.
+- <a id="kirchhoff1960"></a>`kirchhoff1960` — Kirchhoff, Paul (1960). *Mesoamérica: sus límites geográficos, composición étnica y caracteres culturales*. Suplemento de la revista Tlatoani, núm. 3. México: Escuela Nacional de Antropología e Historia, Sociedad de Alumnos. <https://posgrado.unam.mx/mesoamericanos/uploads/docs/Paul%20Kirchhoff.PDF>.
+  Второе издание статьи 1943 г. (Acta Americana, т. 1; запись kirchhoff1943) с новым предисловием автора. Прочитано по цифровой копии «Al fin liebre ediciones digitales» (Халапа, 2009), выложенной на сайте программы мезоамериканистики UNAM; номера страниц копии не совпадают с изданием. Северная граница Мезоамерики ко времени завоевания — «más o menos desde el río Pánuco al Sinaloa pasando por el Lerma». Главы: 2, 4.
 - <a id="kistler2018"></a>`kistler2018` — Kistler, Logan; et al. (2018). *Multiproxy evidence highlights a complex evolutionary legacy of maize in South America*. Science, 362(6420), 1309–1313. doi:10.1126/science.aav0207.
   Кукуруза ушла в Южную Америку не до конца одомашненной; юго-запад Амазонии — второй центр её улучшения. Использована аннотация; рукопись авторов в открытом доступе (White Rose eprints). Главы: 2.
 - <a id="kistler2020"></a>`kistler2020` — Kistler, Logan; et al. (2020). *Archaeological Central American maize genomes suggest ancient gene flow from South America*. Proceedings of the National Academy of Sciences, 117(52), 33124–33129. doi:10.1073/pnas.2015560117.
@@ -206,6 +250,10 @@
   Отступание льда на юго-востоке Аляски; открытый доступ. Главы: 1.
 - <a id="lesure2021"></a>`lesure2021` — Lesure, Richard G.; et al. (2021). *Large-Scale Patterns in the Agricultural Demographic Transition of Mesoamerica and Southwestern North America*. American Antiquity, 86(3), 593–612. doi:10.1017/aaq.2021.23.
   Две фазы роста населения при переходе к земледелию в Мезоамерике и на юго-западе; открытый доступ. Главы: 2, 3, 4.
+- <a id="liebmann2007"></a>`liebmann2007` — Liebmann, Matthew; Preucel, Robert W. (2007). *The Archaeology of the Pueblo Revolt and the Formation of the Modern Pueblo World*. Kiva, 73(2), 195–217. doi:10.1179/kiv.2007.73.2.006. <http://nrs.harvard.edu/urn-3:HUL.InstRepos:3693473>.
+  Прочитана рукопись авторов в репозитории Harvard DASH (своя нумерация страниц, не совпадает с журналом): прежние истории восстания — по испанским документам, голос пуэбло в них — через посредников; Po’pay; новые селения на месах после 1680 г.; часть пуэбло на стороне испанцев в 1690-х; устные предания и трёхсотлетие восстания в 1980 г. Главы: 4.
+- <a id="liebmann2016"></a>`liebmann2016` — Liebmann, Matthew J.; Farella, Joshua; Roos, Christopher I.; Stack, Adam; Martini, Sarah; Swetnam, Thomas W. (2016). *Native American depopulation, reforestation, and fire regimes in the Southwest United States, 1492–1900 CE*. Proceedings of the National Academy of Sciences, 113(6), E696–E704. doi:10.1073/pnas.1521744113.
+  Провинция Хемес: 5000–8000 жителей около 1500 г., устойчивость до 1620 г., падение на 87% к 1680 г. — после миссий; даты конца поселений по возрасту выросших на них сосен; открытый доступ (PMC4760783). Главы: 4, 5.
 - <a id="liritzis2021"></a>`liritzis2021` — Liritzis, Ioannis; Laskaris, Nikolaos (2021). *Archaeological Obsidian Hydration Dating with Secondary Ion Mass Spectrometry: Current Status*. Mediterranean Archaeology and Archaeometry, 21(3), 51–67. doi:10.5281/zenodo.5598229.
   Лицензия: CC BY 4.0. Обзор метода гидратационного датирования обсидиана: свежий скол впитывает воду с известной скоростью, зависящей от температуры, влажности и состава стекла; открытый доступ. Главы: 3.
 - <a id="lombardo2020"></a>`lombardo2020` — Lombardo, Umberto; et al. (2020). *Early Holocene crop cultivation and landscape modification in Amazonia*. Nature, 581(7807), 190–193. doi:10.1038/s41586-020-2162-7.
@@ -236,12 +284,16 @@
   Модель распространения terra preta: около 3,2% леса Амазонии. Использована аннотация; открытый доступ (PMC3896013). Главы: 2.
 - <a id="mcmichael2015"></a>`mcmichael2015` — McMichael, C. H.; Piperno, D. R.; Bush, M. B. (2015). *Comment on Clement et al. 2015 ‘The domestication of Amazonia before European conquest’*. Proceedings of the Royal Society B: Biological Sciences, 282(1821), 20151837. doi:10.1098/rspb.2015.1837.
   Критика clement2015: большая часть бассейна, по их данным, не несёт заметных следов древнего воздействия; открытый доступ. Главы: 2, 3.
+- <a id="mcneil2021"></a>`mcneil2021` — McNeil, Lynda D. (2021). *Turkeys Befriend a Girl: Turkey Husbandry, Ceremonialism, and Tales of Resistance during the Pueblo Revolt Era*. American Antiquity, 87(1), 18–41. doi:10.1017/aaq.2021.111.
+  Лицензия: CC BY 4.0. Использованы аннотация и обзорные разделы: дань маисом и тканями (энкомьенда) и трудовые повинности середины XVII в. как одна из причин восстания; возвращение испанцев с 1692 г., восстание 1696 г.; открытый доступ. Год — онлайн-публикации (2021); печатный выпуск 87(1) — январь 2022 г. Главы: 4.
 - <a id="meltzer1997"></a>`meltzer1997` — Meltzer, David J.; et al. (1997). *On the Pleistocene Antiquity of Monte Verde, Southern Chile*. American Antiquity, 62(4), 659–663. doi:10.2307/281884.
   Итог осмотра Монте-Верде группой специалистов в январе 1997 г. Главы: 1.
 - <a id="meltzer2026"></a>`meltzer2026` — Meltzer, David J.; Moreno-Mayar, J. Víctor; Pinotti, Thomaz; Heintzman, Peter D.; Pedersen, Mikkel Winther; Willerslev, Eske (2026). *Genetic evidence and the peopling of the Americas: reply to Surovell et al. 2026*. Science, eLetters к статье Surovell et al. 2026 (doi:10.1126/science.adw9217). <https://liberalarts.tamu.edu/csfa/wp-content/uploads/sites/14/2026/05/Three-Critiques.pdf>.
   Отклик (eLetter) от 04.05.2026 на сайте Science; не рецензируется. Среди авторов — авторы morenomayar2018, pinotti2019, pedersen2016, willerslev2021. Текст сверен по той же распечатке, что waters2026b. Главы: 1.
 - <a id="merrill2009"></a>`merrill2009` — Merrill, William L.; et al. (2009). *The diffusion of maize to the southwestern United States and its impact*. Proceedings of the National Academy of Sciences, 106(50), 21019–21026. doi:10.1073/pnas.0906075106.
   Кукуруза на юго-западе США не позже 2100 cal BC; распространение от группы к группе против гипотезы переселения праюто-ацтеков (Беллвуд — Хилл); открытый доступ. Главы: 2, 4.
+- <a id="mills2013"></a>`mills2013` — Mills, Barbara J.; et al. (2013). *Transformation of social networks in the late pre-Hispanic US Southwest*. Proceedings of the National Academy of Sciences, 110(15), 5785–5790. doi:10.1073/pnas.1219966110.
+  Сети по керамике и обсидиану 1200–1450 гг. (больше 4,3 млн черепков, 700 памятников); сдвиг связей с севера на юг после 1300 г.; открытый доступ (PMC3625298). Главы: 4.
 - <a id="morenomayar2018"></a>`morenomayar2018` — Moreno-Mayar, J. Víctor; et al. (2018). *Terminal Pleistocene Alaskan genome reveals first founding population of Native Americans*. Nature, 553, 203–207. doi:10.1038/nature25173.
   Главы: 1.
 - <a id="mtpleasant2010"></a>`mtpleasant2010` — Mt. Pleasant, Jane; Burt, Robert F. (2010). *Estimating Productivity of Traditional Iroquoian Cropping Systems from Field Experiments and Historical Literature*. Journal of Ethnobiology, 30(1), 52–79. doi:10.2993/0278-0771-30.1.52.
@@ -254,6 +306,8 @@
   Главы: 3.
 - <a id="nash1999"></a>`nash1999` — Nash, Stephen E. (1999). *Time, Trees, and Prehistory: Tree-Ring Dating and the Development of North American Archaeology, 1914–1950*. Salt Lake City: University of Utah Press.
   Главы: 0, 3, 4.
+- <a id="nelson2010"></a>`nelson2010` — Nelson, Margaret C.; Kintigh, Keith; Abbott, David R.; Anderies, John M. (2010). *The Cross-scale Interplay between Social and Biophysical Context and the Vulnerability of Irrigation-dependent Societies: Archaeology's Long-term Perspective*. Ecology and Society, 15(3), 31. doi:10.5751/ES-03389-150331.
+  Мимбрес (650–1450), Зуни (850–1540), хохокам (700–1450): каналы хохокам на Солт-Ривер — больше 500 км, около 190 деревень с площадками для игры в мяч к 1000 г., распад сети около 1070 г.; открытый доступ. «31» — номер статьи в выпуске, а не страница. Главы: 4.
 - <a id="cohen2012"></a>`cohen2012` — Newton, Nell Jessup (ред.) (2012). *Cohen's Handbook of Federal Indian Law*. San Francisco: LexisNexis.
   Справочник по федеральному праву США в отношении индейцев; цитировать конкретное издание. Главы: 9, 11, 12.
 - <a id="nolan2023"></a>`nolan2023` — Nolan, Kevin C.; et al. (2023). *Refuting the sensational claim of a Hopewell-ending cosmic airburst*. Scientific Reports, 13, 12910. doi:10.1038/s41598-023-39866-0.
@@ -302,12 +356,22 @@
   Ответ на pigati2023: новые датировки тоже могут быть завышены. Главы: 1.
 - <a id="rhodes2011"></a>`rhodes2011` — Rhodes, Edward J. (2011). *Optically Stimulated Luminescence Dating of Sediments over the Past 200,000 Years*. Annual Review of Earth and Planetary Sciences, 39, 461–488. doi:10.1146/annurev-earth-040610-133425.
   Обзор люминесцентного датирования осадков. Главы: 1. **Не сверено.**
+- <a id="rivayamartinez2025"></a>`rivayamartinez2025` — Rivaya Martínez, Joaquín (2025). *El cautiverio en las relaciones hispano-comanches, 1700-1821*. Cuadernos de Historia Moderna, 50(2), 465–483. doi:10.5209/chmo.105315.
+  Самоназвание Numunuu; ярмарки в Таосе, генисаро; поход Ансы 1779 г., мир 1785–1787 гг.; открытый доступ. Главы: 4, 7, 8.
+- <a id="rojasgalvan2016"></a>`rojasgalvan2016` — Rojas Galván, José (2016). *El traslado de familias de indios tlaxcaltecas hacia la región norte de la Nueva Galicia (Virreinato de Nueva España). Una política de colonización y pacificación del Imperio español de finales del siglo XVI*. HiSTOReLo. Revista de Historia Regional y Local, 8(16), 53–89. doi:10.15446/historelo.v8n16.55143.
+  Лицензия: CC BY-NC-ND 4.0. Капитуляции 14 марта 1591 г. (400 семей, привилегии), перепись переселенцев, основание Колотлана 21 августа 1591 г.; открытый доступ. Главы: 4, 6.
 - <a id="rojas1989"></a>`rojas1989` — Rojas, José Luis de (1989). *El Xoconochco: ¿una provincia aislada del imperio?*. Revista Española de Antropología Americana, 19, 91–108. <https://revistas.ucm.es/index.php/REAA/article/view/REAA8989110091A>.
   Шоконочко (Соконуско): крайний юго-восток нынешней Мексики, больше 1000 км от Мехико, главное богатство — какао; завоевание при Ауисотле. Полное имя автора в каталоге журнала — José Luis de Rojas y Gutiérrez de Gandarilla. Главы: 3.
+- <a id="ruizguadalajara2010"></a>`ruizguadalajara2010` — Ruiz Guadalajara, Juan Carlos (2010). *Capitán Miguel Caldera y la frontera chichimeca: entre el mestizo historiográfico y el soldado del rey*. Revista de Indias, 70(248), 23–58. doi:10.3989/revindias.2010.002.
+  Лицензия: CC BY 4.0. Чичимекская война 1549–1591 гг., рабство, «мир покупкой» с 1586–1588 гг., переселение тлашкальтеков; критика «варваризации» кочевников у Пауэлла; открытый доступ. Главы: 4, 6.
 - <a id="rumold2016"></a>`rumold2016` — Rumold, Claudia Ursula; Aldenderfer, Mark S. (2016). *Late Archaic–Early Formative period microbotanical evidence for potato at Jiskairumoko in the Titicaca Basin of southern Peru*. Proceedings of the National Academy of Sciences, 113(48), 13672–13677. doi:10.1073/pnas.1604265113.
   Крахмал картофеля на орудиях Хискайрумоко (бассейн Титикаки, 3400–1600 cal BC); дикий или культурный — не установлено; открытый доступ. Главы: 2.
+- <a id="scheffer2021"></a>`scheffer2021` — Scheffer, Marten; van Nes, Egbert H.; Bird, Darcy; Bocinsky, R. Kyle; Kohler, Timothy A. (2021). *Loss of resilience preceded transformations of pre-Hispanic Pueblo societies*. Proceedings of the National Academy of Sciences, 118(18), e2024397118. doi:10.1073/pnas.2024397118.
+  Ряды дат вырубки деревьев: признаки потери устойчивости перед переломами 500–1300 гг.; у последнего ухода с севера таких признаков нет; открытый доступ (PMC8106319). Главы: 4.
 - <a id="schmidt2023"></a>`schmidt2023` — Schmidt, Morgan J.; et al. (2023). *Intentional creation of carbon-rich dark earth soils in the Amazon*. Science Advances, 9(38), eadh8499. doi:10.1126/sciadv.adh8499.
   Тёмные земли создавались намеренно: сравнение древних стоянок с практиками куикуро (верхний Шингу); открытый доступ. Главы: 2.
+- <a id="schwindt2016"></a>`schwindt2016` — Schwindt, Dylan M.; Bocinsky, R. Kyle; Ortman, Scott G.; Glowacki, Donna M.; Varien, Mark D.; Kohler, Timothy A. (2016). *The Social Consequences of Climate Change in the Central Mesa Verde Region*. American Antiquity, 81(1), 74–96. doi:10.7183/0002-7316.81.1.74.
+  Население центрального Меса-Верде 600–1280 гг. по 18 000 памятникам (табл. 2); уход начался раньше «Великой засухи» 1276–1299 гг.; открытый доступ (PMC7523884). Главы: 4.
 - <a id="secoy1953"></a>`secoy1953` — Secoy, Frank Raymond (1953). *Changing Military Patterns on the Great Plains (17th Century through Early 19th Century)*. Monographs of the American Ethnological Society, 21.
   Классическая модель встречи «фронтира лошадей» и «фронтира ружей». Главы: 7. **Не сверено.**
 - <a id="seeman2023"></a>`seeman2023` — Seeman, Mark F.; Nolan, Kevin C. (2023). *Building the Ohio Hopewell Chronology: An Incremental Approach to Historical Reckoning*. American Antiquity, 88(2), 144–162. doi:10.1017/aaq.2023.6.
@@ -316,6 +380,8 @@
   Лицензия: CC BY 4.0. Медь хоупвелла: район Верхнего озера (940–1060 км) и южные Аппалачи (≈490 км); следов цепочки посредников нет; открытый доступ. Главы: 3.
 - <a id="service1962"></a>`service1962` — Service, Elman R. (1962). *Primitive Social Organization: An Evolutionary Perspective*. New York: Random House.
   Типология «группа — племя — вождество — государство». Главы: 0. **Не сверено.**
+- <a id="sheridan2001"></a>`sheridan2001` — Sheridan Prieto, Cecilia (2001). *«Indios madrineros». Colonizadores tlaxcaltecas en el noreste novohispano*. Estudios de Historia Novohispana, 24, 15–51. doi:10.22201/iih.24486922e.2001.024.3530.
+  Привилегии тлашкальтеков по капитуляциям 1591 г. (с. 28, 30); основание Санта-Мария-де-лас-Паррас в 1598 г. семьями из Сан-Эстебана-де-ла-Нуэва-Тласкала (с. 37). Прочитано по PDF статьи (открытый доступ); выходные данные — по колонтитулу PDF («EHN 24, enero-junio 2001, p. 15-51») и Crossref. Главы: 4.
 - <a id="simon2017"></a>`simon2017` — Simon, Mary L. (2017). *Reevaluating the Evidence for Middle Woodland Maize from the Holding Site*. American Antiquity, 82(1), 140–150. doi:10.1017/aaq.2016.2.
   Кукуруза со стоянки Холдинг (средний вудленд) — ошибка определения или поздние образцы (после 900 г.). Главы: 2.
 - <a id="simon2021"></a>`simon2021` — Simon, Mary L.; Hollenbach, Kandace D.; Redmond, Brian G. (2021). *New Dates and Carbon Isotope Assays of Purported Middle Woodland Maize from the Icehouse Bottom and Edwin Harness Sites*. American Antiquity, 86(3), 613–624. doi:10.1017/aaq.2020.117.
@@ -364,6 +430,8 @@
   Дене-енисейская гипотеза; читать вместе с откликами в том же выпуске. Главы: 1.
 - <a id="vansina1985"></a>`vansina1985` — Vansina, Jan (1985). *Oral Tradition as History*. Madison: University of Wisconsin Press.
   Главы: 0.
+- <a id="vonmentz2025"></a>`vonmentz2025` — Von Mentz, Brígida (2025). *Cautiverio y servidumbre de indígenas ‘chichimecas’ en Nueva España 1570-1770*. Autoctonía. Revista de Ciencias Sociales e Historia, 9(2), 891–925. doi:10.23854/autoc.v9i2.636.
+  Пленение и вывоз северных индейцев: мужчины — в рудники, асьенды и мастерские, женщины и дети — в услужение, вплоть до столицы; торговля пленными как дело; открытый доступ. Главы: 4, 5.
 - <a id="vagene2018"></a>`vagene2018` — Vågene, Åshild J.; et al. (2018). *Salmonella enterica genomes from victims of a major sixteenth-century epidemic in Mexico*. Nature Ecology & Evolution, 2, 520–528.
   Кандидат в возбудители кокольицтли 1545 г.; вывод не окончательный. Главы: 5. **Не сверено.**
 - <a id="walker2018"></a>`walker2018` — Walker, Mike; Head, Martin J.; et al. (2018). *Formal ratification of the subdivision of the Holocene Series/Epoch (Quaternary System/Period): two new Global Boundary Stratotype Sections and Points (GSSPs) and three new stages/subseries*. Episodes, 41(4), 213–223. doi:10.18814/epiiugs/2018/018016.
@@ -382,6 +450,8 @@
   Главы: 3, 4.
 - <a id="wernke2022"></a>`wernke2022` — Wernke, Steven A. (2022). *Explosive Expansion, Sociotechnical Diversity, and Fragile Sovereignty in the Domain of the Inka*. Journal of Social Computing, 3(1), 57–74. doi:10.23919/JSC.2021.0016.
   Главы: 3, 6.
+- <a id="whalen2003"></a>`whalen2003` — Whalen, Michael E.; Minnis, Paul E. (2003). *The Local and the Distant in the Origin of Casas Grandes, Chihuahua, Mexico*. American Antiquity, 68(2), 314–332. doi:10.2307/3557082.
+  Использована аннотация: против моделей, выводящих Пакиме из внешних импульсов, — в пользу местного развития. Главы: 4.
 - <a id="white2019"></a>`white2019` — White, A. J.; et al. (2019). *Fecal stanols show simultaneous flooding and seasonal precipitation change correlate with Cahokia's population decline*. Proceedings of the National Academy of Sciences, 116(12), 5461–5466. doi:10.1073/pnas.1809400116.
   Главы: 3.
 - <a id="white1991"></a>`white1991` — White, Richard (1991). *The Middle Ground: Indians, Empires, and Republics in the Great Lakes Region, 1650–1815*. Cambridge: Cambridge University Press.

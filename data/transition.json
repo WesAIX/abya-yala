@@ -1,0 +1,2022 @@
+{
+  "meta": {
+    "title": "Переходная зона: понятия Кирхгофа, Меса-Верде, переселения, Чичимекская война, Хемес, восстание пуэбло, два «мира покупкой», граница",
+    "schema": "schema/transition.schema.json",
+    "license": "CC BY 4.0",
+    "notes": [
+      "Используется рисунками главы 4 (tools/figures.py): 4.1 — области Кирхгофа и граница, 4.5 — Меса-Верде, 4.6 — переселения конца XIII в., 4.7 — Чичимекская война, 4.8 — Хемес, 4.9 — восстание пуэбло, 4.10 — дважды «мир покупкой», 4.12 — граница поперёк земли оодхам.",
+      "Чако и Пакиме на рис. 4.1 берутся из complex.json.",
+      "Координаты ориентировочные; откуда сверены — в поле coords."
+    ]
+  },
+  "places": [
+    {
+      "id": "mexico_city",
+      "name": "Мехико",
+      "lon": -99.13,
+      "lat": 19.44,
+      "approx": true,
+      "coords": "Natural Earth 1:10m populated places",
+      "role": "landmark",
+      "sources": []
+    },
+    {
+      "id": "casa_grande",
+      "name": "Каса-Гранде",
+      "lon": -111.53,
+      "lat": 33.0,
+      "approx": true,
+      "coords": "Wikidata (Casa Grande Ruins National Monument)",
+      "role": "landmark",
+      "note": "Большой дом в долине Хилы.",
+      "sources": []
+    },
+    {
+      "id": "mesa_verde",
+      "name": "Меса-Верде",
+      "lon": -108.49,
+      "lat": 37.18,
+      "approx": true,
+      "coords": "Wikidata (Mesa Verde National Park)",
+      "role": "landmark",
+      "sources": []
+    },
+    {
+      "id": "santa_fe",
+      "name": "Санта-Фе",
+      "lon": -105.94,
+      "lat": 35.69,
+      "approx": true,
+      "coords": "Natural Earth 1:10m populated places",
+      "role": "spanish",
+      "sources": [
+        {
+          "ref": "hackett1911",
+          "loc": "с. 97–100, 104–106 и разд. о Ислете и об отступлении — по сноске главы"
+        }
+      ],
+      "note": "Столица провинции; здесь собрались уцелевшие испанцы, здесь же сожгли архивы."
+    },
+    {
+      "id": "sinaloa_mouth",
+      "name": "устье Синалоа",
+      "lon": -108.49,
+      "lat": 25.28,
+      "approx": true,
+      "coords": "Wikidata (Sinaloa River, mouth); в техзадании было ≈ −108.6, 25.4",
+      "role": "edge",
+      "sources": [
+        {
+          "ref": "kirchhoff1960",
+          "loc": "разд. «Límites de Mesoamérica a mediados del siglo XVI»",
+          "note": "«desde el río Panúco al Sinaloa pasando por el Lerma»"
+        }
+      ]
+    },
+    {
+      "id": "lerma",
+      "name": "Лерма",
+      "lon": -101.24,
+      "lat": 20.59,
+      "approx": true,
+      "coords": "Natural Earth 1:10m rivers: северная излучина Лермы",
+      "role": "edge",
+      "note": "Кирхгоф называет реку, а не место на ней; точка — северная излучина, условно.",
+      "sources": [
+        {
+          "ref": "kirchhoff1960",
+          "loc": "разд. «Límites de Mesoamérica a mediados del siglo XVI»"
+        }
+      ]
+    },
+    {
+      "id": "panuco_mouth",
+      "name": "устье Пануко",
+      "lon": -97.78,
+      "lat": 22.27,
+      "approx": true,
+      "coords": "Natural Earth 1:10m rivers, конец линии реки; в техзадании было ≈ −97.85",
+      "role": "edge",
+      "sources": [
+        {
+          "ref": "kirchhoff1960",
+          "loc": "разд. «Límites de Mesoamérica a mediados del siglo XVI»"
+        }
+      ]
+    },
+    {
+      "id": "tlaxcala",
+      "name": "Тлашкала",
+      "lon": -98.24,
+      "lat": 19.32,
+      "approx": true,
+      "coords": "Natural Earth 1:10m populated places",
+      "role": "origin",
+      "note": "Переселенцы вышли из монастыря в Тотолаке (Тлашкала) в начале июня 1591 г.",
+      "sources": [
+        {
+          "ref": "rojasgalvan2016",
+          "loc": "с. 74"
+        }
+      ]
+    },
+    {
+      "id": "zacatecas",
+      "name": "Сакатекас",
+      "lon": -102.57,
+      "lat": 22.77,
+      "approx": true,
+      "coords": "Natural Earth 1:10m populated places",
+      "role": "mine",
+      "when": {
+        "start": 1546,
+        "end": 1546,
+        "dating": "documented",
+        "label": "около 1546 г."
+      },
+      "note": "Серебро найдено около 1546 г.; в тексте главы и у Руиса Гвадалахары — «около».",
+      "sources": [
+        {
+          "ref": "ruizguadalajara2010",
+          "loc": "с. 25, 36, 40, 43, 53",
+          "note": "страница факта по техзаданию главы; отдельно не сверена — сайт журнала был недоступен"
+        }
+      ]
+    },
+    {
+      "id": "san_luis_potosi",
+      "name": "Сан-Луис-Потоси",
+      "lon": -100.98,
+      "lat": 22.15,
+      "approx": true,
+      "coords": "Natural Earth 1:10m populated places",
+      "role": "mine",
+      "when": {
+        "start": 1592,
+        "end": 1592,
+        "dating": "documented"
+      },
+      "note": "Месторождение нашёл Кальдера в 1592 г., после мира.",
+      "sources": [
+        {
+          "ref": "ruizguadalajara2010",
+          "loc": "с. 25, 36, 40, 43, 53",
+          "note": "страница факта по техзаданию главы; отдельно не сверена — сайт журнала был недоступен"
+        }
+      ]
+    },
+    {
+      "id": "colotlan",
+      "name": "Колотлан",
+      "lon": -103.27,
+      "lat": 22.11,
+      "approx": true,
+      "coords": "Wikipedia (es), город Колотлан",
+      "role": "colony",
+      "when": {
+        "start": 1591,
+        "end": 1591,
+        "dating": "documented",
+        "day": "1591-08-21"
+      },
+      "note": "Основан Кальдерой 21 августа 1591 г.; пришли сто семей.",
+      "sources": [
+        {
+          "ref": "rojasgalvan2016",
+          "loc": "с. 75"
+        }
+      ]
+    },
+    {
+      "id": "saltillo",
+      "name": "Сан-Эстебан-де-ла-Нуэва-Тласкала (Сальтильо)",
+      "lon": -101.0,
+      "lat": 25.42,
+      "approx": true,
+      "coords": "Natural Earth 1:10m populated places",
+      "role": "colony",
+      "when": {
+        "start": 1591,
+        "end": 1591,
+        "dating": "documented"
+      },
+      "note": "Одна из первоначальных колоний 1591 г.",
+      "sources": [
+        {
+          "ref": "rojasgalvan2016",
+          "loc": "с. 73"
+        }
+      ]
+    },
+    {
+      "id": "parras",
+      "name": "Паррас",
+      "lon": -102.18,
+      "lat": 25.44,
+      "approx": true,
+      "coords": "Wikipedia (es), Паррас-де-ла-Фуэнте; Natural Earth — 25.42",
+      "role": "colony",
+      "when": {
+        "start": 1598,
+        "end": 1598,
+        "dating": "documented"
+      },
+      "note": "Санта-Мария-де-лас-Паррас основали в 1598 г. семьи из Сан-Эстебана (Шеридан Прието); Рохас Гальван упоминает её в одном ряду с колониями 1591 г.",
+      "sources": [
+        {
+          "ref": "sheridan2001",
+          "loc": "с. 37"
+        },
+        {
+          "ref": "rojasgalvan2016",
+          "loc": "с. 73",
+          "note": "упоминание в одном ряду с колониями 1591 г."
+        }
+      ]
+    },
+    {
+      "id": "kayenta",
+      "name": "район Каента",
+      "lon": -110.25,
+      "lat": 36.71,
+      "approx": true,
+      "coords": "Wikipedia (en), Kayenta, Arizona; центр условной области",
+      "role": "region",
+      "radius_km": 45,
+      "note": "Район на северо-востоке Аризоны, откуда в 1280-х гг. шли переселенцы.",
+      "sources": [
+        {
+          "ref": "mills2013",
+          "loc": "«Results and Discussion», «Conclusions» — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "central_arizona",
+      "name": "центральная Аризона",
+      "lon": -111.2,
+      "lat": 33.55,
+      "approx": true,
+      "coords": "схема: центр условной области между Солт-Ривер и Хилой",
+      "role": "region",
+      "radius_km": 95,
+      "note": "Куда пришли переселенцы из Каенты; здесь, по осторожной формулировке авторов, начали делать посуду саладо.",
+      "sources": [
+        {
+          "ref": "mills2013",
+          "loc": "«Results and Discussion», «Conclusions» — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "rio_grande_north",
+      "name": "север долины Рио-Гранде",
+      "lon": -106.2,
+      "lat": 35.95,
+      "approx": true,
+      "coords": "схема: центр условной области у плато Пахарито (Los Alamos — Natural Earth 1:10m)",
+      "role": "region",
+      "radius_km": 65,
+      "note": "Куда ушло большинство жителей Меса-Верде; плато Пахарито служило убежищем в засуху.",
+      "sources": [
+        {
+          "ref": "schwindt2016",
+          "loc": "«Population Size and Movement»"
+        },
+        {
+          "ref": "bocinsky2014",
+          "loc": "«Results»"
+        }
+      ]
+    },
+    {
+      "id": "hopi",
+      "name": "хопи",
+      "lon": -110.37,
+      "lat": 35.84,
+      "approx": true,
+      "coords": "Wikipedia (en), First Mesa, Arizona",
+      "role": "pueblo",
+      "note": "Северная группа, уцелевшая после распада южной сети 1400–1450 гг.; в 1980 г. сюда от Таоса пронесли шнур с узлами.",
+      "sources": [
+        {
+          "ref": "mills2013",
+          "loc": "«Results and Discussion», «Conclusions» — по сноске главы"
+        },
+        {
+          "ref": "liebmann2007",
+          "loc": "рукопись, с. 1–3, 7, 9, 12, 16–17 — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "zuni",
+      "name": "зуни",
+      "lon": -108.85,
+      "lat": 35.07,
+      "approx": true,
+      "coords": "Wikidata Q2241166 (Zuni Pueblo)",
+      "role": "pueblo",
+      "note": "Северная группа, уцелевшая после распада южной сети 1400–1450 гг.",
+      "sources": [
+        {
+          "ref": "mills2013",
+          "loc": "«Results and Discussion», «Conclusions» — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "taos",
+      "name": "Таос",
+      "lon": -105.55,
+      "lat": 36.44,
+      "approx": true,
+      "coords": "Wikipedia (en), Taos Pueblo",
+      "role": "pueblo",
+      "note": "Сюда перебрался Попе; отсюда разослал по пуэбло верёвку с узлами.",
+      "sources": [
+        {
+          "ref": "hackett1911",
+          "loc": "с. 97–100, 104–106 и разд. о Ислете и об отступлении — по сноске главы"
+        },
+        {
+          "ref": "liebmann2007",
+          "loc": "рукопись, с. 1–3, 7, 9, 12, 16–17 — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "picuris",
+      "name": "Пикурис",
+      "lon": -105.71,
+      "lat": 36.2,
+      "approx": true,
+      "coords": "Wikidata Q2092506 (Picuris Pueblo)",
+      "role": "pueblo",
+      "note": "Луис Тупату; в октябре 1696 г. жители ушли в Эль-Куартелехо.",
+      "sources": [
+        {
+          "ref": "babcock2016",
+          "loc": "гл. 1, с. 19–33 — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "san_juan",
+      "name": "Сан-Хуан (Окай-Овинге)",
+      "lon": -106.07,
+      "lat": 36.05,
+      "approx": true,
+      "coords": "Wikidata Q13437115 (Ohkay Owingeh)",
+      "role": "pueblo",
+      "note": "Пуэбло, откуда был Попе.",
+      "sources": [
+        {
+          "ref": "hackett1911",
+          "loc": "с. 97–100, 104–106 и разд. о Ислете и об отступлении — по сноске главы"
+        },
+        {
+          "ref": "fr2008",
+          "loc": "полный текст"
+        }
+      ]
+    },
+    {
+      "id": "santa_clara",
+      "name": "Санта-Клара",
+      "lon": -106.09,
+      "lat": 35.97,
+      "approx": true,
+      "coords": "Wikipedia (en), Santa Clara Pueblo, New Mexico",
+      "role": "pueblo",
+      "note": "В октябре 1696 г. жители ушли в Эль-Куартелехо.",
+      "sources": [
+        {
+          "ref": "babcock2016",
+          "loc": "гл. 1, с. 19–33 — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "zia",
+      "name": "Сия",
+      "lon": -106.72,
+      "lat": 35.5,
+      "approx": true,
+      "coords": "Wikidata Q1758522 (Zia Pueblo)",
+      "role": "pueblo",
+      "note": "В 1690-х гг. на стороне возвращавшихся испанцев.",
+      "sources": [
+        {
+          "ref": "liebmann2007",
+          "loc": "рукопись, с. 1–3, 7, 9, 12, 16–17 — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "santa_ana",
+      "name": "Санта-Ана",
+      "lon": -106.52,
+      "lat": 35.35,
+      "approx": true,
+      "coords": "Wikidata Q1121267 (Santa Ana Pueblo)",
+      "role": "pueblo",
+      "note": "В 1690-х гг. на стороне возвращавшихся испанцев.",
+      "sources": [
+        {
+          "ref": "liebmann2007",
+          "loc": "рукопись, с. 1–3, 7, 9, 12, 16–17 — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "san_felipe",
+      "name": "Сан-Фелипе",
+      "lon": -106.45,
+      "lat": 35.43,
+      "approx": true,
+      "coords": "Wikidata Q2144001 (San Felipe Pueblo)",
+      "role": "pueblo",
+      "note": "В 1690-х гг. на стороне возвращавшихся испанцев.",
+      "sources": [
+        {
+          "ref": "liebmann2007",
+          "loc": "рукопись, с. 1–3, 7, 9, 12, 16–17 — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "isleta",
+      "name": "Ислета",
+      "lon": -106.69,
+      "lat": 34.91,
+      "approx": true,
+      "coords": "Wikidata Q1493034 (Isleta Pueblo)",
+      "role": "pueblo",
+      "note": "В восстании не участвовала; здесь собрались около полутора тысяч уцелевших, из них 120 способных носить оружие.",
+      "sources": [
+        {
+          "ref": "hackett1911",
+          "loc": "с. 97–100, 104–106 и разд. о Ислете и об отступлении — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "el_paso",
+      "name": "Эль-Пасо",
+      "lon": -106.49,
+      "lat": 31.74,
+      "approx": true,
+      "coords": "Natural Earth 1:10m populated places (Ciudad Juárez, El Paso); монастырь Гуадалупе — в нынешнем Сьюдад-Хуаресе",
+      "role": "spanish",
+      "note": "Переправа через Рио-Гранде у монастыря Гуадалупе; отсюда — поселения вокруг Эль-Пасо.",
+      "sources": [
+        {
+          "ref": "hackett1911",
+          "loc": "с. 97–100, 104–106 и разд. о Ислете и об отступлении — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "el_cuartelejo",
+      "name": "Эль-Куартелехо",
+      "lon": -100.91,
+      "lat": 38.68,
+      "approx": true,
+      "coords": "Wikidata Q5351953 (El Cuartelejo)",
+      "role": "place",
+      "note": "У союзников-апачей; жители Санта-Клары и Пикуриса прожили здесь около десяти лет.",
+      "sources": [
+        {
+          "ref": "babcock2016",
+          "loc": "гл. 1, с. 19–33 — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "gila_villages",
+      "name": "долина Хилы",
+      "lon": -111.75,
+      "lat": 33.08,
+      "approx": true,
+      "coords": "Wikipedia (en), Sacaton, Arizona — для ориентира, деревни не перечислены",
+      "role": "region",
+      "radius_km": 30,
+      "note": "Деревни акимел-оодхам, которые покупка Гадсдена отдала США.",
+      "sources": [
+        {
+          "ref": "srpmic",
+          "loc": "«Timeline of O’odham Piipaash History»"
+        }
+      ]
+    },
+    {
+      "id": "gulf_shore",
+      "name": "берег Калифорнийского залива",
+      "lon": -113.3,
+      "lat": 31.45,
+      "approx": true,
+      "coords": "схема: точка на берегу залива к югу от земель тохоно-оодхам, не место назначения",
+      "role": "place",
+      "note": "Паломники ходят пешком к заливу за солью и раковинами.",
+      "sources": [
+        {
+          "ref": "ton2026",
+          "loc": "полный текст"
+        }
+      ]
+    }
+  ],
+  "areas": [
+    {
+      "id": "mesoamerica",
+      "name": "Мезоамерика",
+      "original": "Mesoamérica",
+      "kind": "meso",
+      "schematic": true,
+      "zone": "meso",
+      "edge": [
+        "sinaloa_mouth",
+        "lerma",
+        "panuco_mouth"
+      ],
+      "when": {
+        "start": 1520,
+        "end": 1520,
+        "dating": "approx",
+        "label": "ко времени испанского завоевания"
+      },
+      "note": "Северный край — размытая полоса через три опорные точки Кирхгофа («более или менее»); южнее края — заливка условная.",
+      "sources": [
+        {
+          "ref": "kirchhoff1960",
+          "loc": "разд. «Límites de Mesoamérica a mediados del siglo XVI»"
+        }
+      ]
+    },
+    {
+      "id": "aridoamerica",
+      "name": "Аридоамерика",
+      "original": "Arid America",
+      "kind": "arid",
+      "schematic": true,
+      "note": "Земли собирателей и охотников: север Мексики, Нижняя Калифорния, Большой Бассейн. Пятна — схема, а не граница.",
+      "blobs": [
+        {
+          "lon": -116.5,
+          "lat": 39.8,
+          "radius_km": 380
+        },
+        {
+          "lon": -112.8,
+          "lat": 39.2,
+          "radius_km": 250
+        },
+        {
+          "lon": -116.0,
+          "lat": 35.0,
+          "radius_km": 240
+        },
+        {
+          "lon": -114.6,
+          "lat": 30.0,
+          "radius_km": 300
+        },
+        {
+          "lon": -111.6,
+          "lat": 26.2,
+          "radius_km": 230
+        },
+        {
+          "lon": -106.0,
+          "lat": 28.6,
+          "radius_km": 420
+        },
+        {
+          "lon": -102.4,
+          "lat": 26.6,
+          "radius_km": 380
+        },
+        {
+          "lon": -99.3,
+          "lat": 25.4,
+          "radius_km": 260
+        },
+        {
+          "lon": -102.3,
+          "lat": 23.6,
+          "radius_km": 260
+        },
+        {
+          "lon": -110.6,
+          "lat": 29.0,
+          "radius_km": 230
+        }
+      ],
+      "sources": [
+        {
+          "ref": "kirchhoff1954",
+          "loc": "карта трёх областей — по цитате у Мексиканской академии языка"
+        },
+        {
+          "ref": "aml-aridoamerica",
+          "loc": "полный текст справки",
+          "note": "цитата из статьи Кирхгофа 1954 г."
+        }
+      ]
+    },
+    {
+      "id": "oasisamerica",
+      "name": "Оазисамерика",
+      "original": "Oasis America",
+      "kind": "oasis",
+      "schematic": true,
+      "note": "Земли земледельческих «оазисов» юго-запада США и северо-запада Мексики. Пятна — схема, а не граница.",
+      "blobs": [
+        {
+          "lon": -111.6,
+          "lat": 33.3,
+          "radius_km": 210
+        },
+        {
+          "lon": -109.2,
+          "lat": 36.0,
+          "radius_km": 250
+        },
+        {
+          "lon": -106.4,
+          "lat": 35.2,
+          "radius_km": 190
+        },
+        {
+          "lon": -108.2,
+          "lat": 31.6,
+          "radius_km": 190
+        },
+        {
+          "lon": -109.9,
+          "lat": 30.2,
+          "radius_km": 130
+        }
+      ],
+      "sources": [
+        {
+          "ref": "kirchhoff1954",
+          "loc": "карта трёх областей — по цитате у Мексиканской академии языка"
+        },
+        {
+          "ref": "aml-aridoamerica",
+          "loc": "полный текст справки",
+          "note": "цитата из статьи Кирхгофа 1954 г."
+        }
+      ]
+    },
+    {
+      "id": "tohono_oodham",
+      "name": "земли тохоно-оодхам",
+      "kind": "land",
+      "schematic": true,
+      "blobs": [
+        {
+          "lon": -112.2,
+          "lat": 32.1,
+          "radius_km": 80
+        },
+        {
+          "lon": -111.7,
+          "lat": 31.75,
+          "radius_km": 60
+        },
+        {
+          "lon": -112.1,
+          "lat": 31.1,
+          "radius_km": 60
+        }
+      ],
+      "note": "Схема: нынешние земли нации прилегают к границе примерно на 100 км (62 мили), резервация — около 1,1 млн га; родовые земли простирались от центральной Аризоны до Соноры. Очертания условные.",
+      "sources": [
+        {
+          "ref": "ton2026",
+          "loc": "полный текст"
+        }
+      ]
+    }
+  ],
+  "peoples": [
+    {
+      "id": "pames",
+      "name": "пами",
+      "label": {
+        "lon": -99.6,
+        "lat": 21.85
+      },
+      "schematic": true,
+      "note": "Полуоседлые, в отличие от остальных.",
+      "sources": [
+        {
+          "ref": "ruizguadalajara2010",
+          "loc": "с. 25, 36, 40, 43, 53",
+          "note": "страница факта по техзаданию главы; отдельно не сверена — сайт журнала был недоступен"
+        }
+      ]
+    },
+    {
+      "id": "guamares",
+      "name": "гуамары",
+      "label": {
+        "lon": -101.05,
+        "lat": 21.75
+      },
+      "schematic": true,
+      "sources": [
+        {
+          "ref": "ruizguadalajara2010",
+          "loc": "с. 25, 36, 40, 43, 53",
+          "note": "страница факта по техзаданию главы; отдельно не сверена — сайт журнала был недоступен"
+        }
+      ]
+    },
+    {
+      "id": "guachichiles",
+      "name": "гуачичили",
+      "label": {
+        "lon": -101.3,
+        "lat": 23.3
+      },
+      "schematic": true,
+      "sources": [
+        {
+          "ref": "ruizguadalajara2010",
+          "loc": "с. 25, 36, 40, 43, 53",
+          "note": "страница факта по техзаданию главы; отдельно не сверена — сайт журнала был недоступен"
+        }
+      ]
+    },
+    {
+      "id": "zacatecos",
+      "name": "сакатеки",
+      "label": {
+        "lon": -103.7,
+        "lat": 24.1
+      },
+      "schematic": true,
+      "sources": [
+        {
+          "ref": "ruizguadalajara2010",
+          "loc": "с. 25, 36, 40, 43, 53",
+          "note": "страница факта по техзаданию главы; отдельно не сверена — сайт журнала был недоступен"
+        }
+      ]
+    }
+  ],
+  "mesaverde": {
+    "periods": [
+      {
+        "when": {
+          "start": 600,
+          "end": 725,
+          "dating": "approx"
+        },
+        "centers": 262,
+        "small_sites": 2669,
+        "population": 2931,
+        "ci80": 684,
+        "sources": [
+          {
+            "ref": "schwindt2016",
+            "loc": "табл. 2, «Study Area Total»: centers, small sites, 80% «C. I.»"
+          }
+        ]
+      },
+      {
+        "when": {
+          "start": 725,
+          "end": 800,
+          "dating": "approx"
+        },
+        "centers": 434,
+        "small_sites": 3103,
+        "population": 3537,
+        "ci80": 564,
+        "sources": [
+          {
+            "ref": "schwindt2016",
+            "loc": "табл. 2, «Study Area Total»: centers, small sites, 80% «C. I.»"
+          }
+        ]
+      },
+      {
+        "when": {
+          "start": 800,
+          "end": 840,
+          "dating": "approx"
+        },
+        "centers": 1100,
+        "small_sites": 9423,
+        "population": 10523,
+        "ci80": 1777,
+        "sources": [
+          {
+            "ref": "schwindt2016",
+            "loc": "табл. 2, «Study Area Total»: centers, small sites, 80% «C. I.»"
+          }
+        ]
+      },
+      {
+        "when": {
+          "start": 840,
+          "end": 880,
+          "dating": "approx"
+        },
+        "centers": 1218,
+        "small_sites": 10300,
+        "population": 11518,
+        "ci80": 1798,
+        "sources": [
+          {
+            "ref": "schwindt2016",
+            "loc": "табл. 2, «Study Area Total»: centers, small sites, 80% «C. I.»"
+          }
+        ]
+      },
+      {
+        "when": {
+          "start": 880,
+          "end": 920,
+          "dating": "approx"
+        },
+        "centers": 962,
+        "small_sites": 3769,
+        "population": 4731,
+        "ci80": 847,
+        "sources": [
+          {
+            "ref": "schwindt2016",
+            "loc": "табл. 2, «Study Area Total»: centers, small sites, 80% «C. I.»"
+          }
+        ]
+      },
+      {
+        "when": {
+          "start": 920,
+          "end": 980,
+          "dating": "approx"
+        },
+        "centers": 465,
+        "small_sites": 3693,
+        "population": 4158,
+        "ci80": 895,
+        "sources": [
+          {
+            "ref": "schwindt2016",
+            "loc": "табл. 2, «Study Area Total»: centers, small sites, 80% «C. I.»"
+          }
+        ]
+      },
+      {
+        "when": {
+          "start": 980,
+          "end": 1020,
+          "dating": "approx"
+        },
+        "centers": 533,
+        "small_sites": 8056,
+        "population": 8589,
+        "ci80": 1876,
+        "sources": [
+          {
+            "ref": "schwindt2016",
+            "loc": "табл. 2, «Study Area Total»: centers, small sites, 80% «C. I.»"
+          }
+        ]
+      },
+      {
+        "when": {
+          "start": 1020,
+          "end": 1060,
+          "dating": "approx"
+        },
+        "centers": 822,
+        "small_sites": 8560,
+        "population": 9382,
+        "ci80": 2018,
+        "sources": [
+          {
+            "ref": "schwindt2016",
+            "loc": "табл. 2, «Study Area Total»: centers, small sites, 80% «C. I.»"
+          }
+        ]
+      },
+      {
+        "when": {
+          "start": 1060,
+          "end": 1100,
+          "dating": "approx"
+        },
+        "centers": 1842,
+        "small_sites": 12792,
+        "population": 14634,
+        "ci80": 2705,
+        "sources": [
+          {
+            "ref": "schwindt2016",
+            "loc": "табл. 2, «Study Area Total»: centers, small sites, 80% «C. I.»"
+          }
+        ]
+      },
+      {
+        "when": {
+          "start": 1100,
+          "end": 1140,
+          "dating": "approx"
+        },
+        "centers": 2064,
+        "small_sites": 18677,
+        "population": 20741,
+        "ci80": 3824,
+        "sources": [
+          {
+            "ref": "schwindt2016",
+            "loc": "табл. 2, «Study Area Total»: centers, small sites, 80% «C. I.»"
+          }
+        ]
+      },
+      {
+        "when": {
+          "start": 1140,
+          "end": 1180,
+          "dating": "approx"
+        },
+        "centers": 2310,
+        "small_sites": 18688,
+        "population": 20998,
+        "ci80": 4498,
+        "sources": [
+          {
+            "ref": "schwindt2016",
+            "loc": "табл. 2, «Study Area Total»: centers, small sites, 80% «C. I.»"
+          }
+        ]
+      },
+      {
+        "when": {
+          "start": 1180,
+          "end": 1225,
+          "dating": "approx"
+        },
+        "centers": 3858,
+        "small_sites": 15320,
+        "population": 19178,
+        "ci80": 4830,
+        "sources": [
+          {
+            "ref": "schwindt2016",
+            "loc": "табл. 2, «Study Area Total»: centers, small sites, 80% «C. I.»"
+          }
+        ]
+      },
+      {
+        "when": {
+          "start": 1225,
+          "end": 1260,
+          "dating": "approx"
+        },
+        "centers": 7638,
+        "small_sites": 19057,
+        "population": 26695,
+        "ci80": 8303,
+        "sources": [
+          {
+            "ref": "schwindt2016",
+            "loc": "табл. 2, «Study Area Total»: centers, small sites, 80% «C. I.»"
+          }
+        ]
+      },
+      {
+        "when": {
+          "start": 1260,
+          "end": 1280,
+          "dating": "approx"
+        },
+        "centers": 6594,
+        "small_sites": 15198,
+        "population": 21792,
+        "ci80": 8209,
+        "sources": [
+          {
+            "ref": "schwindt2016",
+            "loc": "табл. 2, «Study Area Total»: centers, small sites, 80% «C. I.»"
+          }
+        ]
+      }
+    ],
+    "after": {
+      "when": {
+        "start": 1280,
+        "end": null,
+        "fuzzy_end": true,
+        "label": "через несколько лет после 1280 г.",
+        "dating": "approx"
+      },
+      "population": 0,
+      "label": "никого",
+      "sources": [
+        {
+          "ref": "schwindt2016",
+          "loc": "«Population Size and Movement»",
+          "note": "«zero within a few years of A.D. 1280»"
+        }
+      ]
+    },
+    "drought": {
+      "name": "«Великая засуха»",
+      "when": {
+        "start": 1276,
+        "end": 1299,
+        "dating": "documented"
+      },
+      "evidence": "dendro",
+      "note": "Самая тяжёлая часть засухи по годичным кольцам; название дал Дуглас в 1946 г.",
+      "sources": [
+        {
+          "ref": "schwindt2016",
+          "loc": "введение",
+          "note": "«most severe from 1276–1299; Douglass (1946:20) called this the great drought»"
+        }
+      ]
+    },
+    "note": "population — сумма столбцов «centers» и «small sites» итога по району; так же итог строят сами авторы (рис. 3). ci80 — их неформальный 80-процентный интервал для этой суммы: по описанию метода, интервалы центров и малых поселений авторы складывают сами.",
+    "sources": [
+      {
+        "ref": "schwindt2016",
+        "loc": "табл. 2; разд. «Step 6: Quantifying Uncertainty»"
+      }
+    ]
+  },
+  "jemez": {
+    "estimates": [
+      {
+        "id": "ruins_1500",
+        "kind": "ruins",
+        "when": {
+          "start": 1480,
+          "end": 1520,
+          "label": "около 1500 г.",
+          "dating": "approx"
+        },
+        "low": 4951,
+        "high": 7922,
+        "label": "по развалинам 18 деревень",
+        "sources": [
+          {
+            "ref": "liebmann2016",
+            "loc": "«Results», табл. 2"
+          }
+        ]
+      },
+      {
+        "id": "zarate",
+        "kind": "document",
+        "when": {
+          "start": 1621,
+          "end": 1622,
+          "dating": "documented"
+        },
+        "value": 6566,
+        "bound": "exact",
+        "what": "крещёных",
+        "label": "монах Сарате Салмерон",
+        "sources": [
+          {
+            "ref": "liebmann2016",
+            "loc": "«Discussion»; табл. 1",
+            "note": "Сарате Салмерон служил здесь в 1621–1626 гг.; в табл. 1 запись отнесена к 1621–1622 гг."
+          }
+        ]
+      },
+      {
+        "id": "benavides",
+        "kind": "document",
+        "when": {
+          "start": 1630,
+          "end": 1630,
+          "dating": "documented"
+        },
+        "value": 3000,
+        "bound": "exact",
+        "label": "Бенавидес: умерла половина",
+        "sources": [
+          {
+            "ref": "liebmann2016",
+            "loc": "«Discussion»; табл. 1"
+          }
+        ]
+      },
+      {
+        "id": "record_1644",
+        "kind": "document",
+        "when": {
+          "start": 1644,
+          "end": 1644,
+          "dating": "documented"
+        },
+        "value": 1860,
+        "bound": "exact",
+        "label": "испанские записи",
+        "sources": [
+          {
+            "ref": "liebmann2016",
+            "loc": "«Discussion»; табл. 1 (1641–1644)"
+          }
+        ]
+      },
+      {
+        "id": "patokwa",
+        "kind": "ruins",
+        "when": {
+          "start": 1681,
+          "end": 1684,
+          "fuzzy_end": true,
+          "label": "начало 1680-х гг.",
+          "dating": "approx"
+        },
+        "value": 833,
+        "bound": "at_most",
+        "label": "все жители — в деревне Патокуа",
+        "sources": [
+          {
+            "ref": "liebmann2016",
+            "loc": "«Discussion»"
+          }
+        ]
+      },
+      {
+        "id": "military_1694",
+        "kind": "document",
+        "when": {
+          "start": 1694,
+          "end": 1694,
+          "dating": "documented"
+        },
+        "value": 600,
+        "bound": "less_than",
+        "label": "испанские военные журналы",
+        "sources": [
+          {
+            "ref": "liebmann2016",
+            "loc": "«Discussion»"
+          }
+        ]
+      }
+    ],
+    "marks": [
+      {
+        "id": "contact",
+        "when": {
+          "start": 1541,
+          "end": 1541,
+          "dating": "documented"
+        },
+        "label": "первая встреча с испанцами",
+        "sources": [
+          {
+            "ref": "liebmann2016",
+            "loc": "введение"
+          }
+        ]
+      },
+      {
+        "id": "colony",
+        "when": {
+          "start": 1598,
+          "end": 1598,
+          "dating": "documented"
+        },
+        "label": "испанская колония",
+        "sources": [
+          {
+            "ref": "liebmann2016",
+            "loc": "введение"
+          }
+        ]
+      },
+      {
+        "id": "missions",
+        "when": {
+          "start": 1620,
+          "end": 1629,
+          "label": "1620-е гг.",
+          "dating": "approx"
+        },
+        "label": "приход миссий",
+        "sources": [
+          {
+            "ref": "liebmann2016",
+            "loc": "введение"
+          }
+        ]
+      },
+      {
+        "id": "revolt",
+        "when": {
+          "start": 1680,
+          "end": 1680,
+          "dating": "documented"
+        },
+        "label": "восстание пуэбло",
+        "sources": [
+          {
+            "ref": "hackett1911",
+            "loc": "с. 97–100"
+          }
+        ]
+      }
+    ],
+    "decline": {
+      "from": 1620,
+      "to": 1680,
+      "pct": 87,
+      "label": "с ≈6500 до меньше 850",
+      "sources": [
+        {
+          "ref": "liebmann2016",
+          "loc": "«Discussion»"
+        }
+      ]
+    }
+  },
+  "timeline": [
+    {
+      "id": "silver",
+      "row": "chichimeca",
+      "kind": "event",
+      "label": "серебро у Сакатекаса",
+      "when": {
+        "start": 1546,
+        "end": 1546,
+        "dating": "documented",
+        "label": "около 1546 г."
+      },
+      "sources": [
+        {
+          "ref": "ruizguadalajara2010",
+          "loc": "с. 25, 36, 40, 43, 53",
+          "note": "страница факта по техзаданию главы; отдельно не сверена — сайт журнала был недоступен"
+        }
+      ]
+    },
+    {
+      "id": "war",
+      "row": "chichimeca",
+      "kind": "war",
+      "label": "Чичимекская война",
+      "when": {
+        "start": 1549,
+        "end": 1591,
+        "dating": "documented"
+      },
+      "sources": [
+        {
+          "ref": "ruizguadalajara2010",
+          "loc": "с. 25, 36, 40, 43, 53",
+          "note": "страница факта по техзаданию главы; отдельно не сверена — сайт журнала был недоступен"
+        }
+      ]
+    },
+    {
+      "id": "velazquez",
+      "row": "chichimeca",
+      "kind": "peace",
+      "label": "Веласкес: «давать им есть и одеваться»",
+      "when": {
+        "start": 1582,
+        "end": 1582,
+        "dating": "documented"
+      },
+      "sources": [
+        {
+          "ref": "ruizguadalajara2010",
+          "loc": "с. 25, 36, 40, 43, 53",
+          "note": "страница факта по техзаданию главы; отдельно не сверена — сайт журнала был недоступен"
+        }
+      ]
+    },
+    {
+      "id": "ban",
+      "row": "chichimeca",
+      "kind": "event",
+      "label": "запрет брать в плен; 20 песо за голову",
+      "when": {
+        "start": 1586,
+        "end": 1586,
+        "dating": "documented"
+      },
+      "sources": [
+        {
+          "ref": "ruizguadalajara2010",
+          "loc": "с. 25, 36, 40, 43, 53",
+          "note": "страница факта по техзаданию главы; отдельно не сверена — сайт журнала был недоступен"
+        }
+      ]
+    },
+    {
+      "id": "purchase",
+      "row": "chichimeca",
+      "kind": "peace",
+      "label": "«мир покупкой» — общая политика",
+      "when": {
+        "start": 1588,
+        "end": null,
+        "dating": "documented",
+        "open_end": true
+      },
+      "sources": [
+        {
+          "ref": "ruizguadalajara2010",
+          "loc": "с. 25, 36, 40, 43, 53",
+          "note": "страница факта по техзаданию главы; отдельно не сверена — сайт журнала был недоступен"
+        }
+      ]
+    },
+    {
+      "id": "capitulations",
+      "row": "chichimeca",
+      "kind": "peace",
+      "label": "капитуляции с Тлашкалой",
+      "when": {
+        "start": 1591,
+        "end": 1591,
+        "dating": "documented",
+        "day": "1591-03-14"
+      },
+      "sources": [
+        {
+          "ref": "rojasgalvan2016",
+          "loc": "с. 71"
+        }
+      ]
+    },
+    {
+      "id": "colotlan",
+      "row": "chichimeca",
+      "kind": "peace",
+      "label": "основан Колотлан",
+      "when": {
+        "start": 1591,
+        "end": 1591,
+        "dating": "documented",
+        "day": "1591-08-21"
+      },
+      "sources": [
+        {
+          "ref": "rojasgalvan2016",
+          "loc": "с. 75"
+        }
+      ]
+    },
+    {
+      "id": "apache_war",
+      "row": "apache",
+      "kind": "war",
+      "label": "всеобщая война с апачами",
+      "when": {
+        "start": 1748,
+        "end": 1748,
+        "dating": "documented"
+      },
+      "sources": [
+        {
+          "ref": "babcock2016",
+          "loc": "описание книги и гл. 1, с. 19–33 — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "reglamento",
+      "row": "apache",
+      "kind": "event",
+      "label": "регламент: линия пресидио, мир запрещён",
+      "when": {
+        "start": 1772,
+        "end": 1772,
+        "dating": "documented"
+      },
+      "sources": [
+        {
+          "ref": "reglamento1772",
+          "loc": "«Instrucción para la nueva colocación de presidios», п. 1"
+        }
+      ]
+    },
+    {
+      "id": "anza",
+      "row": "apache",
+      "kind": "war",
+      "label": "поход Ансы против команчей",
+      "when": {
+        "start": 1779,
+        "end": 1779,
+        "dating": "documented"
+      },
+      "sources": [
+        {
+          "ref": "rivayamartinez2025",
+          "loc": "с. 466–467, 472, 476–477 — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "comanche_peace",
+      "row": "apache",
+      "kind": "event",
+      "label": "мир с команчами",
+      "when": {
+        "start": 1785,
+        "end": 1787,
+        "dating": "documented"
+      },
+      "sources": [
+        {
+          "ref": "rivayamartinez2025",
+          "loc": "с. 466–467, 472, 476–477 — по сноске главы"
+        }
+      ],
+      "note": "В источнике главы (Ривайя Мартинес) мир с команчами не описан как мир подарками, поэтому на шкале он — среди других событий."
+    },
+    {
+      "id": "galvez",
+      "row": "apache",
+      "kind": "peace",
+      "label": "инструкция Гальвеса: «худой мир»",
+      "when": {
+        "start": 1786,
+        "end": 1786,
+        "dating": "documented",
+        "day": "1786-08-26"
+      },
+      "sources": [
+        {
+          "ref": "galvez1786",
+          "loc": "ст. 29–30 (с. 11)"
+        }
+      ]
+    },
+    {
+      "id": "establecimientos",
+      "row": "apache",
+      "kind": "peace",
+      "label": "«поселения мира» апачей у пресидио",
+      "when": {
+        "start": 1786,
+        "end": 1831,
+        "dating": "approx",
+        "fuzzy_end": true,
+        "label": "больше четырёх десятилетий"
+      },
+      "note": "Конец размыт: у Бэбкока — «больше четырёх десятилетий» мира, у Делея — «почти два поколения» до начала 1830-х.",
+      "sources": [
+        {
+          "ref": "babcock2016",
+          "loc": "описание книги и гл. 1, с. 19–33 — по сноске главы"
+        },
+        {
+          "ref": "delay2007",
+          "loc": "с. 35–36"
+        }
+      ]
+    },
+    {
+      "id": "independence",
+      "row": "apache",
+      "kind": "state",
+      "label": "независимость Мексики",
+      "when": {
+        "start": 1821,
+        "end": 1821,
+        "dating": "documented"
+      },
+      "sources": [
+        {
+          "ref": "rivayamartinez2025",
+          "loc": "с. 466–467, 472, 476–477 — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "raids",
+      "row": "apache",
+      "kind": "war",
+      "label": "набеги на север Мексики",
+      "when": {
+        "start": 1831,
+        "end": null,
+        "dating": "approx",
+        "fuzzy_start": true,
+        "open_end": true,
+        "label": "с начала 1830-х гг."
+      },
+      "note": "Конец не показан: источники главы его не называют; статья XI договора 1848 г. говорит о набегах как о продолжающихся.",
+      "sources": [
+        {
+          "ref": "delay2007",
+          "loc": "с. 35–36"
+        }
+      ]
+    },
+    {
+      "id": "usmex_war",
+      "row": "apache",
+      "kind": "state",
+      "label": "война США и Мексики",
+      "when": {
+        "start": 1846,
+        "end": 1848,
+        "dating": "documented"
+      },
+      "note": "Начало — по тексту главы («к 1846 г. … армии США»), конец — договор 1848 г.",
+      "sources": [
+        {
+          "ref": "delay2007",
+          "loc": "с. 35–36"
+        },
+        {
+          "ref": "tratado1848",
+          "loc": "титульный лист"
+        }
+      ]
+    },
+    {
+      "id": "treaty",
+      "row": "apache",
+      "kind": "state",
+      "label": "договор Гуадалупе-Идальго, ст. XI",
+      "when": {
+        "start": 1848,
+        "end": 1848,
+        "dating": "documented",
+        "day": "1848-02-02"
+      },
+      "sources": [
+        {
+          "ref": "tratado1848",
+          "loc": "титульный лист и ст. XI"
+        }
+      ]
+    },
+    {
+      "id": "gadsden",
+      "row": "apache",
+      "kind": "state",
+      "label": "договор Гадсдена: ст. XI отменена",
+      "when": {
+        "start": 1853,
+        "end": 1853,
+        "dating": "documented",
+        "day": "1853-12-30"
+      },
+      "sources": [
+        {
+          "ref": "gadsden1853",
+          "loc": "ст. II–III; провозглашение 30 июня 1854 г."
+        }
+      ],
+      "note": "Подписан 30 декабря 1853 г.; в силу вступил 30 июня 1854 г., в день обмена ратификациями."
+    }
+  ],
+  "moves": [
+    {
+      "id": "mesa_verde_exodus",
+      "figure": "migrations",
+      "from": "mesa_verde",
+      "to": "rio_grande_north",
+      "kind": "migration",
+      "when": {
+        "start": 1260,
+        "end": 1285,
+        "dating": "approx",
+        "label": "уход начался до 1260 г., к 1285 г. — никого"
+      },
+      "label": "большинство жителей",
+      "sources": [
+        {
+          "ref": "schwindt2016",
+          "loc": "«Population Size and Movement», «Conclusions»"
+        }
+      ]
+    },
+    {
+      "id": "kayenta_south",
+      "figure": "migrations",
+      "from": "kayenta",
+      "to": "central_arizona",
+      "kind": "migration",
+      "when": {
+        "start": 1280,
+        "end": 1289,
+        "dating": "approx",
+        "label": "1280-е гг."
+      },
+      "label": "переселенцы из Каенты",
+      "sources": [
+        {
+          "ref": "mills2013",
+          "loc": "«Results and Discussion», «Conclusions» — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "retreat_santa_fe",
+      "figure": "revolt",
+      "from": "santa_fe",
+      "to": "el_paso",
+      "kind": "retreat",
+      "when": {
+        "start": 1680,
+        "end": 1680,
+        "dating": "documented",
+        "label": "конец сентября 1680 г."
+      },
+      "label": "уцелевшие испанцы — на юг",
+      "sources": [
+        {
+          "ref": "hackett1911",
+          "loc": "с. 97–100, 104–106 и разд. о Ислете и об отступлении — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "retreat_isleta",
+      "figure": "revolt",
+      "from": "isleta",
+      "to": "el_paso",
+      "kind": "retreat",
+      "when": {
+        "start": 1680,
+        "end": 1680,
+        "dating": "documented",
+        "label": "конец сентября 1680 г."
+      },
+      "label": "уцелевшие испанцы — на юг",
+      "sources": [
+        {
+          "ref": "hackett1911",
+          "loc": "с. 97–100, 104–106 и разд. о Ислете и об отступлении — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "flight_santa_clara",
+      "figure": "revolt",
+      "from": "santa_clara",
+      "to": "el_cuartelejo",
+      "kind": "flight",
+      "when": {
+        "start": 1696,
+        "end": 1696,
+        "dating": "documented",
+        "label": "октябрь 1696 г."
+      },
+      "label": "к союзникам-апачам",
+      "sources": [
+        {
+          "ref": "babcock2016",
+          "loc": "гл. 1, с. 19–33 — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "flight_picuris",
+      "figure": "revolt",
+      "from": "picuris",
+      "to": "el_cuartelejo",
+      "kind": "flight",
+      "when": {
+        "start": 1696,
+        "end": 1696,
+        "dating": "documented",
+        "label": "октябрь 1696 г."
+      },
+      "label": "к союзникам-апачам",
+      "sources": [
+        {
+          "ref": "babcock2016",
+          "loc": "гл. 1, с. 19–33 — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "run_1980",
+      "figure": "revolt",
+      "from": "taos",
+      "to": "hopi",
+      "kind": "run",
+      "when": {
+        "start": 1980,
+        "end": 1980,
+        "dating": "documented"
+      },
+      "label": "бег со шнуром с узлами в память о гонцах 1680 г.",
+      "sources": [
+        {
+          "ref": "liebmann2007",
+          "loc": "рукопись, с. 1–3, 7, 9, 12, 16–17 — по сноске главы"
+        }
+      ]
+    },
+    {
+      "id": "salt_pilgrimage",
+      "figure": "border",
+      "from": "tohono_oodham",
+      "to": "gulf_shore",
+      "kind": "pilgrimage",
+      "label": "паломники — к заливу за солью и раковинами",
+      "note": "Направление, а не путь: маршрут в источнике не описан.",
+      "sources": [
+        {
+          "ref": "ton2026",
+          "loc": "полный текст"
+        }
+      ]
+    }
+  ],
+  "lines": [
+    {
+      "id": "border1848",
+      "name": "граница 1848 г.",
+      "when": {
+        "start": 1848,
+        "end": 1848,
+        "dating": "documented",
+        "day": "1848-02-02"
+      },
+      "current": false,
+      "schematic": true,
+      "coords": [
+        [-106.39, 31.75],
+        [-106.49, 31.76],
+        [-106.6, 31.84],
+        [-106.68, 32.07],
+        [-106.85, 32.32],
+        [-106.86, 32.41],
+        [-108.93, 32.41],
+        [-108.93, 32.63],
+        [-109.13, 32.74],
+        [-109.18, 32.79],
+        [-109.24, 32.93],
+        [-109.35, 32.97],
+        [-109.44, 32.95],
+        [-109.54, 32.85],
+        [-109.66, 32.83],
+        [-109.75, 32.85],
+        [-109.86, 32.92],
+        [-109.94, 33.05],
+        [-110.14, 33.18],
+        [-110.3, 33.21],
+        [-110.48, 33.2],
+        [-110.69, 33.09],
+        [-110.73, 33.03],
+        [-110.76, 33.01],
+        [-110.89, 33.06],
+        [-110.96, 33.12],
+        [-111.05, 33.13],
+        [-111.12, 33.13],
+        [-111.19, 33.09],
+        [-111.26, 33.11],
+        [-111.52, 33.02],
+        [-111.93, 33.17],
+        [-112.02, 33.16],
+        [-112.11, 33.23],
+        [-112.2, 33.27],
+        [-112.23, 33.32],
+        [-112.25, 33.34],
+        [-112.28, 33.33],
+        [-112.31, 33.38],
+        [-112.42, 33.4],
+        [-112.5, 33.36],
+        [-112.71, 33.33],
+        [-112.79, 33.28],
+        [-112.79, 33.24],
+        [-112.7, 33.11],
+        [-112.69, 33.03],
+        [-112.72, 33.01],
+        [-112.93, 33.03],
+        [-113.07, 33.09],
+        [-113.14, 33.01],
+        [-113.23, 33.01],
+        [-113.31, 32.97],
+        [-113.38, 32.97],
+        [-113.53, 32.89],
+        [-113.64, 32.86],
+        [-113.84, 32.76],
+        [-113.87, 32.78],
+        [-113.97, 32.75],
+        [-113.97, 32.72],
+        [-114.1, 32.74],
+        [-114.12, 32.7],
+        [-114.16, 32.72],
+        [-114.22, 32.68],
+        [-114.31, 32.7],
+        [-114.38, 32.79],
+        [-114.48, 32.72],
+        [-114.56, 32.73],
+        [-114.62, 32.73]
+      ],
+      "coords_note": "Вверх по Рио-Гранде до южной границы Нью-Мексико, по ней на запад, на север до Хилы и по Хиле до Колорадо (ст. V). Южная и западная границы Нью-Мексико в договоре — по карте Дисторнелла 1847 г.; здесь они условные (широта 32,41°, долгота −108,93°). Отрезок по Хиле — по линии реки Natural Earth. Западнее Колорадо и по Рио-Гранде ниже Эль-Пасо линия совпадает с нынешней.",
+      "sources": [
+        {
+          "ref": "tratado1848",
+          "loc": "ст. V"
+        }
+      ]
+    },
+    {
+      "id": "border1853",
+      "name": "граница по договору Гадсдена",
+      "when": {
+        "start": 1853,
+        "end": 1854,
+        "dating": "documented",
+        "day": "1853-12-30",
+        "label": "подписан 30 декабря 1853 г., в силу — с 1854 г."
+      },
+      "current": true,
+      "schematic": false,
+      "coords_note": "Нынешняя граница по visuals/shared/borders-50m.geojson: на этом отрезке она проведена по ст. I договора (31°47′, 31°20′, 111-й меридиан, Колорадо).",
+      "sources": [
+        {
+          "ref": "gadsden1853",
+          "loc": "ст. I"
+        }
+      ]
+    }
+  ],
+  "rivers": [
+    {
+      "id": "rio_grande",
+      "name": "Рио-Гранде",
+      "coords": [
+        [-107.43, 37.78],
+        [-107.39, 37.75],
+        [-107.14, 37.76],
+        [-107.02, 37.74],
+        [-106.98, 37.77],
+        [-106.96, 37.83],
+        [-106.93, 37.84],
+        [-106.77, 37.79],
+        [-106.73, 37.74],
+        [-106.63, 37.68],
+        [-106.29, 37.68],
+        [-106.13, 37.6],
+        [-105.91, 37.55],
+        [-105.86, 37.52],
+        [-105.78, 37.44],
+        [-105.72, 37.3],
+        [-105.74, 37.24],
+        [-105.73, 37.2],
+        [-105.76, 37.06],
+        [-105.72, 37.01],
+        [-105.73, 36.94],
+        [-105.69, 36.85],
+        [-105.68, 36.74],
+        [-105.73, 36.49],
+        [-105.73, 36.36],
+        [-105.79, 36.28],
+        [-105.94, 36.2],
+        [-106.06, 36.1],
+        [-106.07, 36.02],
+        [-106.12, 35.9],
+        [-106.18, 35.82],
+        [-106.32, 35.71],
+        [-106.32, 35.66],
+        [-106.39, 35.54],
+        [-106.42, 35.45],
+        [-106.59, 35.31],
+        [-106.6, 35.24],
+        [-106.65, 35.21],
+        [-106.7, 35.14],
+        [-106.67, 35.06],
+        [-106.69, 34.98],
+        [-106.68, 34.94],
+        [-106.72, 34.87],
+        [-106.71, 34.83],
+        [-106.74, 34.77],
+        [-106.75, 34.62],
+        [-106.8, 34.42],
+        [-106.85, 34.36],
+        [-106.84, 34.31],
+        [-106.89, 34.26],
+        [-106.86, 33.93],
+        [-106.87, 33.82],
+        [-106.92, 33.74],
+        [-107.0, 33.69],
+        [-107.0, 33.65],
+        [-107.11, 33.54],
+        [-107.17, 33.36],
+        [-107.18, 33.17],
+        [-107.23, 33.16],
+        [-107.28, 33.12],
+        [-107.31, 32.86],
+        [-107.3, 32.81],
+        [-107.22, 32.69],
+        [-107.02, 32.64],
+        [-106.97, 32.53],
+        [-106.91, 32.5],
+        [-106.85, 32.43],
+        [-106.86, 32.41],
+        [-106.85, 32.32],
+        [-106.68, 32.07],
+        [-106.6, 31.84],
+        [-106.49, 31.76],
+        [-106.39, 31.75],
+        [-106.33, 31.68],
+        [-106.29, 31.58],
+        [-106.21, 31.48],
+        [-105.96, 31.37],
+        [-105.77, 31.18],
+        [-105.59, 31.07],
+        [-105.56, 31.0]
+      ],
+      "coords_source": "Natural Earth 1:10m rivers_lake_centerlines v5.1.2, от истока до 31° с. ш.; упрощено (Дуглас — Пекер, 0,012°)"
+    },
+    {
+      "id": "gila",
+      "name": "Хила",
+      "coords": [
+        [-108.2, 33.58],
+        [-108.15, 33.48],
+        [-108.15, 33.44],
+        [-108.11, 33.41],
+        [-108.15, 33.3],
+        [-108.2, 33.24],
+        [-108.2, 33.19],
+        [-108.33, 33.07],
+        [-108.52, 33.07],
+        [-108.6, 32.96],
+        [-108.6, 32.85],
+        [-108.65, 32.75],
+        [-108.88, 32.63],
+        [-108.93, 32.63],
+        [-109.13, 32.74],
+        [-109.18, 32.79],
+        [-109.24, 32.93],
+        [-109.35, 32.97],
+        [-109.44, 32.95],
+        [-109.54, 32.85],
+        [-109.66, 32.83],
+        [-109.75, 32.85],
+        [-109.86, 32.92],
+        [-109.94, 33.05],
+        [-110.14, 33.18],
+        [-110.3, 33.21],
+        [-110.48, 33.2],
+        [-110.69, 33.09],
+        [-110.73, 33.03],
+        [-110.76, 33.01],
+        [-110.89, 33.06],
+        [-110.96, 33.12],
+        [-111.05, 33.13],
+        [-111.12, 33.13],
+        [-111.19, 33.09],
+        [-111.26, 33.11],
+        [-111.52, 33.02],
+        [-111.93, 33.17],
+        [-112.02, 33.16],
+        [-112.11, 33.23],
+        [-112.2, 33.27],
+        [-112.23, 33.32],
+        [-112.25, 33.34],
+        [-112.28, 33.33],
+        [-112.31, 33.38],
+        [-112.42, 33.4],
+        [-112.5, 33.36],
+        [-112.71, 33.33],
+        [-112.79, 33.28],
+        [-112.79, 33.24],
+        [-112.7, 33.11],
+        [-112.69, 33.03],
+        [-112.72, 33.01],
+        [-112.93, 33.03],
+        [-113.07, 33.09],
+        [-113.14, 33.01],
+        [-113.23, 33.01],
+        [-113.31, 32.97],
+        [-113.38, 32.97],
+        [-113.53, 32.89],
+        [-113.64, 32.86],
+        [-113.84, 32.76],
+        [-113.87, 32.78],
+        [-113.97, 32.75],
+        [-113.97, 32.72],
+        [-114.1, 32.74],
+        [-114.12, 32.7],
+        [-114.16, 32.72],
+        [-114.22, 32.68],
+        [-114.31, 32.7],
+        [-114.38, 32.79],
+        [-114.48, 32.72],
+        [-114.56, 32.73]
+      ],
+      "coords_source": "Natural Earth 1:10m rivers_lake_centerlines v5.1.2; упрощено (Дуглас — Пекер, 0,012°)"
+    }
+  ]
+}

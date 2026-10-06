@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" width="760" height="520" role="img" aria-labelledby="t d" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">
+<title id='t'>Население провинции Хемес, 1480–1700 гг.</title><desc id='d'>По горизонтали годы 1480–1700, по вертикали — число жителей. около 1500 г.: 4951–7922 (по развалинам); 1621: 6566 (по документам); 1630: 3000 (по документам); 1644: 1860 (по документам); начало 1680-х гг.: не больше 833 (по развалинам); 1694: меньше 600 (по документам). Вехи: 1541 — первая встреча с испанцами; 1598 — испанская колония; 1620-е гг. — приход миссий; 1680 — восстание пуэбло. Убыль за 1620–1680 гг. — 87% (с ≈6500 до меньше 850).</desc>
+<rect width="760" height="520" fill="#141A18"/>
+<defs>
+<marker id="head-ruins" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#BA8628"/></marker>
+<marker id="head-document" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#2A9CC4"/></marker>
+<marker id="head-muted" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#97A59E"/></marker>
+</defs>
+<line x1="70.0" y1="404.0" x2="592.0" y2="404.0" stroke="#2E3934" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="62.0" y="408.0" fill="#97A59E" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">0</text>
+<line x1="70.0" y1="368.7" x2="592.0" y2="368.7" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="62.0" y="372.7" fill="#97A59E" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1000</text>
+<line x1="70.0" y1="333.4" x2="592.0" y2="333.4" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="62.0" y="337.4" fill="#97A59E" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">2000</text>
+<line x1="70.0" y1="298.1" x2="592.0" y2="298.1" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="62.0" y="302.1" fill="#97A59E" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">3000</text>
+<line x1="70.0" y1="262.8" x2="592.0" y2="262.8" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="62.0" y="266.8" fill="#97A59E" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">4000</text>
+<line x1="70.0" y1="227.5" x2="592.0" y2="227.5" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="62.0" y="231.5" fill="#97A59E" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">5000</text>
+<line x1="70.0" y1="192.2" x2="592.0" y2="192.2" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="62.0" y="196.2" fill="#97A59E" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">6000</text>
+<line x1="70.0" y1="156.9" x2="592.0" y2="156.9" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="62.0" y="160.9" fill="#97A59E" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">7000</text>
+<line x1="70.0" y1="121.6" x2="592.0" y2="121.6" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="62.0" y="125.6" fill="#97A59E" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">8000</text>
+<line x1="70.0" y1="404.0" x2="70.0" y2="409.0" stroke="#97A59E" stroke-width="1" stroke-opacity="1.0"/>
+<text x="70.0" y="423.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1480</text>
+<line x1="117.5" y1="404.0" x2="117.5" y2="409.0" stroke="#97A59E" stroke-width="1" stroke-opacity="1.0"/>
+<text x="117.5" y="423.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1500</text>
+<line x1="164.9" y1="404.0" x2="164.9" y2="409.0" stroke="#97A59E" stroke-width="1" stroke-opacity="1.0"/>
+<text x="164.9" y="423.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1520</text>
+<line x1="212.4" y1="404.0" x2="212.4" y2="409.0" stroke="#97A59E" stroke-width="1" stroke-opacity="1.0"/>
+<text x="212.4" y="423.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1540</text>
+<line x1="259.8" y1="404.0" x2="259.8" y2="409.0" stroke="#97A59E" stroke-width="1" stroke-opacity="1.0"/>
+<text x="259.8" y="423.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1560</text>
+<line x1="307.3" y1="404.0" x2="307.3" y2="409.0" stroke="#97A59E" stroke-width="1" stroke-opacity="1.0"/>
+<text x="307.3" y="423.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1580</text>
+<line x1="354.7" y1="404.0" x2="354.7" y2="409.0" stroke="#97A59E" stroke-width="1" stroke-opacity="1.0"/>
+<text x="354.7" y="423.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1600</text>
+<line x1="402.2" y1="404.0" x2="402.2" y2="409.0" stroke="#97A59E" stroke-width="1" stroke-opacity="1.0"/>
+<text x="402.2" y="423.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1620</text>
+<line x1="449.6" y1="404.0" x2="449.6" y2="409.0" stroke="#97A59E" stroke-width="1" stroke-opacity="1.0"/>
+<text x="449.6" y="423.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1640</text>
+<line x1="497.1" y1="404.0" x2="497.1" y2="409.0" stroke="#97A59E" stroke-width="1" stroke-opacity="1.0"/>
+<text x="497.1" y="423.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1660</text>
+<line x1="544.5" y1="404.0" x2="544.5" y2="409.0" stroke="#97A59E" stroke-width="1" stroke-opacity="1.0"/>
+<text x="544.5" y="423.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1680</text>
+<line x1="592.0" y1="404.0" x2="592.0" y2="409.0" stroke="#97A59E" stroke-width="1" stroke-opacity="1.0"/>
+<text x="592.0" y="423.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1700</text>
+<text x="62.0" y="22.0" fill="#97A59E" font-size="12" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">жителей провинции Хемес</text>
+<line x1="214.7" y1="100.0" x2="214.7" y2="404.0" stroke="#97A59E" stroke-width="1" stroke-opacity="1.0" stroke-dasharray="3 3"/>
+<text x="214.7" y="58.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">1541</text>
+<text x="214.7" y="72.0" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">первая встреча с испанцами</text>
+<line x1="350.0" y1="100.0" x2="350.0" y2="404.0" stroke="#97A59E" stroke-width="1" stroke-opacity="1.0" stroke-dasharray="3 3"/>
+<text x="350.0" y="58.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">1598</text>
+<text x="350.0" y="72.0" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">испанская колония</text>
+<rect x="402.2" y="100.0" width="23.7" height="304.0" rx="0" fill="#19211E" fill-opacity="1.0"/>
+<text x="414.0" y="86.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">1620-е гг.</text>
+<text x="414.0" y="100.0" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">приход миссий</text>
+<line x1="544.5" y1="100.0" x2="544.5" y2="404.0" stroke="#97A59E" stroke-width="1" stroke-opacity="1.0" stroke-dasharray="3 3"/>
+<text x="544.5" y="58.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">1680</text>
+<text x="544.5" y="72.0" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">восстание пуэбло</text>
+<path d="M402.2,251.2V245.2H544.5V251.2" stroke="#97A59E" stroke-width="1.2" fill="none"/>
+<text x="497.4" y="223.2" fill="#E2E8E3" font-size="14" text-anchor="middle" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">−87% за 1620–1680 гг.</text>
+<text x="497.4" y="238.2" fill="#97A59E" font-size="12" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">с ≈6500 до меньше 850</text>
+<rect x="70.0" y="124.4" width="94.9" height="104.9" rx="2" fill="#BA8628" fill-opacity="0.35" stroke="#BA8628" stroke-width="1.4"/>
+<text x="117.5" y="146.4" fill="#E2E8E3" font-size="13.5" text-anchor="middle" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">4951–7922</text>
+<text x="117.5" y="163.4" fill="#E2E8E3" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">около 1500 г.</text>
+<text x="117.5" y="178.4" fill="#E2E8E3" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">по развалинам</text>
+<text x="117.5" y="192.4" fill="#E2E8E3" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">18 деревень</text>
+<line x1="404.6" y1="172.3" x2="406.9" y2="172.3" stroke="#2A9CC4" stroke-width="3" stroke-opacity="1.0"/>
+<circle cx="405.7" cy="172.3" r="4.6" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="405.7" cy="172.3" r="4.6" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
+<text x="394.6" y="170.3" fill="#E2E8E3" font-size="12.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">6566 крещёных — 1621–1622</text>
+<text x="394.6" y="184.3" fill="#97A59E" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">монах Сарате Салмерон</text>
+<circle cx="425.9" cy="298.1" r="4.6" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="425.9" cy="298.1" r="4.6" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
+<text x="415.9" y="296.1" fill="#E2E8E3" font-size="12.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">3000 — 1630</text>
+<text x="415.9" y="310.1" fill="#97A59E" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Бенавидес: умерла половина</text>
+<circle cx="459.1" cy="338.4" r="4.6" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="459.1" cy="338.4" r="4.6" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
+<text x="449.1" y="340.4" fill="#E2E8E3" font-size="12.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">1860 — 1644</text>
+<text x="449.1" y="354.4" fill="#97A59E" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">испанские записи</text>
+<line x1="546.9" y1="374.6" x2="554.0" y2="374.6" stroke="#BA8628" stroke-width="3" stroke-opacity="1.0"/>
+<polygon points="550.5,368.6 556.5,374.6 550.5,380.6 544.5,374.6" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="550.5,368.6 556.5,374.6 550.5,380.6 544.5,374.6" fill="#141A18" stroke="#BA8628" stroke-width="1.6"/>
+<path d="M550.5,381.6L550.5,393.6" stroke="#BA8628" stroke-width="1.6" marker-end="url(#head-ruins)"/>
+<path d="M557.5,374.6L598.0,310.6L608.0,310.6" stroke="#97A59E" stroke-width=".8" fill="none"/>
+<text x="612.0" y="314.6" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">не больше 833</text>
+<text x="612.0" y="328.6" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">начало 1680-х гг.</text>
+<text x="612.0" y="342.6" fill="#97A59E" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">все жители — в</text>
+<text x="612.0" y="356.6" fill="#97A59E" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">деревне Патокуа</text>
+<circle cx="577.8" cy="382.8" r="4.6" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="577.8" cy="382.8" r="4.6" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
+<path d="M577.8,389.8L577.8,401.8" stroke="#2A9CC4" stroke-width="1.6" marker-end="url(#head-document)"/>
+<path d="M584.8,382.8L598.0,392.8L608.0,392.8" stroke="#97A59E" stroke-width=".8" fill="none"/>
+<text x="612.0" y="396.8" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">меньше 600</text>
+<text x="612.0" y="410.8" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">1694</text>
+<text x="612.0" y="424.8" fill="#97A59E" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">испанские</text>
+<text x="612.0" y="438.8" fill="#97A59E" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">военные журналы</text>
+<polygon points="32.0,450.0 38.0,456.0 32.0,462.0 26.0,456.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="32.0,450.0 38.0,456.0 32.0,462.0 26.0,456.0" fill="#141A18" stroke="#BA8628" stroke-width="1.6"/>
+<text x="46.0" y="460.5" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">оценка по развалинам</text>
+<circle cx="272.0" cy="456.0" r="4.6" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="272.0" cy="456.0" r="4.6" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
+<text x="286.0" y="460.5" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">число из испанского документа</text>
+<path d="M512,448L512,461" stroke="#E2E8E3" stroke-width="1.6" marker-end="url(#head-muted)"/>
+<text x="526.0" y="460.5" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">«не больше», «меньше»</text>
+<text x="744.0" y="510.0" fill="#97A59E" font-size="12" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-style="italic">Между точками линий нет: численность в промежутках неизвестна</text>
+</svg>

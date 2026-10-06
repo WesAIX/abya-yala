@@ -1,31 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 568" width="760" height="568" role="img" aria-labelledby="t d" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">
-<title id='t'>Сколько людей жило в крупнейших городах: оценки разных авторов</title><desc id='d'>Полосы и точки на логарифмической шкале от тысячи до миллиона жителей. Кахокия — Милнер: несколько тысяч; Кахокия — Холт: 10 000 или 20 000; Кахокия — Паукетат и Лопино: 10 200–15 300; Теотиуакан — Миллон: 75 000–200 000; Теотиуакан — Коуджилл: 85 000–125 000; Теотиуакан — Смит и соавт., 2019: ≈100 000; Теночтитлан — Эванс: ≈50 000; Теночтитлан — Осса, Смит и Лобо: ≈200 000; Теночтитлан — Эванс: ≈500 000.</desc>
-<rect width="760" height="568" fill="#141A18"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 608" width="760" height="608" role="img" aria-labelledby="t d" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">
+<title id='t'>Сколько людей жило в крупнейших городах: оценки разных авторов</title><desc id='d'>Полосы и точки на логарифмической шкале от тысячи до миллиона жителей. Кахокия — Милнер: несколько тысяч; Кахокия — Холт: 10 000 или 20 000; Кахокия — Паукетат и Лопино: 10 200–15 300; Теотиуакан — Миллон: 75 000–200 000; Теотиуакан — Коуджилл: 85 000–125 000; Теотиуакан — Смит и соавт., 2019: ≈100 000; Теночтитлан — Эванс: 35 000–75 000; Теночтитлан — Эванс: ≈50 000; Теночтитлан — Осса, Смит и Лобо: ≈200 000; Теночтитлан — Эванс: ≈500 000.</desc>
+<rect width="760" height="608" fill="#141A18"/>
 <defs>
 <linearGradient id="more" x1="0" x2="1"><stop offset="0" stop-color="#E2E8E3" stop-opacity=".5"/><stop offset="1" stop-color="#E2E8E3" stop-opacity="0"/></linearGradient>
 <marker id="head-ink" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#E2E8E3"/></marker>
 </defs>
 <rect x="0.0" y="70.0" width="760.0" height="134.0" rx="0" fill="#19211E" fill-opacity="1.0"/>
-<rect x="0.0" y="338.0" width="760.0" height="134.0" rx="0" fill="#19211E" fill-opacity="1.0"/>
-<line x1="214.0" y1="62.0" x2="214.0" y2="472.0" stroke="#2E3934" stroke-width="1.2" stroke-opacity="1.0"/>
+<rect x="0.0" y="338.0" width="760.0" height="174.0" rx="0" fill="#19211E" fill-opacity="1.0"/>
+<line x1="214.0" y1="62.0" x2="214.0" y2="512.0" stroke="#2E3934" stroke-width="1.2" stroke-opacity="1.0"/>
 <text x="214.0" y="56.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1000</text>
-<line x1="265.6" y1="62.0" x2="265.6" y2="472.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="265.6" y="487.0" fill="#97A59E" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">2000</text>
-<line x1="333.8" y1="62.0" x2="333.8" y2="472.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="333.8" y="487.0" fill="#97A59E" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">5000</text>
-<line x1="385.3" y1="62.0" x2="385.3" y2="472.0" stroke="#2E3934" stroke-width="1.2" stroke-opacity="1.0"/>
+<line x1="265.6" y1="62.0" x2="265.6" y2="512.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="265.6" y="527.0" fill="#97A59E" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">2000</text>
+<line x1="333.8" y1="62.0" x2="333.8" y2="512.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="333.8" y="527.0" fill="#97A59E" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">5000</text>
+<line x1="385.3" y1="62.0" x2="385.3" y2="512.0" stroke="#2E3934" stroke-width="1.2" stroke-opacity="1.0"/>
 <text x="385.3" y="56.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">10 000</text>
-<line x1="436.9" y1="62.0" x2="436.9" y2="472.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="436.9" y="487.0" fill="#97A59E" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">20 000</text>
-<line x1="505.1" y1="62.0" x2="505.1" y2="472.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="505.1" y="487.0" fill="#97A59E" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">50 000</text>
-<line x1="556.7" y1="62.0" x2="556.7" y2="472.0" stroke="#2E3934" stroke-width="1.2" stroke-opacity="1.0"/>
+<line x1="436.9" y1="62.0" x2="436.9" y2="512.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="436.9" y="527.0" fill="#97A59E" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">20 000</text>
+<line x1="505.1" y1="62.0" x2="505.1" y2="512.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="505.1" y="527.0" fill="#97A59E" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">50 000</text>
+<line x1="556.7" y1="62.0" x2="556.7" y2="512.0" stroke="#2E3934" stroke-width="1.2" stroke-opacity="1.0"/>
 <text x="556.7" y="56.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">100 000</text>
-<line x1="608.2" y1="62.0" x2="608.2" y2="472.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="608.2" y="487.0" fill="#97A59E" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">200 000</text>
-<line x1="676.4" y1="62.0" x2="676.4" y2="472.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="676.4" y="487.0" fill="#97A59E" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">500 000</text>
-<line x1="728.0" y1="62.0" x2="728.0" y2="472.0" stroke="#2E3934" stroke-width="1.2" stroke-opacity="1.0"/>
+<line x1="608.2" y1="62.0" x2="608.2" y2="512.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="608.2" y="527.0" fill="#97A59E" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">200 000</text>
+<line x1="676.4" y1="62.0" x2="676.4" y2="512.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="676.4" y="527.0" fill="#97A59E" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">500 000</text>
+<line x1="728.0" y1="62.0" x2="728.0" y2="512.0" stroke="#2E3934" stroke-width="1.2" stroke-opacity="1.0"/>
 <text x="728.0" y="56.0" fill="#E2E8E3" font-size="12" text-anchor="middle" font-weight="500" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1 000 000</text>
 <text x="214.0" y="30.0" fill="#97A59E" font-size="12" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">жителей</text>
 <text x="728.0" y="30.0" fill="#97A59E" font-size="12" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-style="italic">шкала логарифмическая: каждый шаг — в 10 раз больше</text>
@@ -49,22 +49,24 @@
 <circle cx="556.7" cy="323.0" r="5" fill="#E2E8E3" stroke="#E2E8E3" stroke-width="1.6"/>
 <text x="556.7" y="312.0" fill="#E2E8E3" font-size="12" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Смит и соавт., 2019: ≈100 000</text>
 <text x="14.0" y="364.0" fill="#E2E8E3" font-size="14.5" text-anchor="start" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Теночтитлан</text>
-<circle cx="505.1" cy="377.0" r="5" fill="#E2E8E3" stroke="#E2E8E3" stroke-width="1.6"/>
-<path d="M511.1,377.0L556.7,377.0" stroke="#E2E8E3" stroke-width="1.6" stroke-dasharray="2 3"/>
-<line x1="556.7" y1="371.0" x2="556.7" y2="383.0" stroke="#E2E8E3" stroke-width="1.6" stroke-opacity="1.0"/>
-<text x="750.0" y="366.0" fill="#E2E8E3" font-size="12" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#19211E" stroke-width="4" stroke-linejoin="round">Эванс: ≈50 000; до 100 000 вместе с соседними городами на берегу</text>
-<circle cx="608.2" cy="417.0" r="5" fill="#E2E8E3" stroke="#E2E8E3" stroke-width="1.6"/>
-<text x="750.0" y="406.0" fill="#E2E8E3" font-size="12" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#19211E" stroke-width="4" stroke-linejoin="round">Осса, Смит и Лобо: ≈200 000</text>
-<circle cx="676.4" cy="457.0" r="5" fill="#19211E" stroke="#E2E8E3" stroke-width="1.6"/>
-<text x="750.0" y="446.0" fill="#E2E8E3" font-size="12" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#19211E" stroke-width="4" stroke-linejoin="round">встречаются и оценки в 500 000 (по словам Эванс)</text>
-<rect x="24.0" y="508.0" width="26.0" height="8.0" rx="4" fill="#E2E8E3" fill-opacity="0.5"/>
-<text x="60.0" y="516.5" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">диапазон оценки</text>
-<circle cx="409" cy="512" r="5" fill="#E2E8E3" stroke="#E2E8E3" stroke-width="1.6"/>
-<text x="432.0" y="516.5" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">одно число — «около»</text>
-<circle cx="37" cy="534" r="5" fill="#141A18" stroke="#E2E8E3" stroke-width="1.6"/>
-<text x="60.0" y="538.5" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">оценка, которую автор только упоминает</text>
-<path d="M396,534L420,534" stroke="#E2E8E3" stroke-width="1.6" stroke-dasharray="2 3"/>
-<line x1="420.0" y1="528.0" x2="420.0" y2="540.0" stroke="#E2E8E3" stroke-width="1.6" stroke-opacity="1.0"/>
-<text x="432.0" y="538.5" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">«до» — верхняя граница</text>
-<text x="744.0" y="558.0" fill="#97A59E" font-size="12" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-style="italic">Оценки разных авторов; среднее не показано намеренно</text>
+<rect x="478.6" y="373.0" width="56.7" height="8.0" rx="4" fill="#E2E8E3" fill-opacity="0.5"/>
+<text x="478.6" y="366.0" fill="#E2E8E3" font-size="12" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#19211E" stroke-width="4" stroke-linejoin="round">Эванс: 35 000–75 000</text>
+<circle cx="505.1" cy="417.0" r="5" fill="#E2E8E3" stroke="#E2E8E3" stroke-width="1.6"/>
+<path d="M511.1,417.0L556.7,417.0" stroke="#E2E8E3" stroke-width="1.6" stroke-dasharray="2 3"/>
+<line x1="556.7" y1="411.0" x2="556.7" y2="423.0" stroke="#E2E8E3" stroke-width="1.6" stroke-opacity="1.0"/>
+<text x="750.0" y="406.0" fill="#E2E8E3" font-size="12" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#19211E" stroke-width="4" stroke-linejoin="round">Эванс: ≈50 000; до 100 000 вместе с соседними городами на берегу</text>
+<circle cx="608.2" cy="457.0" r="5" fill="#E2E8E3" stroke="#E2E8E3" stroke-width="1.6"/>
+<text x="750.0" y="446.0" fill="#E2E8E3" font-size="12" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#19211E" stroke-width="4" stroke-linejoin="round">Осса, Смит и Лобо: ≈200 000</text>
+<circle cx="676.4" cy="497.0" r="5" fill="#19211E" stroke="#E2E8E3" stroke-width="1.6"/>
+<text x="750.0" y="486.0" fill="#E2E8E3" font-size="12" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#19211E" stroke-width="4" stroke-linejoin="round">встречаются и оценки в 500 000 (по словам Эванс)</text>
+<rect x="24.0" y="548.0" width="26.0" height="8.0" rx="4" fill="#E2E8E3" fill-opacity="0.5"/>
+<text x="60.0" y="556.5" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">диапазон оценки</text>
+<circle cx="409" cy="552" r="5" fill="#E2E8E3" stroke="#E2E8E3" stroke-width="1.6"/>
+<text x="432.0" y="556.5" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">одно число — «около»</text>
+<circle cx="37" cy="574" r="5" fill="#141A18" stroke="#E2E8E3" stroke-width="1.6"/>
+<text x="60.0" y="578.5" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">оценка, которую автор только упоминает</text>
+<path d="M396,574L420,574" stroke="#E2E8E3" stroke-width="1.6" stroke-dasharray="2 3"/>
+<line x1="420.0" y1="568.0" x2="420.0" y2="580.0" stroke="#E2E8E3" stroke-width="1.6" stroke-opacity="1.0"/>
+<text x="432.0" y="578.5" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">«до» — верхняя граница</text>
+<text x="744.0" y="598.0" fill="#97A59E" font-size="12" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-style="italic">Оценки разных авторов; среднее не показано намеренно</text>
 </svg>

@@ -1177,7 +1177,18 @@
     {
       "id": "evans2013#1",
       "ref": "evans2013",
-      "text": "Для Теночтитлана разброс ещё шире: Эванс (2013) считает разумной оценкой около 50 000 человек в самом городе и до 100 000 вместе с соседними городами на берегу и напоминает, что встречаются и оценки в полмиллиона.",
+      "text": "Эванс (2013) переносит на площадь города, около 14 км², плотность населения Сан-Франциско и Лос-Анджелеса — нынешних городов, заселённых реже Манхэттена, — и получает от 35 000 до 75 000 жителей, оговаривая, что и такие оценки далеки от совершенства.",
+      "verdict": "подтверждено",
+      "access": "фрагмент",
+      "loc": "с. 549, врезка «How many people lived in Tenochtitlan?»: «The area of Tenochtitlan-Tlatelolco is known to be about 5.4 square miles (nearly 14 square kilometers)»; «San Francisco has just over 14,000 persons per square mile; Los Angeles has roughly 7,000»; «Applying these values to Tenochtitlan, we might be looking at a population of between 35,000 and 75,000. These estimates, too, leave much to be desired»",
+      "evidence": "корректура с. 549 («2nd Proof»), PDF на сайте Университета штата Пенсильвания: https://anth.la.psu.edu/wp-content/uploads/sites/3/2022/06/Evans-2013-Tenochtitlan-population-.pdf",
+      "note": "Видел корректуру («2nd Proof»), а не напечатанную книгу: окончательную пагинацию не сверил. «Заселённых реже Манхэттена» — у Эванс «lower-density modern cities» после сравнения с Манхэттеном (меньше 67 000 на кв. милю). Сверено ведущим цепочки по той же выписке корректуры.",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "id": "evans2013#2",
+      "ref": "evans2013",
+      "text": "Разумной она считает оценку около 50 000 человек в самом городе и до 100 000 вместе с соседними городами на берегу и напоминает, что встречаются и оценки в полмиллиона.",
       "verdict": "подтверждено",
       "access": "фрагмент",
       "loc": "с. 549, врезка «How many people lived in Tenochtitlan?»: «a population of 50,000 for the city proper seems reasonable, if perhaps a bit inflated. There might have been 100,000 people if nearby cities and towns on the mainland are included»; «some scholars even suggesting… at least as large as half a million (Vaillant 1966: 134)»",

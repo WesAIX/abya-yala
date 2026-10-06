@@ -570,15 +570,15 @@
       "checked_on": "2026-10-05"
     },
     {
-      "id": "hernandezsantiago2016#1",
-      "ref": "hernandezsantiago2016",
+      "id": "aguilar2020#1",
+      "ref": "aguilar2020",
       "text": "Тибодо и соавторы в 2018 г. проверили это по изотопам свинца и стронция 43 бирюзовых пластинок из мозаик: 38 — из подношений в священном участке Теночтитлана, столицы мешика (ацтеков), и 5 — из мозаик в стиле ньюу сави (миштеков); ñuu savi, «народ дождя», — их самоназвание.",
       "verdict": "подтверждено",
       "access": "полный текст",
-      "loc": "введение (Background): «the Mixtec people call themselves ñuu savi, meaning \"people of the rain\"» (со ссылкой [13]); заглавие: «…by Mixtecs or Ñuu savi, the people of the rain…»",
-      "evidence": "Europe PMC, полный текст PMC5011354 (fullTextXML); doi:10.1186/s13002-016-0108-9",
-      "note": "Подтверждается только самоназвание; данные об изотопах и пластинках — по thibodeau2018 (thibodeau2018#4). Статья этномикологическая и говорит о нынешних миштеках.",
-      "checked_on": "2026-10-05"
+      "loc": "с. 31, разд. 1.1 «Ñuu Savi desde Ñuu Savi»: «Ñuu Savi significa el “pueblo de la lluvia”, de ñuu “pueblo, nación, comunidad, lugar” y savi “lluvia”, término y concepto que utilizamos los sehe Ñuu Savi… para definirnos como pueblo»",
+      "evidence": "PDF диссертации (Leiden University Press, 2020), копия на сайте проекта COLING Варшавского университета: https://coling.al.uw.edu.pl/wp-content/uploads/2020/12/%C3%91uu_Savi-_Pasado-_Presente_y_Futuro_-Aguilar_Sanchez-_2020.pdf; handle https://hdl.handle.net/1887/138511",
+      "note": "Профильный источник (археология, кодексы) вместо этнобиологической статьи Hernández Santiago et al. 2016, которая говорила то же. Автор оговаривает (с. 32), что точнее как имя людей — nchivi ñuu savi или sehe ñuu savi, «люди / потомки народа дождя»; Ñuu Savi — имя народа и его земли. Сверено ведущим цепочки по полному тексту.",
+      "checked_on": "2026-10-06"
     },
     {
       "id": "thibodeau2018#5",

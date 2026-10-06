@@ -42,6 +42,8 @@
   Главы: 11. **Не сверено.**
 - <a id="adelaar2012"></a>`adelaar2012` — Adelaar, Willem F. H. (2012). *Languages of the Middle Andes in areal-typological perspective: Emphasis on Quechuan and Aymaran*. Campbell, Lyle; Grondona, Verónica (ред.). The Indigenous Languages of South America: A Comprehensive Guide, 575–624. Berlin; Boston: De Gruyter Mouton. doi:10.1515/9783110258035.575.
   Открытый доступ (OAPEN). Прародина кечуа — Центральное Перу; версия о распространении кечуа инками отвергнута. Главы: 0, 3, 6.
+- <a id="aguilar2020"></a>`aguilar2020` — Aguilar Sánchez, Omar (2020). *Ñuu Savi: Pasado, presente y futuro. Descolonización, continuidad cultural y re-apropiación de los códices mixtecos en el Pueblo de la Lluvia*. Leiden: Leiden University Press (Archaeological Studies Leiden University 52). <https://hdl.handle.net/1887/138511>.
+  Докторская диссертация, факультет археологии Лейденского университета; ISBN 9789087283612. Автор — сам из Ñuu Savi (Окотепек); разд. 1.1 «Ñuu Savi desde Ñuu Savi», с. 31–32 — о самоназвании. Главы: 3.
 - <a id="baires2015"></a>`baires2015` — Baires, Sarah E.; Baltus, Melissa R.; Buchanan, Meghan E. (2015). *Correlation does not equal causation: Questioning the Great Cahokia Flood*. Proceedings of the National Academy of Sciences, 112(29), E3753. doi:10.1073/pnas.1509104112.
   Письмо в редакцию — ответ на Munoz et al. 2015. Главы: 3.
 - <a id="bayliss2009"></a>`bayliss2009` — Bayliss, Alex (2009). *Rolling Out Revolution: Using Radiocarbon Dating in Archaeology*. Radiocarbon, 51(1), 123–147. doi:10.1017/S0033822200033750.

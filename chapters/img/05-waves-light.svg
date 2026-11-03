@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 514" width="760" height="514" role="img" aria-labelledby="t d" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">
+<title id='t'>Волны эпидемий по регионам, XVI–XIX века</title><desc id='d'>Шкала 1505–1860 с шестью дорожками. Карибы: оспа 1518–1519. Мезоамерика: оспа 1520–1521 (5–8 млн погибших по одной сводке, 30–50% населения — по другой) и кокольицтли 1545–1548 (5–15 млн) и 1576–1581 (2–2,5 млн). Анды: оспа? 1520-е — диагноз спорен. Северо-восток: неизвестная болезнь 1616–1619, гипотеза — лептоспироз. Юго-Восток: оспа 1696–1700. Равнины: оспа 1781–1782 и 1837–1838. Полосы размыты там, где даты приблизительны.</desc>
+<rect width="760" height="514" fill="#EDF0EA"/>
+<defs>
+<filter id="blur-bar"><feGaussianBlur stdDeviation="1.1"/></filter>
+</defs>
+<line x1="147.5" y1="54.0" x2="147.5" y2="440.0" stroke="#C7CFC4" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="147.5" y="456.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1520</text>
+<line x1="215.6" y1="54.0" x2="215.6" y2="440.0" stroke="#C7CFC4" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="215.6" y="456.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1560</text>
+<line x1="283.6" y1="54.0" x2="283.6" y2="440.0" stroke="#C7CFC4" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="283.6" y="456.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1600</text>
+<line x1="351.7" y1="54.0" x2="351.7" y2="440.0" stroke="#C7CFC4" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="351.7" y="456.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1640</text>
+<line x1="419.7" y1="54.0" x2="419.7" y2="440.0" stroke="#C7CFC4" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="419.7" y="456.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1680</text>
+<line x1="487.8" y1="54.0" x2="487.8" y2="440.0" stroke="#C7CFC4" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="487.8" y="456.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1720</text>
+<line x1="555.9" y1="54.0" x2="555.9" y2="440.0" stroke="#C7CFC4" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="555.9" y="456.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1760</text>
+<line x1="623.9" y1="54.0" x2="623.9" y2="440.0" stroke="#C7CFC4" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="623.9" y="456.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1800</text>
+<line x1="692.0" y1="54.0" x2="692.0" y2="440.0" stroke="#C7CFC4" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="692.0" y="456.0" fill="#5B6862" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1840</text>
+<text x="114.0" y="78.0" fill="#1B2420" font-size="12" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Карибы</text>
+<rect x="138.1" y="71" width="13.7" height="18" fill="#4F9A3A" opacity=".28" filter="url(#blur-bar)"/>
+<rect x="144.1" y="74.0" width="1.7" height="12.0" rx="5" fill="#4F9A3A" fill-opacity="0.5"/>
+<text x="151.8" y="80.0" fill="#1B2420" font-size="10.5" text-anchor="start" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">оспа</text>
+<text x="145.0" y="100.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1518</text>
+<text x="114.0" y="142.0" fill="#1B2420" font-size="12" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Мезоамерика</text>
+<rect x="147.5" y="138.0" width="1.7" height="12.0" rx="5" fill="#B03A84" fill-opacity="0.8"/>
+<text x="155.2" y="144.0" fill="#1B2420" font-size="10.5" text-anchor="start" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">оспа</text>
+<text x="148.4" y="164.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1520</text>
+<rect x="190.1" y="138.0" width="5.1" height="12.0" rx="5" fill="#B03A84" fill-opacity="0.8"/>
+<text x="201.2" y="144.0" fill="#1B2420" font-size="10.5" text-anchor="start" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">кокольицтли</text>
+<text x="192.6" y="164.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1545</text>
+<text x="192.6" y="177.0" fill="#1B2420" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">5–15 млн погибших</text>
+<rect x="242.8" y="138.0" width="8.5" height="12.0" rx="5" fill="#B03A84" fill-opacity="0.8"/>
+<text x="257.3" y="144.0" fill="#1B2420" font-size="10.5" text-anchor="start" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">кокольицтли</text>
+<text x="247.1" y="164.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1576</text>
+<text x="247.1" y="177.0" fill="#1B2420" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">2–2,5 млн погибших</text>
+<text x="114.0" y="206.0" fill="#1B2420" font-size="12" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Анды</text>
+<rect x="148.3" y="199" width="22.2" height="18" fill="#007A9A" opacity=".28" filter="url(#blur-bar)"/>
+<rect x="154.3" y="202.0" width="10.2" height="12.0" rx="5" fill="#007A9A" fill-opacity="0.5"/>
+<text x="170.5" y="208.0" fill="#1B2420" font-size="10.5" text-anchor="start" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">оспа? диагноз спорен</text>
+<text x="159.4" y="228.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1520-е</text>
+<text x="114.0" y="270.0" fill="#1B2420" font-size="12" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Северо-восток</text>
+<rect x="304.9" y="263" width="17.1" height="18" fill="#A36A0E" opacity=".28" filter="url(#blur-bar)"/>
+<rect x="310.9" y="266.0" width="5.1" height="12.0" rx="5" fill="#A36A0E" fill-opacity="0.5"/>
+<text x="322.0" y="272.0" fill="#1B2420" font-size="10.5" text-anchor="start" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">не установлена; гипотеза — лептоспироз</text>
+<text x="313.4" y="292.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1616</text>
+<text x="114.0" y="334.0" fill="#1B2420" font-size="12" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Юго-Восток</text>
+<rect x="441.0" y="327" width="18.8" height="18" fill="#007A9A" opacity=".28" filter="url(#blur-bar)"/>
+<rect x="447.0" y="330.0" width="6.8" height="12.0" rx="5" fill="#007A9A" fill-opacity="0.5"/>
+<text x="459.8" y="336.0" fill="#1B2420" font-size="10.5" text-anchor="start" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">оспа</text>
+<text x="450.4" y="356.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1696</text>
+<text x="114.0" y="398.0" fill="#1B2420" font-size="12" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Равнины</text>
+<rect x="585.6" y="391" width="13.7" height="18" fill="#A36A0E" opacity=".28" filter="url(#blur-bar)"/>
+<rect x="591.6" y="394.0" width="1.7" height="12.0" rx="5" fill="#A36A0E" fill-opacity="0.5"/>
+<text x="599.3" y="400.0" fill="#1B2420" font-size="10.5" text-anchor="start" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">оспа</text>
+<text x="592.4" y="420.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1781</text>
+<rect x="686.9" y="394.0" width="1.7" height="12.0" rx="5" fill="#A36A0E" fill-opacity="0.8"/>
+<text x="694.6" y="400.0" fill="#1B2420" font-size="10.5" text-anchor="start" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">оспа</text>
+<text x="687.7" y="420.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1837</text>
+<text x="122.0" y="490.0" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Полосы размыты там, где годы известны приблизительно;</text>
+<text x="122.0" y="505.0" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">вопрос у андской волны — спор о диагнозе (текст главы)</text>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 430" width="760" height="430" role="img" aria-labelledby="t d" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">
+<title id='t'>Две картины смертности</title><desc id='d'>Слева — модель девственной почвы Кросби: популяция без иммунитета к новой болезни — высокая смертность (одно звено, одна причина). Справа — после критики Джонса: болезнь и пять факторов — война и резня, бегство и потеря урожая, рабство и угон в плен, голод и разруха хозяйства, некому ухаживать за больными — сходятся вместе к смертности. Смертность — не свойство болезни, а свойство ситуации. Схема.</desc>
+<rect width="760" height="430" fill="#141A18"/>
+<defs>
+<marker id="head-v1" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#97A59E"/></marker>
+<marker id="head-v2" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#CF60A5"/></marker>
+</defs>
+<text x="190.0" y="40.0" fill="#E2E8E3" font-size="13.5" text-anchor="middle" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">модель «девственной почвы»</text>
+<rect x="40.0" y="56.0" width="300.0" height="74.0" rx="5" fill="#97A59E" fill-opacity="0.1"/>
+<text x="190.0" y="84.0" fill="#E2E8E3" font-size="12.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">популяция без иммунитета</text>
+<text x="190.0" y="102.0" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">к новой болезни</text>
+<path d="M190,134L190,168" stroke="#97A59E" stroke-width="2.2" marker-end="url(#head-v1)"/>
+<rect x="40.0" y="176.0" width="300.0" height="74.0" rx="5" fill="#97A59E" fill-opacity="0.16"/>
+<text x="190.0" y="204.0" fill="#E2E8E3" font-size="12.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">высокая смертность</text>
+<text x="190.0" y="222.0" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">смертность — свойство болезни</text>
+<text x="190.0" y="286.0" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-style="italic">одно звено, одна причина</text>
+<text x="570.0" y="40.0" fill="#E2E8E3" font-size="13.5" text-anchor="middle" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">после критики Джонса (2003)</text>
+<rect x="420.0" y="56.0" width="300.0" height="40.0" rx="5" fill="#CF60A5" fill-opacity="0.18"/>
+<text x="570.0" y="81.0" fill="#E2E8E3" font-size="12.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">болезнь</text>
+<rect x="420.0" y="108.0" width="300.0" height="24.0" rx="4" fill="#1F2825" fill-opacity="0.9"/>
+<text x="570.0" y="124.5" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">война и резня</text>
+<rect x="420.0" y="138.0" width="300.0" height="24.0" rx="4" fill="#1F2825" fill-opacity="0.9"/>
+<text x="570.0" y="154.5" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">бегство, потеря урожая</text>
+<rect x="420.0" y="168.0" width="300.0" height="24.0" rx="4" fill="#1F2825" fill-opacity="0.9"/>
+<text x="570.0" y="184.5" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">рабство и угон в плен</text>
+<rect x="420.0" y="198.0" width="300.0" height="24.0" rx="4" fill="#1F2825" fill-opacity="0.9"/>
+<text x="570.0" y="214.5" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">голод, разруха хозяйства</text>
+<rect x="420.0" y="228.0" width="300.0" height="24.0" rx="4" fill="#1F2825" fill-opacity="0.9"/>
+<text x="570.0" y="244.5" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">некому ухаживать за больными</text>
+<path d="M414,108H408V260.0H414 M570,260.0H408" stroke="#CF60A5" stroke-width="1.4" fill="none" opacity=".85"/>
+<path d="M570,260.0L570,288" stroke="#CF60A5" stroke-width="2.2" marker-end="url(#head-v2)"/>
+<text x="582.0" y="184.0" fill="#97A59E" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">вместе</text>
+<rect x="420.0" y="296.0" width="300.0" height="74.0" rx="5" fill="#CF60A5" fill-opacity="0.22"/>
+<text x="570.0" y="324.0" fill="#E2E8E3" font-size="12.5" text-anchor="middle" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">смертность</text>
+<text x="570.0" y="342.0" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">не свойство болезни, а свойство ситуации</text>
+<text x="380.0" y="408.0" fill="#E2E8E3" font-size="12.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Схема: болезнь одна и та же; слева она одна, справа — среди войны, рабства и голода</text>
+<text x="380.0" y="422.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">список факторов — по Джонсу (2003), дословно в тексте главы</text>
+</svg>

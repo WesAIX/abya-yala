@@ -1,0 +1,373 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "epidemics.schema.json",
+  "title": "Глава 5: оценки численности 1492 г. по авторам, волны эпидемий, числа Коха и соавторов (2019)",
+  "type": "object",
+  "required": [
+    "meta",
+    "estimates_1492",
+    "waves",
+    "koch2019",
+    "missouri_1837"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "title",
+        "license"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "schema": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "estimates_1492": {
+      "description": "Оценки численности на 1492 г. по регионам. Полоса на графике — разброс оценок разных авторов, а не статистический интервал.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "region",
+          "entries",
+          "sources"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "genealogy.schema.json#/$defs/id"
+          },
+          "region": {
+            "type": "string"
+          },
+          "entries": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "author",
+                "year",
+                "sources"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "author": {
+                  "type": "string",
+                  "description": "Чья оценка (включая «в передаче», если число пересказано другим источником)."
+                },
+                "year": {
+                  "type": "integer",
+                  "minimum": 1492,
+                  "maximum": 2100,
+                  "description": "Год публикации оценки (для ранних авторов — год сочинения)."
+                },
+                "point": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "low": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "high": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "what": {
+                  "type": "string",
+                  "description": "Что именно оценено (вся Мексика или только центральная, Эспаньола или все Карибы…)."
+                },
+                "note": {
+                  "type": "string"
+                },
+                "sources": {
+                  "$ref": "genealogy.schema.json#/$defs/sources"
+                },
+                "short": {
+                  "type": "string",
+                  "description": "Короткая подпись для графика."
+                }
+              }
+            }
+          },
+          "sources": {
+            "$ref": "genealogy.schema.json#/$defs/sources"
+          }
+        }
+      }
+    },
+    "waves": {
+      "description": "Волны эпидемий: регион, болезнь, годы, смертность (если она оценена — чья оценка).",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "region",
+          "disease",
+          "when",
+          "sources"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "genealogy.schema.json#/$defs/id"
+          },
+          "region": {
+            "description": "Дорожка на схеме волн.",
+            "enum": [
+              "caribbean",
+              "mesoamerica",
+              "andes",
+              "northeast",
+              "southeast",
+              "plains"
+            ]
+          },
+          "disease": {
+            "type": "string"
+          },
+          "when": {
+            "type": "object",
+            "required": [
+              "start",
+              "end",
+              "dating"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "start": {
+                "type": "integer",
+                "minimum": 1490,
+                "maximum": 1950
+              },
+              "end": {
+                "type": "integer",
+                "minimum": 1490,
+                "maximum": 1950
+              },
+              "label": {
+                "type": "string"
+              },
+              "dating": {
+                "enum": [
+                  "documented",
+                  "approx",
+                  "conventional"
+                ]
+              }
+            }
+          },
+          "deaths": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "Смертность словами, с автором оценки."
+              },
+              "low": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "high": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "unit": {
+                "type": "string"
+              },
+              "note": {
+                "type": "string"
+              },
+              "sources": {
+                "$ref": "genealogy.schema.json#/$defs/sources"
+              }
+            }
+          },
+          "note": {
+            "type": "string"
+          },
+          "sources": {
+            "$ref": "genealogy.schema.json#/$defs/sources"
+          }
+        }
+      }
+    },
+    "koch2019": {
+      "description": "Числа статьи Koch et al. 2019: синтез 119 региональных оценок; межквартильные размахи.",
+      "type": "object",
+      "required": [
+        "pop1492",
+        "pop1600",
+        "decline_pct",
+        "abandoned",
+        "carbon",
+        "co2",
+        "sources"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "pop1492": {
+          "$ref": "#/$defs/point_iqr"
+        },
+        "pop1600": {
+          "$ref": "#/$defs/point_iqr"
+        },
+        "decline_pct": {
+          "$ref": "#/$defs/point_iqr"
+        },
+        "land_mha": {
+          "$ref": "#/$defs/point_iqr"
+        },
+        "abandoned": {
+          "$ref": "#/$defs/point_iqr"
+        },
+        "carbon": {
+          "$ref": "#/$defs/point_iqr"
+        },
+        "co2": {
+          "type": "object",
+          "required": [
+            "modelled",
+            "ice_core",
+            "sources"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "modelled": {
+              "$ref": "#/$defs/point_iqr"
+            },
+            "ice_core": {
+              "type": "object",
+              "required": [
+                "text",
+                "sources"
+              ],
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "description": "Наблюдаемый по кернам провал, словами."
+                },
+                "sources": {
+                  "$ref": "genealogy.schema.json#/$defs/sources"
+                }
+              }
+            },
+            "sources": {
+              "$ref": "genealogy.schema.json#/$defs/sources"
+            }
+          }
+        },
+        "cooling": {
+          "type": "object",
+          "required": [
+            "text",
+            "sources"
+          ],
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "sources": {
+              "$ref": "genealogy.schema.json#/$defs/sources"
+            }
+          }
+        },
+        "sources": {
+          "$ref": "genealogy.schema.json#/$defs/sources"
+        }
+      }
+    },
+    "missouri_1837": {
+      "description": "Оспа 1837–38 гг. на верхнем Миссури.",
+      "type": "object",
+      "required": [
+        "mandan",
+        "hidatsa",
+        "sources"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "mandan": {
+          "type": "object",
+          "required": [
+            "text",
+            "sources"
+          ],
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "sources": {
+              "$ref": "genealogy.schema.json#/$defs/sources"
+            }
+          }
+        },
+        "hidatsa": {
+          "type": "object",
+          "required": [
+            "text",
+            "sources"
+          ],
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "sources": {
+              "$ref": "genealogy.schema.json#/$defs/sources"
+            }
+          }
+        },
+        "sources": {
+          "$ref": "genealogy.schema.json#/$defs/sources"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "point_iqr": {
+      "type": "object",
+      "required": [
+        "point",
+        "low",
+        "high",
+        "sources"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "point": {
+          "type": "number"
+        },
+        "low": {
+          "type": "number"
+        },
+        "high": {
+          "type": "number"
+        },
+        "what": {
+          "type": "string"
+        },
+        "sources": {
+          "$ref": "genealogy.schema.json#/$defs/sources"
+        }
+      }
+    }
+  }
+}

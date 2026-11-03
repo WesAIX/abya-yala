@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "horses.schema.json",
+  "title": "Глава 7: распространение лошади по народам равнин, данные Taylor et al. 2023, два фронтира, шубные числа Хорнадея",
+  "type": "object",
+  "required": ["meta", "spread", "taylor2023", "frontiers", "robes", "wealth"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "license"],
+      "properties": {
+        "title": {"type": "string"},
+        "schema": {"type": "string"},
+        "license": {"type": "string"},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "spread": {
+      "description": "Когда народ получил лошадей. kind — насколько дата надёжна: archaeology (прямые датировки), document (запись современника), tradition (передача традиции или оценка историка).",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "people", "label", "when", "kind", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "people": {"type": "string"},
+          "label": {"type": "string", "description": "Что именно засвидетельствовано (не всегда владение лошадьми)."},
+          "when": {
+            "type": "object",
+            "required": ["start", "dating"],
+            "additionalProperties": false,
+            "properties": {
+              "start": {"type": "integer", "minimum": 1500, "maximum": 1950},
+              "end": {"type": ["integer", "null"]},
+              "label": {"type": "string"},
+              "dating": {"enum": ["documented", "approx", "conventional"]}
+            }
+          },
+          "kind": {"enum": ["archaeology", "document", "tradition"]},
+          "note": {"type": "string"},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+        }
+      }
+    },
+    "taylor2023": {
+      "description": "Выводы статьи Taylor et al. 2023 (Science) о раннем усвоении лошадей.",
+      "type": "object",
+      "required": ["adoption", "pre1680", "genetics", "sources"],
+      "additionalProperties": false,
+      "properties": {
+        "adoption": {
+          "type": "object",
+          "required": ["low", "high", "text", "sources"],
+          "properties": {
+            "low": {"type": "integer"},
+            "high": {"type": "integer"},
+            "text": {"type": "string"},
+            "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+          }
+        },
+        "pre1680": {"type": "string"},
+        "idaho": {"type": "string"},
+        "genetics": {"type": "string"},
+        "care": {"type": "string"},
+        "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+      }
+    },
+    "frontiers": {
+      "description": "Два фронтира по Секою (в изложении Юэрса) для схемы-карты: путь лошади с юго-запада и путь ружья с северо-востока, встреча у деревень Верхней Миссури.",
+      "type": "object",
+      "required": ["meeting", "horse_path", "gun_path", "sources"],
+      "additionalProperties": false,
+      "properties": {
+        "meeting": {
+          "type": "object",
+          "required": ["name", "lon", "lat", "note", "sources"],
+          "properties": {
+            "name": {"type": "string"},
+            "lon": {"$ref": "zones.schema.json#/$defs/lon"},
+            "lat": {"$ref": "zones.schema.json#/$defs/lat"},
+            "note": {"type": "string"},
+            "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+          }
+        },
+        "horse_path": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "lon", "lat"],
+            "properties": {
+              "name": {"type": "string"},
+              "lon": {"$ref": "zones.schema.json#/$defs/lon"},
+              "lat": {"$ref": "zones.schema.json#/$defs/lat"}
+            }
+          }
+        },
+        "gun_path": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "lon", "lat"],
+            "properties": {
+              "name": {"type": "string"},
+              "lon": {"$ref": "zones.schema.json#/$defs/lon"},
+              "lat": {"$ref": "zones.schema.json#/$defs/lat"}
+            }
+          }
+        },
+        "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+      }
+    },
+    "robes": {
+      "description": "Хорнадей 1889: вывоз бизоньих шкур железной дорогой Atchison, Topeka & Santa Fe и пересчёт полковника Доджа.",
+      "type": "object",
+      "required": ["railroad", "total_slaughter", "cody", "sources"],
+      "additionalProperties": false,
+      "properties": {
+        "railroad": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["year", "hides", "sources"],
+            "properties": {
+              "year": {"type": "integer"},
+              "hides": {"type": "integer", "minimum": 0},
+              "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+            }
+          }
+        },
+        "method": {"type": "string", "description": "Как Додж пересчитывал шкуры в убитых животных."},
+        "total_slaughter": {
+          "type": "object",
+          "required": ["value", "what", "sources"],
+          "properties": {
+            "value": {"type": "integer"},
+            "what": {"type": "string"},
+            "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+          }
+        },
+        "cody": {"type": "string", "description": "Контракт Коди с Kansas Pacific — словами."},
+        "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+      }
+    },
+    "wealth": {
+      "description": "Неравенство по лошадям у черноногих (пеганов) по Юэрсу.",
+      "type": "object",
+      "required": ["wealthy_share", "poor_share", "threshold", "sources"],
+      "additionalProperties": false,
+      "properties": {
+        "wealthy_share": {"type": "string"},
+        "poor_share": {"type": "string"},
+        "threshold": {"type": "string", "description": "Сколько лошадей считали богатством."},
+        "richest": {"type": "string"},
+        "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+ "meta": {
+  "title": "Глава 8: эпоха баланса — войны, договоры, потеря рычага",
+  "schema": "balance.schema.json",
+  "license": "CC BY 4.0",
+  "notes": [
+   "Полоса события на схеме — год начала и год конца (для войн); точечные события — точка.",
+   "Тексты договоров (Париж 1763, Прокламация, Гринвилл, Гент) читаны по Avalon Project; события, известные только по сводкам, снабжены честной пометкой в loc."
+  ]
+ },
+ "events": [
+  {"id": "quilin", "year": 1641, "end": null, "label": "первый большой парламент с мапуче — Кильин", "track": "parallel", "kind": "treaty", "sides": "Испания — мапуче", "note": "фактическая граница по Био-Био", "sources": [{"ref": "ovalle1646", "loc": "только описание"}, {"ref": "bengoa1985", "loc": "только описание"}]},
+  {"id": "beaver_dispersals", "year": 1649, "end": 1651, "label": "«бобровые войны»: рассеяние вендов и нейтралов", "track": "northeast", "kind": "war", "sides": "Лига хауденосауни — венды, нейтралы, петуны", "sources": [{"ref": "tce-iroquoiswars", "loc": "разд. «Dispersals of First Nations»"}]},
+  {"id": "montreal1701", "year": 1701, "end": null, "label": "Великий монреальский мир: 39 народов, нейтралитет Лиги", "track": "northeast", "kind": "treaty", "sides": "Франция и союзники — Лига", "note": "1300 делегатов", "sources": [{"ref": "jaenen2006", "loc": "разд. «Terms and Significance»"}]},
+  {"id": "utrecht", "year": 1713, "end": null, "label": "Утрехтский мир: Британия получает Акадию и Гудзонов залив", "track": "northeast", "kind": "loss", "sides": "Британия — Франция", "note": "«пять наций» названы подданными Великобритании (ст. XV)", "sources": [{"ref": "white1991", "loc": "по тексту книги (OCR-копия)"}]},
+  {"id": "brim", "year": 1718, "end": null, "label": "Крикская политика нейтралитета между тремя державами", "track": "southeast", "kind": "event", "sides": "маскоги между Испанией, Францией, Британией", "note": "«император» Брим, Ковета", "sources": [{"ref": "hahn2007", "loc": "разделы о дипломатии"}]},
+  {"id": "chickasaw_wars", "year": 1721, "end": 1763, "label": "Чикасские войны: Франция так и не победила чикасо", "track": "southeast", "kind": "war", "sides": "Франция с чокто — чикасо с Британией", "sources": [{"ref": "obrien2007", "loc": "разделы о войнах"}]},
+  {"id": "choctaw_civil", "year": 1747, "end": 1750, "label": "гражданская война чокто: Франция против Британии через торговлю", "track": "southeast", "kind": "war", "sources": [{"ref": "obrien2007", "loc": "там же"}]},
+  {"id": "neutrality1753", "year": 1753, "end": null, "label": "Онондага провозглашает нейтралитет Лиги", "track": "northeast", "kind": "event", "note": "«два вора дерутся из-за имущества ирокезов» (Уайт, по Рраксоллу)", "sources": [{"ref": "white1991", "loc": "гл. о Семилетней войне (OCR-копия)"}]},
+  {"id": "paris1763", "year": 1763, "end": null, "label": "Парижский мир: Франция уступает Канаду и уходит с материка", "track": "northeast", "kind": "loss", "sides": "Британия — Франция — Испания", "note": "Франции остаются острова Сен-Пьер и Микелон «под рыбаков»", "sources": [{"ref": "paris1763", "loc": "ст. IV, VI"}]},
+  {"id": "pontiac", "year": 1763, "end": 1766, "label": "война Понтиака: взяты восемь фортов", "track": "northeast", "kind": "war", "sides": "конфедерация народов — Британия", "note": "по сводкам; детали — см. сноску в главе", "sources": [{"ref": "calloway2006", "loc": "только описание"}]},
+  {"id": "proclamation", "year": 1763, "end": null, "label": "Королевская прокламация: «охотничьи угодья», покупка только короной", "track": "northeast", "kind": "treaty", "sources": [{"ref": "proclamation1763", "loc": "полный текст"}]},
+  {"id": "stanwix1768", "year": 1768, "end": null, "label": "Форт-Стануикс: линия сдвинута к Огайо", "track": "northeast", "kind": "treaty", "sources": [{"ref": "white1991", "loc": "по тексту книги (OCR-копия)"}]},
+  {"id": "quebec1774", "year": 1774, "end": null, "label": "Квебекский акт: земли Огайо включены в Квебек", "track": "northeast", "kind": "event", "sources": [{"ref": "white1991", "loc": "по тексту книги (OCR-копия)"}]},
+  {"id": "oriskany", "year": 1777, "end": null, "label": "Ориске: раскол Лиги — гражданская война хауденосауни", "track": "northeast", "kind": "war", "sides": "онейда и тускарора с американцами, четыре нации с Британией", "sources": [{"ref": "calloway2006", "loc": "только описание"}]},
+  {"id": "haldimand", "year": 1784, "end": null, "label": "прокламация Халдиманда: долина Гранд-Ривер союзникам Британии", "track": "northeast", "kind": "event", "note": "перепись 1785 г. — 1843 человека", "sources": [{"ref": "calloway2006", "loc": "только описание"}]},
+  {"id": "stclair", "year": 1791, "end": null, "label": "разгром Сент-Клэра", "track": "northeast", "kind": "war", "sides": "конфедерация Маленькой Черепахи — армия США", "note": "около двух третей из 1400+ человек — потери; убитых 600", "sources": [{"ref": "white1991", "loc": "гл. о конфедерации (OCR-копия)"}]},
+  {"id": "greenville", "year": 1795, "end": null, "label": "Гринвилл: 12 народов уступают земли, рента 9500 долларов в год", "track": "northeast", "kind": "treaty", "sources": [{"ref": "greenville1795", "loc": "ст. 1–4"}]},
+  {"id": "fortwayne", "year": 1809, "end": null, "label": "Форт-Уэйн: более 3 млн акров; Текумсе отвергает сделку", "track": "northeast", "kind": "treaty", "sources": [{"ref": "calloway2006", "loc": "только описание"}]},
+  {"id": "tippecanoe", "year": 1811, "end": null, "label": "Типпекану: Протфетаун сожжён", "track": "northeast", "kind": "war", "sources": [{"ref": "calloway2006", "loc": "только описание"}]},
+  {"id": "horseshoe", "year": 1814, "end": null, "label": "Хорсшу-Бенд и форт-Джексон: 21 млн акров у криков", "track": "southeast", "kind": "war", "sides": "США с чероки и нижними криками — красные палки", "sources": [{"ref": "hahn2007", "loc": "разделы о войне Красных палок"}]},
+  {"id": "thames", "year": 1813, "end": null, "label": "битва на Темзе; гибель Текумсе", "track": "northeast", "kind": "war", "sources": [{"ref": "calloway2006", "loc": "только описание"}]},
+  {"id": "ghent", "year": 1814, "end": null, "label": "Гентский мир, ст. IX: «вернуть племенам владения, права и привилегии» 1811 г.", "track": "northeast", "kind": "treaty", "note": "США статью не исполнили", "sources": [{"ref": "ghent1814", "loc": "ст. IX"}]},
+  {"id": "negrete1803", "year": 1803, "end": null, "label": "последний большой колониальный парламент мапуче — Негрете", "track": "parallel", "kind": "treaty", "note": "по сводкам: 239 лонко, 3500 воинов", "sources": [{"ref": "bengoa1985", "loc": "только описание"}]}
+ ]
+}

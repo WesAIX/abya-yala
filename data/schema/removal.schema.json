@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "removal.schema.json",
+  "title": "Глава 9: удаления по народам, трилогия Маршалла, договорная машина",
+  "type": "object",
+  "required": ["meta", "removals", "marshall", "treaty_machine"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "license"],
+      "properties": {
+        "title": {"type": "string"},
+        "schema": {"type": "string"},
+        "license": {"type": "string"},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "removals": {
+      "description": "Удаления восточных народов за Миссисипи.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "people", "when", "removed", "deaths", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "people": {"type": "string"},
+          "when": {
+            "type": "object",
+            "required": ["start", "end", "dating"],
+            "properties": {
+              "start": {"type": "integer"},
+              "end": {"type": "integer"},
+              "dating": {"enum": ["documented", "approx", "conventional"]}
+            }
+          },
+          "removed": {
+            "type": "object",
+            "required": ["text", "sources"],
+            "properties": {
+              "value": {"type": "integer", "minimum": 0},
+              "low": {"type": "integer", "minimum": 0},
+              "high": {"type": "integer", "minimum": 0},
+              "text": {"type": "string", "description": "Число или диапазон словами, с автором."},
+              "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+            }
+          },
+          "deaths": {
+            "type": "object",
+            "required": ["text", "sources"],
+            "properties": {
+              "text": {"type": "string"},
+              "note": {"type": "string"},
+              "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+            }
+          },
+          "note": {"type": "string"},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+        }
+      }
+    },
+    "marshall": {
+      "description": "Три решения Верховного суда и конец договорного периода.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "year", "case", "holding", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "year": {"type": "integer", "minimum": 1800, "maximum": 1900},
+          "case": {"type": "string"},
+          "holding": {"type": "string", "description": "Что установило решение, коротко."},
+          "quote": {"type": "string", "description": "Дословная цитата из текста решения."},
+          "note": {"type": "string"},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+        }
+      }
+    },
+    "treaty_machine": {
+      "description": "Договорная система в цифрах: реестр Ройса, прекращение договоров, данные NARA.",
+      "type": "object",
+      "required": ["royce_cessions", "removal_treaties", "sources"],
+      "additionalProperties": false,
+      "properties": {
+        "royce_cessions": {
+          "type": "object",
+          "required": ["value", "what", "sources"],
+          "properties": {
+            "value": {"type": "integer"},
+            "what": {"type": "string"},
+            "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+          }
+        },
+        "removal_treaties": {
+          "type": "object",
+          "required": ["text", "sources"],
+          "properties": {
+            "text": {"type": "string", "description": "«около 70 договоров, почти 50 000 переселённых, 25 млн акров» — чьи данные."},
+            "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+          }
+        },
+        "henderson1835": {
+          "type": "object",
+          "required": ["indians", "whites", "slaves", "sources"],
+          "properties": {
+            "indians": {"type": "integer"},
+            "whites": {"type": "integer"},
+            "slaves": {"type": "integer"},
+            "note": {"type": "string"},
+            "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+          }
+        },
+        "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+      }
+    }
+  }
+}

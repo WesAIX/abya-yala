@@ -16,6 +16,7 @@ import re
 import sys
 import textwrap
 from collections.abc import Callable
+from itertools import pairwise
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -400,6 +401,21 @@ def ka_digits(t: dict) -> int | None:
     """Две цифры после запятой, если они есть в данных (14,22–13,98), иначе как в данных."""
     vals = [v for v in (t["from"], t["to"]) if v is not None]
     return 2 if any(round(v * 100) % 10 for v in vals) else None
+
+
+def wrap_words(s: str, limit: int) -> list[str]:
+    """Перенос по словам на строки не длиннее limit знаков — сколько нужно строк."""
+    out, line = [], ""
+    for w_ in s.split():
+        cand = f"{line} {w_}".strip()
+        if len(cand) > limit and line:
+            out.append(line)
+            line = w_
+        else:
+            line = cand
+    if line:
+        out.append(line)
+    return out
 
 
 def split_label(s: str, limit: int) -> list[str]:
@@ -5018,6 +5034,1902 @@ def fig_border(t: dict) -> str:
     )
 
 
+# ── Глава 6. Удар по центру
+
+
+def conquest() -> dict:
+    with (ROOT / "data" / "conquest.json").open(encoding="utf-8") as f:
+        return json.load(f)
+
+
+def fig_siege(t: dict) -> str:
+    """Рис. 6.1. Кто осаждал Теночтитлан: парные полосы «испанцы / союзники» на лог-шкале."""
+    c = conquest()["siege"]
+    w, h = 760, 500
+    x0, x1, top = 250, 726, 64
+    ink, muted = t["ink"], t["muted"]
+    span_c, ally_c = t["ink"], t["z-m"]
+    lo, hi = 100.0, 400000.0
+    rows = c["divisions"] + [None] + ["total"]  # None — отбивка перед итоговой полосой
+    yb = top + 16 + len([r for r in c["divisions"]]) * 44 + 30
+    import math
+
+    def px(v: float) -> float:
+        return x0 + (math.log10(v) - math.log10(lo)) / (math.log10(hi) - math.log10(lo)) * (x1 - x0)
+
+    b = ["<defs>", arrow_marker("head-total", muted, 5), "</defs>"]
+    for v in (100, 1000, 10000, 100000):
+        b.append(line(px(v), top - 14, px(v), yb + 6, t["rule"], 0.6))
+        b.append(text(px(v), yb + 22, grouped(v), muted, 11.5, "middle"))
+    b.append(text(x0 - 8, top - 18, "человек, шкала логарифмическая", muted, 12, "end"))
+
+    y = top + 16
+    total_span = 0
+    total_allies = 0
+    for row in rows:
+        if row is None:
+            b.append(line(x0 - 180, y + 4, x1, y + 4, t["rule"], 0.8))
+            y += 26
+            continue
+        if row == "total":
+            est = c["allies_total"]
+            x2 = px(est["value"])
+            b.append(rect(x0, y - 8, x2 - x0, 16, muted, 8, 0.35))
+            b.append(
+                f'<path d="M{x2 - 1:.1f},{y:.1f}L{x2 + 10:.1f},{y:.1f}" stroke="{muted}" '
+                'stroke-width="2" marker-end="url(#head-total)"/>'
+            )
+            b.append(text(x0 - 12, y + 4, "все союзники,", ink, 12.5, "end", 600))
+            b.append(text(x0 - 12, y + 19, "по подсчёту Кортеса", muted, 11.5, "end"))
+            b.append(text(x2 + 14, y + 4, f"{grouped(est['value'])}", ink, 13.5, "start", 700))
+            b.append(text(x2 + 14, y + 19, "«если верить Кортесу» — Прескотт", muted, 11.5))
+            continue
+        sp = row["spaniards"]
+        n_sp = sp["foot"] + sp["horse"] + sp["shooters"]
+        total_span += n_sp
+        total_allies += row["allies"]
+        b.append(text(x0 - 12, y - 2, row["commander"], ink, 12.5, "end", 600))
+        b.append(text(x0 - 12, y + 13, row["post"], muted, 11.5, "end"))
+        xs, xa = px(n_sp), px(max(row["allies"], lo))
+        b.append(rect(x0, y - 15, xs - x0, 10, span_c, 2, 0.9))
+        b.append(text(xs + 6, y - 6.5, f"{grouped(n_sp)} испанцев", ink, 11.5, "start", 600))
+        if row["allies"]:
+            b.append(rect(x0, y - 2, xa - x0, 10, ally_c, 2, 0.45))
+            b.append(text(xa + 6, y + 6.5, f"{grouped(row['allies'])}", ink, 11.5, "start", 600))
+            b.append(text(xa + 6, y + 20, row["allies_who"], muted, 11.5))
+        else:
+            b.append(text(x0 + 6, y + 6.5, row.get("note", ""), muted, 11.5))
+        y += 44
+
+    b.append(
+        text(
+            x1,
+            yb + 44,
+            f"Итого по спискам Диаса: {grouped(total_span)} испанцев"
+            f" и {grouped(total_allies)} союзников — больше двадцати на каждого",
+            ink,
+            12.5,
+            "end",
+            600,
+        )
+    )
+    b.append(
+        text(
+            x1,
+            yb + 61,
+            "Списки округлены и написаны спустя полвека; полоса 150 000 — оценка, не перепись",
+            muted,
+            11.5,
+            "end",
+        )
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Кто осаждал Теночтитлан в 1521 году",
+        "Парные полосы по соединениям осады: тёмная — испанцы (пехота, всадники, стрелки), "
+        "светлая — индейские союзники. Альварадо под Такубой: 198 испанцев и 8000 тлашкальтеков; "
+        "Олид под Койоаканом: 215 и 8000; Сандоваль у Истапалапана: 188 и 8000 воинов чалько и "
+        "уэшоцинко; Кортес на бригантинах: 325. Ниже — 150 000 воинов-союзников, общая оценка "
+        "Кортеса (у Прескотта, с оговоркой «если верить Кортесу»). Итог по спискам: 926 испанцев "
+        "и 24 000 союзников. Шкала логарифмическая.",
+    )
+
+
+def fig_switch(t: dict) -> str:
+    """Рис. 6.4. Переключение пирамиды: захвачен верхний ярус, сбор дани и повинности — те же."""
+    w, h = 760, 470
+    ink, muted = t["ink"], t["muted"]
+    old_c, mid_c, new_c = t["muted"], t["z-m"], t["z-s"]
+    cols = [
+        {
+            "x": 60,
+            "title": "Мезоамерика",
+            "old": "Тройственный союз",
+            "old2": "столицы и склады дани",
+            "new": "корона и энкомьендеро",
+            "mid": "местные правители, сбор дани по спискам",
+            "bot": "общины-плательщики",
+            "fact": "осада Теночтитлана: 926 испанцев и 24 000 союзников (Диас)",
+        },
+        {
+            "x": 420,
+            "title": "Анды",
+            "old": "Тауантинсуйу",
+            "old2": "Инка, дороги, склады",
+            "new": "корона и рудники Потоси",
+            "mid": "повинность мита, учёт на кипу",
+            "bot": "общины-работники",
+            "fact": "с 1573 г. — одна седьмая взрослых мужчин, около 13 000 в год (сводки)",
+        },
+    ]
+    b = ["<defs>", arrow_marker("head-sw", new_c, 5), "</defs>"]
+    for col in cols:
+        x = col["x"]
+        cwid = 280
+        b.append(text(x + cwid / 2, 34, col["title"], ink, 16, "middle", 700))
+        # прежняя вершина — зачёркнутая
+        b.append(rect(x, 54, cwid, 46, old_c, 4, 0.22))
+        b.append(text(x + cwid / 2, 74, col["old"], muted, 12.5, "middle", 600))
+        b.append(text(x + cwid / 2, 90, col["old2"], muted, 11.5, "middle"))
+        b.append(line(x + 8, 77, x + cwid - 8, 77, t["ink"], 2.2))
+        # новая вершина со стрелкой вниз
+        b.append(rect(x, 122, cwid, 46, new_c, 4, 0.8))
+        b.append(text(x + cwid / 2, 142, col["new"], ink, 12.5, "middle", 700, halo=new_c))
+        b.append(text(x + cwid / 2, 158, "захвачен этот ярус", ink, 11.5, "middle", halo=new_c))
+        b.append(
+            f'<path d="M{x + 26:.1f},100L{x + 26:.1f},116" stroke="{new_c}" stroke-width="2" '
+            'marker-end="url(#head-sw)"/>'
+        )
+        # ярусы, которые не меняются
+        b.append(rect(x, 184, cwid, 40, mid_c, 4, 0.30))
+        b.append(text(x + cwid / 2, 201, "не меняется:", muted, 11.5, "middle", 600))
+        b.append(text(x + cwid / 2, 216, col["mid"], ink, 12, "middle"))
+        b.append(rect(x, 234, cwid, 40, mid_c, 4, 0.16))
+        b.append(text(x + cwid / 2, 258, col["bot"], ink, 12, "middle"))
+        # факт внизу колонки
+        for k, s1 in enumerate(split_label(col["fact"], 44)):
+            b.append(text(x + cwid / 2, 300 + k * 15, s1, muted, 11.5, "middle"))
+    b.append(
+        text(
+            w / 2,
+            356,
+            "Стрелка не значит, что люди те же: меняется адресат дани и труда,",
+            ink,
+            12.5,
+            "middle",
+        )
+    )
+    b.append(text(w / 2, 373, "а общины и знать поначалу остаются на местах", ink, 12.5, "middle"))
+    b.append(
+        text(
+            w / 2,
+            h - 26,
+            "Схема: упрощение — обе державы устроены сложнее (гл. 3)",
+            muted,
+            12.5,
+            "middle",
+            400,
+            halo=t["bg"],
+        )
+    )
+    b.append(text(w / 2, h - 10, "числа — в тексте главы со сносками", muted, 11.5, "middle"))
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Переключение пирамиды власти",
+        "Две колонки. Мезоамерика: зачёркнутая вершина «Тройственный союз — столицы и склады дани» "
+        "заменена на «корона и энкомьендеро»; ниже, без изменений, — «местные правители, сбор дани "
+        "по спискам» и «общины-плательщики». Анды: вершина «Тауантинсуйу — Инка, дороги, склады» "
+        "заменена на «корона и рудники Потоси»; ниже — «повинность мита, учёт на кипу» и «общины-"
+        "работники». Захвачен только верхний ярус. Внизу: осада Теночтитлана — 926 испанцев и "
+        "24 000 союзников; мита с 1573 г. — одна седьмая взрослых мужчин, около 13 000 в год. "
+        "Схема: упрощение.",
+    )
+
+
+def fig_falls6(t: dict) -> str:
+    """Рис. 6.6. Сколько держались: полосы от первого столкновения до утраты самостоятельности."""
+    falls = conquest()["falls"]
+    w, h = 760, 600
+    x0, x1, top = 230, 736, 58
+
+    def yrs_word(n: int) -> str:
+        if n % 10 == 1 and n % 100 != 11:
+            return f"{n} год"
+        if 2 <= n % 10 <= 4 and not 12 <= n % 100 <= 14:
+            return f"{n} года"
+        return f"{n} лет"
+
+    ink, muted = t["ink"], t["muted"]
+    zone_c = {"north": t["z-n"], "meso": t["z-m"], "south": t["z-s"], "transition": t["z-t"]}
+    y0, y1 = 1519, 1700
+
+    def px(yr: float) -> float:
+        return x0 + (yr - y0) / (y1 - y0) * (x1 - x0)
+
+    b = ["<defs>", arrow_marker("head-open", zone_c["south"], 5), "</defs>"]
+    for yr in range(1520, 1701, 20):
+        b.append(line(px(yr), top - 10, px(yr), top + len(falls) * 56 + 6, t["rule"], 0.6))
+        b.append(text(px(yr), top + len(falls) * 56 + 22, str(yr), muted, 11.5, "middle"))
+    # Вилькабамба — продолжение строки Тауантинсуйу
+    cont = {f["id"]: f for f in falls}
+    y = top
+    for f in falls:
+        c = zone_c[f["zone"]]
+        a = px(f["start"]["year"])
+        z = px(f["end"]["year"]) if "end" in f else None
+        b.append(text(x0 - 10, y - 8, f["label"], ink, 12.5, "end", 600))
+        yrs = (f["end"]["year"] if "end" in f else 1700) - f["start"]["year"]
+        dur = yrs_word(yrs)
+        if f["status"] == "open":
+            b.append(rect(a, y - 16, x1 - a - 14, 24, c, 3, 0.42))
+            b.append(
+                f'<path d="M{x1 - 18:.1f},{y - 4:.1f}L{x1 - 4:.1f},{y - 4:.1f}" stroke="{c}" '
+                'stroke-width="2.6" marker-end="url(#head-open)"/>'
+            )
+            b.append(
+                text(
+                    (a + x1) / 2,
+                    y + 12,
+                    "не покорены; парламенты — гл. 8",
+                    t["bg"],
+                    11.5,
+                    "middle",
+                    600,
+                    halo=c,
+                )
+            )
+        else:
+            op = 0.5 if f["status"] == "fallen" else 0.32
+            dash = (
+                f' stroke="{c}" stroke-width="1.4" stroke-dasharray="5 3"'
+                if f["status"] == "submitted"
+                else ""
+            )
+            b.append(rect(a, y - 16, z - a, 24, c, 3, op, dash))
+            b.append(text((a + z) / 2, y - 1, dur, ink, 11.5, "middle", 600, halo=t["bg"]))
+        b.append(text(a, y + 26, str(f["start"]["year"]), ink, 11.5, "middle", 600, halo=t["bg"]))
+        if z is not None:
+            b.append(text(z, y + 26, str(f["end"]["year"]), ink, 11.5, "middle", 600, halo=t["bg"]))
+        if f["id"] == "itza":
+            b.append(
+                text(
+                    (a + z) / 2,
+                    y + 41,
+                    "полоса от высадки Монтехо на Юкатане; сами ица не воевали все эти годы",
+                    muted,
+                    11,
+                    "middle",
+                    halo=t["bg"],
+                )
+            )
+        if f["id"] == "purepecha":
+            b.append(
+                text(
+                    (a + z) / 2,
+                    y + 41,
+                    "сдались без разгрома; полоса — до казни касонси",
+                    muted,
+                    11,
+                    "middle",
+                    halo=t["bg"],
+                )
+            )
+        if f["id"] == "tauantinsuyu":
+            vc = cont["vilcabamba"]
+            va, vz = px(vc["start"]["year"]), px(vc["end"]["year"])
+            b.append(rect(va, y - 16, vz - va, 24, c, 3, 0.24))
+            b.append(
+                text(
+                    (va + vz) / 2,
+                    y - 1,
+                    f"{vc['end']['year'] - vc['start']['year']} лет",
+                    t["bg"],
+                    11.5,
+                    "middle",
+                    600,
+                    halo=c,
+                )
+            )
+            b.append(
+                text(vz + 6, y - 1, "Вилькабамба — до 1572", muted, 11.5, "start", halo=t["bg"])
+            )
+        y += 56
+    ly = top + len(falls) * 56 + 44
+    for k, (zid, name) in enumerate(
+        (("meso", "Мезоамерика"), ("south", "Анды и юг"), ("transition", "переходная зона"))
+    ):
+        lx = x0 + k * 180
+        b.append(rect(lx, ly - 9, 26, 12, zone_c[zid], 3, 0.5))
+        b.append(text(lx + 34, ly + 1, name, ink, 12))
+    b.append(
+        text(
+            w - 14,
+            h - 10,
+            "Схема по данным главы: у каждого народа своё начало и конец — определение в тексте",
+            muted,
+            11.5,
+            "end",
+        )
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Сколько держались: от первого столкновения до утраты самостоятельности",
+        "Полосы на шкале 1519–1700. Тройственный союз: 1519–1521, 2 года. Тауантинсуйу: 1532–1533 "
+        "и продолжение — Вилькабамба 1536–1572 (36 лет). Пурепеча: 1522–1530, полоса пунктиром — "
+        "сдались без разгрома, конец — казнь касонси. Майя Юкатана: 1527–1546. Ица: 1527–1697, "
+        "170 лет, с пометкой, что полоса ведётся от высадки Монтехо, а сами ица не воевали всё это "
+        "время. «Чичимеки»: 1549–1591. Мапуче: от 1541 без конца — не покорены; парламенты. Цвет — "
+        "культурная зона.",
+    )
+
+
+# ── Глава 5. Эпидемии
+
+
+def epidemics() -> dict:
+    with (ROOT / "data" / "epidemics.json").open(encoding="utf-8") as f:
+        return json.load(f)
+
+
+def fig_estimates5(t: dict) -> str:
+    """Рис. 5.1. Оценки численности 1492 г. по регионам: точки и диапазоны разных авторов."""
+    e = epidemics()["estimates_1492"]
+    import math
+
+    w = 760
+    row_h = 62
+    top = 58
+    h = top + len(e) * row_h + 76
+    x0, x1 = 40, 552
+    ink, muted = t["ink"], t["muted"]
+    lo, hi = 0.3, 130.0
+
+    def px(v: float) -> float:
+        return x0 + (math.log10(v) - math.log10(lo)) / (math.log10(hi) - math.log10(lo)) * (x1 - x0)
+
+    b = []
+    for v in (0.5, 1, 2, 5, 10, 20, 50, 100):
+        b.append(line(px(v), top - 12, px(v), top + len(e) * row_h - 6, t["rule"], 0.6))
+        b.append(text(px(v), top + len(e) * row_h + 12, grouped(int(v)), muted, 11, "middle"))
+    b.append(text(x1 - 2, top - 20, "млн человек, шкала логарифмическая", muted, 11.5, "end"))
+    for k, est in enumerate(e):
+        y0 = top + k * row_h
+        b.append(text(x0, y0 - 14, est["region"], ink, 12.5, "start", 700))
+        for j, en in enumerate(est["entries"]):
+            y = y0 - 2 + j * 11
+            c = t["z-s"] if k == 0 else t["z-t"]
+            if "low" in en:  # диапазон; точка внутри — если задана
+                a, z = px(en["low"]), px(en["high"])
+                b.append(rect(a, y - 2.5, z - a, 5, c, 2, 0.45))
+                if "point" in en:
+                    b.append(mark("circle", px(en["point"]), y, c, c, t["bg"], 3.2))
+            else:
+                b.append(mark("circle", px(en["point"]), y, c, c, t["bg"], 3.6))
+            edge = px(max(en.get("high", 0), en.get("point", 0), en.get("low", 0)))
+            b.append(text(edge + 6, y + 3.5, en["short"], ink, 10.5, "start"))
+    ly = top + len(e) * row_h + 30
+    b.append(mark("circle", x0 + 6, ly, t["z-t"], t["z-t"], t["bg"], 3.6))
+    b.append(text(x0 + 16, ly + 4, "точечная оценка", ink, 11.5))
+    b.append(rect(x0 + 140, ly - 2.5, 26, 5, t["z-t"], 2, 0.45))
+    b.append(text(x0 + 174, ly + 4, "диапазон (разброс авторов, не интервал)", ink, 11.5))
+    b.append(
+        text(
+            x1 + 6,
+            ly + 4,
+            "первая строка — всё полушарие",
+            muted,
+            11,
+        )
+    )
+    b.append(
+        text(
+            w - 10,
+            h - 8,
+            "Разброс оценок — позиция авторов; средней линии нет намеренно",
+            muted,
+            11.5,
+            "end",
+        )
+    )
+    rows_desc = "; ".join(f"{est['region']}: {len(est['entries'])} оценок" for est in e)
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Сколько людей жило в Америках в 1492 году",
+        f"Семь строк по регионам, на каждой — оценки разных авторов точками и диапазонами на "
+        f"логарифмической шкале от 0,3 до 130 млн человек. {rows_desc}. Полушарие: Кробер и др. "
+        "8–15; Уитмор 43; Добинс 90 и 112; Деневан 53,9; Кох и соавторы 60,5 (44,8–78,2). "
+        "Разброс оценок — позиция авторов, средней линии нет намеренно.",
+    )
+
+
+def fig_waves5(t: dict) -> str:
+    """Рис. 5.2. Волны эпидемий по регионам, XVI–XIX вв."""
+    waves = epidemics()["waves"]
+    lanes = [
+        ("caribbean", "Карибы"),
+        ("mesoamerica", "Мезоамерика"),
+        ("andes", "Анды"),
+        ("northeast", "Северо-восток"),
+        ("southeast", "Юго-Восток"),
+        ("plains", "Равнины"),
+    ]
+    lane_h = 64
+    top = 64
+    w = 760
+    h = top + len(lanes) * lane_h + 66
+    x0, x1 = 122, 726
+    y0, y1 = 1505, 1860
+    ink, muted = t["ink"], t["muted"]
+    lane_c = {
+        "caribbean": t["z-m"],
+        "mesoamerica": t["z-s"],
+        "andes": t["z-t"],
+        "northeast": t["z-n"],
+        "southeast": t["z-m"],
+        "plains": t["z-n"],
+    }
+    lane_c["southeast"] = t["z-t"]
+
+    def px(yr: float) -> float:
+        return x0 + (yr - y0) / (y1 - y0) * (x1 - x0)
+
+    b = ["<defs>"]
+    fade = '<filter id="blur-bar"><feGaussianBlur stdDeviation="1.1"/></filter>'
+    b.append(fade)
+    b.append("</defs>")
+    for yr in range(1520, 1861, 40):
+        b.append(line(px(yr), top - 10, px(yr), top + len(lanes) * lane_h - 8, t["rule"], 0.6))
+        b.append(text(px(yr), top + len(lanes) * lane_h + 8, str(yr), muted, 11, "middle"))
+    for k, (lid, name) in enumerate(lanes):
+        y = top + k * lane_h + 18
+        c = lane_c[lid]
+        b.append(text(x0 - 8, y - 4, name, ink, 12, "end", 600))
+        for wv in [wv for wv in waves if wv["region"] == lid]:
+            a, z = px(wv["when"]["start"]), px(wv["when"]["end"])
+            fuzzy = wv["when"]["dating"] != "documented"
+            if fuzzy:
+                b.append(
+                    f'<rect x="{a - 6:.1f}" y="{y - 11}" width="{z - a + 12:.1f}" height="18" '
+                    f'fill="{c}" opacity=".28" filter="url(#blur-bar)"/>'
+                )
+            b.append(rect(a, y - 8, z - a, 12, c, 5, 0.8 if not fuzzy else 0.5))
+            dis = wv["disease"].split(",")[0].split("(")[0].strip()
+            if dis.endswith("?"):
+                dis = dis[:-1] + "?"
+            b.append(
+                text((a + z) / 2, y - 2, dis, t["bg"], 10.5, "middle", 600, halo=c)
+                if z - a > 44
+                else text(z + 6, y - 2, dis, ink, 10.5, "start", 600, halo=t["bg"])
+            )
+            lbl = wv["when"].get("label") or str(wv["when"]["start"])
+            b.append(text((a + z) / 2, y + 18, lbl, muted, 10.5, "middle", halo=t["bg"]))
+            d = wv.get("deaths", {})
+            if d.get("low"):
+                b.append(
+                    text(
+                        (a + z) / 2,
+                        y + 31,
+                        f"{num(d['low'])}–{num(d['high'])} млн погибших",
+                        ink,
+                        10.5,
+                        "middle",
+                        600,
+                        halo=t["bg"],
+                    )
+                )
+    b.append(
+        text(
+            x0,
+            h - 24,
+            "Полосы размыты там, где годы известны приблизительно;",
+            muted,
+            11.5,
+            "start",
+        )
+    )
+    b.append(
+        text(
+            x0,
+            h - 9,
+            "вопрос у андской волны — спор о диагнозе (текст главы)",
+            muted,
+            11.5,
+            "start",
+        )
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Волны эпидемий по регионам, XVI–XIX века",
+        "Шкала 1505–1860 с шестью дорожками. Карибы: оспа 1518–1519. Мезоамерика: оспа 1520–1521 "
+        "(5–8 млн погибших по одной сводке, 30–50% населения — по другой) и кокольицтли 1545–1548 "
+        "(5–15 млн) и 1576–1581 (2–2,5 млн). Анды: оспа? 1520-е — диагноз спорен. Северо-восток: "
+        "неизвестная болезнь 1616–1619, гипотеза — лептоспироз. Юго-Восток: оспа 1696–1700. "
+        "Равнины: оспа 1781–1782 и 1837–1838. Полосы размыты там, где даты приблизительны.",
+    )
+
+
+def fmt_iqr(x: dict, unit: str) -> str:
+    """«55,8 млн га (39,0–78,4)» — точка и межквартильный размах из данных Коха."""
+    return f"{num(x['point'])}{unit} ({num(x['low'])}–{num(x['high'])})"
+
+
+def fig_koch5(t: dict) -> str:
+    """Рис. 5.6. Великая убыль 1492–1600 и след в атмосфере (Koch et al. 2019)."""
+    k = epidemics()["koch2019"]
+    w, h = 760, 470
+    ink, muted = t["ink"], t["muted"]
+    c = t["z-t"]
+    # левая панель: население
+    lx0, lx1, ltop, lbot = 70, 348, 70, 380
+
+    def py(v: float) -> float:
+        return lbot - (v - 1) / (100 - 1) * (lbot - ltop)
+
+    import math
+
+    def ly(v: float) -> float:
+        return lbot - (math.log10(v) - math.log10(1)) / (math.log10(100) - math.log10(1)) * (
+            lbot - ltop
+        )
+
+    b = []
+    b.append(text((lx0 + lx1) / 2, 34, "население обеих Америк, млн", ink, 13, "middle", 700))
+    for v in (5, 10, 20, 50, 100):
+        b.append(line(lx0, ly(v), lx1, ly(v), t["rule"], 0.6))
+        b.append(text(lx0 - 8, ly(v) + 4, str(v), muted, 11, "end"))
+    p0, p1 = k["pop1492"], k["pop1600"]
+    b.append(rect(lx0, ly(p0["high"]), lx1 - lx0, ly(p0["low"]) - ly(p0["high"]), c, 3, 0.25))
+    b.append(rect(lx0, ly(p1["high"]), lx1 - lx0, ly(p1["low"]) - ly(p1["high"]), c, 3, 0.25))
+    mid = catmull_rom(
+        [
+            (lx0, ly(p0["point"])),
+            ((lx0 + lx1) / 2, ly(math.sqrt(p0["point"] * p1["point"]))),
+            (lx1, ly(p1["point"])),
+        ]
+    )
+    b.append(polyline(mid, c, 2.6))
+    b.append(mark("circle", lx0, ly(p0["point"]), c, c, t["bg"], 4.4))
+    b.append(mark("circle", lx1, ly(p1["point"]), c, c, t["bg"], 4.4))
+    b.append(
+        text(
+            lx0 + 10,
+            ly(p0["high"]) - 8,
+            f"1492: {num(p0['point'])} ({num(p0['low'])}–{num(p0['high'])})",
+            ink,
+            12,
+            "start",
+            600,
+        )
+    )
+    b.append(
+        text(
+            lx1 - 10,
+            ly(p1["low"]) + 22,
+            f"1600: {num(p1['point'])} ({num(p1['low'])}–{num(p1['high'])})",
+            ink,
+            12,
+            "end",
+            600,
+        )
+    )
+    d = k["decline_pct"]
+    b.append(
+        text(
+            (lx0 + lx1) / 2,
+            lbot - 18,
+            f"−{num(d['point'])}% за столетие ({d['low']}–{d['high']}%)",
+            ink,
+            13.5,
+            "middle",
+            700,
+            halo=t["bg"],
+        )
+    )
+    # правая панель: след
+    rx0 = 408
+    b.append(text(rx0 + 150, 34, "след в земле и воздухе", ink, 13, "middle", 700))
+    rows = [
+        ("заброшенные земли", fmt_iqr(k["abandoned"], " млн га")),
+        ("связанный лесом углерод", fmt_iqr(k["carbon"], " Пг C")),
+        ("падение CO2 по модели", fmt_iqr(k["co2"]["modelled"], " ppm")),
+        ("наблюдаемый провал CO2", "7–10 ppm"),
+        ("охлаждение", k["cooling"]["text"]),
+    ]
+    for j, (a, c2) in enumerate(rows):
+        y = 86 + j * 52
+        b.append(rect(rx0, y, 300, 40, t["panel"], 6, 0.9))
+        b.append(text(rx0 + 14, y + 17, a, muted, 11.5, "start"))
+        b.append(text(rx0 + 14, y + 33, c2, ink, 13, "start", 600))
+    b.append(
+        text(
+            w - 12,
+            h - 10,
+            "Полосы — межквартильные размахи самой статьи: авторская неопределённость,",
+            muted,
+            11,
+            "end",
+        )
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Великая убыль и её след в атмосфере",
+        "Слева — население обеих Америк: 1492 г. — 60,5 млн (44,8–78,2), 1600 г. — 6,1 млн "
+        "(4,5–7,8); убыль 90% (87–92%) за столетие. Справа — след: заброшенные земли 55,8 млн га "
+        "(39,0–78,4), связанный лесом углерод 7,4 Пг (4,9–10,8), падение CO2 по модели 3,5 ppm "
+        "(2,3–5,1) против наблюдаемого провала 7–10 ppm, охлаждение около 0,15 °C. Полосы — "
+        "межквартильные размахи статьи Koch et al. 2019.",
+    )
+
+
+def fig_virgin(t: dict) -> str:
+    """Рис. 5.5. Модель «девственной почвы» и её критика: две панели."""
+    w, h = 760, 430
+    ink, muted = t["ink"], t["muted"]
+    old_c, new_c = t["muted"], t["z-s"]
+    b = ["<defs>", arrow_marker("head-v1", old_c, 5), arrow_marker("head-v2", new_c, 5), "</defs>"]
+
+    # левая панель: два звена
+    b.append(text(190, 40, "модель «девственной почвы»", ink, 13.5, "middle", 700))
+    b.append(rect(40, 56, 300, 74, old_c, 5, 0.10))
+    b.append(text(190, 84, "популяция без иммунитета", ink, 12.5, "middle", 600))
+    b.append(text(190, 102, "к новой болезни", muted, 11.5, "middle"))
+    b.append(
+        f'<path d="M190,134L190,168" stroke="{old_c}" stroke-width="2.2" '
+        'marker-end="url(#head-v1)"/>'
+    )
+    b.append(rect(40, 176, 300, 74, old_c, 5, 0.16))
+    b.append(text(190, 204, "высокая смертность", ink, 12.5, "middle", 600))
+    b.append(text(190, 222, "смертность — свойство болезни", muted, 11.5, "middle"))
+    b.append(text(190, 286, "одно звено, одна причина", muted, 11.5, "middle", 400, italic=True))
+
+    # правая панель: болезнь + факторы → смертность
+    b.append(text(570, 40, "после критики Джонса (2003)", ink, 13.5, "middle", 700))
+    b.append(rect(420, 56, 300, 40, new_c, 5, 0.18))
+    b.append(text(570, 81, "болезнь", ink, 12.5, "middle", 600))
+    factors = [
+        "война и резня",
+        "бегство, потеря урожая",
+        "рабство и угон в плен",
+        "голод, разруха хозяйства",
+        "некому ухаживать за больными",
+    ]
+    for j, name in enumerate(factors):
+        y = 108 + j * 30
+        b.append(rect(420, y, 300, 24, t["panel"], 4, 0.9))
+        b.append(text(570, y + 16.5, name, muted, 11.5, "middle"))
+    # собирающая скобка к одной стрелке
+    yb = 108 + len(factors) * 30 + 2
+    b.append(
+        f'<path d="M414,108H408V{yb:.1f}H414 M570,{yb:.1f}H408" stroke="{new_c}" '
+        'stroke-width="1.4" fill="none" opacity=".85"/>'
+    )
+    b.append(
+        f'<path d="M570,{yb:.1f}L570,288" stroke="{new_c}" stroke-width="2.2" '
+        'marker-end="url(#head-v2)"/>'
+    )
+    b.append(text(582, (108 + yb) / 2, "вместе", muted, 11.5, "start"))
+    b.append(rect(420, 296, 300, 74, new_c, 5, 0.22))
+    b.append(text(570, 324, "смертность", ink, 12.5, "middle", 700))
+    b.append(text(570, 342, "не свойство болезни, а свойство ситуации", muted, 11.5, "middle"))
+    b.append(
+        text(
+            w / 2,
+            h - 22,
+            "Схема: болезнь одна и та же; слева она одна, справа — среди войны, рабства и голода",
+            ink,
+            12.5,
+            "middle",
+        )
+    )
+    b.append(
+        text(
+            w / 2,
+            h - 8,
+            "список факторов — по Джонсу (2003), дословно в тексте главы",
+            muted,
+            11,
+            "middle",
+        )
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Две картины смертности",
+        "Слева — модель девственной почвы Кросби: популяция без иммунитета к новой болезни — "
+        "высокая смертность (одно звено, одна причина). Справа — после критики Джонса: болезнь "
+        "и пять факторов — война и резня, бегство и потеря урожая, рабство и угон в плен, голод "
+        "и разруха хозяйства, некому ухаживать за больными — сходятся вместе к смертности. "
+        "Смертность — не свойство болезни, а свойство ситуации. Схема.",
+    )
+
+
+# ── Глава 7. Лошадь и ружьё
+
+
+def horses() -> dict:
+    with (ROOT / "data" / "horses.json").open(encoding="utf-8") as f:
+        return json.load(f)
+
+
+def fig_spread7(t: dict) -> str:
+    """Рис. 7.1. Когда народы равнин получили лошадей: метки на шкале, форма — надёжность."""
+    sp = sorted(horses()["spread"], key=lambda x: x["when"]["start"])
+    w = 760
+    top, row_h = 64, 30
+    h = top + len(sp) * row_h + 92
+    x0, x1 = 186, 730
+    y0, y1 = 1630, 1815
+    ink, muted = t["ink"], t["muted"]
+    doc_c, trad_c = t["z-t"], t["z-n"]
+
+    def px(yr: float) -> float:
+        return x0 + (yr - y0) / (y1 - y0) * (x1 - x0)
+
+    b = []
+    for yr in range(1640, 1801, 20):
+        b.append(line(px(yr), top - 10, px(yr), top + len(sp) * row_h - 6, t["rule"], 0.6))
+        b.append(text(px(yr), top + len(sp) * row_h + 10, str(yr), muted, 11, "middle"))
+    b.append(
+        text(
+            x1 - 2,
+            top - 20,
+            "усвоение лошадей западом материка: 1516–1599 гг. (Тейлор и соавторы)",
+            muted,
+            11.5,
+            "end",
+        )
+    )
+    for k, e in enumerate(sp):
+        y = top + 12 + k * row_h
+        c = doc_c if e["kind"] == "document" else trad_c
+        b.append(text(x0 - 10, y + 4, e["people"], ink, 11.5, "end", 600))
+        w_ = e["when"]
+        a = px(w_["start"])
+        if w_.get("end"):
+            z = px(w_["end"])
+            b.append(line(a, y, z, y, c, 3.4))
+            b.append(
+                text(
+                    (a + z) / 2,
+                    y - 6,
+                    w_.get("label") or f"{w_['start']}–{w_['end']}",
+                    muted,
+                    10.5,
+                    "middle",
+                    halo=t["bg"],
+                )
+            )
+            b.append(mark("circle", a, y, c, c, t["bg"], 3.4))
+            b.append(mark("circle", z, y, c, c, t["bg"], 3.4))
+        else:
+            shape = "circle" if e["kind"] == "document" else "diamond"
+            b.append(mark(shape, a, y, c, c, t["bg"], 4.4))
+            b.append(
+                text(
+                    a,
+                    y - 7,
+                    w_.get("label") or str(w_["start"]),
+                    muted,
+                    10.5,
+                    "middle",
+                    halo=t["bg"],
+                )
+            )
+        b.append(text(x1 + 0, y + 4, "", muted, 10))  # выравниватель колонки
+    ly = top + len(sp) * row_h + 34
+    b.append(mark("circle", x0 + 4, ly, doc_c, doc_c, t["bg"], 4.4))
+    b.append(text(x0 + 14, ly + 4, "запись современника", ink, 11.5))
+    b.append(mark("diamond", x0 + 190, ly, t["bg"], trad_c, t["bg"], 4.6))
+    b.append(text(x0 + 200, ly + 4, "традиция или оценка историка", ink, 11.5))
+    b.append(text(x1, ly + 4, "почти все даты — из одного свода: Юэрс 1955", muted, 11.5, "end"))
+    b.append(
+        text(
+            x0,
+            h - 10,
+            "Точка Тейлора и соавторов (1516–1599) левее шкалы:",
+            muted,
+            11.5,
+        )
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Когда народы равнин получили лошадей",
+        "Шкала 1630–1815, по строке на народ: юты около 1640 (традиция); равнинные апачи 1659 "
+        "(угон скота — документ); кайова 1682 (торговля лошадьми); каддо 1690 («нет хижины без "
+        "четырёх-пяти лошадей»); команчи 1705–1706 (первые записи); северные шошоны 1729–1734 "
+        "(рассказ Сокамопи); арикара и деревни Миссури 1738; арапахо с 1740-х; кроу к 1750; "
+        "лакота 1750–1775; шайенны около 1766; ассинибойны около 1766; черноногие 1772 (все "
+        "конные); равнинные кри 1789; равнинные оджибве 1800–1806. Форма метки — надёжность: "
+        "круг — запись современника, ромб — традиция или оценка.",
+    )
+
+
+FR7_W, FR7_MAP_H, FR7_KEY_H = 760, 600, 118
+FR7_CENTER = (-101.5, 42.5)
+FR7_FIT = [(-116.5, 48.7), (-85.5, 48.7), (-116.5, 33.8), (-85.5, 33.8)]
+
+
+def fig_frontiers7(t: dict) -> str:
+    """Рис. 7.2. Два фронтира: лошадь с юго-запада, ружьё с северо-востока; встреча у Миссури."""
+    fr = horses()["frontiers"]
+    w, mh = FR7_W, FR7_MAP_H
+    h = mh + FR7_KEY_H
+    pr = map_projection(FR7_CENTER, FR7_FIT, w, mh)
+    land_d, lakes_d = basemap_paths(pr, w, mh)
+    ink, muted = t["ink"], t["muted"]
+    horse_c, gun_c = t["z-t"], t["z-n"]
+
+    def xy(lon, lat):
+        return pr(lon, lat)
+
+    b = [
+        "<defs>",
+        f'<clipPath id="frame"><rect width="{w}" height="{mh}"/></clipPath>',
+        f'<path id="land7" d="{land_d}"/>',
+        arrow_marker("head-h7", horse_c, 5),
+        arrow_marker("head-g7", gun_c, 5),
+        "</defs>",
+        '<g clip-path="url(#frame)">',
+        f'<use href="#land7" fill="{t["panel"]}"/>',
+        f'<path d="{lakes_d}" fill="{t["bg"]}" stroke="{muted}" stroke-width=".4" '
+        'stroke-opacity=".5"/>',
+        f'<use href="#land7" fill="none" stroke="{muted}" stroke-width=".6" stroke-opacity=".6"/>',
+        "</g>",
+    ]
+    for lon, lat, s in ((-111.8, 50.3, "Канада"), (-94.5, 49.6, "")):
+        if s:
+            x, y = xy(lon, lat)
+            b.append(text(x, y, s, muted, 12, "middle", 400, SERIF, italic=True, halo=t["bg"]))
+    x, y = xy(-90.5, 47.5)
+    b.append(
+        text(x, y, "Верхние озёра", muted, 12, "middle", 400, SERIF, italic=True, halo=t["bg"])
+    )
+    x, y = xy(-100.5, 45.8)
+    b.append(text(x, y, "чёрная земля — равнины", muted, 11.5, "middle", italic=True))
+
+    # маршруты: цепочки точек с изгибом
+    def chain(points, color, marker, bend_sign):
+        return [
+            move_path(*xy(*a), *xy(*nxt), bend_sign * 0.08, color, 3.0, None, marker)
+            for a, nxt in pairwise(points)
+        ]
+
+    horse_pts = [tuple((p["lon"], p["lat"])) for p in fr["horse_path"]]
+    gun_pts = [tuple((p["lon"], p["lat"])) for p in fr["gun_path"]]
+    meet = (fr["meeting"]["lon"], fr["meeting"]["lat"])
+    b += chain([*horse_pts, meet], horse_c, "head-h7", 1)
+    b += chain([*gun_pts, meet], gun_c, "head-g7", -1)
+    for p in fr["horse_path"] + fr["gun_path"]:
+        x, y = xy(p["lon"], p["lat"])
+        b.append(mark("circle", x, y, t["bg"], horse_c, t["bg"], 3.4))
+        b.append(text(x, y - 8, p["name"], ink, 11, "middle", 600, halo=t["bg"]))
+    mx, my = xy(*meet)
+    b.append(mark("diamond", mx, my, t["bg"], t["ink"], t["bg"], 6.5))
+    for k, s1 in enumerate(split_label(fr["meeting"]["name"], 26)):
+        b.append(
+            text(
+                mx, my + 22 + k * 14, s1, ink, 11.5, "middle", 700 if k == 0 else 400, halo=t["bg"]
+            )
+        )
+    b.append(
+        text(
+            mx,
+            my + 64,
+            "«фронтир лошади встретил фронтир ружья»",
+            muted,
+            11,
+            "middle",
+            italic=True,
+            halo=t["bg"],
+        )
+    )
+    # подписи потоков
+    hx, hy = xy(-110.5, 41.0)
+    b.append(text(hx, hy, "фронтир лошади", horse_c, 13.5, "start", 700, halo=t["bg"]))
+    b.append(text(hx, hy + 16, "испанские табуны;", ink, 11.5, "start", halo=t["bg"]))
+    b.append(
+        text(hx, hy + 31, "продавать ружья испанцы запрещали", ink, 11.5, "start", halo=t["bg"])
+    )
+    gx, gy = xy(-89.0, 44.0)
+    b.append(text(gx, gy, "фронтир ружья", gun_c, 13.5, "start", 700, halo=t["bg"]))
+    b.append(text(gx, gy + 16, "французская и британская", ink, 11.5, "start", halo=t["bg"]))
+    b.append(text(gx, gy + 31, "торговля", ink, 11.5, "start", halo=t["bg"]))
+    b += scale_bar(pr, 26, mh - 26, [500], t, lon=-101.5, lat=41.5)
+    b.append(
+        text(24, 26, "Схема: направления, а не дороги", muted, 12.5, "start", 600, halo=t["bg"])
+    )
+
+    ky = mh + 34
+    b.append(mark("circle", 30, ky, horse_c, horse_c, t["bg"], 4))
+    b.append(text(40, ky + 4, "фронтир лошади (с юго-запада)", ink, 12))
+    b.append(mark("circle", 300, ky, gun_c, gun_c, t["bg"], 4))
+    b.append(text(310, ky + 4, "фронтир ружья (с северо-востока)", ink, 12))
+    b.append(mark("diamond", 590, ky, t["bg"], t["ink"], t["bg"], 4.6))
+    b.append(text(600, ky + 4, "место встречи", ink, 12))
+    b.append(
+        text(
+            30,
+            ky + 24,
+            "Модель — Секой (1953; текст недоступен), формула встречи — Юэрс (1955, с. 62–63);",
+            muted,
+            11.5,
+        )
+    )
+    b.append(text(30, ky + 39, "точки — места подписей, не границы земель", muted, 11.5))
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Два фронтира: лошадь и ружьё",
+        "Схематическая карта равнин от Гудзонова залива до Нью-Мексико. Толстая стрелка с юго-"
+        "запада — фронтир лошади: от испанских табунов Нью-Мексико через ютов, команчей и "
+        "шошонов. Толстая стрелка с северо-востока — фронтир ружья: от Монреаля и факторий "
+        "Гудзонова залива через кри и ассинибойнов. Сходятся у деревень Верхней Миссури "
+        "(манданы, хидатсы, арикара): «фронтир лошади встретил фронтир ружья». Схема: "
+        "направления, а не дороги.",
+    )
+
+
+# ── Глава 8. Эпоха баланса
+
+
+def balance() -> dict:
+    with (ROOT / "data" / "balance.json").open(encoding="utf-8") as f:
+        return json.load(f)
+
+
+def fig_lever(t: dict) -> str:
+    """Рис. 8.3. Рычаг противоречий: три державы → две → одна."""
+    w, h = 760, 400
+    ink, muted = t["ink"], t["muted"]
+    on_c, off_c = t["z-t"], t["muted"]
+    b = ["<defs>", arrow_marker("head-l8", on_c, 5), "</defs>"]
+    cols = [
+        {
+            "x": 40,
+            "title": "1650–1763: три державы",
+            "empires": ["Испания", "Франция", "Британия"],
+            "alive": 3,
+            "cap": "народ между ними может",
+            "cap2": "выбирать и назначать цену",
+        },
+        {
+            "x": 290,
+            "title": "1763: Франция уходит",
+            "empires": ["Испания", "Франция", "Британия"],
+            "alive": 2,
+            "cap": "«уступает Канаду со всеми",
+            "cap2": "зависимостями» — Париж, ст. IV",
+        },
+        {
+            "x": 540,
+            "title": "1815: Британия сдаёт",
+            "empires": ["Испания*", "Франция", "Британия"],
+            "alive": 1,
+            "cap": "ст. IX Гента не исполнена;",
+            "cap2": "рычага больше нет — гл. 9",
+        },
+    ]
+    for col in cols:
+        x, cwid = col["x"], 200
+        b.append(text(x + cwid / 2, 30, col["title"], ink, 13, "middle", 700))
+        for j, name in enumerate(col["empires"]):
+            y = 52 + j * 52
+            alive = j < col["alive"] or (col["alive"] == 3) or (col["alive"] == 1 and j == 0)
+            alive = (j < col["alive"]) if col["alive"] != 1 else (j == 0)
+            c = on_c if alive else off_c
+            op = 0.85 if alive else 0.18
+            b.append(rect(x, y, cwid, 40, c, 5, op))
+            label = name + ("" if alive else " — ушла")
+            if col["alive"] == 1 and j == 0:
+                label = name
+            b.append(
+                text(x + cwid / 2, y + 25, label, ink if alive else muted, 12.5, "middle", 600)
+            )
+            if alive:
+                b.append(
+                    f'<path d="M{x + cwid / 2:.1f},{y + 44:.1f}L{x + cwid / 2:.1f},{196:.1f}" '
+                    f'stroke="{on_c}" stroke-width="1.6" marker-end="url(#head-l8)" opacity=".7"/>'
+                )
+        b.append(rect(x, 204, cwid, 44, t["panel"], 5, 0.95))
+        b.append(text(x + cwid / 2, 223, "народы", ink, 12.5, "middle", 700))
+        for k, cap in enumerate([col["cap"], col["cap2"]]):
+            b.append(text(x + cwid / 2, 244 + k * 15 + 14, cap, muted, 11, "middle"))
+    b.append(
+        text(
+            w / 2,
+            h - 34,
+            "Схема по тезису № 5: сила союзов пропорциональна числу держав, которым народ нужен",
+            ink,
+            12.5,
+            "middle",
+        )
+    )
+    b.append(
+        text(
+            w / 2,
+            h - 18,
+            "* Испания остаётся на окраинах материка; даты и формулы — в тексте главы",
+            muted,
+            11,
+            "middle",
+        )
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Рычаг противоречий и его поломка",
+        "Три карточки-колонки. 1650–1763: три державы — Испания, Франция, Британия — тянутся "
+        "стрелками к народу в центре: народ может выбирать и назначать цену. 1763: Франция "
+        "«уступает Канаду со всеми зависимостями» (Париж, ст. IV) — карточка гаснет. 1815: "
+        "Британия сдаёт — статья IX Гента не исполнена; рычага больше нет. Схема по тезису № 5.",
+    )
+
+
+def fig_timeline8(t: dict) -> str:
+    """Рис. 8.5. Эпоха баланса одной шкалой: три дорожки событий."""
+    ev = balance()["events"]
+    tracks = [
+        ("northeast", "Северо-восток", 10),
+        ("southeast", "Юго-восток", 7),
+        ("parallel", "Параллельный юг", 3),
+    ]
+    kind_c = {"war": t["z-s"], "treaty": t["z-t"], "event": t["z-n"], "loss": t["muted"]}
+    kind_shape = {"war": "circle", "treaty": "diamond", "event": "circle", "loss": "diamond"}
+    w = 760
+    top = 64
+    h = top + 20 * 46 + 108
+    x0, x1 = 138, 742
+    y0, y1 = 1635, 1825
+    ink, muted = t["ink"], t["muted"]
+
+    def px(yr: float) -> float:
+        return x0 + (yr - y0) / (y1 - y0) * (x1 - x0)
+
+    b = []
+    for yr in range(1640, 1821, 20):
+        b.append(line(px(yr), top - 10, px(yr), h - 96, t["rule"], 0.6))
+        b.append(text(px(yr), h - 80, str(yr), muted, 11, "middle"))
+    row = 0
+    for tid, tname, _n in tracks:
+        rows = [e for e in ev if e["track"] == tid]
+        b.append(text(x0 - 8, top + row * 15 + 6, tname, ink, 12, "end", 700))
+        for e in sorted(rows, key=lambda x: x["year"]):
+            y = top + 14 + row * 15
+            c = kind_c[e["kind"]]
+            a = px(e["year"])
+            z = px(e["end"]) if e.get("end") else None
+            if z:
+                b.append(line(a, y, z, y, c, 3.2))
+                b.append(mark(kind_shape[e["kind"]], a, y, c, c, t["bg"], 3.4))
+                b.append(mark(kind_shape[e["kind"]], z, y, c, c, t["bg"], 3.4))
+            else:
+                b.append(mark(kind_shape[e["kind"]], a, y, c, c, t["bg"], 4.2))
+            short = e["label"].split(":")[0].split("(")[0].strip()
+            b.append(text(a, y - 6, short, ink, 10.5, "middle", 600, halo=t["bg"]))
+            row += 1
+    ly = h - 52
+    items = [
+        ("war", "война"),
+        ("treaty", "договор, мир"),
+        ("event", "веха"),
+        ("loss", "потеря державы-противовеса"),
+    ]
+    lx = x0
+    for kind, name in items:
+        b.append(mark(kind_shape[kind], lx + 6, ly, kind_c[kind], kind_c[kind], t["bg"], 4.4))
+        b.append(text(lx + 16, ly + 4, name, ink, 11.5))
+        lx += 26 + len(name) * 6.3 + 26
+    b.append(
+        text(
+            x0,
+            h - 20,
+            "Полосы — войны с годами начала и конца; тексты договоров — Avalon Project;",
+            "события по сводкам помечены в данных",
+            muted,
+            11,
+        )
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Эпоха баланса одной шкалой, 1640–1820",
+        "Три дорожки. Северо-восток: «бобровые войны» 1649–1651; Монреаль 1701; Утрехт 1713; "
+        "нейтралитет 1753; Париж 1763; война Понтиака 1763–1766; прокламация 1763; раскол 1777; "
+        "Гранд-Ривер 1784; разгром Сент-Клэра 1791; Гринвилл 1795; Форт-Уэйн 1809; Типпекану 1811; "
+        "Темза 1813; Гент 1814. Юго-восток: политика Брима 1718; чикасские войны 1721–1763; "
+        "гражданская война чокто 1747–1750; Хорсшу-Бенд и форт-Джексон 1814. Параллельный юг: "
+        "Кильин 1641; Негрете 1803. Цвет — тип события.",
+    )
+
+
+# ── Глава 9. Переселение и договоры
+
+
+def removal_data() -> dict:
+    with (ROOT / "data" / "removal.json").open(encoding="utf-8") as f:
+        return json.load(f)
+
+
+def fig_marshall9(t: dict) -> str:
+    """Рис. 9.2. Трилогия Маршалла и конец договорного периода: ступени с дословными цитатами."""
+    cases = removal_data()["marshall"]
+    w, h = 760, 470
+    ink, muted = t["ink"], t["muted"]
+    col = t["z-t"]
+    b = ["<defs>", arrow_marker("head-m9", col, 5), "</defs>"]
+    x, cwid, gap = 34, 160, 12
+    for k, c in enumerate(cases):
+        cx = x + k * (cwid + gap)
+        last = c["id"] == "act1871"
+        c_here = muted if last else col
+        b.append(rect(cx, 120, cwid, 210, t["panel"], 6, 0.95))
+        b.append(rect(cx, 120, cwid, 44, c_here, 6, 0.9 if not last else 0.5))
+        b.append(
+            text(
+                cx + cwid / 2, 141, str(c["year"]), t["bg"] if not last else ink, 14, "middle", 700
+            )
+        )
+        b.append(
+            text(
+                cx + cwid / 2,
+                156,
+                c["case"].split("(")[0].strip()[:20],
+                t["bg"] if not last else ink,
+                11,
+                "middle",
+                600,
+            )
+        )
+        yy = 186
+        for ln in wrap_words(c["holding"], 26):
+            b.append(text(cx + 12, yy, ln, ink, 11.5))
+            yy += 15
+        yy += 6
+        for ln in wrap_words(c["quote"], 27):
+            b.append(text(cx + 12, yy, ln, muted, 11, italic=True))
+            yy += 14
+        if k < len(cases) - 1:
+            b.append(
+                f'<path d="M{cx + cwid + 1:.1f},225L{cx + cwid + gap - 2:.1f},225" stroke="{col}" '
+                'stroke-width="2.2" marker-end="url(#head-m9)"/>'
+            )
+    b.append(
+        text(w / 2, 60, "три решения одного судьи — и акт, закрывший эпоху", ink, 15, "middle", 700)
+    )
+    b.append(
+        text(w / 2, 84, "Джон Маршалл писал все три мнения Верховного суда", muted, 12, "middle")
+    )
+    b.append(
+        text(
+            w / 2,
+            360,
+            "1823: только государство может покупать землю · 1831: «подопечный и опекун»",
+            ink,
+            12,
+            "middle",
+        )
+    )
+    b.append(text(w / 2, 378, "· 1832: законы штата не имеют силы", ink, 12, "middle"))
+    b.append(
+        text(
+            w / 2,
+            398,
+            "четвёртая карточка отдельна: Конгресс, а не суд — и старые договоры сохраняют силу",
+            muted,
+            11.5,
+            "middle",
+        )
+    )
+    b.append(
+        text(
+            w / 2,
+            h - 30,
+            "Схема по текстам решений (Justia) и 25 U.S.C. § 71; цитаты дословные",
+            muted,
+            11.5,
+            "middle",
+        )
+    )
+    b.append(
+        text(
+            w / 2,
+            h - 14,
+            "на практике Worcester исполнено не было: удаление чероки началось через шесть лет",
+            ink,
+            11.5,
+            "middle",
+        )
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Трилогия Маршалла и конец договорного периода",
+        "Четыре карточки-ступени. 1823, Johnson v. M'Intosh: доктрина открытия — частные покупки у "
+        "индейцев недействительны; «завоевание даёт титул, который суды завоевателя не могут "
+        "отрицать». 1831, Cherokee Nation v. Georgia: «внутренние зависимые нации», отношения "
+        "«подопечного к опекуну». 1832, Worcester v. Georgia: нация чероки — «обособленное "
+        "сообщество», законы Джорджии не имеют силы (на практике не исполнено). 1871: конец "
+        "договорного периода — племена не признаются независимыми нациями, старые договоры "
+        "сохраняют силу. Схема по текстам решений.",
+    )
+
+
+# ── Глава 10. Синхронный финал
+
+
+def frontier() -> dict:
+    with (ROOT / "data" / "frontier.json").open(encoding="utf-8") as f:
+        return json.load(f)
+
+
+def fig_bison10(t: dict) -> str:
+    """Рис. 10.1. Бизоны 1800–1900: оценки с авторами на лог-шкале."""
+    ser = frontier()["bison"]["series"]
+    import math
+
+    w, h = 760, 480
+    x0, x1, top, bot = 96, 730, 70, 400
+    ink, muted = t["ink"], t["muted"]
+    line_c, pt_c = t["z-t"], t["z-s"]
+    y0, y1 = 1795, 1905
+    lo, hi = 500.0, 50_000_000.0
+
+    def px(yr):
+        return x0 + (yr - y0) / (y1 - y0) * (x1 - x0)
+
+    def py(v):
+        return bot - (math.log10(v) - math.log10(lo)) / (math.log10(hi) - math.log10(lo)) * (
+            bot - top
+        )
+
+    b = []
+    for v in (1000, 10_000, 100_000, 1_000_000, 10_000_000):
+        b.append(line(x0, py(v), x1, py(v), t["rule"], 0.6))
+        b.append(text(x0 - 8, py(v) + 4, grouped(int(v)), muted, 11, "end"))
+    for yr in range(1800, 1901, 20):
+        b.append(line(px(yr), bot, px(yr), bot + 5, muted, 1))
+        b.append(text(px(yr), bot + 19, str(yr), muted, 11, "middle"))
+    b.append(text(x0, 24, "голов, лог. шкала", muted, 11.5, "start"))
+    # полоса шкуряного бума
+    a, z = px(1872), px(1874)
+    b.append(rect(a, top - 8, z - a, bot - top + 8, line_c, 0, 0.14))
+    b.append(
+        text(
+            (a + z) / 2,
+            top + 8,
+            "1872–1874: убито 3 158 730",
+            line_c,
+            12,
+            "middle",
+            700,
+            halo=t["bg"],
+        )
+    )
+    b.append(
+        text(
+            (a + z) / 2,
+            top + 24,
+            "бизонов южного стада (Хорнадей)",
+            line_c,
+            11,
+            "middle",
+            halo=t["bg"],
+        )
+    )
+    pts = []
+    for e in ser:
+        yr = e["year"]
+        if e["id"] == "slaughter1874":
+            tx = px(1874) + 8
+            b.append(text(tx, py(3000), "к концу сезона 1875 г.", muted, 11, "start", halo=t["bg"]))
+            b.append(text(tx, py(1500), "южное стадо «перестало", muted, 11, "start", halo=t["bg"]))
+            b.append(
+                text(tx, py(700), "существовать» (Хорнадей)", muted, 11, "start", halo=t["bg"])
+            )
+            continue
+        v = e.get("point") or e.get("low")
+        x, y = px(yr), py(v)
+        author = "Хорнадей" if "Хорнаде" in e["label"] or "Хорнадея" in e["label"] else "Айзенберг"
+        b.append(mark("circle", x, y, pt_c, pt_c, t["bg"], 5))
+        b.append(
+            text(
+                x,
+                y - 14,
+                grouped(int(v)) if v >= 1000 else f"{num(v)}",
+                ink,
+                12,
+                "middle",
+                700,
+                halo=t["bg"],
+            )
+        )
+        b.append(text(x, y - 29, author, muted, 10.5, "middle", halo=t["bg"]))
+        pts.append((x, y, v))
+    for (ax, ay, _av), (bx, by, _bv) in pairwise(pts):
+        b.append(line(ax, ay, bx, by, pt_c, 1.2, "4 4", 0.55))
+    b.append(
+        text(
+            x1,
+            h - 30,
+            "Оценки с авторами; среднего нет намеренно — порядок чисел до 1870 г. предмет спора",
+            muted,
+            11,
+            "end",
+        )
+    )
+    b.append(
+        text(
+            x1,
+            h - 14,
+            "Айзенберг — аннотация книги; 1870–1889 — собственные подсчёты и перепись Хорнадея",
+            muted,
+            11,
+            "end",
+        )
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Бизоны: оценки с авторами, 1800–1900",
+        "Логарифмическая шкала голов. Около 1800 г. — 30 млн (Айзенберг); 1870 г. — 5,5 млн "
+        "(4 млн южнее Платт и 1,5 млн севернее — оценка Хорнадея); полоса 1872–1874 — убито "
+        "3 158 730 бизонов южного стада; к концу сезона 1875 г. южное стадо перестало "
+        "существовать; 1881 — около 1 млн северного стада (оценка охотников); 1889 — 1091 "
+        "живой бизон по переписи Хорнадея; 1900 — менее тысячи (Айзенберг). Оценки с авторами; "
+        "среднего нет намеренно.",
+    )
+
+
+def fig_sync10(t: dict) -> str:
+    """Рис. 10.5. Синхронный финал: четыре страны на одной шкале."""
+    camp = frontier()["campaigns"]
+    lanes = [
+        ("usa", "США", 7),
+        ("canada", "Канада", 3),
+        ("chile", "Чили", 2),
+        ("argentina", "Аргентина", 3),
+    ]
+    kind_c = {"war": t["z-s"], "treaty": t["z-t"], "event": t["z-n"], "famine": t["z-n"]}
+    kind_shape = {"war": "circle", "treaty": "diamond", "event": "circle", "famine": "square"}
+    w = 760
+    top = 70
+    rows_total = sum(n for _, _, n in lanes)
+    h = top + rows_total * 34 + 120
+    x0, x1 = 116, 736
+    y0, y1 = 1860, 1890
+    ink, muted = t["ink"], t["muted"]
+    band = t["band"]
+
+    def px(yr):
+        return x0 + (yr - y0) / (y1 - y0) * (x1 - x0)
+
+    b = ["<defs>", arrow_marker("head-s10", t["z-s"], 5), "</defs>"]
+    a75, a85 = px(1875), px(1885)
+    b.append(rect(a75, top - 12, a85 - a75, h - 130 - top + 12, band, 0, 0.9))
+    b.append(
+        text(
+            (a75 + a85) / 2,
+            top - 20,
+            "«синхронное десятилетие» 1875–1885",
+            muted,
+            11.5,
+            "middle",
+            600,
+            halo=t["bg"],
+        )
+    )
+    row = 0
+    for cid, cname, _n in lanes:
+        rows = [c for c in camp if c["country"] == cid]
+        b.append(text(x0 - 10, top + row * 34 + 10, cname, ink, 12.5, "end", 700))
+        for e in sorted(rows, key=lambda x: x["year"]):
+            y = top + 14 + row * 34
+            c = kind_c[e["kind"]]
+            x = px(e["year"])
+            if e.get("end"):
+                z = px(e["end"])
+                clamped = False
+                if z > x1 - 4:  # полоса уходит за шкалу — обрезаем со стрелкой
+                    z = x1 - 4
+                    clamped = True
+                b.append(line(x, y, z - (6 if clamped else 0), y, c, 3.2))
+                b.append(mark(kind_shape[e["kind"]], x, y, c, c, t["bg"], 3.4))
+                if clamped:
+                    b.append(
+                        f'<path d="M{z - 6:.1f},{y:.1f}L{z:.1f},{y:.1f}" stroke="{c}" '
+                        f'stroke-width="2.4" marker-end="url(#head-s10)"/>'
+                    )
+                else:
+                    b.append(mark(kind_shape[e["kind"]], z, y, c, c, t["bg"], 3.4))
+            else:
+                b.append(mark(kind_shape[e["kind"]], x, y, c, c, t["bg"], 4.4))
+            short = e["label"].split(":")[0].split("(")[0].strip()
+            anchor = "end" if e["year"] >= 1880 and x > x1 - 120 else "middle"
+            b.append(
+                text(
+                    x - (2 if anchor == "end" else 0),
+                    y - 7,
+                    short,
+                    ink,
+                    10.5,
+                    anchor,
+                    600,
+                    halo=t["bg"],
+                )
+            )
+            row += 1
+    for yr in (1860, 1870, 1880, 1890):
+        b.append(line(px(yr), top - 12, px(yr), h - 130, t["rule"], 0.6))
+        b.append(text(px(yr), h - 116, str(yr), muted, 11, "middle"))
+    ly = h - 84
+    items = [("war", "война"), ("treaty", "договор"), ("event", "веха"), ("famine", "голод")]
+    lx = x0
+    for kind, name in items:
+        b.append(mark(kind_shape[kind], lx + 6, ly, kind_c[kind], kind_c[kind], t["bg"], 4.4))
+        b.append(text(lx + 16, ly + 4, name, ink, 11.5))
+        lx += 24 + len(name) * 6.5 + 24
+    b.append(
+        text(
+            x0,
+            h - 30,
+            "Полосы — кампании с годами; чилийская полоса начинается левее шкалы (с 1862 г.);",
+            muted,
+            11,
+        )
+    )
+    b.append(
+        text(x0, h - 14, "даты и числа — в data/frontier.json со ссылками на источники", muted, 11)
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Синхронный финал: четыре страны, одна шкала",
+        "Шкала 1860–1890, четыре дорожки. США: Эдоуби-Уоллс 1874, война на Ред-Ривер 1874–1875, "
+        "ссылка в Форт-Мэрион 1875, золото Блэк-Хиллс 1874, Великая война сиу 1876–1877, "
+        "конфискация Блэк-Хиллс 1877, не-персе 1877, Джеронимо 1886. Канада: Договор 6 (1876), "
+        "голод 1879–1882, восстание 1885. Чили: умирение Араукании 1862–1883, редукции "
+        "1884–1929. Аргентина: пленные Мендосы 1878–1889, кампания Роки 1879–1885, Инакаяль "
+        "1884. Полоса-фон — «синхронное десятилетие» 1875–1885.",
+    )
+
+
+# ── Глава 11. Ассимиляция
+
+
+def assimilation() -> dict:
+    with (ROOT / "data" / "assimilation.json").open(encoding="utf-8") as f:
+        return json.load(f)
+
+
+def fig_land11(t: dict) -> str:
+    """Рис. 11.1. Земля BIA (1887–1934–сегодня) и население по переписям."""
+    a = assimilation()
+    w, h = 760, 430
+    ink, muted = t["ink"], t["muted"]
+    lost_c, now_c = t["z-s"], t["z-t"]
+    b = []
+    land = a["allotment"]["land"]
+    # левая панель: столбцы земли
+    b.append(text(180, 34, "индейская земля, млн акров", ink, 13, "middle", 700))
+    x0, base, bw = 60, 340, 74
+    vmax = 150.0
+    for k, e in enumerate(land):
+        x = x0 + k * 112
+        v = e["acres_mln"]
+        ht = v / vmax * 230
+        b.append(rect(x, base - ht, bw, ht, now_c, 4, 0.85))
+        if k == 0:
+            lost = land[0]["acres_mln"] - land[1]["acres_mln"]
+            ht2 = lost / vmax * 230
+            b.append(rect(x, base - ht - ht2 - 6, bw, ht2, lost_c, 4, 0.25))
+            b.append(
+                text(
+                    x + bw / 2,
+                    base - ht - ht2 - 12,
+                    f"−{grouped(int(lost))}",
+                    lost_c,
+                    12,
+                    "middle",
+                    700,
+                    halo=t["bg"],
+                )
+            )
+            b.append(
+                text(
+                    x + bw / 2,
+                    base - ht - ht2 - 26,
+                    "две трети за 47 лет",
+                    lost_c,
+                    10.5,
+                    "middle",
+                    halo=t["bg"],
+                )
+            )
+        b.append(text(x + bw / 2, base - ht + 20, num(v), t["bg"], 12.5, "middle", 700))
+        for j, ln in enumerate(wrap_words(str(e["year"]), 10)):
+            b.append(text(x + bw / 2, base + 18 + j * 13, ln, ink, 11.5, "middle", 600))
+        b.append(text(x + bw / 2, base + 40, split_label(e["label"], 16)[0], muted, 10.5, "middle"))
+    # правая панель: линия населения
+    pop = a["population"]
+    px0, px1, ptop, pbot = 420, 730, 70, 340
+    vmin, vmax2 = 220000, 350000
+
+    def PXY(i):
+        x = px0 + i / (len(pop) - 1) * (px1 - px0)
+        y = pbot - (pop[i]["value"] - vmin) / (vmax2 - vmin) * (pbot - ptop)
+        return x, y
+
+    b.append(text((px0 + px1) / 2, 34, "население по переписям США", ink, 13, "middle", 700))
+    for v in (240000, 280000, 320000):
+        y = pbot - (v - vmin) / (vmax2 - vmin) * (pbot - ptop)
+        b.append(line(px0, y, px1, y, t["rule"], 0.6))
+        b.append(text(px0 - 8, y + 4, grouped(v), muted, 10.5, "end"))
+    pts = [PXY(i) for i in range(len(pop))]
+    b.append(polyline(pts, now_c, 2.6))
+    for i, (x, y) in enumerate(pts):
+        b.append(mark("circle", x, y, now_c, now_c, t["bg"], 4.4))
+        b.append(text(x, y + 20, str(pop[i]["year"]), muted, 10.5, "middle", halo=t["bg"]))
+    b.append(
+        text(px0 + 8, ptop + 6, "минимум 1900 г. — и рост", ink, 11.5, "start", 600, halo=t["bg"])
+    )
+    b.append(
+        text(
+            w - 12,
+            h - 28,
+            "Земля — сводка BIA (ряд одного ведомства);",
+            muted,
+            10.5,
+            "end",
+        )
+    )
+    b.append(
+        text(
+            w - 12,
+            h - 12,
+            "счёт смешанного происхождения менялся от переписи к переписи (Арнер, 1937)",
+            muted,
+            10.5,
+            "end",
+        )
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Земля и люди в эпоху ассимиляции",
+        "Слева — столбцы индейской земли: 138 млн акров в 1887 г., 48 млн к 1934 г. "
+        "(две трети утрачено), 56,2 млн сегодня. Справа — население по переписям: 248 253 "
+        "(1890), 237 196 (1900), 265 683 (1910), 244 437 (1920), 332 397 (1930) — минимум "
+        "на 1900 год и рост после. Земля — сводка BIA; население — подсчёт Арнера (1937) с его "
+        "предостережением о методе.",
+    )
+
+
+# ── Глава 12. Возвращение через право
+
+
+def renewal() -> dict:
+    with (ROOT / "data" / "renewal.json").open(encoding="utf-8") as f:
+        return json.load(f)
+
+
+def fig_timeline12(t: dict) -> str:
+    """Рис. 12.2. Вехи возвращения: три дорожки, цвет — тип акта."""
+    ms = renewal()["milestones"]
+    lanes = [("usa", "США", 13), ("canada", "Канада", 6), ("intl", "Мир и Лат. Америка", 6)]
+    kind_c = {
+        "law": t["z-t"],
+        "court": t["z-s"],
+        "movement": t["z-n"],
+        "treaty": t["z-m"],
+        "intl": t["muted"],
+        "event": t["z-n"],
+    }
+    kind_shape = {
+        "law": "diamond",
+        "court": "circle",
+        "movement": "square",
+        "treaty": "diamond",
+        "intl": "circle",
+        "event": "circle",
+    }
+    w = 760
+    top = 66
+    rows_total = sum(n for _, _, n in lanes)
+    h = top + rows_total * 30 + 116
+    x0, x1 = 148, 730
+    y0, y1 = 1930, 2030
+    ink, muted = t["ink"], t["muted"]
+
+    def px(yr):
+        return x0 + (yr - y0) / (y1 - y0) * (x1 - x0)
+
+    b = []
+    row = 0
+    for lid, lname, _n in lanes:
+        rows = [m for m in ms if m["lane"] == lid]
+        b.append(text(x0 - 10, top + row * 30 + 8, lname, ink, 11.5, "end", 700))
+        for m in sorted(rows, key=lambda x: x["year"]):
+            y = top + 12 + row * 30
+            c = kind_c[m["kind"]]
+            x = px(m["year"])
+            if m.get("end"):
+                z = min(px(m["end"]), x1 - 4)
+                b.append(line(x, y, z - 5, y, c, 3.0))
+                b.append(mark(kind_shape[m["kind"]], x, y, c, c, t["bg"], 3.2))
+                b.append(
+                    f'<path d="M{z - 5:.1f},{y:.1f}L{z:.1f},{y:.1f}" stroke="{c}" '
+                    'stroke-width="2.2" marker-end="url(#head-r12)"/>'
+                )
+            else:
+                b.append(mark(kind_shape[m["kind"]], x, y, c, c, t["bg"], 4.2))
+            short = m["label"].split(":")[0].split("(")[0].strip()
+            anchor = "end" if m["year"] >= 2015 and x > x1 - 150 else "middle"
+            b.append(
+                text(
+                    x - (2 if anchor == "end" else 0),
+                    y - 7,
+                    short,
+                    ink,
+                    10,
+                    anchor,
+                    600,
+                    halo=t["bg"],
+                )
+            )
+            row += 1
+    for yr in (1940, 1960, 1980, 2000, 2020):
+        b.append(line(px(yr), top - 8, px(yr), h - 100, t["rule"], 0.6))
+        b.append(text(px(yr), h - 86, str(yr), muted, 11, "middle"))
+    b = ["<defs>", arrow_marker("head-r12", t["z-t"], 5), "</defs>", *b]
+    ly = h - 62
+    items = [
+        ("law", "закон"),
+        ("court", "решение суда"),
+        ("movement", "движение"),
+        ("treaty", "договор"),
+        ("intl", "международный акт"),
+    ]
+    lx = x0
+    for kind, name in items:
+        b.append(mark(kind_shape[kind], lx + 6, ly, kind_c[kind], kind_c[kind], t["bg"], 4.2))
+        b.append(text(lx + 16, ly + 4, name, ink, 11))
+        lx += 22 + len(name) * 6.2 + 22
+    b.append(
+        text(
+            x0,
+            h - 24,
+            "Цитаты и даты — по первичным текстам законов и решений, где конспекту был доступ;",
+            muted,
+            10.5,
+        )
+    )
+    b.append(text(x0, h - 10, "формулировки McGirt — в передаче открытых сводок", muted, 10.5))
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Возвращение через право: вехи 1934–2024",
+        "Шкала 1930–2030, три дорожки. США: реорганизация 1934, ДАИ 1968, Алькатраз 1969–1971, "
+        "Вундед-Ни 1973, самоопределение 1975, ICWA 1978, IGRA 1988, NAGPRA 1990 и правило 2024, "
+        "терминация 1953 (резолюция 108 и PL-280), Никсон 1970, McGirt 2020. Канада: Calder 1973, "
+        "ст. 35 (1982), Delgamuukw 1997, Нунавут 1993–1999, Tsilhqot'in 2014, Комиссия примирения "
+        "2015. Мир и Латинская Америка: Конвенция МОТ 169 (1989), сапатисты 1994, Декларация ООН "
+        "2007, Эквадор 2008, Боливия 2009, Чили 2022. Цвет — тип акта.",
+    )
+
+
+def fig_return12(t: dict) -> str:
+    """Рис. 12.3. Демографическое возвращение: несопоставимые ряды переписей."""
+    pop = renewal()["population"]
+    w, h = 760, 430
+    x0, x1, top, bot = 90, 720, 70, 360
+    ink, muted = t["ink"], t["muted"]
+    c = t["z-t"]
+    old = [p for p in pop if p["year"] <= 1930]
+    import math
+
+    def px(yr):
+        return x0 + (yr - 1890) / 140 * (x1 - x0)
+
+    def py(v):
+        return bot - (math.log10(v) - math.log10(200000)) / (
+            math.log10(10_000_000) - math.log10(200000)
+        ) * (bot - top)
+
+    b = []
+    for v in (250000, 1_000_000, 4_000_000):
+        b.append(line(x0, py(v), x1, py(v), t["rule"], 0.6))
+        b.append(text(x0 - 8, py(v) + 4, grouped(v), muted, 10.5, "end"))
+    b.append(text(x0, 26, "человек, лог. шкала", muted, 11, "start"))
+    pts = [(px(p["year"]), py(p["value"])) for p in old]
+    b.append(polyline(pts, c, 2.6))
+    for p, (x, y) in zip(old, pts, strict=False):
+        b.append(mark("circle", x, y, c, c, t["bg"], 4.2))
+        b.append(text(x, y + 18, str(p["year"]), muted, 10, "middle", halo=t["bg"]))
+    x20, y20 = px(2020), py(pop[-1]["value"])
+    b.append(mark("circle", x20, y20, t["z-s"], t["z-s"], t["bg"], 6))
+    b.append(
+        text(
+            x20 - 10,
+            y20 - 16,
+            "9,7 млн (2020): одна раса или в комбинации",
+            ink,
+            12,
+            "end",
+            700,
+            halo=t["bg"],
+        )
+    )
+    b.append(text(x20 - 10, y20 + 26, "3,7 млн — только AIAN", muted, 11, "end", halo=t["bg"]))
+    xm = (px(1930) + x20) / 2
+    b.append(line(px(1930), py(332397), x20, y20, t["muted"], 1.2, "5 5", 0.6))
+    b.append(
+        text(
+            xm,
+            (py(332397) + y20) / 2 + 14,
+            "ряды несопоставимы:",
+            muted,
+            11.5,
+            "middle",
+            halo=t["bg"],
+        )
+    )
+    b.append(
+        text(
+            xm,
+            (py(332397) + y20) / 2 + 29,
+            "рост — в основном самоидентификация",
+            muted,
+            11.5,
+            "middle",
+            halo=t["bg"],
+        )
+    )
+    b.append(
+        text(
+            x1,
+            h - 12,
+            "1890–1930 — подсчёт Арнера (1937); 2020 — перепись США;",
+            "промежуточные десятилетия не сверены — разрыв показан разрывом",
+            muted,
+            10.5,
+            "end",
+        )
+    )
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Демографическое возвращение по переписям США",
+        "Логарифмическая шкала. Слева — линейный ряд 1890–1930 (248 253, 237 196, 265 683, "
+        "244 437, 332 397 — переписи, подсчёт Арнера). Затем разрыв и точка 2020 года — "
+        "9,7 млн (одна раса или в комбинации; 3,7 млн — только AIAN). Пунктир между рядами: "
+        "ряды несопоставимы, рост — в основном самоидентификация. Промежуточные десятилетия "
+        "не сверены — разрыв показан разрывом, а не линией.",
+    )
+
+
+# ── Глава 13. Сквозные механизмы
+
+
+def fig_mechanisms13(t: dict) -> str:
+    """Рис. 13.1. Шесть сквозных механизмов: схема-кольцо с центром."""
+    import math
+
+    w, h = 760, 560
+    ink, muted = t["ink"], t["muted"]
+    cols = [t["z-t"], t["z-n"], t["z-s"], t["z-m"], t["z-t"], t["z-n"]]
+    cards = [
+        ("Сети", ["вещи, болезни, лошади, ружья", "идут цепочками — быстрее армий"], "гл. 3, 5, 7"),
+        (
+            "Демографический шок",
+            ["убыль ~90% за столетие", "убивала связка, не одна болезнь"],
+            "гл. 5",
+        ),
+        (
+            "Централизация — мобильность",
+            ["пирамиду берут целиком,", "сеть нельзя обезглавить"],
+            "гл. 4, 6",
+        ),
+        ("Рычаг противоречий", ["силен, пока держав много;", "1763 и 1815 ломают его"], "гл. 8"),
+        ("Ресурсная база", ["бизон, пастбища, земля:", "финал делает рынок"], "гл. 10, 11"),
+        ("Право как поздняя сила", ["договоры отняли —", "договоры вернули"], "гл. 9, 12"),
+    ]
+    cx, cy, r = w / 2, 286, 176
+    b = []
+    pts = []
+    for k, (title, lines, ref) in enumerate(cards):
+        ang = -math.pi / 2 + k * math.pi / 3
+        x, y = cx + r * math.cos(ang), cy + r * math.sin(ang)
+        pts.append((x, y))
+        bw, bh = 196, 74
+        bx = min(max(x - bw / 2, 8), w - bw - 8)
+        by = min(max(y - bh / 2, 54), h - 118 - bh)
+        c = cols[k]
+        b.append(rect(bx, by, bw, bh, c, 6, 0.16))
+        b.append(rect(bx, by, bw, 24, c, 6, 0.85))
+        b.append(text(bx + bw / 2, by + 17, title, t["bg"], 11, "middle", 700))
+        for j, ln in enumerate(lines):
+            b.append(text(bx + bw / 2, by + 39 + j * 14, ln, ink, 10, "middle"))
+        b.append(text(bx + bw / 2, by + 68, ref, muted, 9.5, "middle"))
+    for (x1, y1), (x2, y2) in pairwise(pts):
+        mx, my = (x1 + x2) / 2, (y1 + y2) / 2
+        ax, ay = cx + (mx - cx) * 0.62, cy + (my - cy) * 0.62
+        b.append(
+            f'<path d="M{x1:.1f},{y1:.1f}Q{ax:.1f},{ay:.1f} {x2:.1f},{y2:.1f}" fill="none" '
+            f'stroke="{muted}" stroke-width="1.4" stroke-dasharray="4 4" opacity=".75"/>'
+        )
+    b.append(f'<circle cx="{cx}" cy="{cy}" r="52" fill="{t["panel"]}"/>')
+    for k, ln in enumerate(["народы как", "действующие", "лица"]):
+        b.append(text(cx, cy - 8 + k * 16, ln, ink, 12.5, "middle", 700))
+    b.append(text(w / 2, 30, "шесть пружин обеих Америк", ink, 15, "middle", 700))
+    b.append(
+        text(
+            w / 2,
+            h - 66,
+            "Схема: авторское обобщение глав 3–12; не хронология —",
+            muted,
+            11,
+            "middle",
+        )
+    )
+    b.append(
+        text(
+            w / 2, h - 48, "доказательства каждой пружины — в названных главах", muted, 11, "middle"
+        )
+    )
+    b.append(text(w / 2, h - 20, "Схема: обобщение конспекта", muted, 11.5, "middle", 600))
+    return svg(
+        w,
+        h,
+        t,
+        b,
+        "Шесть сквозных механизмов",
+        "Шесть карточек по кольцу: Сети; Демографический шок; Централизация — мобильность; "
+        "Рычаг противоречий; Ресурсная база; Право как поздняя сила. В центре — «народы как "
+        "действующие лица». Схема: авторское обобщение глав 3–12, не хронология.",
+    )
+
+
 FIGURES: dict[str, Callable[[dict], str]] = {
     "00-radiocarbon": fig_radiocarbon,
     "00-precision": fig_precision,
@@ -5042,6 +6954,24 @@ FIGURES: dict[str, Callable[[dict], str]] = {
     "04-revolt": fig_revolt,
     "04-peace": fig_peace,
     "04-border": fig_border,
+    "06-siege": fig_siege,
+    "06-switch": fig_switch,
+    "06-falls": fig_falls6,
+    "05-estimates": fig_estimates5,
+    "05-waves": fig_waves5,
+    "05-collapse": fig_koch5,
+    "05-virgin": fig_virgin,
+    "07-spread": fig_spread7,
+    "07-frontiers": fig_frontiers7,
+    "08-lever": fig_lever,
+    "08-timeline": fig_timeline8,
+    "09-marshall-trilogy": fig_marshall9,
+    "10-bison": fig_bison10,
+    "10-sync": fig_sync10,
+    "11-land": fig_land11,
+    "12-timeline": fig_timeline12,
+    "12-return": fig_return12,
+    "13-mechanisms": fig_mechanisms13,
 }
 
 

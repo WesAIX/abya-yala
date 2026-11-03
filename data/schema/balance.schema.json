@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "balance.schema.json",
+  "title": "Глава 8: хронология войн и договоров 1640–1815, рычаг противоречий",
+  "type": "object",
+  "required": ["meta", "events"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "license"],
+      "properties": {
+        "title": {"type": "string"},
+        "schema": {"type": "string"},
+        "license": {"type": "string"},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "events": {
+      "description": "Войны, договоры и вехи эпохи баланса. track — дорожка схемы: северо-восток, юго-восток, параллельный юг.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "year", "end", "label", "track", "kind", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+          "year": {"type": "integer", "minimum": 1600, "maximum": 1900},
+          "end": {"type": ["integer", "null"], "description": "null — точечное событие."},
+          "label": {"type": "string"},
+          "track": {"enum": ["northeast", "southeast", "parallel"]},
+          "kind": {
+            "description": "war — война или разгром; treaty — договор или мир; event — прочая веха; loss — потеря державы-противовеса.",
+            "enum": ["war", "treaty", "event", "loss"]
+          },
+          "sides": {"type": "string", "description": "Кто с кем."},
+          "note": {"type": "string"},
+          "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+        }
+      }
+    }
+  }
+}

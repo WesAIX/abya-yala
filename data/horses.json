@@ -1,0 +1,69 @@
+{
+ "meta": {
+  "title": "Глава 7: распространение лошади, два фронтира, шубный бум",
+  "schema": "horses.schema.json",
+  "license": "CC BY 4.0",
+  "notes": [
+   "Даты получения лошадей разными народами почти всегда indirect: запись современника о другом факте (угон скота, торговля) или оценка историка. Уровень надёжности — поле kind.",
+   "Многие даты восходят к одному своду — Юэрсу (1955), который сам опирался на более ранние работы; это честно показано в loc."
+  ]
+ },
+ "spread": [
+  {"id": "ute", "people": "юты", "label": "получили от испанцев", "when": {"start": 1640, "end": null, "label": "около 1640", "dating": "approx"}, "kind": "tradition", "note": "традиция, записанная Оплером", "sources": [{"ref": "ewers1955", "loc": "гл. «The Northward Spread of Horses», с. 53–54"}]},
+  {"id": "apache_plains", "people": "равнинные апачи", "label": "угоняли испанский скот", "when": {"start": 1659, "end": null, "dating": "documented"}, "kind": "document", "sources": [{"ref": "ewers1955", "loc": "там же, по Scholes"}]},
+  {"id": "caddo", "people": "каддо", "label": "«нет хижины без четырёх-пяти лошадей»", "when": {"start": 1690, "end": null, "dating": "documented"}, "kind": "document", "note": "Тонти", "sources": [{"ref": "ewers1955", "loc": "с. 54"}]},
+  {"id": "kiowa", "people": "кайова", "label": "торгуют лошадьми", "when": {"start": 1682, "end": null, "dating": "documented"}, "kind": "document", "note": "экспедиция Ла Саля; конная культура — около 1750 (оценка)", "sources": [{"ref": "ewers1955", "loc": "с. 53–54"}, {"ref": "egp", "loc": "статья «Kiowas»"}]},
+  {"id": "comanche", "people": "команчи (нумунуу)", "label": "первые в испанских записях", "when": {"start": 1705, "end": 1706, "dating": "documented"}, "kind": "document", "note": "лошади — «в конце 1600-х» (оценка)", "sources": [{"ref": "ewers1955", "loc": "с. 54, по Thomas 1935"}, {"ref": "tsha-comanche", "loc": "раздел Origins"}]},
+  {"id": "shoshone_n", "people": "северные шошоны", "label": "уже конные", "when": {"start": 1729, "end": 1734, "dating": "approx"}, "kind": "document", "note": "рассказ Сокамопи в записи Д. Томпсона; первые лошади — от команчей", "sources": [{"ref": "ewers1955", "loc": "с. 57, 66–67"}]},
+  {"id": "missouri_villages", "people": "арикара и деревни Миссури", "label": "лошади до прихода Ла Верандри", "when": {"start": 1738, "end": null, "dating": "documented"}, "kind": "document", "sources": [{"ref": "ewers1955", "loc": "с. 55"}]},
+  {"id": "assiniboine", "people": "ассинибойны", "label": "лошадей «в числе»", "when": {"start": 1766, "end": null, "dating": "approx"}, "kind": "document", "note": "1738 — ещё нет; 1754 — только вьючные (Гендей)", "sources": [{"ref": "ewers1955", "loc": "с. 55"}]},
+  {"id": "blackfoot", "people": "черноногие (сиксика)", "label": "все конные", "when": {"start": 1772, "end": null, "dating": "documented"}, "kind": "document", "note": "Кокинг, 1772; первые лошади — вторая четверть XVIII в.", "sources": [{"ref": "ewers1955", "loc": "с. 68"}]},
+  {"id": "arapaho", "people": "арапахо", "label": "богаты лошадьми", "when": {"start": 1740, "end": 1750, "label": "с 1740-х", "dating": "approx"}, "kind": "tradition", "sources": [{"ref": "egp", "loc": "статья «Arapahos» (Фаулер)"}]},
+  {"id": "crow", "people": "кроу (апсароки)", "label": "хозяйство переключилось на бизона", "when": {"start": 1750, "end": null, "label": "к 1750", "dating": "approx"}, "kind": "tradition", "note": "с оседлого земледелия на охоту", "sources": [{"ref": "egp", "loc": "статья «Crows» (Фрей)"}]},
+  {"id": "cheyenne", "people": "шайенны (цууцтавахисы)", "label": "часть бэндов конна", "when": {"start": 1766, "end": null, "dating": "approx"}, "kind": "tradition", "note": "у Блэк-Хиллс умножили табуны и бросили земледелие", "sources": [{"ref": "ewers1955", "loc": "с. 56, по Jablow"}, {"ref": "egp", "loc": "статья «Cheyennes» (Мур)"}]},
+  {"id": "lakota", "people": "лакота (тетоны)", "label": "перешли Миссури, стали равнинным народом", "when": {"start": 1750, "end": 1775, "label": "1750–1775", "dating": "approx"}, "kind": "tradition", "note": "лошади — около 1760 (Хайд в передаче Юэрса); янктоны «с великим множеством лошадей» в 1777 (Понд)", "sources": [{"ref": "egp", "loc": "статья «Sioux» (Гиббон)"}, {"ref": "ewers1955", "loc": "с. 56"}]},
+  {"id": "cree_plains", "people": "равнинные кри", "label": "лошади «стали обычны»", "when": {"start": 1789, "end": null, "dating": "documented"}, "kind": "document", "note": "Амфревиль", "sources": [{"ref": "ewers1955", "loc": "с. 55"}]},
+  {"id": "ojibwe_plains", "people": "равнинные оджибве", "label": "переход к конной охоте", "when": {"start": 1800, "end": 1806, "dating": "approx"}, "kind": "document", "note": "записи Генри-младшего и Пайка", "sources": [{"ref": "ewers1955", "loc": "с. 56"}]}
+ ],
+ "taylor2023": {
+  "adoption": {"low": 1516, "high": 1599, "text": "начальное усвоение лошадей коренными общинами запада Северной Америки — между 1516 и 1599 гг. (2σ, медиана около 1544 г.)", "sources": [{"ref": "taylor2023", "loc": "Results, рис. 1D"}]},
+  "pre1680": "три лошади из аборигенных контекстов «однозначно раньше восстания пуэбло»; на северных равнинах и в Скалистых горах — в первой половине XVII в.",
+  "idaho": "American Falls (Айдахо): 1597–1657 гг.",
+  "genetics": "сильная иберийская близость ранних геномов; позднее — примесь британских линий; вклада викингов и плейстоценовых американских лошадей нет",
+  "care": "жеребёнок из Blacks Fork вырос и умер на месте; у лошади из долины Kaw River — следы металлического трензеля",
+  "sources": [{"ref": "taylor2023", "loc": "Results и Discussion (полный текст)"}]
+ },
+ "frontiers": {
+  "meeting": {"name": "деревни Верхней Миссури (манданы, хидатсы, арикара)", "lon": -101.4, "lat": 47.2, "note": "«у этих деревень северо-восточный фронтир лошади встретил юго-западный фронтир ружья» — Юэрс о модели Секоя", "sources": [{"ref": "ewers1955", "loc": "с. 62–63"}]},
+  "horse_path": [
+    {"name": "Нью-Мексико (испанские табуны)", "lon": -106.0, "lat": 35.6},
+    {"name": "юты", "lon": -109.0, "lat": 39.2},
+    {"name": "команчи", "lon": -102.5, "lat": 34.5},
+    {"name": "шошоны", "lon": -111.5, "lat": 43.0}
+  ],
+  "gun_path": [
+    {"name": "Монреаль и Гудзонов залив", "lon": -79.0, "lat": 50.5},
+    {"name": "кри и ассинибойны", "lon": -98.0, "lat": 52.5},
+    {"name": "торговые пути к Миссури", "lon": -99.0, "lat": 49.0}
+  ],
+  "sources": [{"ref": "secoy1953", "loc": "только описание"}, {"ref": "ewers1955", "loc": "с. 62–63"}]
+ },
+ "robes": {
+  "railroad": [
+    {"year": 1872, "hides": 165721, "sources": [{"ref": "hornaday1889", "loc": "гл. «Statistics of the slaughter»"}]},
+    {"year": 1873, "hides": 251443, "sources": [{"ref": "hornaday1889", "loc": "там же"}]},
+    {"year": 1874, "hides": 42289, "sources": [{"ref": "hornaday1889", "loc": "там же"}]}
+  ],
+  "method": "по Доджу: одна шкура 1872 г. означала трёх убитых бизонов, 1873 г. — двух, 1874 г. — 125 убитых на каждые 100 шкур",
+  "total_slaughter": {"value": 3158730, "what": "бизонов, убитых белыми охотниками за 1872–1874 гг. (южное стадо), по пересчёту Хорнадея", "sources": [{"ref": "hornaday1889", "loc": "там же"}]},
+  "cody": "Контракт Коди с Kansas Pacific (1867): 500 долларов в месяц; за восемнадцать месяцев он убил 4280 бизонов — числа приводит Хорнадей",
+  "sources": [{"ref": "hornaday1889", "loc": "гл. «Statistics of the slaughter»; разд. об охоте верхом"}]
+ },
+ "wealth": {
+  "wealthy_share": "меньше 5% мужчин-пеганов были богаты лошадьми",
+  "poor_share": "до четверти семей владели меньше полудюжиной лошадей",
+  "threshold": "богатым считали владельца 40–50 лошадей",
+  "richest": "у самых богатых — сотни: у Бычья Обувь около 500, у Скупого 200–300 (по спискам Юэрса)",
+  "sources": [{"ref": "ewers1955", "loc": "гл. «Horse Wealth of Individual Blackfoot Indians», с. 75–77"}]
+ }
+}

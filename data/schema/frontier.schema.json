@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "frontier.schema.json",
+  "title": "Глава 10: бизоны по Хорнадею и Айзенбергу, синхронные кампании 1874–1886",
+  "type": "object",
+  "required": [
+    "meta",
+    "bison",
+    "campaigns"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "title",
+        "license"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "schema": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "bison": {
+      "description": "Числа бизонов: все — оценки с автором.",
+      "type": "object",
+      "required": [
+        "series",
+        "sources"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "series": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "year",
+              "label",
+              "sources"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "$ref": "genealogy.schema.json#/$defs/id"
+              },
+              "year": {
+                "type": [
+                  "integer",
+                  "string"
+                ],
+                "minimum": 1500,
+                "maximum": 2000
+              },
+              "point": {
+                "type": "number",
+                "minimum": 0
+              },
+              "low": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "high": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "label": {
+                "type": "string"
+              },
+              "note": {
+                "type": "string"
+              },
+              "sources": {
+                "$ref": "genealogy.schema.json#/$defs/sources"
+              }
+            }
+          }
+        },
+        "sources": {
+          "$ref": "genealogy.schema.json#/$defs/sources"
+        }
+      }
+    },
+    "campaigns": {
+      "description": "Кампании финального десятилетия по странам. country — дорожка схемы.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "country",
+          "label",
+          "year",
+          "end",
+          "kind",
+          "sources"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "genealogy.schema.json#/$defs/id"
+          },
+          "country": {
+            "enum": [
+              "usa",
+              "canada",
+              "chile",
+              "argentina"
+            ]
+          },
+          "label": {
+            "type": "string"
+          },
+          "year": {
+            "type": "integer",
+            "minimum": 1800,
+            "maximum": 1950
+          },
+          "end": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "kind": {
+            "enum": [
+              "war",
+              "treaty",
+              "event",
+              "famine"
+            ]
+          },
+          "note": {
+            "type": "string"
+          },
+          "sources": {
+            "$ref": "genealogy.schema.json#/$defs/sources"
+          }
+        }
+      }
+    }
+  }
+}

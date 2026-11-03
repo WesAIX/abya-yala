@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "assimilation.schema.json",
+  "title": "Глава 11: аллотмент, школы-интернаты, гражданство, языки",
+  "type": "object",
+  "required": [
+    "meta",
+    "allotment",
+    "schools",
+    "languages",
+    "population"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "title",
+        "license"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "schema": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        }
+      }
+    },
+    "allotment": {
+      "type": "object",
+      "required": [
+        "land",
+        "sources"
+      ],
+      "properties": {
+        "land": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "year",
+              "acres_mln",
+              "label",
+              "sources"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "year": {
+                "type": [
+                  "integer",
+                  "string"
+                ]
+              },
+              "acres_mln": {
+                "type": "number"
+              },
+              "label": {
+                "type": "string"
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "ref"
+                  ],
+                  "properties": {
+                    "ref": {
+                      "type": "string"
+                    },
+                    "loc": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "sources": {
+          "type": "array"
+        }
+      }
+    },
+    "schools": {
+      "type": "object",
+      "required": [
+        "usa",
+        "canada"
+      ],
+      "properties": {
+        "usa": {
+          "type": "object",
+          "required": [
+            "schools_v1",
+            "schools_v2",
+            "deaths_v2",
+            "named",
+            "sources"
+          ],
+          "properties": {
+            "schools_v1": {
+              "type": "integer"
+            },
+            "schools_v2": {
+              "type": "integer"
+            },
+            "deaths_v2": {
+              "type": "integer"
+            },
+            "named": {
+              "type": "integer"
+            },
+            "burial_v1": {
+              "type": "integer"
+            },
+            "sources": {
+              "type": "array"
+            }
+          }
+        },
+        "canada": {
+          "type": "object",
+          "required": [
+            "children",
+            "cep",
+            "sources"
+          ],
+          "properties": {
+            "children": {
+              "type": "integer"
+            },
+            "cep": {
+              "type": "integer"
+            },
+            "iap_text": {
+              "type": "string"
+            },
+            "sources": {
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "languages": {
+      "type": "object",
+      "required": [
+        "languages_n",
+        "speakers",
+        "largest",
+        "largest_n",
+        "sources"
+      ],
+      "properties": {
+        "languages_n": {
+          "type": "integer"
+        },
+        "speakers": {
+          "type": "integer"
+        },
+        "largest": {
+          "type": "string"
+        },
+        "largest_n": {
+          "type": "integer"
+        },
+        "sources": {
+          "type": "array"
+        }
+      }
+    },
+    "population": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "year",
+          "value",
+          "sources"
+        ],
+        "properties": {
+          "year": {
+            "type": "integer"
+          },
+          "value": {
+            "type": "integer"
+          },
+          "sources": {
+            "type": "array"
+          }
+        }
+      }
+    }
+  }
+}

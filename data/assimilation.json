@@ -1,0 +1,144 @@
+{
+ "meta": {
+  "title": "Глава 11: ассимиляция — аллотмент, школы, языки",
+  "schema": "assimilation.schema.json",
+  "license": "CC BY 4.0"
+ },
+ "allotment": {
+  "land": [
+   {
+    "id": "y1887",
+    "year": 1887,
+    "acres_mln": 138,
+    "label": "перед законом Дауэса (BIA)",
+    "sources": [
+     {
+      "ref": "bia-policy",
+      "loc": "разд. «The Allotment and Assimilation Era»"
+     }
+    ]
+   },
+   {
+    "id": "y1934",
+    "year": 1934,
+    "acres_mln": 48,
+    "label": "к закону о реорганизации (BIA)",
+    "sources": [
+     {
+      "ref": "bia-policy",
+      "loc": "там же"
+     }
+    ]
+   },
+   {
+    "id": "today",
+    "year": "сегодня",
+    "acres_mln": 56.2,
+    "label": "трастовые земли (BIA)",
+    "sources": [
+     {
+      "ref": "bia-faq",
+      "loc": "раздел Land"
+     }
+    ]
+   }
+  ],
+  "sources": [
+   {
+    "ref": "bia-policy"
+   }
+  ]
+ },
+ "schools": {
+  "usa": {
+   "schools_v1": 408,
+   "schools_v2": 417,
+   "deaths_v2": 973,
+   "named": 18624,
+   "burial_v1": 53,
+   "sources": [
+    {
+     "ref": "newland2022"
+    },
+    {
+     "ref": "newland2024"
+    }
+   ]
+  },
+  "canada": {
+   "children": 150000,
+   "cep": 78748,
+   "iap_text": "30 939 исков о насилии, 2,69 млрд долл. выплат (итоги IAP к концу 2014 г.)",
+   "sources": [
+    {
+     "ref": "trc2015",
+     "loc": "Executive Summary"
+    }
+   ]
+  }
+ },
+ "languages": {
+  "languages_n": 169,
+  "speakers": 372095,
+  "largest": "навахо",
+  "largest_n": 169471,
+  "sources": [
+   {
+    "ref": "siebens2011",
+    "loc": "таблицы 1–2"
+   }
+  ]
+ },
+ "population": [
+  {
+   "year": 1890,
+   "value": 248253,
+   "sources": [
+    {
+     "ref": "arner1937",
+     "loc": "табл. 1"
+    }
+   ]
+  },
+  {
+   "year": 1900,
+   "value": 237196,
+   "sources": [
+    {
+     "ref": "arner1937",
+     "loc": "табл. 1"
+    }
+   ]
+  },
+  {
+   "year": 1910,
+   "value": 265683,
+   "sources": [
+    {
+     "ref": "arner1937",
+     "loc": "табл. 1"
+    }
+   ]
+  },
+  {
+   "year": 1920,
+   "value": 244437,
+   "sources": [
+    {
+     "ref": "arner1937",
+     "loc": "табл. 1"
+    }
+   ]
+  },
+  {
+   "year": 1930,
+   "value": 332397,
+   "sources": [
+    {
+     "ref": "arner1937",
+     "loc": "табл. 1"
+    }
+   ]
+  }
+ ]
+}

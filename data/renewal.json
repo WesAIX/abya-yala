@@ -1,0 +1,410 @@
+{
+ "meta": {
+  "title": "Глава 12: возвращение через право",
+  "schema": "renewal.schema.json",
+  "license": "CC BY 4.0"
+ },
+ "milestones": [
+  {
+   "id": "ira",
+   "year": 1934,
+   "end": null,
+   "lane": "usa",
+   "label": "закон о реорганизации: конец аллотмента",
+   "kind": "law",
+   "sources": [
+    {
+     "ref": "ira1934",
+     "loc": "ст. 1"
+    }
+   ]
+  },
+  {
+   "id": "hcr108",
+   "year": 1953,
+   "end": null,
+   "lane": "usa",
+   "label": "терминация: резолюция 108",
+   "kind": "law",
+   "note": "«освободить от федеральной опеки… в кратчайший срок»",
+   "sources": [
+    {
+     "ref": "hcr108"
+    }
+   ]
+  },
+  {
+   "id": "pl280",
+   "year": 1953,
+   "end": null,
+   "lane": "usa",
+   "label": "PL 280: юрисдикция штатов",
+   "kind": "law",
+   "sources": [
+    {
+     "ref": "pl280"
+    }
+   ]
+  },
+  {
+   "id": "nixon",
+   "year": 1970,
+   "end": null,
+   "lane": "usa",
+   "label": "Никсон: «самоопределение без терминации»",
+   "kind": "law",
+   "sources": [
+    {
+     "ref": "nixon1970"
+    }
+   ]
+  },
+  {
+   "id": "alcatraz",
+   "year": 1969,
+   "end": 1971,
+   "lane": "usa",
+   "label": "оккупация Алькатраса (19 месяцев)",
+   "kind": "movement",
+   "sources": [
+    {
+     "ref": "alcatraz-nps"
+    }
+   ]
+  },
+  {
+   "id": "aim",
+   "year": 1968,
+   "end": null,
+   "lane": "usa",
+   "label": "основано Движение американских индейцев",
+   "kind": "movement",
+   "sources": [
+    {
+     "ref": "aim-history"
+    }
+   ]
+  },
+  {
+   "id": "wknee73",
+   "year": 1973,
+   "end": null,
+   "lane": "usa",
+   "label": "Вундед-Ни: 71 день",
+   "kind": "movement",
+   "sources": [
+    {
+     "ref": "aim-history"
+    }
+   ]
+  },
+  {
+   "id": "isdeaa",
+   "year": 1975,
+   "end": null,
+   "lane": "usa",
+   "label": "закон о самоопределении: «контракты 638»",
+   "kind": "law",
+   "sources": [
+    {
+     "ref": "isdeaa1975",
+     "loc": "§102(a)"
+    }
+   ]
+  },
+  {
+   "id": "icwa",
+   "year": 1978,
+   "end": null,
+   "lane": "usa",
+   "label": "ICWA: защита индейских детей",
+   "kind": "law",
+   "sources": [
+    {
+     "ref": "icwa1978",
+     "loc": "§2(4), §3"
+    }
+   ]
+  },
+  {
+   "id": "igra",
+   "year": 1988,
+   "end": null,
+   "lane": "usa",
+   "label": "IGRA: племенные казино",
+   "kind": "law",
+   "sources": [
+    {
+     "ref": "igra1988"
+    }
+   ]
+  },
+  {
+   "id": "nagpra",
+   "year": 1990,
+   "end": null,
+   "lane": "usa",
+   "label": "NAGPRA: репатриация",
+   "kind": "law",
+   "sources": [
+    {
+     "ref": "nagpra1990"
+    }
+   ]
+  },
+  {
+   "id": "nagpra2024",
+   "year": 2024,
+   "end": null,
+   "lane": "usa",
+   "label": "новое правило NAGPRA: приоритет традиционным знаниям",
+   "kind": "law",
+   "sources": [
+    {
+     "ref": "nagpra2024"
+    }
+   ]
+  },
+  {
+   "id": "mcgirt",
+   "year": 2020,
+   "end": null,
+   "lane": "usa",
+   "label": "McGirt v. Oklahoma: резервация Крик не расформирована",
+   "kind": "court",
+   "sources": [
+    {
+     "ref": "mcgirt2020"
+    }
+   ]
+  },
+  {
+   "id": "calder",
+   "year": 1973,
+   "end": null,
+   "lane": "canada",
+   "label": "Calder: аборигенный титул существует",
+   "kind": "court",
+   "sources": [
+    {
+     "ref": "calder1973"
+    }
+   ]
+  },
+  {
+   "id": "s35",
+   "year": 1982,
+   "end": null,
+   "lane": "canada",
+   "label": "ст. 35 Конституционного акта",
+   "kind": "law",
+   "sources": [
+    {
+     "ref": "ca1982"
+    }
+   ]
+  },
+  {
+   "id": "delgamuukw",
+   "year": 1997,
+   "end": null,
+   "lane": "canada",
+   "label": "Delgamuukw: устная история — равное доказательство",
+   "kind": "court",
+   "sources": [
+    {
+     "ref": "delgamuukw1997",
+     "loc": "para 87, 111"
+    }
+   ]
+  },
+  {
+   "id": "nunavut",
+   "year": 1993,
+   "end": 1999,
+   "lane": "canada",
+   "label": "соглашение о Нунавуте; территория с 1999 г.",
+   "kind": "treaty",
+   "sources": [
+    {
+     "ref": "nunavut1993"
+    }
+   ]
+  },
+  {
+   "id": "tsilhqotin",
+   "year": 2014,
+   "end": null,
+   "lane": "canada",
+   "label": "Tsilhqot'in: первый декларативный титул",
+   "kind": "court",
+   "sources": [
+    {
+     "ref": "tsilhqotin2014",
+     "loc": "para 153"
+    }
+   ]
+  },
+  {
+   "id": "trc",
+   "year": 2015,
+   "end": null,
+   "lane": "canada",
+   "label": "Комиссия примирения: «культурный геноцид», 94 призыва",
+   "kind": "event",
+   "sources": [
+    {
+     "ref": "trc2015",
+     "loc": "Executive Summary"
+    }
+   ]
+  },
+  {
+   "id": "ilo169",
+   "year": 1989,
+   "end": null,
+   "lane": "intl",
+   "label": "Конвенция МОТ № 169",
+   "kind": "intl",
+   "sources": [
+    {
+     "ref": "ilo169"
+    }
+   ]
+  },
+  {
+   "id": "ezln",
+   "year": 1994,
+   "end": null,
+   "lane": "intl",
+   "label": "сапатистское восстание: «Довольно!»",
+   "kind": "movement",
+   "sources": [
+    {
+     "ref": "ezln1993"
+    }
+   ]
+  },
+  {
+   "id": "undrip",
+   "year": 2007,
+   "end": null,
+   "lane": "intl",
+   "label": "Декларация ООН: 143 «за», 4 «против»",
+   "kind": "intl",
+   "sources": [
+    {
+     "ref": "undrip2007"
+    }
+   ]
+  },
+  {
+   "id": "ecuador",
+   "year": 2008,
+   "end": null,
+   "lane": "intl",
+   "label": "Эквадор: плюринациональное государство, права природы",
+   "kind": "law",
+   "sources": [
+    {
+     "ref": "ecuador2008",
+     "loc": "ст. 1, 71"
+    }
+   ]
+  },
+  {
+   "id": "bolivia",
+   "year": 2009,
+   "end": null,
+   "lane": "intl",
+   "label": "Боливия: Государство Плюринациональное",
+   "kind": "law",
+   "sources": [
+    {
+     "ref": "bolivia2009",
+     "loc": "ст. 1"
+    }
+   ]
+  },
+  {
+   "id": "chile2022",
+   "year": 2022,
+   "end": null,
+   "lane": "intl",
+   "label": "Чили: проект конституции с плюринациональностью отклонён (61,9% против)",
+   "kind": "event",
+   "sources": [
+    {
+     "ref": "chile2022"
+    }
+   ]
+  }
+ ],
+ "population": [
+  {
+   "year": 1890,
+   "value": 248253,
+   "what": "перепись (подсчёт Арнера)",
+   "sources": [
+    {
+     "ref": "arner1937",
+     "loc": "табл. 1"
+    }
+   ]
+  },
+  {
+   "year": 1900,
+   "value": 237196,
+   "what": "перепись (подсчёт Арнера)",
+   "sources": [
+    {
+     "ref": "arner1937",
+     "loc": "табл. 1"
+    }
+   ]
+  },
+  {
+   "year": 1910,
+   "value": 265683,
+   "what": "перепись (подсчёт Арнера)",
+   "sources": [
+    {
+     "ref": "arner1937",
+     "loc": "табл. 1"
+    }
+   ]
+  },
+  {
+   "year": 1920,
+   "value": 244437,
+   "what": "перепись (подсчёт Арнера)",
+   "sources": [
+    {
+     "ref": "arner1937",
+     "loc": "табл. 1"
+    }
+   ]
+  },
+  {
+   "year": 1930,
+   "value": 332397,
+   "what": "перепись (подсчёт Арнера)",
+   "sources": [
+    {
+     "ref": "arner1937",
+     "loc": "табл. 1"
+    }
+   ]
+  },
+  {
+   "year": 2020,
+   "value": 9700000,
+   "what": "перепись 2020: только AIAN или в комбинации; ряд с началом XX в. несопоставим — рост в основном за счёт самоидентификации",
+   "sources": [
+    {
+     "ref": "census2020"
+    }
+   ]
+  }
+ ]
+}

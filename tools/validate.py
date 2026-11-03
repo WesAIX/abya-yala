@@ -448,6 +448,219 @@ def check_transition(tr) -> list[str]:
     return errors
 
 
+def iter_conquest(c):
+    siege = c["siege"]
+    yield "осада", siege
+    for d in siege["divisions"]:
+        yield f"дивизия {d['id']}", d
+    if "allies_total" in siege:
+        yield "союзники всего", siege["allies_total"]
+    yield "длительность осады", siege["days"]
+    yield "падение", siege["fell"]
+    for f in c["falls"]:
+        yield f"полоса {f['id']}", f
+    yield "мида", c["mita"]
+    yield "мида-доля", c["mita"]["share"]
+    yield "мида-рекруты", c["mita"]["recruits"]
+
+
+def check_conquest(c) -> list[str]:
+    """Дивизии осады уникальны и сумма испанцев сходится с подписью; полосы «сколько
+    держались»: конец не раньше начала, открытая полоса — без конца, упавшая — с концом."""
+    errors = unique([d["id"] for d in c["siege"]["divisions"]], "conquest: дивизия")
+    errors += unique([f["id"] for f in c["falls"]], "conquest: полоса")
+    for f in c["falls"]:
+        where = f"conquest: полоса {f['id']}"
+        if f["status"] == "open":
+            if "end" in f:
+                errors.append(f"{where}: открытая полоса, но указан конец")
+        elif "end" not in f:
+            errors.append(f"{where}: статус {f['status']!r} требует конца")
+        elif f["end"]["year"] < f["start"]["year"]:
+            errors.append(f"{where}: конец раньше начала")
+    if int(c["siege"]["fell"]["day"][:4]) <= 1500:
+        errors.append("conquest: день падения — вне эпохи главы")
+    return errors
+
+
+def iter_epidemics(e):
+    for est in e["estimates_1492"]:
+        yield f"регион {est['id']}", est
+        for en in est["entries"]:
+            yield f"оценка {est['id']}/{en['author']}", en
+    for wv in e["waves"]:
+        yield f"волна {wv['id']}", wv
+        if "deaths" in wv:
+            yield f"смертность {wv['id']}", wv["deaths"]
+    k = e["koch2019"]
+    for key in ("pop1492", "pop1600", "decline_pct", "land_mha", "abandoned", "carbon"):
+        yield f"Кох {key}", k[key]
+    yield "Кох CO2 модель", k["co2"]["modelled"]
+    yield "Кох CO2 керны", k["co2"]["ice_core"]
+    if "cooling" in k:
+        yield "Кох охлаждение", k["cooling"]
+    m = e["missouri_1837"]
+    yield "Миссури манданы", m["mandan"]
+    yield "Миссури хидатсы", m["hidatsa"]
+
+
+def check_epidemics(e) -> list[str]:
+    """Оценки — точка или диапазон, low ≤ high; волны: конец не раньше начала; оценки без
+    и точки, и диапазона — ошибка; оценки в млн — не больше полушария здравого смысла."""
+    errors = unique([est["id"] for est in e["estimates_1492"]], "epidemics: регион")
+    errors += unique([wv["id"] for wv in e["waves"]], "epidemics: волна")
+    for est in e["estimates_1492"]:
+        for en in est["entries"]:
+            where = f"epidemics: {est['id']}/{en['author']}"
+            if "point" not in en and "low" not in en:
+                errors.append(f"{where}: нужна точка или диапазон")
+            if "low" in en and en["low"] > en["high"]:
+                errors.append(f"{where}: low > high")
+    for wv in e["waves"]:
+        if wv["when"]["end"] < wv["when"]["start"]:
+            errors.append(f"epidemics: волна {wv['id']}: конец раньше начала")
+        d = wv.get("deaths", {})
+        if "low" in d and d["low"] > d["high"]:
+            errors.append(f"epidemics: смертность {wv['id']}: low > high")
+    return errors
+
+
+def iter_horses(h):
+    for sp in h["spread"]:
+        yield f"народ {sp['id']}", sp
+    t = h["taylor2023"]
+    yield "Тейлор сроки", t["adoption"]
+    fr = h["frontiers"]
+    yield "встреча фронтиров", fr["meeting"]
+    yield "фронтир лошади", {"sources": fr["sources"]}
+    yield "фронтир ружья", {"sources": fr["sources"]}
+    for r in h["robes"]["railroad"]:
+        yield f"шкуры {r['year']}", r
+    yield "пересчёт Доджа", {"sources": h["robes"]["sources"]}
+    yield "бойня 1872–1874", h["robes"]["total_slaughter"]
+    yield "Коди", {"sources": h["robes"]["sources"]}
+    yield "богатство", h["wealth"]
+
+
+def check_horses(h) -> list[str]:
+    """Народы уникальны; даты в разумных рамках и не перевёрнуты."""
+    errors = unique([sp["id"] for sp in h["spread"]], "horses: народ")
+    for sp in h["spread"]:
+        w = sp["when"]
+        if w.get("end") is not None and w["end"] < w["start"]:
+            errors.append(f"horses: {sp['id']}: конец раньше начала")
+        if not 1500 < w["start"] <= 1950:
+            errors.append(f"horses: {sp['id']}: дата вне рамок")
+    a = h["taylor2023"]["adoption"]
+    if a["low"] > a["high"]:
+        errors.append("horses: Тейлор: low > high")
+    return errors
+
+
+def iter_balance(bal):
+    for ev in bal["events"]:
+        yield f"событие {ev['id']}", ev
+
+
+def check_balance(bal) -> list[str]:
+    """События уникальны; конец, если задан, не раньше начала."""
+    errors = unique([ev["id"] for ev in bal["events"]], "balance: событие")
+    for ev in bal["events"]:
+        if ev["end"] is not None and ev["end"] < ev["year"]:
+            errors.append(f"balance: {ev['id']}: конец раньше начала")
+    return errors
+
+
+def iter_removal(r):
+    for rm in r["removals"]:
+        yield f"удаление {rm['id']}", rm
+        yield f"переселено {rm['id']}", rm["removed"]
+        yield f"погибшие {rm['id']}", rm["deaths"]
+    for m in r["marshall"]:
+        yield f"решение {m['id']}", m
+    tm = r["treaty_machine"]
+    yield "реестр Ройса", tm["royce_cessions"]
+    yield "договоры удаления", tm["removal_treaties"]
+    if "henderson1835" in tm:
+        yield "перепись Хендерсона", {"sources": tm["henderson1835"]["sources"]}
+
+
+def check_removal(r) -> list[str]:
+    """Годы удалений и решений в порядке; числа переселённых согласованы, если заданы."""
+    errors = unique([rm["id"] for rm in r["removals"]], "removal: народ")
+    errors += unique([m["id"] for m in r["marshall"]], "removal: решение")
+    for rm in r["removals"]:
+        if rm["when"]["end"] < rm["when"]["start"]:
+            errors.append(f"removal: {rm['id']}: конец раньше начала")
+        v = rm["removed"]
+        if "low" in v and "high" in v and v["low"] > v["high"]:
+            errors.append(f"removal: {rm['id']}: low > high")
+    return errors
+
+
+def iter_frontier(fr):
+    for b in fr["bison"]["series"]:
+        yield f"бизоны {b['id']}", b
+    for c in fr["campaigns"]:
+        yield f"кампания {c['id']}", c
+
+
+def check_frontier(fr) -> list[str]:
+    """Точки и диапазоны согласованы; кампании в разумных годах."""
+    errors = unique([b["id"] for b in fr["bison"]["series"]], "frontier: бизоны")
+    errors += unique([c["id"] for c in fr["campaigns"]], "frontier: кампания")
+    for b in fr["bison"]["series"]:
+        if "low" in b and "high" in b and b["low"] > b["high"]:
+            errors.append(f"frontier: бизоны {b['id']}: low > high")
+        if "point" in b and b["point"] < 0:
+            errors.append(f"frontier: бизоны {b['id']}: отрицательное число")
+    for c in fr["campaigns"]:
+        if c.get("end") is not None and c["end"] < c["year"]:
+            errors.append(f"frontier: {c['id']}: конец раньше начала")
+    return errors
+
+
+def iter_assimilation(a):
+    for e in a["allotment"]["land"]:
+        yield f"земли {e['id']}", e
+    yield "школы США", {**a["schools"]["usa"], "sources": a["schools"]["usa"]["sources"]}
+    yield "школы Канады", {**a["schools"]["canada"], "sources": a["schools"]["canada"]["sources"]}
+    yield "языки", {**a["languages"], "sources": a["languages"]["sources"]}
+    for p in a["population"]:
+        yield f"перепись {p['year']}", p
+
+
+def check_assimilation(a) -> list[str]:
+    """Земли и переписи согласованы по годам; числа школ положительны."""
+    errors = unique([e["id"] for e in a["allotment"]["land"]], "assimilation: земли")
+    for e in a["allotment"]["land"]:
+        if e["acres_mln"] <= 0:
+            errors.append(f"assimilation: земли {e['id']}: неположительное число")
+    years = [p["year"] for p in a["population"]]
+    if years != sorted(years):
+        errors.append("assimilation: переписи не по порядку лет")
+    return errors
+
+
+def iter_renewal(r):
+    for m in r["milestones"]:
+        yield f"веха {m['id']}", m
+    for p_ in r["population"]:
+        yield f"перепись {p_['year']}", p_
+
+
+def check_renewal(r) -> list[str]:
+    """Вехи уникальны, годы в порядке внутри дорожки не обязательны; переписи по годам."""
+    errors = unique([m["id"] for m in r["milestones"]], "renewal: веха")
+    for m in r["milestones"]:
+        if m.get("end") is not None and m["end"] < m["year"]:
+            errors.append(f"renewal: {m['id']}: конец раньше начала")
+    years = [p_["year"] for p_ in r["population"]]
+    if years != sorted(years):
+        errors.append("renewal: переписи не по порядку лет")
+    return errors
+
+
 def unique(values: list, what: str) -> list[str]:
     seen: set = set()
     errors = []
@@ -472,6 +685,14 @@ DATASETS = {
     "agriculture": (iter_agriculture, check_agriculture),
     "complex": (iter_complex, check_complex),
     "transition": (iter_transition, check_transition),
+    "conquest": (iter_conquest, check_conquest),
+    "epidemics": (iter_epidemics, check_epidemics),
+    "horses": (iter_horses, check_horses),
+    "balance": (iter_balance, check_balance),
+    "removal": (iter_removal, check_removal),
+    "frontier": (iter_frontier, check_frontier),
+    "assimilation": (iter_assimilation, check_assimilation),
+    "renewal": (iter_renewal, check_renewal),
 }
 
 

@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "conquest.schema.json",
+  "title": "Глава 6: дивизии осады Теночтитлана по Диасу, сроки покорения держав и народов, потосийская мита",
+  "type": "object",
+  "required": ["meta", "siege", "falls", "mita"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "license"],
+      "properties": {
+        "title": {"type": "string"},
+        "schema": {"type": "string"},
+        "license": {"type": "string"},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "siege": {
+      "description": "Осада Теночтитлана 1521 г.: распределение сил по Диасу (гл. CLI в переводе Локхарта) и общая оценка союзников Кортесом у Прескотта.",
+      "type": "object",
+      "required": ["divisions", "days", "fell", "sources"],
+      "additionalProperties": false,
+      "properties": {
+        "divisions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "commander", "post", "spaniards", "allies", "sources"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+              "commander": {"type": "string"},
+              "post": {"type": "string", "description": "Пост или соединение."},
+              "spaniards": {
+                "type": "object",
+                "required": ["foot", "horse", "shooters"],
+                "additionalProperties": false,
+                "properties": {
+                  "foot": {"type": "integer", "minimum": 0},
+                  "horse": {"type": "integer", "minimum": 0, "description": "Всадники."},
+                  "shooters": {"type": "integer", "minimum": 0, "description": "Арбалетчики и аркебузиры."}
+                }
+              },
+              "allies": {"type": "integer", "minimum": 0, "description": "Индейские союзники этого соединения."},
+              "allies_who": {"type": "string", "description": "Кто именно."},
+              "note": {"type": "string"},
+              "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+            }
+          }
+        },
+        "allies_total": {
+          "type": "object",
+          "required": ["value", "what", "author", "sources"],
+          "additionalProperties": false,
+          "properties": {
+            "value": {"type": "integer", "minimum": 0},
+            "what": {"type": "string"},
+            "author": {"type": "string", "description": "Чья оценка."},
+            "caveat": {"type": "string"},
+            "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+          }
+        },
+        "days": {
+          "type": "object",
+          "required": ["value", "whose_count", "sources"],
+          "additionalProperties": false,
+          "properties": {
+            "value": {"type": "integer", "minimum": 1},
+            "whose_count": {"type": "string", "description": "Кто так считал."},
+            "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+          }
+        },
+        "fell": {
+          "type": "object",
+          "required": ["day", "what", "sources"],
+          "additionalProperties": false,
+          "properties": {
+            "day": {"$ref": "#/$defs/day"},
+            "what": {"type": "string"},
+            "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+          }
+        },
+        "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+      }
+    },
+    "falls": {
+      "description": "Сколько держались: от первого военного столкновения с испанцами до утраты самостоятельности. Определение границ — в поле basis; это схема для сравнения, а не точные сроки.",
+      "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "label", "zone", "start", "status", "basis", "sources"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {"$ref": "genealogy.schema.json#/$defs/id"},
+              "label": {"type": "string"},
+              "zone": {
+                "description": "Культурная зона из zones.json (north, meso, south, transition).",
+                "enum": ["north", "meso", "south", "transition"]
+              },
+              "start": {"$ref": "#/$defs/year"},
+              "end": {"$ref": "#/$defs/year"},
+              "status": {
+                "description": "fallen — покорены к end; open — не покорены (end нет); submitted — подчинились без разгрома.",
+                "enum": ["fallen", "open", "submitted"]
+              },
+              "basis": {"type": "string", "description": "Что принято за начало и конец полосы."},
+              "note": {"type": "string"},
+              "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+            }
+          }
+    },
+    "mita": {
+      "description": "Потосийская мита — перестройка инкской трудовой повинности под рудники.",
+      "type": "object",
+      "required": ["since", "share", "recruits", "sources"],
+      "additionalProperties": false,
+      "properties": {
+        "since": {"$ref": "#/$defs/year"},
+        "share": {
+          "type": "object",
+          "required": ["text", "sources"],
+          "additionalProperties": false,
+          "properties": {
+            "text": {"type": "string", "description": "Например: «одна седьмая взрослого мужского населения»."},
+            "provinces": {"type": "string", "description": "Сколько провинций охватывала повинность и по кому."},
+            "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+          }
+        },
+        "recruits": {
+          "type": "object",
+          "required": ["value", "what", "sources"],
+          "additionalProperties": false,
+          "properties": {
+            "value": {"type": "integer", "minimum": 0},
+            "what": {"type": "string"},
+            "note": {"type": "string"},
+            "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+          }
+        },
+        "note": {"type": "string"},
+        "sources": {"$ref": "genealogy.schema.json#/$defs/sources"}
+      }
+    }
+  },
+  "$defs": {
+    "day": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+      "description": "Календарный день (все события главы после 1500 г.)."
+    },
+    "year": {
+      "type": "object",
+      "required": ["year", "dating"],
+      "additionalProperties": false,
+      "properties": {
+        "year": {"type": "integer", "minimum": 1400, "maximum": 2100},
+        "dating": {"enum": ["documented", "approx", "conventional"]},
+        "label": {"type": "string"}
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" width="760" height="500" role="img" aria-labelledby="t d" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" width="760" height="360" role="img" aria-labelledby="t d" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">
 <title id='t'>Кто осаждал Теночтитлан в 1521 году</title><desc id='d'>Парные полосы по соединениям осады: тёмная — испанцы (пехота, всадники, стрелки), светлая — индейские союзники. Альварадо под Такубой: 198 испанцев и 8000 тлашкальтеков; Олид под Койоаканом: 215 и 8000; Сандоваль у Истапалапана: 188 и 8000 воинов чалько и уэшоцинко; Кортес на бригантинах: 325. Ниже — 150 000 воинов-союзников, общая оценка Кортеса (у Прескотта, с оговоркой «если верить Кортесу»). Итог по спискам: 926 испанцев и 24 000 союзников. Шкала логарифмическая.</desc>
-<rect width="760" height="500" fill="#EDF0EA"/>
+<rect width="760" height="360" fill="#EDF0EA"/>
 <defs>
 <marker id="head-total" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#5B6862"/></marker>
 </defs>
@@ -44,8 +44,8 @@
 <path d="M668.7,282.0L679.7,282.0" stroke="#5B6862" stroke-width="2" marker-end="url(#head-total)"/>
 <text x="238.0" y="286.0" fill="#1B2420" font-size="12.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">все союзники,</text>
 <text x="238.0" y="301.0" fill="#5B6862" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">по подсчёту Кортеса</text>
-<text x="683.7" y="286.0" fill="#1B2420" font-size="13.5" text-anchor="start" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">150 000</text>
-<text x="683.7" y="301.0" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">«если верить Кортесу» — Прескотт</text>
+<text x="238.0" y="316.0" fill="#5B6862" font-size="10.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-style="italic">«если верить Кортесу» — Прескотт</text>
+<text x="459.9" y="287.0" fill="#1B2420" font-size="13.5" text-anchor="middle" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">150 000</text>
 <text x="726.0" y="330.0" fill="#1B2420" font-size="12.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Итого по спискам Диаса: 926 испанцев и 24 000 союзников — больше двадцати на каждого</text>
 <text x="726.0" y="347.0" fill="#5B6862" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Списки округлены и написаны спустя полвека; полоса 150 000 — оценка, не перепись</text>
 </svg>

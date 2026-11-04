@@ -19,17 +19,23 @@
 <text x="570.0" y="81.0" fill="#E2E8E3" font-size="12.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">болезнь</text>
 <rect x="420.0" y="108.0" width="300.0" height="24.0" rx="4" fill="#1F2825" fill-opacity="0.9"/>
 <text x="570.0" y="124.5" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">война и резня</text>
+<line x1="420.0" y1="120.0" x2="408.0" y2="120.0" stroke="#CF60A5" stroke-width="1.1" stroke-opacity="0.8"/>
 <rect x="420.0" y="138.0" width="300.0" height="24.0" rx="4" fill="#1F2825" fill-opacity="0.9"/>
 <text x="570.0" y="154.5" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">бегство, потеря урожая</text>
+<line x1="420.0" y1="150.0" x2="408.0" y2="150.0" stroke="#CF60A5" stroke-width="1.1" stroke-opacity="0.8"/>
 <rect x="420.0" y="168.0" width="300.0" height="24.0" rx="4" fill="#1F2825" fill-opacity="0.9"/>
 <text x="570.0" y="184.5" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">рабство и угон в плен</text>
+<line x1="420.0" y1="180.0" x2="408.0" y2="180.0" stroke="#CF60A5" stroke-width="1.1" stroke-opacity="0.8"/>
 <rect x="420.0" y="198.0" width="300.0" height="24.0" rx="4" fill="#1F2825" fill-opacity="0.9"/>
 <text x="570.0" y="214.5" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">голод, разруха хозяйства</text>
+<line x1="420.0" y1="210.0" x2="408.0" y2="210.0" stroke="#CF60A5" stroke-width="1.1" stroke-opacity="0.8"/>
 <rect x="420.0" y="228.0" width="300.0" height="24.0" rx="4" fill="#1F2825" fill-opacity="0.9"/>
 <text x="570.0" y="244.5" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">некому ухаживать за больными</text>
-<path d="M414,108H408V260.0H414 M570,260.0H408" stroke="#CF60A5" stroke-width="1.4" fill="none" opacity=".85"/>
-<path d="M570,260.0L570,288" stroke="#CF60A5" stroke-width="2.2" marker-end="url(#head-v2)"/>
-<text x="582.0" y="184.0" fill="#97A59E" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">вместе</text>
+<line x1="420.0" y1="240.0" x2="408.0" y2="240.0" stroke="#CF60A5" stroke-width="1.1" stroke-opacity="0.8"/>
+<line x1="420.0" y1="76.0" x2="408.0" y2="76.0" stroke="#CF60A5" stroke-width="1.1" stroke-opacity="0.8"/>
+<path d="M408,76V252.0" stroke="#CF60A5" stroke-width="1.4" fill="none" opacity=".85"/>
+<path d="M408,252.0H570V292" stroke="#CF60A5" stroke-width="2.2" fill="none" marker-end="url(#head-v2)"/>
+<text x="398.0" y="168.0" fill="#97A59E" font-size="11.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-style="italic">вместе</text>
 <rect x="420.0" y="296.0" width="300.0" height="74.0" rx="5" fill="#CF60A5" fill-opacity="0.22"/>
 <text x="570.0" y="324.0" fill="#E2E8E3" font-size="12.5" text-anchor="middle" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">смертность</text>
 <text x="570.0" y="342.0" fill="#97A59E" font-size="11.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">не свойство болезни, а свойство ситуации</text>

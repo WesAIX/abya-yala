@@ -23,77 +23,62 @@
 <text x="176.0" y="80.0" fill="#1B2420" font-size="11.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">юты</text>
 <polygon points="215.4,70.3 221.1,76.0 215.4,81.7 209.7,76.0" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><polygon points="215.4,70.3 221.1,76.0 215.4,81.7 209.7,76.0" fill="#A36A0E" stroke="#A36A0E" stroke-width="1.6"/>
 <text x="215.4" y="69.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">около 1640</text>
-<text x="730.0" y="80.0" fill="#5B6862" font-size="10" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"></text>
 <text x="176.0" y="110.0" fill="#1B2420" font-size="11.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">равнинные апачи</text>
 <circle cx="271.3" cy="106.0" r="4.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="271.3" cy="106.0" r="4.4" fill="#007A9A" stroke="#007A9A" stroke-width="1.6"/>
 <text x="271.3" y="99.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1659</text>
-<text x="730.0" y="110.0" fill="#5B6862" font-size="10" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"></text>
 <text x="176.0" y="140.0" fill="#1B2420" font-size="11.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">кайова</text>
 <circle cx="338.9" cy="136.0" r="4.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="338.9" cy="136.0" r="4.4" fill="#007A9A" stroke="#007A9A" stroke-width="1.6"/>
 <text x="338.9" y="129.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1682</text>
-<text x="730.0" y="140.0" fill="#5B6862" font-size="10" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"></text>
 <text x="176.0" y="170.0" fill="#1B2420" font-size="11.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">каддо</text>
 <circle cx="362.4" cy="166.0" r="4.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="362.4" cy="166.0" r="4.4" fill="#007A9A" stroke="#007A9A" stroke-width="1.6"/>
 <text x="362.4" y="159.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1690</text>
-<text x="730.0" y="170.0" fill="#5B6862" font-size="10" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"></text>
 <text x="176.0" y="200.0" fill="#1B2420" font-size="11.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">команчи (нумунуу)</text>
 <line x1="406.5" y1="196.0" x2="409.5" y2="196.0" stroke="#007A9A" stroke-width="3.4" stroke-opacity="1.0"/>
 <text x="408.0" y="190.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1705–1706</text>
 <circle cx="406.5" cy="196.0" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="406.5" cy="196.0" r="3.4" fill="#007A9A" stroke="#007A9A" stroke-width="1.6"/>
 <circle cx="409.5" cy="196.0" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="409.5" cy="196.0" r="3.4" fill="#007A9A" stroke="#007A9A" stroke-width="1.6"/>
-<text x="730.0" y="200.0" fill="#5B6862" font-size="10" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"></text>
 <text x="176.0" y="230.0" fill="#1B2420" font-size="11.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">северные шошоны</text>
 <line x1="477.1" y1="226.0" x2="491.8" y2="226.0" stroke="#007A9A" stroke-width="3.4" stroke-opacity="1.0"/>
 <text x="484.5" y="220.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1729–1734</text>
 <circle cx="477.1" cy="226.0" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="477.1" cy="226.0" r="3.4" fill="#007A9A" stroke="#007A9A" stroke-width="1.6"/>
 <circle cx="491.8" cy="226.0" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="491.8" cy="226.0" r="3.4" fill="#007A9A" stroke="#007A9A" stroke-width="1.6"/>
-<text x="730.0" y="230.0" fill="#5B6862" font-size="10" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"></text>
 <text x="176.0" y="260.0" fill="#1B2420" font-size="11.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">арикара и деревни Миссури</text>
 <circle cx="503.6" cy="256.0" r="4.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="503.6" cy="256.0" r="4.4" fill="#007A9A" stroke="#007A9A" stroke-width="1.6"/>
 <text x="503.6" y="249.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1738</text>
-<text x="730.0" y="260.0" fill="#5B6862" font-size="10" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"></text>
 <text x="176.0" y="290.0" fill="#1B2420" font-size="11.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">арапахо</text>
 <line x1="509.5" y1="286.0" x2="538.9" y2="286.0" stroke="#A36A0E" stroke-width="3.4" stroke-opacity="1.0"/>
 <text x="524.2" y="280.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">с 1740-х</text>
 <circle cx="509.5" cy="286.0" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="509.5" cy="286.0" r="3.4" fill="#A36A0E" stroke="#A36A0E" stroke-width="1.6"/>
 <circle cx="538.9" cy="286.0" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="538.9" cy="286.0" r="3.4" fill="#A36A0E" stroke="#A36A0E" stroke-width="1.6"/>
-<text x="730.0" y="290.0" fill="#5B6862" font-size="10" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"></text>
 <text x="176.0" y="320.0" fill="#1B2420" font-size="11.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">кроу (апсароки)</text>
 <polygon points="538.9,310.3 544.6,316.0 538.9,321.7 533.1,316.0" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><polygon points="538.9,310.3 544.6,316.0 538.9,321.7 533.1,316.0" fill="#A36A0E" stroke="#A36A0E" stroke-width="1.6"/>
 <text x="538.9" y="309.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">к 1750</text>
-<text x="730.0" y="320.0" fill="#5B6862" font-size="10" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"></text>
 <text x="176.0" y="350.0" fill="#1B2420" font-size="11.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">лакота (тетоны)</text>
 <line x1="538.9" y1="346.0" x2="612.4" y2="346.0" stroke="#A36A0E" stroke-width="3.4" stroke-opacity="1.0"/>
 <text x="575.6" y="340.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1750–1775</text>
 <circle cx="538.9" cy="346.0" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="538.9" cy="346.0" r="3.4" fill="#A36A0E" stroke="#A36A0E" stroke-width="1.6"/>
 <circle cx="612.4" cy="346.0" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="612.4" cy="346.0" r="3.4" fill="#A36A0E" stroke="#A36A0E" stroke-width="1.6"/>
-<text x="730.0" y="350.0" fill="#5B6862" font-size="10" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"></text>
 <text x="176.0" y="380.0" fill="#1B2420" font-size="11.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">ассинибойны</text>
 <circle cx="585.9" cy="376.0" r="4.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="585.9" cy="376.0" r="4.4" fill="#007A9A" stroke="#007A9A" stroke-width="1.6"/>
 <text x="585.9" y="369.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1766</text>
-<text x="730.0" y="380.0" fill="#5B6862" font-size="10" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"></text>
 <text x="176.0" y="410.0" fill="#1B2420" font-size="11.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">шайенны (цууцтавахисы)</text>
 <polygon points="585.9,400.3 591.6,406.0 585.9,411.7 580.2,406.0" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><polygon points="585.9,400.3 591.6,406.0 585.9,411.7 580.2,406.0" fill="#A36A0E" stroke="#A36A0E" stroke-width="1.6"/>
 <text x="585.9" y="399.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1766</text>
-<text x="730.0" y="410.0" fill="#5B6862" font-size="10" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"></text>
 <text x="176.0" y="440.0" fill="#1B2420" font-size="11.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">черноногие (сиксика)</text>
 <circle cx="603.6" cy="436.0" r="4.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="603.6" cy="436.0" r="4.4" fill="#007A9A" stroke="#007A9A" stroke-width="1.6"/>
 <text x="603.6" y="429.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1772</text>
-<text x="730.0" y="440.0" fill="#5B6862" font-size="10" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"></text>
 <text x="176.0" y="470.0" fill="#1B2420" font-size="11.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">равнинные кри</text>
 <circle cx="653.5" cy="466.0" r="4.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="653.5" cy="466.0" r="4.4" fill="#007A9A" stroke="#007A9A" stroke-width="1.6"/>
 <text x="653.5" y="459.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1789</text>
-<text x="730.0" y="470.0" fill="#5B6862" font-size="10" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"></text>
 <text x="176.0" y="500.0" fill="#1B2420" font-size="11.5" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">равнинные оджибве</text>
 <line x1="685.9" y1="496.0" x2="703.5" y2="496.0" stroke="#007A9A" stroke-width="3.4" stroke-opacity="1.0"/>
 <text x="694.7" y="490.0" fill="#5B6862" font-size="10.5" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#EDF0EA" stroke-width="4" stroke-linejoin="round">1800–1806</text>
 <circle cx="685.9" cy="496.0" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="685.9" cy="496.0" r="3.4" fill="#007A9A" stroke="#007A9A" stroke-width="1.6"/>
 <circle cx="703.5" cy="496.0" r="3.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="703.5" cy="496.0" r="3.4" fill="#007A9A" stroke="#007A9A" stroke-width="1.6"/>
-<text x="730.0" y="500.0" fill="#5B6862" font-size="10" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"></text>
 <circle cx="190.0" cy="548.0" r="4.4" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><circle cx="190.0" cy="548.0" r="4.4" fill="#007A9A" stroke="#007A9A" stroke-width="1.6"/>
 <text x="200.0" y="552.0" fill="#1B2420" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">запись современника</text>
 <polygon points="376.0,542.0 382.0,548.0 376.0,554.0 370.0,548.0" stroke="#EDF0EA" stroke-width="5" fill="#EDF0EA"/><polygon points="376.0,542.0 382.0,548.0 376.0,554.0 370.0,548.0" fill="#EDF0EA" stroke="#A36A0E" stroke-width="1.6"/>
 <text x="386.0" y="552.0" fill="#1B2420" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">традиция или оценка историка</text>
-<text x="730.0" y="552.0" fill="#5B6862" font-size="11.5" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">почти все даты — из одного свода: Юэрс 1955</text>
-<text x="186.0" y="596.0" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Точка Тейлора и соавторов (1516–1599) левее шкалы:</text>
+<text x="186.0" y="582.0" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Точка Тейлора и соавторов (1516–1599) осталась за левой границей шкалы;</text>
+<text x="186.0" y="597.0" fill="#5B6862" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">почти все даты — из одного свода: Юэрс 1955</text>
 </svg>

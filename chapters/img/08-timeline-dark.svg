@@ -1,90 +1,142 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1092" width="760" height="1092" role="img" aria-labelledby="t d" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">
-<title id='t'>Эпоха баланса одной шкалой, 1640–1820</title><desc id='d'>Три дорожки. Северо-восток: «бобровые войны» 1649–1651; Монреаль 1701; Утрехт 1713; нейтралитет 1753; Париж 1763; война Понтиака 1763–1766; прокламация 1763; раскол 1777; Гранд-Ривер 1784; разгром Сент-Клэра 1791; Гринвилл 1795; Форт-Уэйн 1809; Типпекану 1811; Темза 1813; Гент 1814. Юго-восток: политика Брима 1718; чикасские войны 1721–1763; гражданская война чокто 1747–1750; Хорсшу-Бенд и форт-Джексон 1814. Параллельный юг: Кильин 1641; Негрете 1803. Цвет — тип события.</desc>
-<rect width="760" height="1092" fill="#141A18"/>
-<line x1="153.9" y1="54.0" x2="153.9" y2="996.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="153.9" y="1012.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1640</text>
-<line x1="217.5" y1="54.0" x2="217.5" y2="996.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="217.5" y="1012.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1660</text>
-<line x1="281.1" y1="54.0" x2="281.1" y2="996.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="281.1" y="1012.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1680</text>
-<line x1="344.6" y1="54.0" x2="344.6" y2="996.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="344.6" y="1012.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1700</text>
-<line x1="408.2" y1="54.0" x2="408.2" y2="996.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="408.2" y="1012.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1720</text>
-<line x1="471.8" y1="54.0" x2="471.8" y2="996.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="471.8" y="1012.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1740</text>
-<line x1="535.4" y1="54.0" x2="535.4" y2="996.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="535.4" y="1012.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1760</text>
-<line x1="598.9" y1="54.0" x2="598.9" y2="996.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="598.9" y="1012.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1780</text>
-<line x1="662.5" y1="54.0" x2="662.5" y2="996.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="662.5" y="1012.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1800</text>
-<line x1="726.1" y1="54.0" x2="726.1" y2="996.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="726.1" y="1012.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1820</text>
-<text x="130.0" y="70.0" fill="#E2E8E3" font-size="12" text-anchor="end" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Северо-восток</text>
-<line x1="182.5" y1="78.0" x2="188.9" y2="78.0" stroke="#CF60A5" stroke-width="3.2" stroke-opacity="1.0"/>
-<circle cx="182.5" cy="78.0" r="3.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="182.5" cy="78.0" r="3.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
-<circle cx="188.9" cy="78.0" r="3.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="188.9" cy="78.0" r="3.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
-<text x="182.5" y="72.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">«бобровые войны»</text>
-<polygon points="347.8,87.5 353.3,93.0 347.8,98.5 342.4,93.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="347.8,87.5 353.3,93.0 347.8,98.5 342.4,93.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
-<text x="347.8" y="87.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Великий монреальский мир</text>
-<polygon points="386.0,102.5 391.4,108.0 386.0,113.5 380.5,108.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="386.0,102.5 391.4,108.0 386.0,113.5 380.5,108.0" fill="#97A59E" stroke="#97A59E" stroke-width="1.6"/>
-<text x="386.0" y="102.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Утрехтский мир</text>
-<circle cx="513.1" cy="123.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="513.1" cy="123.0" r="4.2" fill="#BA8628" stroke="#BA8628" stroke-width="1.6"/>
-<text x="513.1" y="117.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Онондага провозглашает нейтралитет Лиги</text>
-<polygon points="544.9,132.5 550.4,138.0 544.9,143.5 539.4,138.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="544.9,132.5 550.4,138.0 544.9,143.5 539.4,138.0" fill="#97A59E" stroke="#97A59E" stroke-width="1.6"/>
-<text x="544.9" y="132.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Парижский мир</text>
-<line x1="544.9" y1="153.0" x2="554.4" y2="153.0" stroke="#CF60A5" stroke-width="3.2" stroke-opacity="1.0"/>
-<circle cx="544.9" cy="153.0" r="3.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="544.9" cy="153.0" r="3.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
-<circle cx="554.4" cy="153.0" r="3.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="554.4" cy="153.0" r="3.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
-<text x="544.9" y="147.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">война Понтиака</text>
-<polygon points="544.9,162.5 550.4,168.0 544.9,173.5 539.4,168.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="544.9,162.5 550.4,168.0 544.9,173.5 539.4,168.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
-<text x="544.9" y="162.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Королевская прокламация</text>
-<polygon points="560.8,177.5 566.3,183.0 560.8,188.5 555.3,183.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="560.8,177.5 566.3,183.0 560.8,188.5 555.3,183.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
-<text x="560.8" y="177.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Форт-Стануикс</text>
-<circle cx="579.9" cy="198.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="579.9" cy="198.0" r="4.2" fill="#BA8628" stroke="#BA8628" stroke-width="1.6"/>
-<text x="579.9" y="192.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Квебекский акт</text>
-<circle cx="589.4" cy="213.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="589.4" cy="213.0" r="4.2" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
-<text x="589.4" y="207.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Ориске</text>
-<circle cx="611.7" cy="228.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="611.7" cy="228.0" r="4.2" fill="#BA8628" stroke="#BA8628" stroke-width="1.6"/>
-<text x="611.7" y="222.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">прокламация Халдиманда</text>
-<circle cx="633.9" cy="243.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="633.9" cy="243.0" r="4.2" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
-<text x="633.9" y="237.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">разгром Сент-Клэра</text>
-<polygon points="646.6,252.5 652.1,258.0 646.6,263.5 641.2,258.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="646.6,252.5 652.1,258.0 646.6,263.5 641.2,258.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
-<text x="646.6" y="252.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Гринвилл</text>
-<polygon points="691.1,267.5 696.6,273.0 691.1,278.5 685.7,273.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="691.1,267.5 696.6,273.0 691.1,278.5 685.7,273.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
-<text x="691.1" y="267.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Форт-Уэйн</text>
-<circle cx="697.5" cy="288.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="697.5" cy="288.0" r="4.2" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
-<text x="697.5" y="282.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Типпекану</text>
-<circle cx="703.9" cy="303.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="703.9" cy="303.0" r="4.2" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
-<text x="703.9" y="297.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">битва на Темзе; гибель Текумсе</text>
-<polygon points="707.0,312.5 712.5,318.0 707.0,323.5 701.6,318.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="707.0,312.5 712.5,318.0 707.0,323.5 701.6,318.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
-<text x="707.0" y="312.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Гентский мир, ст. IX</text>
-<text x="130.0" y="325.0" fill="#E2E8E3" font-size="12" text-anchor="end" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Юго-восток</text>
-<circle cx="401.9" cy="333.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="401.9" cy="333.0" r="4.2" fill="#BA8628" stroke="#BA8628" stroke-width="1.6"/>
-<text x="401.9" y="327.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Крикская политика нейтралитета между тремя державами</text>
-<line x1="411.4" y1="348.0" x2="544.9" y2="348.0" stroke="#CF60A5" stroke-width="3.2" stroke-opacity="1.0"/>
-<circle cx="411.4" cy="348.0" r="3.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="411.4" cy="348.0" r="3.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
-<circle cx="544.9" cy="348.0" r="3.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="544.9" cy="348.0" r="3.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
-<text x="411.4" y="342.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Чикасские войны</text>
-<line x1="494.0" y1="363.0" x2="503.6" y2="363.0" stroke="#CF60A5" stroke-width="3.2" stroke-opacity="1.0"/>
-<circle cx="494.0" cy="363.0" r="3.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="494.0" cy="363.0" r="3.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
-<circle cx="503.6" cy="363.0" r="3.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="503.6" cy="363.0" r="3.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
-<text x="494.0" y="357.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">гражданская война чокто</text>
-<circle cx="707.0" cy="378.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="707.0" cy="378.0" r="4.2" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
-<text x="707.0" y="372.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">Хорсшу-Бенд и форт-Джексон</text>
-<text x="130.0" y="385.0" fill="#E2E8E3" font-size="12" text-anchor="end" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Параллельный юг</text>
-<polygon points="157.1,387.5 162.5,393.0 157.1,398.5 151.6,393.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="157.1,387.5 162.5,393.0 157.1,398.5 151.6,393.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
-<text x="157.1" y="387.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">первый большой парламент с мапуче — Кильин</text>
-<polygon points="672.1,402.5 677.5,408.0 672.1,413.5 666.6,408.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="672.1,402.5 677.5,408.0 672.1,413.5 666.6,408.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
-<text x="672.1" y="402.0" fill="#E2E8E3" font-size="10.5" text-anchor="middle" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" paint-order="stroke" stroke="#141A18" stroke-width="4" stroke-linejoin="round">последний большой колониальный парламент мапуче — Негрете</text>
-<circle cx="144.0" cy="1040.0" r="4.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="144.0" cy="1040.0" r="4.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
-<text x="154.0" y="1044.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">война</text>
-<polygon points="227.5,1034.3 233.2,1040.0 227.5,1045.7 221.8,1040.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="227.5,1034.3 233.2,1040.0 227.5,1045.7 221.8,1040.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
-<text x="237.5" y="1044.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">договор, мир</text>
-<circle cx="355.1" cy="1040.0" r="4.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="355.1" cy="1040.0" r="4.4" fill="#BA8628" stroke="#BA8628" stroke-width="1.6"/>
-<text x="365.1" y="1044.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">веха</text>
-<polygon points="432.3,1034.3 438.0,1040.0 432.3,1045.7 426.6,1040.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="432.3,1034.3 438.0,1040.0 432.3,1045.7 426.6,1040.0" fill="#97A59E" stroke="#97A59E" stroke-width="1.6"/>
-<text x="442.3" y="1044.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">потеря державы-противовеса</text>
-<text x="138.0" y="1072.0" fill="события по сводкам помечены в данных" font-size="#97A59E" text-anchor="11" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Полосы — войны с годами начала и конца; тексты договоров — Avalon Project;</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 764" width="760" height="764" role="img" aria-labelledby="t d" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">
+<title id='t'>Эпоха баланса одной шкалой, 1640–1820</title><desc id='d'>События построчно, три блока. Северо-восток: «бобровые войны» 1649–1651; монреальский мир 1701; Утрехт 1713; нейтралитет Онондаги 1753; Парижский мир 1763; война Понтиака 1763–1766; Королевская прокламация 1763; Форт-Стануикс 1768; Квебекский акт 1774; Ориске 1777; прокламация Халдиманда 1784; разгром Сент-Клэра 1791; Гринвилл 1795; Форт-Уэйн 1809; Типпекану 1811; битва на Темзе 1813; Гент 1814. Юго-восток: политика Брима 1718; чикасские войны 1721–1763; гражданская война чокто 1747–1750; Хорсшу-Бенд и форт-Джексон 1814. Параллельный юг: Кильин 1641; Негрете 1803. Форма и цвет метки — тип события.</desc>
+<rect width="760" height="764" fill="#141A18"/>
+<line x1="264.8" y1="32.0" x2="264.8" y2="680.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="264.8" y="696.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1640</text>
+<line x1="316.2" y1="32.0" x2="316.2" y2="680.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="316.2" y="696.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1660</text>
+<line x1="367.6" y1="32.0" x2="367.6" y2="680.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="367.6" y="696.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1680</text>
+<line x1="418.9" y1="32.0" x2="418.9" y2="680.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="418.9" y="696.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1700</text>
+<line x1="470.3" y1="32.0" x2="470.3" y2="680.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="470.3" y="696.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1720</text>
+<line x1="521.7" y1="32.0" x2="521.7" y2="680.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="521.7" y="696.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1740</text>
+<line x1="573.1" y1="32.0" x2="573.1" y2="680.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="573.1" y="696.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1760</text>
+<line x1="624.4" y1="32.0" x2="624.4" y2="680.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="624.4" y="696.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1780</text>
+<line x1="675.8" y1="32.0" x2="675.8" y2="680.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="675.8" y="696.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1800</text>
+<line x1="727.2" y1="32.0" x2="727.2" y2="680.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
+<text x="727.2" y="696.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1820</text>
+<text x="242.0" y="24.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-style="italic">год →</text>
+<text x="20.0" y="56.0" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Северо-восток</text>
+<line x1="252.0" y1="79.0" x2="740.0" y2="79.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="76.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">«бобровые войны»</text>
+<text x="240.0" y="83.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1649–1651</text>
+<line x1="288.0" y1="79.0" x2="293.1" y2="79.0" stroke="#CF60A5" stroke-width="3.2" stroke-opacity="1.0"/>
+<circle cx="288.0" cy="79.0" r="3.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="288.0" cy="79.0" r="3.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
+<circle cx="293.1" cy="79.0" r="3.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="293.1" cy="79.0" r="3.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
+<line x1="252.0" y1="101.0" x2="740.0" y2="101.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="98.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Великий монреальский мир</text>
+<text x="240.0" y="105.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1701</text>
+<polygon points="421.5,95.5 427.0,101.0 421.5,106.5 416.1,101.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="421.5,95.5 427.0,101.0 421.5,106.5 416.1,101.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
+<line x1="252.0" y1="123.0" x2="740.0" y2="123.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="120.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Утрехтский мир</text>
+<text x="240.0" y="127.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1713</text>
+<polygon points="452.3,117.5 457.8,123.0 452.3,128.5 446.9,123.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="452.3,117.5 457.8,123.0 452.3,128.5 446.9,123.0" fill="#97A59E" stroke="#97A59E" stroke-width="1.6"/>
+<line x1="252.0" y1="151.0" x2="740.0" y2="151.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="141.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Онондага провозглашает</text>
+<text x="20.0" y="155.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">нейтралитет Лиги</text>
+<text x="240.0" y="155.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1753</text>
+<circle cx="555.1" cy="151.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="555.1" cy="151.0" r="4.2" fill="#BA8628" stroke="#BA8628" stroke-width="1.6"/>
+<line x1="252.0" y1="179.0" x2="740.0" y2="179.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="176.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Парижский мир</text>
+<text x="240.0" y="183.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1763</text>
+<polygon points="580.8,173.5 586.2,179.0 580.8,184.5 575.3,179.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="580.8,173.5 586.2,179.0 580.8,184.5 575.3,179.0" fill="#97A59E" stroke="#97A59E" stroke-width="1.6"/>
+<line x1="252.0" y1="201.0" x2="740.0" y2="201.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="198.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">война Понтиака</text>
+<text x="240.0" y="205.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1763–1766</text>
+<line x1="580.8" y1="201.0" x2="588.5" y2="201.0" stroke="#CF60A5" stroke-width="3.2" stroke-opacity="1.0"/>
+<circle cx="580.8" cy="201.0" r="3.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="580.8" cy="201.0" r="3.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
+<circle cx="588.5" cy="201.0" r="3.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="588.5" cy="201.0" r="3.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
+<line x1="252.0" y1="223.0" x2="740.0" y2="223.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="220.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Королевская прокламация</text>
+<text x="240.0" y="227.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1763</text>
+<polygon points="580.8,217.5 586.2,223.0 580.8,228.5 575.3,223.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="580.8,217.5 586.2,223.0 580.8,228.5 575.3,223.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
+<line x1="252.0" y1="245.0" x2="740.0" y2="245.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="242.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Форт-Стануикс</text>
+<text x="240.0" y="249.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1768</text>
+<polygon points="593.6,239.5 599.1,245.0 593.6,250.5 588.1,245.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="593.6,239.5 599.1,245.0 593.6,250.5 588.1,245.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
+<line x1="252.0" y1="267.0" x2="740.0" y2="267.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="264.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Квебекский акт</text>
+<text x="240.0" y="271.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1774</text>
+<circle cx="609.0" cy="267.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="609.0" cy="267.0" r="4.2" fill="#BA8628" stroke="#BA8628" stroke-width="1.6"/>
+<line x1="252.0" y1="289.0" x2="740.0" y2="289.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="286.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Ориске</text>
+<text x="240.0" y="293.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1777</text>
+<circle cx="616.7" cy="289.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="616.7" cy="289.0" r="4.2" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
+<line x1="252.0" y1="311.0" x2="740.0" y2="311.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="308.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">прокламация Халдиманда</text>
+<text x="240.0" y="315.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1784</text>
+<circle cx="634.7" cy="311.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="634.7" cy="311.0" r="4.2" fill="#BA8628" stroke="#BA8628" stroke-width="1.6"/>
+<line x1="252.0" y1="333.0" x2="740.0" y2="333.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="330.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">разгром Сент-Клэра</text>
+<text x="240.0" y="337.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1791</text>
+<circle cx="652.7" cy="333.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="652.7" cy="333.0" r="4.2" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
+<line x1="252.0" y1="355.0" x2="740.0" y2="355.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="352.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Гринвилл</text>
+<text x="240.0" y="359.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1795</text>
+<polygon points="662.9,349.5 668.4,355.0 662.9,360.5 657.5,355.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="662.9,349.5 668.4,355.0 662.9,360.5 657.5,355.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
+<line x1="252.0" y1="377.0" x2="740.0" y2="377.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="374.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Форт-Уэйн</text>
+<text x="240.0" y="381.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1809</text>
+<polygon points="698.9,371.5 704.4,377.0 698.9,382.5 693.4,377.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="698.9,371.5 704.4,377.0 698.9,382.5 693.4,377.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
+<line x1="252.0" y1="399.0" x2="740.0" y2="399.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="396.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Типпекану</text>
+<text x="240.0" y="403.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1811</text>
+<circle cx="704.0" cy="399.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="704.0" cy="399.0" r="4.2" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
+<line x1="252.0" y1="421.0" x2="740.0" y2="421.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="418.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">битва на Темзе</text>
+<text x="240.0" y="425.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1813</text>
+<circle cx="709.2" cy="421.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="709.2" cy="421.0" r="4.2" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
+<line x1="252.0" y1="443.0" x2="740.0" y2="443.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="440.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Гентский мир, ст. IX</text>
+<text x="240.0" y="447.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1814</text>
+<polygon points="711.7,437.5 717.2,443.0 711.7,448.5 706.3,443.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="711.7,437.5 717.2,443.0 711.7,448.5 706.3,443.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
+<text x="20.0" y="476.0" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Юго-восток</text>
+<line x1="252.0" y1="505.0" x2="740.0" y2="505.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="495.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Крикская политика нейтралитета</text>
+<text x="20.0" y="509.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">между тремя державами</text>
+<text x="240.0" y="509.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1718</text>
+<circle cx="465.2" cy="505.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="465.2" cy="505.0" r="4.2" fill="#BA8628" stroke="#BA8628" stroke-width="1.6"/>
+<line x1="252.0" y1="533.0" x2="740.0" y2="533.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="530.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Чикасские войны</text>
+<text x="240.0" y="537.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1721–1763</text>
+<line x1="472.9" y1="533.0" x2="580.8" y2="533.0" stroke="#CF60A5" stroke-width="3.2" stroke-opacity="1.0"/>
+<circle cx="472.9" cy="533.0" r="3.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="472.9" cy="533.0" r="3.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
+<circle cx="580.8" cy="533.0" r="3.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="580.8" cy="533.0" r="3.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
+<line x1="252.0" y1="555.0" x2="740.0" y2="555.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="552.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">гражданская война чокто</text>
+<text x="240.0" y="559.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1747–1750</text>
+<line x1="539.7" y1="555.0" x2="547.4" y2="555.0" stroke="#CF60A5" stroke-width="3.2" stroke-opacity="1.0"/>
+<circle cx="539.7" cy="555.0" r="3.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="539.7" cy="555.0" r="3.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
+<circle cx="547.4" cy="555.0" r="3.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="547.4" cy="555.0" r="3.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
+<line x1="252.0" y1="577.0" x2="740.0" y2="577.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="574.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Хорсшу-Бенд и форт-Джексон</text>
+<text x="240.0" y="581.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1814</text>
+<circle cx="711.7" cy="577.0" r="4.2" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="711.7" cy="577.0" r="4.2" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
+<text x="20.0" y="610.0" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Параллельный юг</text>
+<line x1="252.0" y1="639.0" x2="740.0" y2="639.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="629.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">первый большой парламент с</text>
+<text x="20.0" y="643.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">мапуче — Кильин</text>
+<text x="240.0" y="643.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1641</text>
+<polygon points="267.4,633.5 272.9,639.0 267.4,644.5 262.0,639.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="267.4,633.5 272.9,639.0 267.4,644.5 262.0,639.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
+<line x1="252.0" y1="673.0" x2="740.0" y2="673.0" stroke="#2E3934" stroke-width="0.7" stroke-opacity="1.0"/>
+<text x="20.0" y="663.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">последний большой колониальный</text>
+<text x="20.0" y="677.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">парламент мапуче — Негрете</text>
+<text x="240.0" y="677.0" fill="#97A59E" font-size="11" text-anchor="end" font-weight="600" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1803</text>
+<polygon points="683.5,667.5 689.0,673.0 683.5,678.5 678.0,673.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="683.5,667.5 689.0,673.0 683.5,678.5 678.0,673.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
+<circle cx="258.0" cy="720.0" r="4.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="258.0" cy="720.0" r="4.4" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
+<text x="268.0" y="724.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">война</text>
+<polygon points="341.5,714.3 347.2,720.0 341.5,725.7 335.8,720.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="341.5,714.3 347.2,720.0 341.5,725.7 335.8,720.0" fill="#2A9CC4" stroke="#2A9CC4" stroke-width="1.6"/>
+<text x="351.5" y="724.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">договор, мир</text>
+<circle cx="469.1" cy="720.0" r="4.4" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="469.1" cy="720.0" r="4.4" fill="#BA8628" stroke="#BA8628" stroke-width="1.6"/>
+<text x="479.1" y="724.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">веха</text>
+<polygon points="546.3,714.3 552.0,720.0 546.3,725.7 540.6,720.0" stroke="#141A18" stroke-width="5" fill="#141A18"/><polygon points="546.3,714.3 552.0,720.0 546.3,725.7 540.6,720.0" fill="#97A59E" stroke="#97A59E" stroke-width="1.6"/>
+<text x="556.3" y="724.0" fill="#E2E8E3" font-size="11.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">потеря державы-противовеса</text>
+<text x="252.0" y="738.0" fill="#97A59E" font-size="11" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Полосы — войны с годами начала и конца; тексты договоров — Avalon Project;</text>
+<text x="252.0" y="753.0" fill="#97A59E" font-size="11" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">события по сводкам помечены в данных</text>
 </svg>

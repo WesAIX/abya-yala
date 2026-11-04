@@ -2,7 +2,7 @@
 <title id='t'>Сколько людей жило в Америках в 1492 году</title><desc id='d'>Семь строк по регионам, на каждой — оценки разных авторов точками и диапазонами на логарифмической шкале от 0,3 до 130 млн человек. Обе Америки целиком: 6 оценок; Карибы: 4 оценок; Мексика: 5 оценок; Центральная Америка: 4 оценок; Анды: 3 оценок; Северная Америка (США и Канада): 5 оценок; Низинная Южная Америка: 6 оценок. Полушарие: Кробер и др. 8–15; Уитмор 43; Добинс 90 и 112; Деневан 53,9; Кох и соавторы 60,5 (44,8–78,2). Разброс оценок — позиция авторов, средней линии нет намеренно.</desc>
 <rect width="760" height="568" fill="#141A18"/>
 <line x1="83.1" y1="46.0" x2="83.1" y2="486.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
-<text x="83.1" y="504.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">0</text>
+<text x="83.1" y="504.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">0,5</text>
 <line x1="141.5" y1="46.0" x2="141.5" y2="486.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
 <text x="141.5" y="504.0" fill="#97A59E" font-size="11" text-anchor="middle" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">1</text>
 <line x1="200.0" y1="46.0" x2="200.0" y2="486.0" stroke="#2E3934" stroke-width="0.6" stroke-opacity="1.0"/>
@@ -21,7 +21,7 @@
 <text x="40.0" y="44.0" fill="#E2E8E3" font-size="12.5" text-anchor="start" font-weight="700" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Обе Америки целиком</text>
 <rect x="316.9" y="53.5" width="53.0" height="5.0" rx="2" fill="#CF60A5" fill-opacity="0.45"/>
 <text x="375.9" y="59.5" fill="#E2E8E3" font-size="10.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Кробер и др., 1939</text>
-<rect x="458.7" y="64.5" width="0.0" height="5.0" rx="2" fill="#CF60A5" fill-opacity="0.45"/>
+<circle cx="458.7" cy="67.0" r="3.6" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="458.7" cy="67.0" r="3.6" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
 <text x="464.7" y="70.5" fill="#E2E8E3" font-size="10.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Уитмор, 1991</text>
 <circle cx="521.0" cy="78.0" r="3.6" stroke="#141A18" stroke-width="5" fill="#141A18"/><circle cx="521.0" cy="78.0" r="3.6" fill="#CF60A5" stroke="#CF60A5" stroke-width="1.6"/>
 <text x="527.0" y="81.5" fill="#E2E8E3" font-size="10.5" text-anchor="start" font-weight="400" font-family="'Alegreya Sans','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">Добинс, 1966</text>

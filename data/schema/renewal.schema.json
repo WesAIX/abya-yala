@@ -1,142 +1,146 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "renewal.schema.json",
-  "title": "Глава 12: вехи возвращения через право, 1934–2024; демография возвращения",
-  "type": "object",
-  "required": [
-    "meta",
-    "milestones",
-    "population"
-  ],
-  "additionalProperties": false,
-  "properties": {
-    "meta": {
-      "type": "object",
-      "required": [
-        "title",
-        "license"
-      ],
-      "properties": {
-        "title": {
-          "type": "string"
-        },
-        "schema": {
-          "type": "string"
-        },
-        "license": {
-          "type": "string"
-        }
-      }
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "renewal.schema.json",
+ "title": "Глава 12: вехи возвращения через право, 1934–2024; демография возвращения",
+ "type": "object",
+ "required": [
+  "meta",
+  "milestones",
+  "population"
+ ],
+ "additionalProperties": false,
+ "properties": {
+  "meta": {
+   "type": "object",
+   "required": [
+    "title",
+    "license"
+   ],
+   "properties": {
+    "title": {
+     "type": "string"
     },
-    "milestones": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "id",
-          "year",
-          "lane",
-          "label",
-          "kind",
-          "sources"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "year": {
-            "type": "integer"
-          },
-          "end": {
-            "type": [
-              "integer",
-              "null"
-            ]
-          },
-          "lane": {
-            "enum": [
-              "usa",
-              "canada",
-              "intl"
-            ]
-          },
-          "label": {
-            "type": "string"
-          },
-          "kind": {
-            "enum": [
-              "law",
-              "court",
-              "movement",
-              "treaty",
-              "intl",
-              "event"
-            ]
-          },
-          "note": {
-            "type": "string"
-          },
-          "sources": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": [
-                "ref"
-              ],
-              "properties": {
-                "ref": {
-                  "type": "string"
-                },
-                "loc": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
+    "schema": {
+     "type": "string"
     },
-    "population": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "year",
-          "value",
-          "what",
-          "sources"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "year": {
-            "type": "integer"
-          },
-          "value": {
-            "type": "integer"
-          },
-          "what": {
-            "type": "string"
-          },
-          "sources": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": [
-                "ref"
-              ],
-              "properties": {
-                "ref": {
-                  "type": "string"
-                },
-                "loc": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
+    "license": {
+     "type": "string"
     }
+   }
+  },
+  "milestones": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "id",
+     "year",
+     "lane",
+     "label",
+     "kind",
+     "sources"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "year": {
+      "type": "integer"
+     },
+     "end": {
+      "type": [
+       "integer",
+       "null"
+      ]
+     },
+     "lane": {
+      "enum": [
+       "usa",
+       "canada",
+       "intl"
+      ]
+     },
+     "label": {
+      "type": "string"
+     },
+     "kind": {
+      "enum": [
+       "law",
+       "court",
+       "movement",
+       "treaty",
+       "intl",
+       "event"
+      ]
+     },
+     "note": {
+      "type": "string"
+     },
+     "sources": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "required": [
+        "ref"
+       ],
+       "properties": {
+        "ref": {
+         "type": "string"
+        },
+        "loc": {
+         "type": "string"
+        }
+       }
+      }
+     },
+     "ongoing": {
+      "type": "boolean",
+      "description": "полоса продолжается сегодня — рисуется со стрелкой"
+     }
+    }
+   }
+  },
+  "population": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "year",
+     "value",
+     "what",
+     "sources"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "year": {
+      "type": "integer"
+     },
+     "value": {
+      "type": "integer"
+     },
+     "what": {
+      "type": "string"
+     },
+     "sources": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "required": [
+        "ref"
+       ],
+       "properties": {
+        "ref": {
+         "type": "string"
+        },
+        "loc": {
+         "type": "string"
+        }
+       }
+      }
+     }
+    }
+   }
   }
+ }
 }

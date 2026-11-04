@@ -1267,6 +1267,27 @@
    "checked_on": "2026-10-04"
   },
   {
+   "key": "florentine-f140v",
+   "kind": "primary",
+   "authors": [
+    "Sahagún, Bernardino de",
+    "науа-соавторы"
+   ],
+   "year": "ок. 1577",
+   "title": "Historia general de las cosas de Nueva España («Флорентийский кодекс»), book XI, fol. 140v: лекарственные растения",
+   "url": "https://commons.wikimedia.org/wiki/File:Florentine_Codex_f.140v_medicinal_plants.jpg",
+   "license": "Общественное достояние (Public Domain Mark 1.0; Wikimedia Commons), скан World Digital Library, item 10622",
+   "note": "Лист «Libro undecimo» с четырьмя раскрашенными рисунками растений и текстом на науатле. Файл в главе: chapters/img/05-codex11-plants.jpg; заменяет дубль — два скана одного листа book XII, fol. 54.",
+   "topics": [
+    0,
+    5,
+    6
+   ],
+   "checked": true,
+   "checked_via": "Страница файла Wikimedia Commons (Sahagún 1577, fol. 140v; источник World Digital Library, лицензия PD Mark 1.0) и осмотр самого файла",
+   "checked_on": "2026-11-03"
+  },
+  {
    "key": "raghavan2014",
    "kind": "academic",
    "authors": [
